@@ -11,7 +11,7 @@
 }
 
 \usage{
-  subtendedAngle(x1, y1, x2, y2, viewerDistance = 58.74, viewerHeight = 4.55, resolutionX = 1280, resolutionY = 1024, screenWidth = 33.97, screenHeight = 27.31)
+  subtendedAngle(x1, y1, x2, y2, rx, ry, sw, sh, ez=0, ex=0, ey=0)
 }
 
 \arguments{
