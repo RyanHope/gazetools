@@ -1,4 +1,5 @@
-subtendedAngle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez=0, ex=0, ey=0) {
+subtendedAngle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez=0, ex=0, ey=0)
+{
   d1 <- distance2point(x1, y1, rx, ry, sw, sh, ez, ex, ey)
   d2 <- distance2point(x2, y2, rx, ry, sw, sh, ez, ex, ey)
   dX <- sw * (x2 - x1) / rx
