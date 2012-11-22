@@ -1,2 +1,6 @@
 export(distance2point)
 export(subtendedAngle)
+export(pva)
+export(pvaPlot)
+export(classify.VA)
+export(classify.VI)
