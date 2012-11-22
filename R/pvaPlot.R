@@ -1,3 +1,4 @@
+library(lattice)
 library(reshape)
 library(latticeExtra)
 

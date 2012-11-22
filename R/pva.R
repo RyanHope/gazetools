@@ -8,8 +8,8 @@ pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
     y <- sgolayfilt(y, n=window, p=order, m=0, ts=1/samplerate)
   }
   
-  cx <- sx / 2
-  cy <- sy /2
+  cx <- rx / 2
+  cy <- ry /2
   
   xa = subtendedAngle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey)
   ya = subtendedAngle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey)

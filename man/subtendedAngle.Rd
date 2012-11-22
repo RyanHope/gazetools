@@ -43,10 +43,10 @@
     Perpendicular distance from the viewer to the screen (mm)
   }
   \item{ex}{
-    Horizontal offset of the viewer above screen center (mm)
+    Horizontal offset of the viewer from screen center (mm)
   }
   \item{ey}{
-    Horizontal offset of the viewer above screen center (mm)
+    Vertical offset of the viewer from screen center (mm)
   }
 }
 

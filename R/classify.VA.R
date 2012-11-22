@@ -1,5 +1,5 @@
 classify.VA <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
-                             vt=30, at=8000, window=11, order=2, smooth_position=T)
+                             window=11, order=2, smooth_position=T, vt=30, at=8000)
 {
   d <- as.data.frame(pva(x, y, time, samplerate, rx, ry, sw, sh, ez, ex, ey, window, order, smooth_position))
   d$class <- 0
