@@ -1,7 +1,7 @@
 classify.VI <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
                         window=11, order=2, smooth_position=T, sigma=6, vpt=100)
 {
-  d <- as.data.frame(pva(x, y, time, samplerate, rx, ry, sw, sh, ez, ex, ey, window, order, smooth_position))
+  d <- as.data.frame(pva(x, y, time, samplerate, rx, ry, sw, sh, ez, ex, ey, order, window, smooth_position))
   d$class <- 0
   
   cont = T
