@@ -1,8 +1,6 @@
 pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
                 order=2, window=11, smooth_position=T)
 {
-  time <- (1:length(time)-1)*(1/samplerate)
-  
   if (smooth_position) {
     x <- sgolayfilt(x, n=window, p=order, m=0, ts=1/samplerate)
     y <- sgolayfilt(y, n=window, p=order, m=0, ts=1/samplerate)
