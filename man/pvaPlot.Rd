@@ -10,12 +10,18 @@
   instantaneous velocity and acceleration over time.
 }
 \usage{
-  pvaPlot(d)
+  pvaPlot(d, layout = c(1, NA), thresholds = NULL)
 }
 
 \arguments{
   \item{d}{
     A pva data.frame returned by pva()
+  }
+  \item{layout}{
+    A lattice compat layout.
+  }
+  \item{thresholds}{
+    A list of thresholds. ~This needs improvement
   }
 }
 

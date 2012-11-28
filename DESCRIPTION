@@ -7,4 +7,4 @@ Author: Ryan M. Hope
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 Description: A colletion of tools for processing and classifying eye gaze data.
 License: GPL-3
-Depends: lattice, latticeExtra, reshape, signal
+Depends: lattice, latticeExtra, reshape, signal, ggplot2, methods

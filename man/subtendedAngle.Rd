@@ -11,7 +11,7 @@
 }
 
 \usage{
-  subtendedAngle(x1, y1, x2, y2, rx, ry, sw, sh, ez=0, ex=0, ey=0)
+  subtendedAngle(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex=0, ey=0)
 }
 
 \arguments{

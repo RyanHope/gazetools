@@ -9,8 +9,8 @@ pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
   cx <- rx / 2
   cy <- ry /2
   
-  xa = subtendedAngle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey)
-  ya = subtendedAngle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey)
+  xa <- subtendedAngle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey)
+  ya <- subtendedAngle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey)
   
   vx <- sgolayfilt(xa, n=window, p=order, m=1, ts=1/samplerate)
   vy <- sgolayfilt(ya, n=window, p=order, m=1, ts=1/samplerate)
@@ -20,7 +20,7 @@ pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
   ay <- sgolayfilt(ya, n=window, p=order, m=2, ts=1/samplerate)
   a <- sqrt(ax**2 + ay**2)
   
-  d <- data.frame(time=time, x=x, y=y, v=v, a=a)
+  d <- data.frame(time=time, x=x, xa=xa, y=y, ya=ya, v=v, a=a)
   attr(d, "sgolayfilt") <- c(order, window)
   d
 }
