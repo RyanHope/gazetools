@@ -1,12 +1,23 @@
 export(distance2point)
 export(angle2pixels)
 export(subtendedAngle)
+
+importFrom("graphics", plot)
+
 export(pva)
-export(pvaPlot)
+exportClasses(pva)
+
+export(find_peak_ranges)
+export(find_peaks)
+export(maxima)
+
+export(mouldThreshold)
+exportClasses(mould)
+
+exportMethods(plot)
+exportMethods(as.data.frame)
+
+exportClasses(classify)
 export(classify.VA)
 export(classify.VI)
-export(maxima)
-export(mouldThreshold)
-importFrom("graphics", plot)
-exportClasses(mould)
-exportMethods(plot)
+export(classify.V)

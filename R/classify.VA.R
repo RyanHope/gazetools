@@ -1,12 +1,9 @@
-classify.VA <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
-                             window=11, order=2, smooth_position=T, vt=30, at=8000)
+classify.VA <- function(v, a, vt=30, at=8000)
 {
-  d <- as.data.frame(pva(x, y, time, samplerate, rx, ry, sw, sh, ez, ex, ey, order, window, smooth_position))
-  d$class <- 0
-  
-  m <- length(d$time)
-  vranges <- find_peak_ranges(d$v, vt)
-  apeaks <- find_peaks(d$a, at)
+  m <- length(v)
+  class <- rep("FIXATION", m)
+  vranges <- find_peak_ranges(v, vt)
+  apeaks <- find_peaks(a, at)
   for (i in 1:nrow(vranges)) {
     r <- vranges[i,1]:vranges[i,2]
     if (min(r)!=1)
@@ -21,10 +18,10 @@ classify.VA <- function(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
       }
     }
     if (sac)
-      d$class[r] <- 1
+      class[r] <- "SACCADE"
   }
-  
-  attr(d, "algorithm") <- "velocity-acceleration"
-  attr(d, "thresholds") <- c(vt,at)
-  d
+  new("classify", class,
+      fixation_ids = event_ids(class, "FIXATION"),
+      saccade_ids = event_ids(class, "SACCADE"),
+      algorithm = "velocity-acceleration", thresholds = c(vt, at))
 }
