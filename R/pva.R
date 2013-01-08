@@ -16,30 +16,32 @@ setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional 
           }
 )
 
-setMethod("plot", signature(x = "pva", y = "classify"),
-          function(x, y) {
-            d <- as.data.frame(x)
-            if (class(y)=="classify") {
-              d$class <- factor(y)
-              d <- melt(d, id=c("time","class"))
-            } else
-              d <- melt(d, id=c("time"))
-            d <- subset(d, variable=="sx" | variable=="sy" | variable=="v" | variable=="a")
-            d$variable <- factor(d$variable,labels=c("Gaze X", "Gaze Y", "Velocity", "Acceleration"))
-            if (class(y)=="classify") {
-              thresholds <- data.frame(variable=levels(d$variable))
-              if (length(y@thresholds) > 1) 
-                thresholds$intercept <- c(NA,NA,y@thresholds)
-              else
-                thresholds$intercept <- c(NA,NA,y@thresholds,NA)
-              p <- ggplot(d) + geom_point(aes(x=time, y=value, color=class)) + 
-                geom_hline(data=thresholds,aes(yintercept=intercept)) +
-                scale_color_manual(values=c("black", "red"))
-            } else
-              p <- ggplot(d) + geom_point(aes(x=time, y=value))
-            p + facet_grid(variable~., scales="free_y") + ylab("") + xlab("Time (s)")
-          }
-)
+setMethod("plot", signature(x = "pva", y = "missing"), function(x) pva.plot(x))
+setMethod("plot", signature(x = "pva", y = "classify"), function(x, y) pva.plot(x, y))
+
+pva.plot <- function(x, y=NULL)
+{
+  d <- as.data.frame(x)
+  if (!is.null(y) & class(y)=="classify") {
+    d$class <- factor(y)
+    d <- melt(d, id=c("time","class"))
+  } else
+    d <- melt(d, id=c("time"))
+  d <- subset(d, variable=="sx" | variable=="sy" | variable=="v" | variable=="a")
+  d$variable <- factor(d$variable,labels=c("Gaze X", "Gaze Y", "Velocity", "Acceleration"))
+  if (!is.null(y) & class(y)=="classify") {
+    thresholds <- data.frame(variable=levels(d$variable))
+    if (length(y@thresholds) > 1) 
+      thresholds$intercept <- c(NA,NA,y@thresholds)
+    else
+      thresholds$intercept <- c(NA,NA,y@thresholds,NA)
+    p <- ggplot(d) + geom_point(aes(x=time, y=value, color=class)) + 
+      geom_hline(data=thresholds,aes(yintercept=intercept)) +
+      scale_color_manual(values=c("black", "red"))
+  } else
+    p <- ggplot(d) + geom_point(aes(x=time, y=value))
+  p + facet_grid(variable~., scales="free_y") + ylab("") + xlab("Time (s)")
+}
 
 pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
                     ex = 0, ey = 0, order = 2, window = 11)

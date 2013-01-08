@@ -7,6 +7,8 @@ importFrom("graphics", plot)
 export(pva)
 exportClasses(pva)
 
+export(filter_saccades)
+export(event_ids)
 export(find_peak_ranges)
 export(find_peaks)
 export(maxima)
