@@ -1,9 +1,13 @@
-filter_saccades <- function(class, samplerate, min.saccade.duration = 20) {
+filter_saccades <- function(class, samplerate, min.saccade.duration = 20, verbose=F) {
   n <- min.saccade.duration / (1000/samplerate)
-  for (id in unique(class@saccade_ids)) {
+  ids <- unique(class@saccade_ids)
+  if (class@fixation_ids[1]==0)
+    ids <- ids[2:length(ids)]
+  for (id in ids) {
     ids <- which(class@saccade_ids == id)
     if (id > 0 & length(ids) < n) {
-      print(sprintf("Dropping saccade id %d, length %d ms", id, length(ids)*(1000/samplerate)))
+      if (verbose)
+        print(sprintf("Dropping saccade id %d, length %d ms", id, length(ids)*(1000/samplerate)))
       class@saccade_ids[ids] <- 0
       fix <- class@fixation_ids[min(ids)-1]
       class@fixation_ids[ids] <- fix
