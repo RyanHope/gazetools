@@ -13,7 +13,8 @@ export(find_peak_ranges)
 export(find_peaks)
 export(maxima)
 
-export(mouldThreshold)
+export(mouldVelocityThreshold)
+export(mouldAccelerationThreshold)
 exportClasses(mould)
 
 exportMethods(plot)

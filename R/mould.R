@@ -1,5 +1,5 @@
 setClass("mould", 
-         representation(thresholds = "numeric", resp1 = "numeric", resp2 = "numeric", gap = "numeric"), 
+         representation(thresholds = "numeric", resp1 = "numeric", resp2 = "numeric", gap = "numeric", type = "character"), 
          contains = "numeric")
 
 setMethod("plot", signature(x = "mould", y = "missing"),
@@ -9,9 +9,15 @@ setMethod("plot", signature(x = "mould", y = "missing"),
                              resp2 = slot(x, "resp2"),
                              gap = slot(x, "gap"),
                              thresholds = slot(x, "thresholds"))
+            if (x@type == "velocity")
+              xlab <- "Speed threshold, deg/s"
+            else if (x@type == "acceleration")
+              xlab <- "Speed threshold, deg/s^2"
+            else
+              xlab <- "unknown"
             ggplot(dd, aes(x = thresholds, y = resp1)) + geom_area(fill = "gray") +
               ylab("Frequency of local speed maxima exceeding threshold") +
-              xlab("Speed threshold, deg/s") + 
+              xlab(labx) + 
               ylim(0, max(dd$resp1)) +
               geom_line(aes(x = thresholds, y = resp2), linetype = "dashed") +
               geom_line(aes(x = thresholds, y = gap)) + 
