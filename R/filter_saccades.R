@@ -15,5 +15,10 @@ filter_saccades <- function(class, samplerate, min.saccade.duration = 20, verbos
       class@.Data[ids] <- "FIXATION"
     }
   }
+  fixruns <- rle(class@fixation_ids)$values
+  for(i in 1:length(fixruns)) {
+    if (i > 1 && fixruns[i] != 0 && fixruns[i-1] != 0)
+      class@fixation_ids[which(class@fixation_ids == fixruns[i])] <- fixruns[i-1]
+  }
   class
 }
