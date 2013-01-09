@@ -1,6 +1,6 @@
-mouldThreshold <- function(velocity, samplerate)
+mouldThreshold <- function(d, samplerate)
 {
-  peaks <- velocity[maxima(velocity)]
+  peaks <- d[maxima(d)]
   r <- range(peaks)
   thresholds <- seq(r[1], r[2], length.out = samplerate)
   resp1 <- sapply(thresholds, function(x) {length(which(peaks > x))})
