@@ -1,4 +1,4 @@
-classify.V <- function(d, vt = 75)
+classify.V <- function(v, vt = 75)
 {
   m <- length(v)
   class <- rep("FIXATION", m)
