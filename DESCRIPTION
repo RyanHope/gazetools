@@ -1,8 +1,8 @@
 Package: gazetools
 Type: Package
 Title: Gaze Tools
-Version: 2.0
-Date: 2012-11-21
+Version: 2.1
+Date: 2013-02-08
 Author: Ryan M. Hope
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 Description: A colletion of tools for processing and classifying eye gaze data.
