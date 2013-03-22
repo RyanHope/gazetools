@@ -7,5 +7,5 @@ subtendedAngle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex=0, ey=0)
   dS <- sqrt(dX**2 + dY**2)
   w1 <- d1**2 + d2**2 - dS**2
   w2 <- 2 * d1 * d2
-  acos(w1 / w2) * 180 / pi
+  acos(pmin(pmax((w1 / w2), -1.0), 1.0)) * 180 / pi
 }
