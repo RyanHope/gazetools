@@ -1,10 +1,10 @@
 Package: gazetools
 Type: Package
 Title: Gaze Tools
-Version: 2.2
+Version: 2.3
 Date: 2013-03-22
 Author: Ryan M. Hope
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 Description: A colletion of tools for processing and classifying eye gaze data.
 License: GPL-3
-Depends: reshape, signal, ggplot2, methods, Rmisc
+Depends: reshape, signal, ggplot2, methods, Rmisc, zoo

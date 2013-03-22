@@ -56,9 +56,9 @@ pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
   cx <- rx / 2
   cy <- ry /2
   
-  xa <- subtendedAngle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey)
-  ya <- subtendedAngle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey)
-  
+  xa <- na.approx(subtendedAngle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey))
+  ya <- na.approx(subtendedAngle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey))
+      
   vx <- sgolayfilt(xa, n = window, p = order, m = 1, ts = ts)
   vy <- sgolayfilt(ya, n = window, p = order, m = 1, ts = ts)
   v <- sqrt(vx**2 + vy**2)
