@@ -1,6 +1,6 @@
-filter_saccades <- function(dpva, class, samplerate, min.saccade.duration = 20, min.saccade.amp = 1.5, verbose=T) {
+filter_saccades <- function(dpva, class, min.saccade.duration = 20, min.saccade.amp = 1.5, verbose=T) {
   distance <- function(x1,y1,x2,y2) sqrt((x2-x1)**2+(y2-y1)**2)
-  n <- min.saccade.duration / (1000/samplerate)
+  n <- min.saccade.duration / (1000/dpva@samplerate)
   ids <- unique(class@saccade_ids)
   ids <- ids[ids>0]
   if (class@fixation_ids[1]==0)
@@ -9,7 +9,7 @@ filter_saccades <- function(dpva, class, samplerate, min.saccade.duration = 20, 
     ids <- which(class@saccade_ids == id)
     if (length(ids) < n) {
       if (verbose)
-        print(sprintf("Dropping saccade id %d, length %d ms", id, length(ids)*(1000/samplerate)))
+        print(sprintf("Dropping saccade id %d, length %d ms", id, length(ids)*(1000/dpva@samplerate)))
       class@saccade_ids[ids] <- 0
       fix <- class@fixation_ids[min(ids)-1]
       class@fixation_ids[ids] <- fix
