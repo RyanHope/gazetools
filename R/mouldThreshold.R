@@ -1,4 +1,5 @@
-setGeneric("mouldThreshold", function(dpva) standardGeneric("mouldThreshold"))
+setGeneric("mouldThreshold.velocity", function(dpva) standardGeneric("mouldThreshold.velocity"))
+setGeneric("mouldThreshold.acceleration", function(dpva) standardGeneric("mouldThreshold.velocity"))
 
 setMethod("mouldThreshold.velocity", signature(dpva = "pva"), function(x) pva.mouldVelocityThreshold(x))
 setMethod("mouldThreshold.acceleration", signature(dpva = "pva"), function(x) pva.mouldAccelerationThreshold(x))
