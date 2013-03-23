@@ -1,5 +1,7 @@
-setGeneric("mouldVelocityThreshold", signature(x = "pva"), function(x) pva.mouldVelocityThreshold(x))
-setGeneric("mouldAccelerationThreshold", signature(x = "pva"), function(x) pva.mouldAccelerationThreshold(x))
+setGeneric("mouldThreshold", function(dpva) standardGeneric("mouldThreshold"))
+
+setMethod("mouldThreshold.velocity", signature(dpva = "pva"), function(x) pva.mouldVelocityThreshold(x))
+setMethod("mouldThreshold.acceleration", signature(dpva = "pva"), function(x) pva.mouldAccelerationThreshold(x))
 
 pva.mouldVelocityThreshold <- function(p)
 {
