@@ -14,8 +14,8 @@ export(find_peaks)
 export(maxima)
 
 exportClasses(mould)
-exportMethods(mouldVelocityThreshold)
-exportMethods(mouldAccelerationThreshold)
+exportMethods(mouldThreshold.velocity)
+exportMethods(mouldThreshold.acceleration)
 
 exportMethods(plot)
 exportMethods(as.data.frame)
