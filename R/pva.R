@@ -43,7 +43,8 @@ pva.plot <- function(x, y=NULL)
       scale_color_manual(values=c("black", "red"))
   } else
     p <- ggplot(d) + geom_point(aes(x=time, y=value))
-  p + facet_grid(variable~., scales="free_y") + ylab("") + xlab("Time (s)")
+  p + facet_grid(variable~., scales="free_y") + ylab("") + xlab("Time (s)") +
+    theme(legend.position = "top")
 }
 
 pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
