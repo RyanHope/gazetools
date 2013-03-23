@@ -7,12 +7,15 @@ setClass("pva",
                         sx = "numeric", sy = "numeric",
                         xa = "numeric", ya = "numeric",
                         v = "numeric", a = "numeric",
+                        rx = "numeric", ry = "numeric",
+                        samplerate = "numeric",
                         sgolayfilt = "numeric"))
 
 setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional = "missing"),
           function(x) {
             data.frame(time = x@time, ez = x@ez, ex = x@ex, ey = x@ey, x = x@x, y = x@y,
-                       sx = x@sx, sy = x@sy, xa = x@xa, ya = x@ya, v = x@v, a = x@a)
+                       sx = x@sx, sy = x@sy, xa = x@xa, ya = x@ya, v = x@v, a = x@a, 
+                       rx = x@rx, ry = x@ry, samplerate = x@samplerate)
           }
 )
 
@@ -68,5 +71,6 @@ pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
   a <- sqrt(ax**2 + ay**2)
   
   new("pva", time = time, ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa, 
-      sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window))
+      sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window), rx = rx, ry = ry,
+      samplerate = samplerate)
 }
