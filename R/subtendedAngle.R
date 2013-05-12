@@ -1,3 +1,12 @@
+#' Subtended Angle
+#'
+#' Takes two screen coordinates and returns the angle (in degrees)
+#' subtended by those two points.
+#' 
+#' @template 2p
+#' @template eye
+#'
+#' @export
 subtendedAngle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex=0, ey=0)
 {
   d1 <- distance2point(x1, y1, rx, ry, sw, sh, ez, ex, ey)

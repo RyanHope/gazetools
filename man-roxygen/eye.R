@@ -1,0 +1,7 @@
+#' @param rx the x resolution of the monitor (pixels)
+#' @param ry the y resolution of the monitor (pixels)
+#' @param sw the physical screen width (mm)
+#' @param sh the physical screen height (mm)
+#' @param ez the perpendicular distance from the viewer to the screen (mm)
+#' @param ex the horizontal offset of the viewer from screen center (mm)
+#' @param ey the vertical offset of the viewer from screen center (mm)

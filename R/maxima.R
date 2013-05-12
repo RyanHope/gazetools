@@ -1,1 +1,0 @@
-maxima <- function(x) which(diff(sign(diff(x)))==-2)+1

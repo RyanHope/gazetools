@@ -1,7 +1,41 @@
+#' Class "mould"
+#'
+#' A class to hold mould threshold information
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{.Data}:}{a threshold value}
+#'    \item{\code{thresholds}:}{vector of class \code{"numeric"}}
+#'    \item{\code{resp1}:}{vector of class \code{"numeric"}}
+#'    \item{\code{resp2}:}{vector of class \code{"numeric"}}
+#'    \item{\code{gap}:}{vector of class \code{"numeric"}}
+#'    \item{\code{type}:}{the type of threshold (velocity or acceleration)}
+#'  }
+#'
+#' @docType class
+#' @name mould-class
+#' @rdname mould-class
+#' @exportClass mould
 setClass("mould", 
-         representation(thresholds = "numeric", resp1 = "numeric", resp2 = "numeric", gap = "numeric", type = "character"), 
+         representation(thresholds = "numeric",
+                        resp1 = "numeric",
+                        resp2 = "numeric",
+                        gap = "numeric",
+                        type = "character"), 
          contains = "numeric")
 
+#' Plot mould
+#' 
+#' Plot the mould class
+#' 
+#' @param x an object of class \code{"mould"}
+#' 
+#' @docType methods
+#' @import ggplot2
+#' @rdname mould-methods
+#' @name plot.mould
+#' @export
+#' @aliases plot,mould,missing-method
 setMethod("plot", signature(x = "mould", y = "missing"),
           function(x, y, ...) {
             optimal<-as.numeric(x)

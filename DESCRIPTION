@@ -1,10 +1,38 @@
 Package: gazetools
 Type: Package
 Title: Gaze Tools
-Version: 2.5
+Version: 3.0
 Date: 2013-03-23
 Author: Ryan M. Hope
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 Description: A colletion of tools for processing and classifying eye gaze data.
 License: GPL-3
-Depends: reshape, signal, ggplot2, methods, Rmisc, zoo
+Imports:
+    methods,
+    rgeos,
+    maptools,
+    deldir,
+    sp,
+    modeest,
+    signal,
+    zoo,
+    Rmisc,
+    reshape,
+    plyr,
+    ggplot2
+Collate:
+    'event_ids.R'
+    'distance2point.R'
+    'subtendedAngle.R'
+    'angle2pixels.R'
+    'local_maxima.R'
+    'find_peak_ranges.R'
+    'find_peaks.R'
+    'pva.R'
+    'classify.R'
+    'classify.V.R'
+    'classify.VA.R'
+    'classify.VI.R'
+    'mould.R'
+    'mouldThreshold.R'
+    'voronoi.R'

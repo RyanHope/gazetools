@@ -1,72 +1,46 @@
 \name{pva}
 \alias{pva}
-
-\title{
-  Position, Velocity, Acceleration
-}
-
-\description{
-  Takes standard gaze information and computes smoothed position, velocity
-  and acceleration profiles using a Savitzky-Golay filter.
-}
+\title{Position, Velocity, Acceleration}
 \usage{
-  pva(x, y, time, samplerate, rx, ry, sw, sh, ez, ex=0, ey=0,
-                order=2, window=11, smooth_position=T)
+  pva(x, y, time, samplerate, rx, ry, sw, sh, ez, ex = 0,
+    ey = 0, order = 2, window = 11)
 }
-
 \arguments{
-  \item{x}{
-    A vector of x gaze samples (pixels)
-  }
-  \item{y}{
-    A vector of y gaze samples (pixels)
-  }
-  \item{time}{
-    A vector of time samples
-  }
-  \item{samplerate}{
-    The samping rate of the gaze samples
-  }
-  \item{rx}{
-    The x resolution of the monitor (pixels)
-  }
-  \item{ry}{
-    The y resolution of the monitor (pixels)
-  }
-  \item{sw}{
-    The physical screen width (mm)
-  }
-  \item{sh}{
-    The physical screen height (mm)
-  }
-  \item{ez}{
-    Perpendicular distance from the viewer to the screen (mm)
-  }
-  \item{ex}{
-    Horizontal offset of the viewer from screen center (mm)
-  }
-  \item{ey}{
-    Vertical offset of the viewer from screen center (mm)
-  }
-  \item{order}{
-    The Savitzky-Golay filter order
-  }
-  \item{window}{
-    The Savitzky-Golay filter window length (must be odd)
-  }
-  \item{smooth_position}{
-    If TRUE, the x and y gaze positions returned will be smoothed.
-  }
+  \item{x}{the x coordinate of a point on a screen
+  (pixels)}
+
+  \item{y}{the y coordinate of a point on a screen
+  (pixels)}
+
+  \item{time}{the time corresponding to raw gaze samples}
+
+  \item{samplerate}{the samplerate of the eyetracker}
+
+  \item{rx}{the x resolution of the monitor (pixels)}
+
+  \item{ry}{the y resolution of the monitor (pixels)}
+
+  \item{sw}{the physical screen width (mm)}
+
+  \item{sh}{the physical screen height (mm)}
+
+  \item{ez}{the perpendicular distance from the viewer to
+  the screen (mm)}
+
+  \item{ex}{the horizontal offset of the viewer from screen
+  center (mm)}
+
+  \item{ey}{the vertical offset of the viewer from screen
+  center (mm)}
+
+  \item{order}{the Savitzky-Golay filter order}
+
+  \item{window}{the Savitzky-Golay filter window length
+  (must be odd)}
+}
+\description{
+  Takes standard eye tracker gaze information and computes
+  smoothed position, velocity and acceleration profiles
+  using a Savitzky-Golay filter.
 }
 
-\value{
-  A data.frame with 5 columns: time, x, y, v, a.
-}
-
-\author{
-  Ryan M. Hope
-}
-
-\examples{
-  # Need an example
-}

@@ -1,3 +1,10 @@
+#' Find Peak Ranges
+#'
+#' Given a vector of data, find ranges of data that exceede a set threshold
+#' 
+#' @template peak
+#'
+#' @export
 find_peak_ranges <- function(x, threshold)
 {
   t <- which(x >= threshold)

@@ -1,3 +1,11 @@
+#' Gaze Data Classification (velocity-acceleration)
+#'
+#' Classifies gaze data into saccades and fixations using both velocity and acceleration thresholds.
+#' 
+#' @template v
+#' @template a
+#'
+#' @export
 classify.VA <- function(v, a, vt=30, at=8000)
 {
   m <- length(v)

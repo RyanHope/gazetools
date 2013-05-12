@@ -1,5 +1,31 @@
-require(signal)
-
+#' Class "pva"
+#'
+#' A class to hold position, velocity and acceleration of raw gaze data
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{time}:}{vector of class \code{"numeric"}, containing the time corresponding to raw gaze samples}
+#'    \item{\code{ez}:}{vector of class \code{"numeric"}, containing the perpendicular distance from the viewer to the screen (mm)}
+#'    \item{\code{ex}:}{vector of class \code{"numeric"}, containing the horizontal offset of the viewer from screen center (mm)}
+#'    \item{\code{ey}:}{vector of class \code{"numeric"}, containing the vertical offset of the viewer from screen center (mm)}
+#'    \item{\code{x}:}{vector of class \code{"numeric"}, containing the x coordinate of a point on a screen (pixels)}
+#'    \item{\code{y}:}{vector of class \code{"numeric"}, containing the y coordinate of a point on a screen (pixels)}
+#'    \item{\code{sx}:}{vector of class \code{"numeric"}, containing the smoothed x coordinate of a point on a screen (pixels)}
+#'    \item{\code{sy}:}{vector of class \code{"numeric"}, containing the smoothed y coordinate of a point on a screen (pixels)}
+#'    \item{\code{xa}:}{vector of class \code{"numeric"}, containing the x coordinate of a point in visual angle relative to the center of screen (degrees)}
+#'    \item{\code{ya}:}{vector of class \code{"numeric"}, containing the y coordinate of a point in visual angle relative to the center of screen (degrees)}
+#'    \item{\code{v}:}{vector of class \code{"numeric"}, containing the instantaneous velocity (degrees/s)}
+#'    \item{\code{a}:}{vector of class \code{"numeric"}, containing the instantaneous acceleration (degrees/s^2)}
+#'    \item{\code{rx}:}{the x resolution of the monitor (pixels)}
+#'    \item{\code{ry}:}{the y resolution of the monitor (pixels)}
+#'    \item{\code{samplerate}:}{the samplerate of the eyetracker}
+#'    \item{\code{sgolayfilt}:}{parameters for the avitzky-Golay smoothing filter}
+#'  }
+#'
+#' @docType class
+#' @name pva-class
+#' @rdname pva-class
+#' @exportClass pva
 setClass("pva", 
          representation(time = "numeric", ez = "numeric",
                         ex = "numeric", ey = "numeric",
@@ -11,6 +37,10 @@ setClass("pva",
                         samplerate = "numeric",
                         sgolayfilt = "numeric"))
 
+#' @rdname pva-methods
+#' @aliases as.data.frame,pva,missing,missing-method
+#' @name pva.as.data.frame
+#' @export
 setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional = "missing"),
           function(x) {
             data.frame(time = x@time, ez = x@ez, ex = x@ex, ey = x@ey, x = x@x, y = x@y,
@@ -19,8 +49,21 @@ setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional 
           }
 )
 
-setMethod("plot", signature(x = "pva", y = "missing"), function(x) pva.plot(x))
-setMethod("plot", signature(x = "pva", y = "classify"), function(x, y) pva.plot(x, y))
+#' Plot pva
+#' 
+#' Plot the pva class
+#' 
+#' @param x an object of class \code{"pva"}
+#' @param y an object of class \code{"classify"} (optional)
+#' 
+#' @docType methods
+#' @importFrom reshape melt
+#' @import ggplot2
+#' @rdname pva-methods
+#' @name plot.pva
+#' @export
+#' @aliases plot,pva,missing-method
+setMethod("plot", signature(x = "pva", y = "missing"), function(x, y) pva.plot(x))
 
 pva.plot <- function(x, y=NULL)
 {
@@ -47,6 +90,21 @@ pva.plot <- function(x, y=NULL)
     theme(legend.position = "top")
 }
 
+#' Position, Velocity, Acceleration
+#'
+#' Takes standard eye tracker gaze information and computes smoothed position, velocity
+#' and acceleration profiles using a Savitzky-Golay filter.
+#' 
+#' @template 1p
+#' @param time the time corresponding to raw gaze samples
+#' @param samplerate the samplerate of the eyetracker
+#' @template eye
+#' @template sg
+#'
+#' @importFrom signal sgolayfilt
+#' @importFrom zoo na.approx
+#' @rdname pva
+#' @export
 pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
                     ex = 0, ey = 0, order = 2, window = 11)
 {

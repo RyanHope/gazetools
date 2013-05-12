@@ -1,38 +1,19 @@
 \name{classify.VI}
 \alias{classify.VI}
-
-\title{
-  Gaze Data Classification (velocity-iterative)
-}
-
-\description{
-  Classifies gaze data into saccades and fixations using an iteratively determined velocity threshold.
-}
-
+\title{Gaze Data Classification (velocity-iterative)}
 \usage{
-  classify.VI(v, sigma=6, vpt=100)
+  classify.VI(v, vt = 100, sigma = 6)
 }
-
 \arguments{
-  \item{v}{
-    A vector of velocity samples
-  }
-  \item{sigma}{
-    The number of standard deviations used each iteration step to determine velocity threshold
-  }
-  \item{vpt}{
-    The initial velocity threshold
-  }
+  \item{v}{a vector of instantaneous velocity values}
+
+  \item{vt}{a velocity threshold}
+
+  \item{sigma}{the number of standard deviations between
+  fixation and saccade velocities}
+}
+\description{
+  Classifies gaze data into saccades and fixations using an
+  iteratively determined velocity threshold.
 }
 
-\value{
-  A classify object
-}
-
-\author{
-  Ryan M. Hope
-}
-
-\examples{
-  # Need an example
-}

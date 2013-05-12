@@ -1,41 +1,20 @@
 \name{classify.VA}
 \alias{classify.VA}
-
-\title{
-  Gaze Data Classification (velocity-acceleration)
-}
-
-\description{
-  Classifies gaze data into saccades and fixations using both velocity and acceleration thresholds.
-}
-
+\title{Gaze Data Classification (velocity-acceleration)}
 \usage{
-  classify.VA(v, a, vt=30, at=8000)
+  classify.VA(v, a, vt = 30, at = 8000)
 }
-
 \arguments{
-  \item{v}{
-    A vector of velocity samples
-  }
-  \item{y}{
-    A vector of acceleration samples
-  }
-  \item{vt}{
-    The velocity threshold in degrees of visual angle per second
-  }
-  \item{at}{
-    The acceleration threshold in degrees of visual angle per second squared
-  }
+  \item{v}{a vector of instantaneous velocity values}
+
+  \item{vt}{a velocity threshold}
+
+  \item{a}{a vector of instantaneous acceleration values}
+
+  \item{at}{an acceleration threshold}
+}
+\description{
+  Classifies gaze data into saccades and fixations using
+  both velocity and acceleration thresholds.
 }
 
-\value{
-  A classify object
-}
-
-\author{
-  Ryan M. Hope
-}
-
-\examples{
-  # Need an example
-}

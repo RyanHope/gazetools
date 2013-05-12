@@ -1,5 +1,13 @@
-require(Rmisc)
-
+#' Event IDs
+#'
+#' Assigns unique IDs to runs of a target event in a vector of data
+#' 
+#' @param x a vector of data
+#' @param event the event to id
+#'
+#' @importFrom Rmisc rsi
+#'
+#' @export
 event_ids <- function(x, event) {
   if (is.character(x)) {
     x <- factor(x)

@@ -1,14 +1,49 @@
+#' Class "classify"
+#'
+#' A class to hold gaze data classifications
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{.Data}:}{vector of class \code{"character"}, containing the gaze sample classification}
+#'    \item{\code{fixation_ids}:}{vector of class \code{"numeric"}, containing unique fixation ids}
+#'    \item{\code{saccade_ids}:}{vector of class \code{"numeric"}, containing unique saccade ids}
+#'    \item{\code{algorithm}:}{the algorithm used to classify the gaze data}
+#'    \item{\code{thresholds}:}{the threshold settings for the classification algorithm}
+#'  }
+#'
+#' @docType class
+#' @name classify-class
+#' @rdname classify-class
+#' @exportClass classify
 setClass("classify", 
          representation(fixation_ids = "numeric", saccade_ids = "numeric",
                         algorithm="character", thresholds="numeric"),
          contains="character")
 
+#' @rdname classify-methods
+#' @aliases as.data.frame,classify,missing,missing-method
+#' @name classify.as.data.frame
+#' @export
 setMethod("as.data.frame", signature(x = "classify", row.names = "missing", optional = "missing"),
           function(x) {
             data.frame(class = x@.Data, fixation_ids = x@fixation_ids, saccade_ids = x@saccade_ids)
           }
 )
 
+#' Plot classify
+#' 
+#' Plot the classify class
+#' 
+#' @param x an object of class \code{"classify"}
+#' @param y an object of class \code{"pva"}
+#' 
+#' @docType methods
+#' @importFrom plyr ddply
+#' @import ggplot2
+#' @rdname classify-methods
+#' @name plot.classify
+#' @export
+#' @aliases plot,classify,pva-method
 setMethod("plot", signature(x = "classify", y = "pva"), function(x, y) classify.plot(x, y))
 
 classify.plot <- function(x, y = NULL, reverse_y = TRUE)
@@ -37,3 +72,27 @@ classify.plot <- function(x, y = NULL, reverse_y = TRUE)
   
   p
 }
+
+#' Get Fixations
+#' 
+#' Extracts fixation locations from \code{classify} and \code{pva} objects.
+#' 
+#' @template class
+#' @template pva
+#' 
+#' @export
+#' @docType methods
+#' @rdname classify-methods
+setGeneric("getFixations", function(class, dpva) standardGeneric("getFixations"))
+
+#' @importFrom plyr ddply
+#' @rdname classify-methods
+#' @aliases getFixations,classify,pva-method
+#' @export
+setMethod("getFixations", signature(class = "classify", dpva = "pva"), 
+          function(class, dpva) {
+            f <- subset(ddply(cbind(as.data.frame(dpva), as.data.frame(class)), .(fixation_ids),
+                              function(d) data.frame(x=mean(d$x),y=mean(d$y))), fixation_ids!=0)
+            rownames(f) <- f$fixation_ids
+            f[,c("x","y")]
+          })
