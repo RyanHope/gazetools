@@ -1,3 +1,6 @@
+require(plyr)
+require(ggplot2)
+
 #' Class "classify"
 #'
 #' A class to hold gaze data classifications
@@ -38,7 +41,7 @@ setMethod("as.data.frame", signature(x = "classify", row.names = "missing", opti
 #' @param y an object of class \code{"pva"}
 #' 
 #' @docType methods
-#' @importFrom plyr ddply
+#' @import plyr
 #' @import ggplot2
 #' @rdname classify-methods
 #' @name plot.classify
@@ -85,7 +88,7 @@ classify.plot <- function(x, y = NULL, reverse_y = TRUE)
 #' @rdname classify-methods
 setGeneric("getFixations", function(class, dpva) standardGeneric("getFixations"))
 
-#' @importFrom plyr ddply
+#' @import plyr
 #' @rdname classify-methods
 #' @aliases getFixations,classify,pva-method
 #' @export

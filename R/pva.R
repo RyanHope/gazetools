@@ -1,3 +1,8 @@
+require(reshape)
+require(ggplot2)
+require(signal)
+require(zoo)
+
 #' Class "pva"
 #'
 #' A class to hold position, velocity and acceleration of raw gaze data
@@ -57,7 +62,7 @@ setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional 
 #' @param y an object of class \code{"classify"} (optional)
 #' 
 #' @docType methods
-#' @importFrom reshape melt
+#' @import reshape
 #' @import ggplot2
 #' @rdname pva-methods
 #' @name plot.pva
@@ -101,8 +106,8 @@ pva.plot <- function(x, y=NULL)
 #' @template eye
 #' @template sg
 #'
-#' @importFrom signal sgolayfilt
-#' @importFrom zoo na.approx
+#' @import signal
+#' @import zoo
 #' @rdname pva
 #' @export
 pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,

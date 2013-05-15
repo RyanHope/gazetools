@@ -2,7 +2,7 @@
 #'
 #' Given a vector of data, find ranges of data that exceede a set threshold
 #' 
-#' @template peak
+#' @template p
 #'
 #' @export
 find_peak_ranges <- function(x, threshold)
