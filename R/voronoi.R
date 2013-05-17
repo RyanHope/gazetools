@@ -121,14 +121,16 @@ geom_voronoi <- function(d) {
 
 #' Summarize voronoi_skewness
 #' 
-#' @param x an object of class \code{"voronoi_skewness"}
+#' @param object an object of class \code{"voronoi_skewness"}
 #' 
 #' @docType methods
 #' @rdname pva-methods
 #' @name summary.voronoi_skewness
 #' @export
 #' @aliases summary,voronoi_skewness,missing-method
-setMethod("summary", signature(x = "voronoi_skewness"), 
-          function(x, ...) {
-            cat(sprintf("Voronoi Skewness: %f\n", as.numeric(x)))
+setMethod("summary", signature(object = "voronoi_skewness"), 
+          function(object, ...) {
+            v <- as.numeric(object)
+            cat("Voronoi Skewness:\n")
+            v
           })
