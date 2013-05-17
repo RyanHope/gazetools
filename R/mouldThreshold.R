@@ -8,10 +8,10 @@
 #' 
 #' @export
 #' @docType methods
-#' @rdname pva-methods
+#' @rdname pva-mouldThreshold
 setGeneric("mouldThreshold", function(dpva, type = "velocity") standardGeneric("mouldThreshold"))
 
-#' @rdname pva-methods
+#' @rdname pva-mouldThreshold
 #' @aliases mouldThreshold,pva,character-method
 #' @export
 setMethod("mouldThreshold", signature(dpva = "pva", type = "character"), 

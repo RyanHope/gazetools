@@ -42,7 +42,9 @@ setClass("pva",
                         samplerate = "numeric",
                         sgolayfilt = "numeric"))
 
-#' @rdname pva-methods
+#' Coerce object of class \code{pva} to a Data Frame
+#' 
+#' @rdname pva-as.data.frame
 #' @aliases as.data.frame,pva,missing,missing-method
 #' @name pva.as.data.frame
 #' @export
@@ -64,7 +66,7 @@ setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional 
 #' @docType methods
 #' @import reshape
 #' @import ggplot2
-#' @rdname pva-methods
+#' @rdname pva-plot
 #' @name plot.pva
 #' @export
 #' @aliases plot,pva,missing-method

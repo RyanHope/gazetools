@@ -34,7 +34,7 @@ setClass("mould",
 #' 
 #' @docType methods
 #' @import ggplot2
-#' @rdname mould-methods
+#' @rdname mould-plot
 #' @name plot.mould
 #' @export
 #' @aliases plot,mould,missing-method

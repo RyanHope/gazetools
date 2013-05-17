@@ -19,6 +19,7 @@ Imports:
     Rmisc,
     reshape,
     plyr,
+    spatstat,
     ggplot2
 Collate:
     'event_ids.R'
@@ -36,3 +37,6 @@ Collate:
     'mould.R'
     'mouldThreshold.R'
     'voronoi.R'
+    'chull_area.R'
+    'nni.R'
+    'bbox.R'

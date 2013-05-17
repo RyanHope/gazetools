@@ -3,7 +3,7 @@ require(maptools)
 require(deldir)
 require(sp)
 require(modeest)
-require(ddply)
+require(plyr)
 
 #' Voronoi Polygons
 #'
@@ -67,7 +67,7 @@ setClass("voronoi_skewness",
 #' 
 #' @docType methods
 #' @import ggplot2
-#' @rdname pva-methods
+#' @rdname pva-plot
 #' @name plot.voronoi_skewness
 #' @export
 #' @aliases plot,voronoi_skewness,missing-method
@@ -105,32 +105,17 @@ voronoi_skewness <- function(d, rw) {
 #' Voronoi Cell Geom for ggplot2
 #' 
 #' @param d an object of class \code{SpatialPolygonsDataFrame}
+#' @param ... extra arguments passed on to geom_path
 #'
-#' @import ddply
+#' @import plyr
 #' @import ggplot2
 #' @export
-geom_voronoi <- function(d) {
+geom_voronoi <- function(d, ...) {
   if (cladd(d) == "SpatialPolygonsDataFrame") {
     d@data$id = rownames(d@data)
     d.points = fortify(d, region="id")
     d.df = join(d.points, d@data, by="id")
-    geom_path(aes(long,lat,group=group), d.df)
+    geom_path(aes(long,lat,group=group), d.df, ...)
   } else
     stop("d is wrong class")
 }
-
-#' Summarize voronoi_skewness
-#' 
-#' @param object an object of class \code{"voronoi_skewness"}
-#' 
-#' @docType methods
-#' @rdname pva-methods
-#' @name summary.voronoi_skewness
-#' @export
-#' @aliases summary,voronoi_skewness,missing-method
-setMethod("summary", signature(object = "voronoi_skewness"), 
-          function(object, ...) {
-            v <- as.numeric(object)
-            cat("Voronoi Skewness:\n")
-            v
-          })

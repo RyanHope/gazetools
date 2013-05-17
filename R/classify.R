@@ -23,7 +23,9 @@ setClass("classify",
                         algorithm="character", thresholds="numeric"),
          contains="character")
 
-#' @rdname classify-methods
+#' Coerce object of class \code{classify} to a Data Frame
+#' 
+#' @rdname classify-as.data.frame
 #' @aliases as.data.frame,classify,missing,missing-method
 #' @name classify.as.data.frame
 #' @export
@@ -43,7 +45,7 @@ setMethod("as.data.frame", signature(x = "classify", row.names = "missing", opti
 #' @docType methods
 #' @import plyr
 #' @import ggplot2
-#' @rdname classify-methods
+#' @rdname classify-plot
 #' @name plot.classify
 #' @export
 #' @aliases plot,classify,pva-method
@@ -85,11 +87,11 @@ classify.plot <- function(x, y = NULL, reverse_y = TRUE)
 #' 
 #' @export
 #' @docType methods
-#' @rdname classify-methods
+#' @rdname classify-getFixations
 setGeneric("getFixations", function(class, dpva) standardGeneric("getFixations"))
 
 #' @import plyr
-#' @rdname classify-methods
+#' @rdname classify-getFixations
 #' @aliases getFixations,classify,pva-method
 #' @export
 setMethod("getFixations", signature(class = "classify", dpva = "pva"), 
