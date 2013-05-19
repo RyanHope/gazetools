@@ -21,20 +21,26 @@ absolutely latest version:
 ## update.packages()
 library(devtools); install_github('gazetools', 'ryanhope')
 ```
+## Visual Angle Functions
 
-## Classification Algorithms
-
-At the present time, the gazetools package has only implemented velocity and acceleration based classification algorithms.
-In the future, dispersion based algorithms might be implements.
-
-* classify.V - Classifies gaze data into saccades and fixations using a velocity threshold
-* classify.VA - Classifies gaze data into saccades and fixations using both velocity and acceleration thresholds
-* classify.VI - Classifies gaze data into saccades and fixations using an iteratively determined velocity threshold
+* subtendedAngle
+* angle2pixels
 
 ## Threshold Algorithms
 
-* mouldThreshold - Uses the Mould algorithm to determine the optimal velocity or acceleration threshold for classifying raw gaze data
+* mouldThreshold
+
+## Classification Algorithms
+
+* classify.V
+* classify.VA
+* classify.VI
 
 ## Position Measures
 
-* voronoi_skewness - Computes the skewness of the areas of the voronoi cells surrounding fixations
+* chull_area
+* voronoi_skewness
+* extent
+* bcea
+* nni
+* roi_coverage
