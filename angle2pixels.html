@@ -1,77 +1,107 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: Angle to Pixels</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="R.css">
-</head><body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>angle2pixels. gazetools 3.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
 
-<table width="100%" summary="page for angle2pixels {gazetools}"><tr><td>angle2pixels {gazetools}</td><td align="right">R Documentation</td></tr></table>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
 
-<h2>Angle to Pixels</h2>
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
 
-<h3>Description</h3>
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">gazetools 3.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>Returns a distance (in pixels) given a visual angle and
-distance.
-</p>
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Angle to Pixels</h1>
 
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre>angle2pixels(alpha, rx, ry, sw, sh, ez, ex = 0, ey = 0, x = rx/2, y = ry/2)</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>alpha</dt>
+      <dd>the target visual angle</dd>
+      <dt>rx</dt>
+      <dd>the x resolution of the monitor (pixels)</dd>
+      <dt>ry</dt>
+      <dd>the y resolution of the monitor (pixels)</dd>
+      <dt>sw</dt>
+      <dd>the physical screen width (mm)</dd>
+      <dt>sh</dt>
+      <dd>the physical screen height (mm)</dd>
+      <dt>ez</dt>
+      <dd>the perpendicular distance from the viewer to
+  the screen (mm)</dd>
+      <dt>ex</dt>
+      <dd>the horizontal offset of the viewer from screen
+  center (mm)</dd>
+      <dt>ey</dt>
+      <dd>the vertical offset of the viewer from screen
+  center (mm)</dd>
+      <dt>x</dt>
+      <dd>the x coordinate of a point on a screen
+  (pixels)</dd>
+      <dt>y</dt>
+      <dd>the y coordinate of a point on a screen
+  (pixels)</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>number of pixels</p>
+  
+    </div>
 
-<h3>Usage</h3>
-
-<pre>
-  angle2pixels(alpha, rx, ry, sw, sh, ez, ex = 0, ey = 0,
-    x = rx/2, y = ry/2)
-</pre>
-
-
-<h3>Arguments</h3>
-
-<table summary="R argblock">
-<tr valign="top"><td><code>alpha</code></td>
-<td>
-<p>the target visual angle</p>
-</td></tr>
-<tr valign="top"><td><code>rx</code></td>
-<td>
-<p>the x resolution of the monitor (pixels)</p>
-</td></tr>
-<tr valign="top"><td><code>ry</code></td>
-<td>
-<p>the y resolution of the monitor (pixels)</p>
-</td></tr>
-<tr valign="top"><td><code>sw</code></td>
-<td>
-<p>the physical screen width (mm)</p>
-</td></tr>
-<tr valign="top"><td><code>sh</code></td>
-<td>
-<p>the physical screen height (mm)</p>
-</td></tr>
-<tr valign="top"><td><code>ez</code></td>
-<td>
-<p>the perpendicular distance from the viewer to
-the screen (mm)</p>
-</td></tr>
-<tr valign="top"><td><code>ex</code></td>
-<td>
-<p>the horizontal offset of the viewer from screen
-center (mm)</p>
-</td></tr>
-<tr valign="top"><td><code>ey</code></td>
-<td>
-<p>the vertical offset of the viewer from screen
-center (mm)</p>
-</td></tr>
-<tr valign="top"><td><code>x</code></td>
-<td>
-<p>the x coordinate of a point on a screen
-(pixels)</p>
-</td></tr>
-<tr valign="top"><td><code>y</code></td>
-<td>
-<p>the y coordinate of a point on a screen
-(pixels)</p>
-</td></tr>
-</table>
-
-<hr><div align="center">[Package <em>gazetools</em> version 3.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Calculated the distance (in pixels) at given a visual
+  angle and distance.</p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>angle2pixels</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>geom_chull. gazetools 3.0</title>
+<title>gridded_rois-class. gazetools 3.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,33 +35,35 @@
         
       </header>
       
-      <h1>Convex Hull Geom for ggplot2</h1>
+      <h1>Class "gridded_rois"</h1>
 
 <div class="row">
   <div class="span8">
-    <h2>Usage</h2>
-    <pre>geom_chull(x, ...)</pre>
-    
-    <h2>Arguments</h2>
-    <dl>
-      <dt>x</dt>
-      <dd>coordinate vectors of points. This can be
-  specified as a 2-column matrix x, a list x with two
-  components</dd>
-      <dt>...</dt>
-      <dd>extra arguments passed on to geom_path</dd>
-    </dl>
-    
+        
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Convex Hull Geom for ggplot2</p>
+      <p>A class to hold gridded ROI information</p>
+  
+    </div>
+
+    <div class="Slots">
+      <h2>Slots</h2>
+      
+      <p><span class='describe'> <code>x</code>:vector of class
+  <code>"numeric"</code>, containing the x intercepts for
+  vertical grid lines <code>y</code>:vector of class
+  <code>"numeric"</code>, containing the y intercepts for
+  horizontal grid lines <code>deltax</code>:the width of
+  each grid cell <code>deltay</code>:the height of each
+  grid cell <code>ncol</code>:the number of columns
+  <code>nrow</code>:the number of rows </span></p>
   
     </div>
       </div>
   <div class="span4">
     <!-- <ul>
-      <li>geom_chull</li>
+      <li>gridded_rois-class</li>
     </ul>
     <ul>
       

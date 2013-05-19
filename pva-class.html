@@ -1,74 +1,109 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: Class &quot;pva&quot;</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="R.css">
-</head><body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>pva-class. gazetools 3.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
 
-<table width="100%" summary="page for pva-class {gazetools}"><tr><td>pva-class {gazetools}</td><td align="right">R Documentation</td></tr></table>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
 
-<h2>Class &quot;pva&quot;</h2>
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
 
-<h3>Description</h3>
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">gazetools 3.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>A class to hold position, velocity and acceleration of
-raw gaze data
-</p>
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Class "pva"</h1>
 
+<div class="row">
+  <div class="span8">
+        
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>A class to hold position, velocity and acceleration of
+  raw gaze data</p>
+  
+    </div>
 
-<h3>Slots</h3>
-
- <dl>
-<dt><code>time</code>:</dt><dd><p>vector of class
-<code>"numeric"</code>, containing the time corresponding to
-raw gaze samples</p>
-</dd> <dt><code>ez</code>:</dt><dd><p>vector of class
-<code>"numeric"</code>, containing the perpendicular distance
-from the viewer to the screen (mm)</p>
-</dd>
-<dt><code>ex</code>:</dt><dd><p>vector of class <code>"numeric"</code>,
-containing the horizontal offset of the viewer from
-screen center (mm)</p>
-</dd> <dt><code>ey</code>:</dt><dd><p>vector of class
-<code>"numeric"</code>, containing the vertical offset of the
-viewer from screen center (mm)</p>
-</dd> <dt><code>x</code>:</dt><dd><p>vector
-of class <code>"numeric"</code>, containing the x coordinate of
-a point on a screen (pixels)</p>
-</dd> <dt><code>y</code>:</dt><dd><p>vector of
-class <code>"numeric"</code>, containing the y coordinate of a
-point on a screen (pixels)</p>
-</dd> <dt><code>sx</code>:</dt><dd><p>vector of
-class <code>"numeric"</code>, containing the smoothed x
-coordinate of a point on a screen (pixels)</p>
-</dd>
-<dt><code>sy</code>:</dt><dd><p>vector of class <code>"numeric"</code>,
-containing the smoothed y coordinate of a point on a
-screen (pixels)</p>
-</dd> <dt><code>xa</code>:</dt><dd><p>vector of class
-<code>"numeric"</code>, containing the x coordinate of a point
-in visual angle relative to the center of screen
-(degrees)</p>
-</dd> <dt><code>ya</code>:</dt><dd><p>vector of class
-<code>"numeric"</code>, containing the y coordinate of a point
-in visual angle relative to the center of screen
-(degrees)</p>
-</dd> <dt><code>v</code>:</dt><dd><p>vector of class
-<code>"numeric"</code>, containing the instantaneous velocity
-(degrees/s)</p>
-</dd> <dt><code>a</code>:</dt><dd><p>vector of class
-<code>"numeric"</code>, containing the instantaneous
-acceleration (degrees/s^2)</p>
-</dd> <dt><code>rx</code>:</dt><dd><p>the x
-resolution of the monitor (pixels)</p>
-</dd> <dt><code>ry</code>:</dt><dd><p>the
-y resolution of the monitor (pixels)</p>
-</dd>
-<dt><code>samplerate</code>:</dt><dd><p>the samplerate of the
-eyetracker</p>
-</dd> <dt><code>sgolayfilt</code>:</dt><dd><p>parameters for the
-avitzky-Golay smoothing filter</p>
-</dd> </dl>
-
-
-<hr><div align="center">[Package <em>gazetools</em> version 3.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+    <div class="Slots">
+      <h2>Slots</h2>
+      
+      <p><span class='describe'> <code>time</code>:vector of class
+  <code>"numeric"</code>, containing the time corresponding to
+  raw gaze samples <code>ez</code>:vector of class
+  <code>"numeric"</code>, containing the perpendicular distance
+  from the viewer to the screen (mm)
+  <code>ex</code>:vector of class <code>"numeric"</code>,
+  containing the horizontal offset of the viewer from
+  screen center (mm) <code>ey</code>:vector of class
+  <code>"numeric"</code>, containing the vertical offset of the
+  viewer from screen center (mm) <code>x</code>:vector
+  of class <code>"numeric"</code>, containing the x coordinate of
+  a point on a screen (pixels) <code>y</code>:vector of
+  class <code>"numeric"</code>, containing the y coordinate of a
+  point on a screen (pixels) <code>sx</code>:vector of
+  class <code>"numeric"</code>, containing the smoothed x
+  coordinate of a point on a screen (pixels)
+  <code>sy</code>:vector of class <code>"numeric"</code>,
+  containing the smoothed y coordinate of a point on a
+  screen (pixels) <code>xa</code>:vector of class
+  <code>"numeric"</code>, containing the x coordinate of a point
+  in visual angle relative to the center of screen
+  (degrees) <code>ya</code>:vector of class
+  <code>"numeric"</code>, containing the y coordinate of a point
+  in visual angle relative to the center of screen
+  (degrees) <code>v</code>:vector of class
+  <code>"numeric"</code>, containing the instantaneous velocity
+  (degrees/s) <code>a</code>:vector of class
+  <code>"numeric"</code>, containing the instantaneous
+  acceleration (degrees/s^2) <code>rx</code>:the x
+  resolution of the monitor (pixels) <code>ry</code>:the
+  y resolution of the monitor (pixels)
+  <code>samplerate</code>:the samplerate of the
+  eyetracker <code>sgolayfilt</code>:parameters for the
+  avitzky-Golay smoothing filter </span></p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pva-class</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

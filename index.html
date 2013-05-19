@@ -1,9 +1,252 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
-<html>
-<head><title>Documentation of the gazetools package</title></head>
-<frameset cols="15%,*">
-  <frame src="00frame_toc.html">
-  <frame src="00Index.html" name="content">
-</frameset>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Index. gazetools 3.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
 
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">gazetools 3.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <div class="row">
+  <div class="span8">
+    <h1>gazetools</h1>
+
+<p>The R package <strong>gazetools</strong> is a colletion of tools for processing and classifying eye gaze data.</p>
+
+<h2>Installation</h2>
+
+<p>You can install the stable version on <a href="http://cran.r-project.org/package=gazetools">CRAN</a>:</p>
+
+<pre><code class="r">install.packages(&#39;gazetools&#39;, dependencies = TRUE)
+</code></pre>
+
+<p>Or download the <a href="https://github.com/ryanhope/gazetools/zipball/master">zip ball</a> or 
+<a href="https://github.com/ryanhope/gazetools/tarball/master">tar ball</a>, decompress and 
+run <code>R CMD INSTALL</code> on it, or use the <strong>devtools</strong> package to install the 
+absolutely latest version:</p>
+
+<pre><code class="r">## you may also need to update your packages: 
+## options(repos = c(CRAN = &#39;http://cran.r-project.org&#39;))
+## update.packages()
+library(devtools); install_github(&#39;gazetools&#39;, &#39;ryanhope&#39;)
+</code></pre>
+
+<h2>Visual Angle Functions</h2>
+
+<ul>
+<li>subtendedAngle</li>
+<li>angle2pixels</li>
+</ul>
+
+<h2>Threshold Algorithms</h2>
+
+<ul>
+<li>mouldThreshold</li>
+</ul>
+
+<h2>Classification Algorithms</h2>
+
+<ul>
+<li>classify.V</li>
+<li>classify.VA</li>
+<li>classify.VI</li>
+</ul>
+
+<h2>Position Measures</h2>
+
+<ul>
+<li>chull_area</li>
+<li>voronoi_skewness</li>
+<li>extent</li>
+<li>bcea</li>
+<li>nni</li>
+<li>roi_coverage</li>
+</ul>
+
+
+    <h2>Help topics</h2>
+
+    <h3></h3>
+    
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="angle2pixels.html">angle2pixels</a></code><br />Angle to Pixels</li>
+            
+      <li>
+        <code><a href="pva-as.data.frame.html">as.data.frame.pva</a></code>(as.data.frame,pva,missing,missing-method)<br />Coerce object of class </li>
+            
+      <li>
+        <code><a href="bbox.html">bbox</a></code><br />Bounding box of fixations</li>
+            
+      <li>
+        <code><a href="bcea.html">bcea</a></code><br />Bivariate contour ellipse area (BCEA)</li>
+            
+      <li>
+        <code><a href="chull_area.html">chull_area</a></code><br />Convex Hull Area</li>
+            
+      <li>
+        <code><a href="classify-class.html">classify-class</a></code><br />Class "classify"</li>
+            
+      <li>
+        <code><a href="classify-as.data.frame.html">classify.as.data.frame</a></code>(as.data.frame,classify,missing,missing-method)<br />Coerce object of class </li>
+            
+      <li>
+        <code><a href="classify.V.html">classify.V</a></code><br />Gaze Data Classification (velocity)</li>
+            
+      <li>
+        <code><a href="classify.VA.html">classify.VA</a></code><br />Gaze Data Classification (velocity-acceleration)</li>
+            
+      <li>
+        <code><a href="classify.VI.html">classify.VI</a></code><br />Gaze Data Classification (velocity-iterative)</li>
+            
+      <li>
+        <code><a href="distance2point.html">distance2point</a></code><br />Distance to Point</li>
+            
+      <li>
+        <code><a href="event_ids.html">event_ids</a></code><br />Event IDs</li>
+            
+      <li>
+        <code><a href="extent.html">extent</a></code><br />Extent (range) of fixations</li>
+            
+      <li>
+        <code><a href="find_peak_ranges.html">find_peak_ranges</a></code><br />Find Peak Ranges</li>
+            
+      <li>
+        <code><a href="find_peaks.html">find_peaks</a></code><br />Find Peak Ranges</li>
+            
+      <li>
+        <code><a href="gazetools.html">gazetools</a></code>(gazetools-package)<br />gazetools</li>
+            
+      <li>
+        <code><a href="geom_bbox.html">geom_bbox</a></code><br />Bounding Box Geom for ggplot2</li>
+            
+      <li>
+        <code><a href="geom_chull.html">geom_chull</a></code><br />Convex Hull Geom for ggplot2</li>
+            
+      <li>
+        <code><a href="geom_gridded_rois.html">geom_gridded_rois</a></code><br />Gridded ROIs Geom for ggplot2</li>
+            
+      <li>
+        <code><a href="geom_roi_coverage.html">geom_roi_coverage</a></code><br />ROI Coverage Geom for ggplot2</li>
+            
+      <li>
+        <code><a href="geom_voronoi.html">geom_voronoi</a></code><br />Voronoi Cell Geom for ggplot2</li>
+            
+      <li>
+        <code><a href="classify-getFixations.html">getFixations</a></code>(getFixations,classify,pva-method)<br />Get Fixations</li>
+            
+      <li>
+        <code><a href="gridded_rois.html">gridded_rois</a></code><br />Gridded ROIs</li>
+            
+      <li>
+        <code><a href="gridded_rois-class.html">gridded_rois-class</a></code><br />Class "gridded_rois"</li>
+            
+      <li>
+        <code><a href="local_maxima.html">local_maxima</a></code><br />Local Maxima</li>
+            
+      <li>
+        <code><a href="mould-class.html">mould-class</a></code><br />Class "mould"</li>
+            
+      <li>
+        <code><a href="pva-mouldThreshold.html">mouldThreshold</a></code>(mouldThreshold,pva,character-method)<br />Mould Threshold</li>
+            
+      <li>
+        <code><a href="nni.html">nni</a></code><br />Nearest Neighbor Index</li>
+            
+      <li>
+        <code><a href="classify-plot.html">plot.classify</a></code>(plot,classify,pva-method)<br />Plot classify</li>
+            
+      <li>
+        <code><a href="mould-plot.html">plot.mould</a></code>(plot,mould,missing-method)<br />Plot mould</li>
+            
+      <li>
+        <code><a href="pva-plot.html">plot.pva</a></code>(plot,pva,missing-method, plot,voronoi_skewness,missing-method, plot.voronoi_skewness)<br />Plot pva</li>
+            
+      <li>
+        <code><a href="pva.html">pva</a></code><br />Position, Velocity, Acceleration</li>
+            
+      <li>
+        <code><a href="pva-class.html">pva-class</a></code><br />Class "pva"</li>
+            
+      <li>
+        <code><a href="roi_coverage.html">roi_coverage</a></code><br />ROI Coverage</li>
+            
+      <li>
+        <code><a href="roi_coverage-class.html">roi_coverage-class</a></code><br />Class "roi_coverage"</li>
+            
+      <li>
+        <code><a href="scale_x_gridded_rois.html">scale_x_gridded_rois</a></code><br />Gridded ROIs Geom for ggplot2 (x-axis)</li>
+            
+      <li>
+        <code><a href="scale_y_gridded_rois.html">scale_y_gridded_rois</a></code><br />Gridded ROIs Geom for ggplot2 (y-axis)</li>
+            
+      <li>
+        <code><a href="subtendedAngle.html">subtendedAngle</a></code><br />Subtended Angle</li>
+            
+      <li>
+        <code><a href="voronoi_polygons.html">voronoi_polygons</a></code><br />Voronoi Polygons</li>
+            
+      <li>
+        <code><a href="voronoi_skewness.html">voronoi_skewness</a></code><br />Voronoi Skewness</li>
+            
+      <li>
+        <code><a href="voronoi_skewness-class.html">voronoi_skewness-class</a></code><br />Class "voronoi_skewness"</li>
+    
+    </ul>
+  </div>
+  
+  <div class="span3 offset1">
+        
+    <h2>Dependencies</h2>
+    <ul>
+      <li><strong>Depends</strong>: Matrix, methods</li>
+      <li><strong>Imports</strong>: rgeos, maptools, deldir, sp, modeest, signal, zoo, Rmisc, reshape, plyr, spatstat, ggplot2</li>
+      <li><strong>Suggests</strong>: </li>
+      <li><strong>Extends</strong>: </li>
+    </ul>
+     
+    <h2>Authors</h2>
+    <ul>
+    <li>Ryan M. Hope (rmh3093 at gmail.com)</li>
+    </ul>
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
