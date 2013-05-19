@@ -1,5 +1,3 @@
-require(ggplot2)
-
 #' Class "mould"
 #'
 #' A class to hold mould threshold information

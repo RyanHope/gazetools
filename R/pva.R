@@ -1,8 +1,3 @@
-require(reshape)
-require(ggplot2)
-require(signal)
-require(zoo)
-
 #' Class "pva"
 #'
 #' A class to hold position, velocity and acceleration of raw gaze data

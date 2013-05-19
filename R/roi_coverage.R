@@ -1,4 +1,6 @@
-#' Class "coverage"
+#require(Matrix)
+
+#' Class "roi_coverage"
 #'
 #' A class to hold gridded ROI coverage information
 #'
@@ -8,15 +10,17 @@
 #'    \item{\code{coverage}:}{matrix of containing fixated ROI cells}
 #'  }
 #'
+#' @importClassesFrom Matrix replValue
+#'
 #' @docType class
-#' @name coverage-class
-#' @rdname coverage-class
-#' @exportClass coverage
-setClass("coverage", 
+#' @name roi_coverage-class
+#' @rdname roi_coverage-class
+#' @exportClass roi_coverage
+setClass("roi_coverage", 
          representation(coverage = "matrix"),
          contains = "numeric")
 
-#' Coverage
+#' ROI Coverage
 #' 
 #' Calculates the proportion of ROI cells covered by fixations
 #' 
@@ -25,7 +29,7 @@ setClass("coverage",
 #' a list x with two components
 #'
 #' @export
-coverage <- function(rois, fixations) {
+roi_coverage <- function(rois, fixations) {
   N <- rois@nrow*rois@ncol
   m <- matrix(rep(F,N),rois@nrow,rois@ncol)
   for (i in 1:nrow(fixations)) {
@@ -33,18 +37,18 @@ coverage <- function(rois, fixations) {
     row <- ceiling((fixations[i,2]-rois@y[1])/rois@deltay)
     m[row,col] <- T
   }
-  new("coverage", sum(m)/N, coverage=m)
+  new("roi_coverage", sum(m)/N, coverage=m)
 }
 
-#' Coverage Geom for ggplot2
+#' ROI Coverage Geom for ggplot2
 #' 
 #' @param rois an object of class \code{\linkS4class{gridded_rois}}
-#' @param cv an object of class \code{\linkS4class{coverage}}
+#' @param cv an object of class \code{\linkS4class{roi_coverage}}
 #' @param ... extra arguments passed on to geom_rect
 #'
 #' @import ggplot2
 #' @export
-geom_coverage <- function(rois, cv, ...) {
+geom_roi_coverage <- function(rois, cv, ...) {
   d <- data.frame()
   covered <- which(cv@coverage==T, arr.ind=T)
   for (i in 1:nrow(covered))

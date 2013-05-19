@@ -12,7 +12,7 @@
   order (xmin, xmax, ymin, ymax).}
 }
 \value{
-  a skewness value
+  an object of class \code{\linkS4class{voronoi_skewness}}
 }
 \description{
   Given a matrix of x,y coordinates computes the skewness

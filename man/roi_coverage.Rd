@@ -1,8 +1,8 @@
-\name{coverage}
-\alias{coverage}
-\title{Coverage}
+\name{roi_coverage}
+\alias{roi_coverage}
+\title{ROI Coverage}
 \usage{
-  coverage(rois, fixations)
+  roi_coverage(rois, fixations)
 }
 \arguments{
   \item{rois}{an object of class \code{gridded_rois}}

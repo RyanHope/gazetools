@@ -1,5 +1,3 @@
-require(spatstat)
-
 #' Nearest Neighbor Index
 #' 
 #' Calculates the dispersion of a set of points.

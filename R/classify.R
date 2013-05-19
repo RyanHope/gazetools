@@ -1,6 +1,3 @@
-require(plyr)
-require(ggplot2)
-
 #' Class "classify"
 #'
 #' A class to hold gaze data classifications

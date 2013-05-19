@@ -1,7 +1,7 @@
 \docType{class}
-\name{coverage-class}
-\alias{coverage-class}
-\title{Class "coverage"}
+\name{roi_coverage-class}
+\alias{roi_coverage-class}
+\title{Class "roi_coverage"}
 \description{
   A class to hold gridded ROI coverage information
 }

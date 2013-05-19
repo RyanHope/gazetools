@@ -8,6 +8,7 @@ Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 Description: A colletion of tools for processing and classifying eye gaze data.
 License: GPL-3
 Imports:
+    Matrix,
     methods,
     rgeos,
     maptools,
@@ -41,6 +42,6 @@ Collate:
     'nni.R'
     'bbox.R'
     'bcea.R'
-    'coverage.R'
     'gridded_rois.R'
+    'roi_coverage.R'
     'gazetools.R'

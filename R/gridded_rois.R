@@ -1,5 +1,3 @@
-require(ggplot2)
-
 #' Class "gridded_rois"
 #'
 #' A class to hold gridded ROI information

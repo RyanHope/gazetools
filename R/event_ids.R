@@ -1,5 +1,3 @@
-require(Rmisc)
-
 #' Event IDs
 #'
 #' Assigns unique IDs to runs of a target event in a vector of data
