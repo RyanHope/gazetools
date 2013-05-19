@@ -6,7 +6,7 @@
 }
 \arguments{
   \item{d}{an object of class
-  \code{SpatialPolygonsDataFrame}}
+  \code{\linkS4class{SpatialPolygonsDataFrame}}}
 
   \item{...}{extra arguments passed on to geom_path}
 }

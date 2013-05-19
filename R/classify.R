@@ -39,8 +39,8 @@ setMethod("as.data.frame", signature(x = "classify", row.names = "missing", opti
 #' 
 #' Plot the classify class
 #' 
-#' @param x an object of class \code{"classify"}
-#' @param y an object of class \code{"pva"}
+#' @param x an object of class \code{\linkS4class{classify}}
+#' @param y an object of class \code{\linkS4class{pva}}
 #' 
 #' @docType methods
 #' @import plyr
@@ -97,7 +97,10 @@ setGeneric("getFixations", function(class, dpva) standardGeneric("getFixations")
 setMethod("getFixations", signature(class = "classify", dpva = "pva"), 
           function(class, dpva) {
             f <- subset(ddply(cbind(as.data.frame(dpva), as.data.frame(class)), .(fixation_ids),
-                              function(d) data.frame(x=mean(d$x),y=mean(d$y))), fixation_ids!=0)
+                              function(d,t) data.frame(x=mean(d$x),
+                                                     y=mean(d$y),
+                                                     duration=nrow(d)*t),
+                              t=1/dpva@samplerate), fixation_ids!=0)
             rownames(f) <- f$fixation_ids
-            f[,c("x","y")]
+            f[,c("x","y","duration")]
           })

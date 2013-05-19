@@ -11,6 +11,10 @@
   rectangular window enclosing the voronoi cells, in the
   order (xmin, xmax, ymin, ymax).}
 }
+\value{
+  an object of class
+  \code{\linkS4class{SpatialPolygonsDataFrame}}
+}
 \description{
   Computes Voronoi polygons based on a set of x,y
   coordinates

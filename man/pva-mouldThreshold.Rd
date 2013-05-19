@@ -8,6 +8,9 @@
 
   \item{type}{'velocity' or 'acceleration'}
 }
+\value{
+  an object of class \code{\linkS4class{mould}}
+}
 \description{
   Uses the Mould algorithm to determine the optimal
   velocity or acceleration threshold for classifying raw

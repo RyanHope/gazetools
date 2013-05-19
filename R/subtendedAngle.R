@@ -5,6 +5,8 @@
 #' 
 #' @template 2p
 #' @template eye
+#' 
+#' @return degrees of visual angle
 #'
 #' @export
 subtendedAngle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex=0, ey=0)

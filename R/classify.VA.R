@@ -4,6 +4,8 @@
 #' 
 #' @template v
 #' @template a
+#' 
+#' @return an object of class \code{\linkS4class{classify}}
 #'
 #' @export
 classify.VA <- function(v, a, vt=30, at=8000)

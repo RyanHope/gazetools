@@ -6,6 +6,8 @@
 #' @template pva
 #' @param type 'velocity' or 'acceleration'
 #' 
+#' @return an object of class \code{\linkS4class{mould}}
+#' 
 #' @export
 #' @docType methods
 #' @rdname pva-mouldThreshold

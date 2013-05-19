@@ -9,13 +9,14 @@
   specified as a 2-column matrix x, a list x with two
   components}
 }
-\description{
-  Calculates the dispersion of a set of fixations.
+\value{
+  The dispersion of a set of points; this value is equal to
+  1 when the distribution is random. Values lower than 1
+  suggest grouping, whereas values higher than 1 suggest
+  regularity (i.e. the point pattern is dispersed in a
+  non-random way).
 }
-\details{
-  When the NNI is equal to 1 when the distribution is
-  random. Values lower than 1 suggest grouping, whereas
-  values higher than 1 suggest regularity (i.e. the point
-  pattern is dispersed in a non-random way).
+\description{
+  Calculates the dispersion of a set of points.
 }
 

@@ -4,6 +4,8 @@
 #' 
 #' @template v
 #' @param sigma the number of standard deviations between fixation and saccade velocities
+#' 
+#' @return an object of class \code{\linkS4class{classify}}
 #'
 #' @export
 classify.VI <- function(v, vt=100, sigma=6)

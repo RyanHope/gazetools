@@ -18,6 +18,8 @@ require(plyr)
 #' @import sp
 #' @import modeest
 #'
+#' @return an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}
+#'
 #' @export
 voronoi_polygons <- function(x, rw) {
   if (.hasSlot(x, 'coords')) {
@@ -46,7 +48,7 @@ voronoi_polygons <- function(x, rw) {
 #'@section Slots: 
 #'  \describe{
 #'    \item{\code{.Data}:}{the skewness of the area of the voronoi cells}
-#'    \item{\code{polygons}:}{an object of class \code{SpatialPolygonsDataFrame}}
+#'    \item{\code{polygons}:}{an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}}
 #'  }
 #'
 #' @importClassesFrom sp SpatialPolygonsDataFrame
@@ -63,7 +65,7 @@ setClass("voronoi_skewness",
 #' 
 #' Plot the voronoi_skewness class
 #' 
-#' @param x an object of class \code{"voronoi_skewness"}
+#' @param x an object of class \code{\linkS4class{voronoi_skewness}}
 #' 
 #' @docType methods
 #' @import ggplot2
@@ -95,6 +97,8 @@ setMethod("plot", signature(x = "voronoi_skewness", y = "missing"),
 #' @param d a matrix of x,y coordinates
 #' @param rw the coordinates of the corners of the rectangular window enclosing the voronoi cells, in the order (xmin, xmax, ymin, ymax).
 #'
+#' @return a skewness value
+#'
 #' @export
 voronoi_skewness <- function(d, rw) {
   v <- voronoi_polygons(d, rw)
@@ -104,14 +108,14 @@ voronoi_skewness <- function(d, rw) {
 
 #' Voronoi Cell Geom for ggplot2
 #' 
-#' @param d an object of class \code{SpatialPolygonsDataFrame}
+#' @param d an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}
 #' @param ... extra arguments passed on to geom_path
 #'
 #' @import plyr
 #' @import ggplot2
 #' @export
 geom_voronoi <- function(d, ...) {
-  if (cladd(d) == "SpatialPolygonsDataFrame") {
+  if (class(d) == "SpatialPolygonsDataFrame") {
     d@data$id = rownames(d@data)
     d.points = fortify(d, region="id")
     d.df = join(d.points, d@data, by="id")

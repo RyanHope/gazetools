@@ -42,11 +42,11 @@ setClass("pva",
                         samplerate = "numeric",
                         sgolayfilt = "numeric"))
 
-#' Coerce object of class \code{pva} to a Data Frame
+#' Coerce object of class \code{\linkS4class{pva}} to a Data Frame
 #' 
 #' @rdname pva-as.data.frame
 #' @aliases as.data.frame,pva,missing,missing-method
-#' @name pva.as.data.frame
+#' @name as.data.frame.pva
 #' @export
 setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional = "missing"),
           function(x) {
@@ -60,8 +60,8 @@ setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional 
 #' 
 #' Plot the pva class
 #' 
-#' @param x an object of class \code{"pva"}
-#' @param y an object of class \code{"classify"} (optional)
+#' @param x an object of class \code{\linkS4class{pva}}
+#' @param y an object of class \code{\linkS4class{classify}} (optional)
 #' 
 #' @docType methods
 #' @import reshape
@@ -108,10 +108,15 @@ pva.plot <- function(x, y=NULL)
 #' @template eye
 #' @template sg
 #'
+#' @return an object of class \code{\linkS4class{pva}}
+#'
 #' @import signal
 #' @import zoo
+#' 
 #' @rdname pva
+#' 
 #' @export
+#' 
 pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
                     ex = 0, ey = 0, order = 2, window = 11)
 {

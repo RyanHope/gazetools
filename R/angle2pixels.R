@@ -1,10 +1,12 @@
 #' Angle to Pixels
 #'
-#' Returns a distance (in pixels) given a visual angle and distance.
+#' Calculated the distance (in pixels) at given a visual angle and distance.
 #' 
 #' @param alpha the target visual angle 
 #' @template eye
 #' @template 1p
+#' 
+#' @return number of pixels
 #'
 #' @export
 angle2pixels <- function(alpha, rx, ry, sw, sh, ez,

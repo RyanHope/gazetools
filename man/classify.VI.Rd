@@ -12,6 +12,9 @@
   \item{sigma}{the number of standard deviations between
   fixation and saccade velocities}
 }
+\value{
+  an object of class \code{\linkS4class{classify}}
+}
 \description{
   Classifies gaze data into saccades and fixations using an
   iteratively determined velocity threshold.

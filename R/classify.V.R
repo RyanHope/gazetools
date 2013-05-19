@@ -3,6 +3,8 @@
 #' Classifies gaze data into saccades and fixations using a velocity threshold.
 #' 
 #' @template v
+#' 
+#' @return an object of class \code{\linkS4class{classify}}
 #'
 #' @export
 classify.V <- function(v, vt = 75)

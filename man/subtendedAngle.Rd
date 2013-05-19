@@ -35,6 +35,9 @@
   \item{ey}{the vertical offset of the viewer from screen
   center (mm)}
 }
+\value{
+  degrees of visual angle
+}
 \description{
   Takes two screen coordinates and returns the angle (in
   degrees) subtended by those two points.

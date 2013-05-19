@@ -40,3 +40,7 @@ Collate:
     'chull_area.R'
     'nni.R'
     'bbox.R'
+    'bcea.R'
+    'coverage.R'
+    'gridded_rois.R'
+    'gazetools.R'

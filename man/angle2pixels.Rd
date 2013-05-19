@@ -31,8 +31,11 @@
   \item{y}{the y coordinate of a point on a screen
   (pixels)}
 }
+\value{
+  number of pixels
+}
 \description{
-  Returns a distance (in pixels) given a visual angle and
-  distance.
+  Calculated the distance (in pixels) at given a visual
+  angle and distance.
 }
 

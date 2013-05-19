@@ -7,7 +7,10 @@
 \arguments{
   \item{x}{a vector of data}
 }
+\value{
+  a vector of local maxima indices
+}
 \description{
-  Finds indices of local maxima in a vector.
+  Finds local maxima in a vector.
 }
 

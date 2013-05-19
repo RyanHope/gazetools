@@ -38,6 +38,9 @@
   \item{window}{the Savitzky-Golay filter window length
   (must be odd)}
 }
+\value{
+  an object of class \code{\linkS4class{pva}}
+}
 \description{
   Takes standard eye tracker gaze information and computes
   smoothed position, velocity and acceleration profiles

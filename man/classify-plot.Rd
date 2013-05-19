@@ -4,9 +4,10 @@
 \alias{plot.classify}
 \title{Plot classify}
 \arguments{
-  \item{x}{an object of class \code{"classify"}}
+  \item{x}{an object of class
+  \code{\linkS4class{classify}}}
 
-  \item{y}{an object of class \code{"pva"}}
+  \item{y}{an object of class \code{\linkS4class{pva}}}
 }
 \description{
   Plot the classify class

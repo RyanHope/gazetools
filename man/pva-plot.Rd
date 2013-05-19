@@ -6,11 +6,13 @@
 \alias{plot.voronoi_skewness}
 \title{Plot pva}
 \arguments{
-  \item{x}{an object of class \code{"pva"}}
+  \item{x}{an object of class \code{\linkS4class{pva}}}
 
-  \item{y}{an object of class \code{"classify"} (optional)}
+  \item{y}{an object of class \code{\linkS4class{classify}}
+  (optional)}
 
-  \item{x}{an object of class \code{"voronoi_skewness"}}
+  \item{x}{an object of class
+  \code{\linkS4class{voronoi_skewness}}}
 }
 \description{
   Plot the pva class
