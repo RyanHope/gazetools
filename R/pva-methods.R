@@ -12,6 +12,8 @@ setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional 
           }
 )
 
+setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+
 #' Plot pva
 #' 
 #' Plot the pva class

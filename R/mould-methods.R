@@ -1,3 +1,5 @@
+setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+
 #' Plot mould
 #' 
 #' Plot the mould class

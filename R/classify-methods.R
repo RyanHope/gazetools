@@ -10,6 +10,8 @@ setMethod("as.data.frame", signature(x = "classify", row.names = "missing", opti
           }
 )
 
+setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+
 #' Plot classify
 #' 
 #' Plot the classify class
@@ -24,9 +26,9 @@ setMethod("as.data.frame", signature(x = "classify", row.names = "missing", opti
 #' @name plot.classify
 #' @export
 #' @aliases plot,classify,pva-method
-setMethod("plot", signature(x = "classify", y = "pva"), function(x, y) classify.plot(x, y))
+setMethod("plot", signature(x = "classify", y = "pva"), function(x, y, ...) classify.plot(x, y, ...))
 
-classify.plot <- function(x, y = NULL, reverse_y = TRUE)
+classify.plot <- function(x, y, reverse_y = TRUE)
 {
   classify_obj <- x
   pva_obj <- y
