@@ -26,6 +26,11 @@ setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' @name plot.classify
 #' @export
 #' @aliases plot,classify,pva-method
+#' 
+#' @example example/pva.R
+#' @example example/classify.VA.R
+#' @example example/classify-plot.R
+#' 
 setMethod("plot", signature(x = "classify", y = "pva"), function(x, y, ...) classify.plot(x, y, ...))
 
 classify.plot <- function(x, y, reverse_y = TRUE)

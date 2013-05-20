@@ -42,6 +42,11 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y) pva.plot(x
 #' @name plot.pva
 #' @export
 #' @aliases plot,pva,classify-method
+#' 
+#' @example example/pva.R
+#' @example example/classify.VA.R
+#' @example example/pva-classify-plot.R
+#' 
 setMethod("plot", signature(x = "pva", y = "classify"), function(x, y) pva.plot(x, y))
 
 pva.plot <- function(x, y, ...)
