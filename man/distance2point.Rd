@@ -33,4 +33,7 @@
   physical distance from the observer to that point on the
   screen.
 }
+\examples{
+distance2point(840, 525, 1680, 1050, 473.76, 296.1, 750)
+}
 

@@ -5,6 +5,9 @@
 #' @template p
 #'
 #' @export
+#' 
+#' @example example/find_peaks.R
+#' 
 find_peaks <- function(x, threshold)
 {
   ranges <- find_peak_ranges(x, threshold)

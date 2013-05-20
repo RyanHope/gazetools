@@ -8,6 +8,11 @@
 #' @return an object of class \code{\linkS4class{classify}}
 #'
 #' @export
+#' 
+#' @example example/pva.R
+#' @example example/classify.VA.R
+#' @example example/classify.V?-out.R
+#' 
 classify.VA <- function(v, a, vt=30, at=8000)
 {
   m <- length(v)

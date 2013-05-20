@@ -10,6 +10,13 @@
 #' @return an area (pixels^2)
 #'
 #' @export
+#' 
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/bcea.R
+#' @example example/bcea-out.R
+#' 
 bcea <- function(x, k=.90) {
   2 * k * pi * sd(x[,1]) * sd(x[,2]) * sqrt((1 - cor(x[,1],x[,2])^2))
 }

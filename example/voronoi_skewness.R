@@ -1,0 +1,1 @@
+d.vs <- voronoi_skewness(d.f[,c("x","y")], c(315,1365,0,1050))

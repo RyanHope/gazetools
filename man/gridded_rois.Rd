@@ -23,4 +23,8 @@
 \description{
   Creates a grid of ROIs over a given 2-D region
 }
+\examples{
+rois <- gridded_rois(315,1365,0,1050,nrow=11,ncol=11)
+str(rois)
+}
 

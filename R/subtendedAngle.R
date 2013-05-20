@@ -9,6 +9,9 @@
 #' @return degrees of visual angle
 #'
 #' @export
+#' 
+#' @example example/subtendedAngle.R
+#' 
 subtendedAngle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex=0, ey=0)
 {
   d1 <- distance2point(x1, y1, rx, ry, sw, sh, ez, ex, ey)

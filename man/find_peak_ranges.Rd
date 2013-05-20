@@ -14,4 +14,7 @@
   Given a vector of data, find ranges of data that exceede
   a set threshold
 }
+\examples{
+find_peak_ranges(c(1,2,3,4,5,4,3,2,1,1,1,2,3,4,3,2,1),3)
+}
 

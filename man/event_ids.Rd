@@ -13,4 +13,7 @@
   Assigns unique IDs to runs of a target event in a vector
   of data
 }
+\examples{
+event_ids(c(TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE),TRUE)
+}
 

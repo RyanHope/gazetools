@@ -11,6 +11,13 @@
 #'
 #' @import spatstat
 #' @export
+#' 
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/nni.R
+#' @example example/nni-out.R
+#' 
 nni <- function(x) {
   mean(nndist(x))/(.5*sqrt(chull_area(x)/nrow(x)))
 }

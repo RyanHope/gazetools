@@ -1,0 +1,1 @@
+d.cha <- chull_area(d.f[,c("x","y")])

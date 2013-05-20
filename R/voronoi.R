@@ -11,6 +11,13 @@
 #' @return an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}
 #'
 #' @export
+#' 
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/voronoi_polygons.R
+#' @example example/voronoi_polygons-out.R
+#' 
 voronoi_polygons <- function(x, rw) {
   if (.hasSlot(x, 'coords')) {
     crds <- x@coords  
@@ -58,25 +65,31 @@ setClass("voronoi_skewness",
 #' 
 #' @docType methods
 #' @import ggplot2
-#' @rdname pva-plot
+#' @rdname voronoi_skewness-plot
 #' @name plot.voronoi_skewness
 #' @export
 #' @aliases plot,voronoi_skewness,missing-method
+#' 
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/voronoi_skewness.R
+#' @example example/voronoi_skewness-plot.R
+#' 
 setMethod("plot", signature(x = "voronoi_skewness", y = "missing"), 
-          function(x, y) {
-            suppressMessages(
-              ggplot(fortify(x@polygons), aes(long,lat,group=group)) +
-                geom_path() +
-                coord_equal(ratio=1, xlim=c(315,1365), ylim=c(0,1050)) +
-                geom_point(aes(x=x,y=y),data=ddply(d.df, .(group), 
-                                                   function(d) data.frame(x=mean(d$x),
-                                                                          y=mean(d$y))),
-                           size=3) +
-                theme(panel.background = element_blank(),
-                      axis.title.x = element_blank(),
-                      axis.title.y = element_blank())
-              )
-          })
+          function(x, y, ...) {
+            d.df <- suppressMessages(fortify(x@polygons))
+            ggplot(d.df, aes(long,lat,group=group)) +
+              geom_path() +
+              coord_equal(ratio=1, xlim=c(315,1365), ylim=c(0,1050)) +
+              geom_point(aes(x=x,y=y),data=ddply(d.df, .(group), 
+                                                 function(d) data.frame(x=mean(d$x),
+                                                                        y=mean(d$y))),
+                         size=3) +
+              theme(panel.background = element_blank(),
+                    axis.title.x = element_blank(),
+                    axis.title.y = element_blank())
+            })
 
 #' Voronoi Skewness
 #'
@@ -88,6 +101,12 @@ setMethod("plot", signature(x = "voronoi_skewness", y = "missing"),
 #' @return an object of class \code{\linkS4class{voronoi_skewness}}
 #' 
 #' @import modeest
+#' 
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/voronoi_skewness.R
+#' @example example/voronoi_skewness-out.R
 #'
 #' @export
 voronoi_skewness <- function(d, rw) {

@@ -4,10 +4,7 @@
 \alias{gazetools-package}
 \title{gazetools}
 \description{
-  A collection of functions for processing and visualizing
-  raw and classified gaze data.
-}
-\author{
-  Ryan M. Hope <rmh3093
+  A collection of tools for processing and classifying eye
+  gaze data.
 }
 

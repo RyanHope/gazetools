@@ -8,6 +8,11 @@
 #' @return an object of class \code{\linkS4class{classify}}
 #'
 #' @export
+#' 
+#' @example example/pva.R
+#' @example example/classify.VI.R
+#' @example example/classify.V?-out.R
+#' 
 classify.VI <- function(v, vt=100, sigma=6)
 {
   cont = T

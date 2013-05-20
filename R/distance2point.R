@@ -7,6 +7,9 @@
 #' @template eye
 #'
 #' @export
+#' 
+#' @example example/distance2point.R
+#' 
 distance2point <- function(x, y, rx, ry, sw, sh, ez, ex = 0, ey = 0)
 {
   dx <- x / rx * sw - sw / 2 + ex

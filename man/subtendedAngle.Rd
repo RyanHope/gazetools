@@ -42,4 +42,7 @@
   Takes two screen coordinates and returns the angle (in
   degrees) subtended by those two points.
 }
+\examples{
+subtendedAngle(835, 525, 845, 525, 1680, 1050, 473.76, 296.1, 750)
+}
 

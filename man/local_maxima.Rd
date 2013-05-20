@@ -13,4 +13,7 @@
 \description{
   Finds local maxima in a vector.
 }
+\examples{
+local_maxima(c(1,2,3,2,3,4,3,2,1,2,3,2,1))
+}
 

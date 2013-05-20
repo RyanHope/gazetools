@@ -9,6 +9,9 @@
 #' @return number of pixels
 #'
 #' @export
+#' 
+#' @example example/angle2pixels.R
+#'
 angle2pixels <- function(alpha, rx, ry, sw, sh, ez,
                          ex = 0, ey = 0, x = rx / 2, y = ry / 2)
 {

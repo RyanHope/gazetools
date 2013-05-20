@@ -9,6 +9,13 @@
 #'
 #' @import sp
 #' @export
+#' 
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/chull_area.R
+#' @example example/chull_area-out.R
+#' 
 chull_area <- function(x) {
   hpts <- chull(x)
   hpts <- c(hpts, hpts[1])

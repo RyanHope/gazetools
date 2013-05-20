@@ -8,6 +8,9 @@
 #' @import Rmisc
 #'
 #' @export
+#' 
+#' @example example/event_ids.R
+#' 
 event_ids <- function(x, event) {
   if (is.character(x)) {
     x <- factor(x)

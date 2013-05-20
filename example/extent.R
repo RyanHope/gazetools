@@ -1,0 +1,1 @@
+d.extent <- extent(d.f[,c("x","y")])

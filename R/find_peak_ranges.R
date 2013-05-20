@@ -5,6 +5,9 @@
 #' @template p
 #'
 #' @export
+#' 
+#' @example example/find_peak_ranges.R
+#' 
 find_peak_ranges <- function(x, threshold)
 {
   t <- which(x >= threshold)

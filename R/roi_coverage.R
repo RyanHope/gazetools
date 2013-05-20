@@ -29,6 +29,14 @@ setClass("roi_coverage",
 #' a list x with two components
 #'
 #' @export
+#' 
+#' @example example/gridded_rois.R
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/roi_coverage.R
+#' @example example/roi_coverage-out.R
+#' 
 roi_coverage <- function(rois, fixations) {
   N <- rois@nrow*rois@ncol
   m <- matrix(rep(F,N),rois@nrow,rois@ncol)

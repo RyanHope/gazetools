@@ -4,11 +4,20 @@
 #'   
 #' @param x coordinate vectors of points. This can be specified as a 2-column matrix x, 
 #' a list x with two components
+#' 
+#' @return a list with two values, the horizontal (x) and vertical (y) range of points
 #'
 #' @import ggplot2
 #' @export
+#' 
+#' @example example/pva.R
+#' @example example/classify.V.R
+#' @example example/getFixations.R
+#' @example example/extent.R
+#' @example example/extent-out.R
+#' 
 extent <- function(x) {
-  c(max(x[,1])-min(x[,1]),max(x[,2])-min(x[,2]))
+  list(x=max(x[,1])-min(x[,1]),y=max(x[,2])-min(x[,2]))
 }
 
 #' Bounding box of fixations

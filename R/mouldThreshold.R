@@ -1,3 +1,5 @@
+setGeneric("mouldThreshold", function(dpva, ...) standardGeneric("mouldThreshold"))
+
 #' Mould Threshold
 #' 
 #' Uses the Mould algorithm to determine the optimal velocity or acceleration threshold for
@@ -8,16 +10,17 @@
 #' 
 #' @return an object of class \code{\linkS4class{mould}}
 #' 
-#' @export
 #' @docType methods
 #' @rdname pva-mouldThreshold
-setGeneric("mouldThreshold", function(dpva, type = "velocity") standardGeneric("mouldThreshold"))
-
-#' @rdname pva-mouldThreshold
-#' @aliases mouldThreshold,pva,character-method
+#' @aliases mouldThreshold,pva-method
 #' @export
-setMethod("mouldThreshold", signature(dpva = "pva", type = "character"), 
-          function(dpva, type = "velocity") function(dpva, type) {
+#' 
+#' @example example/pva.R
+#' @example example/mouldThreshold.R
+#' @example example/mouldThreshold-out.R
+#' 
+setMethod("mouldThreshold", signature(dpva = "pva"), 
+          function(dpva, type = "velocity") {
             if (type == "velocity")
               d <- dpva@v
             else if (type == "acceleration")

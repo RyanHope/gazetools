@@ -2,15 +2,15 @@ Package: gazetools
 Type: Package
 Title: Gaze Tools
 Version: 3.0
-Date: 2013-05-19
+Date: 2013-05-20
 Author: Ryan M. Hope <rmh3093@gmail.com>
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 URL: http://ryanhope.github.io/gazetools
 BugReports: https://github.com/RyanHope/gazetools/issues
-Description: A colletion of tools for processing and classifying eye gaze data.
+Description: A collection of tools for processing and classifying eye gaze data.
 License: GPL-3
-Enhances: 
-    sp,
+LazyData: true
+Enhances: sp,
     ggplot2
 Depends:
     R (>= 2.14),
@@ -47,8 +47,11 @@ Collate:
     'voronoi.R'
     'chull_area.R'
     'nni.R'
-    'bbox.R'
     'bcea.R'
     'gridded_rois.R'
     'roi_coverage.R'
     'gazetools.R'
+    'extent.R'
+    'pva-methods.R'
+    'classify-methods.R'
+    'mould-methods.R'

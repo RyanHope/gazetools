@@ -38,4 +38,7 @@
   Calculated the distance (in pixels) at given a visual
   angle and distance.
 }
+\examples{
+angle2pixels(1, 1680, 1050, 473.76, 296.1, 750)
+}
 

@@ -1,0 +1,1 @@
+d.c <- classify.VI(d.pva@v)

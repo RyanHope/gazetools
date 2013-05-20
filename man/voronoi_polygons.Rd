@@ -19,4 +19,12 @@
   Computes Voronoi polygons based on a set of x,y
   coordinates
 }
+\examples{
+data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+d.c <- classify.V(d.pva@v)
+d.f <- getFixations(d.c, d.pva)
+d.vp <- voronoi_polygons(d.f[,c("x","y")], c(315,1365,0,1050))
+str(d.vp)
+}
 

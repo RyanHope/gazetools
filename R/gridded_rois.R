@@ -36,6 +36,10 @@ setClass("gridded_rois",
 #'
 #' @rdname gridded_rois
 #' @export
+#' 
+#' @example example/gridded_rois.R
+#' @example example/gridded_rois-out.R
+#' 
 gridded_rois <- function(xmin, xmax, ymin, ymax, ncol, nrow) {
   deltax <- (xmax-xmin)/ncol
   deltay <- (ymax-ymin)/nrow
