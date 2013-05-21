@@ -1,3 +1,5 @@
+utils::globalVariables(c("fixation_ids","dur"))
+
 #' Coerce object of class \code{classify} to a Data Frame
 #' 
 #' @rdname classify-as.data.frame

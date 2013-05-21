@@ -1,3 +1,5 @@
+utils::globalVariables(c("variable","value","intercept"))
+
 #' Coerce object of class \code{\linkS4class{pva}} to a Data Frame
 #' 
 #' @rdname pva-as.data.frame
@@ -43,7 +45,6 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y) pva.plot(x
 #' @export
 #' @aliases plot,pva,classify-method
 #' 
-#' @example example/pva.R
 #' @example example/classify.VA.R
 #' @example example/pva-classify-plot.R
 #' 

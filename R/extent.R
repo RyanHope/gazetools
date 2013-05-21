@@ -1,3 +1,5 @@
+utils::globalVariables(c("y"))
+
 #' Extent (range) of fixations
 #'
 #' Calculates the distance between fixations in the horizontal and vertical meridians

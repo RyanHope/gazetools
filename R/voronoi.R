@@ -1,3 +1,5 @@
+utils::globalVariables(c("long","lat","group"))
+
 #' Voronoi Polygons
 #'
 #' Computes Voronoi polygons based on a set of x,y coordinates

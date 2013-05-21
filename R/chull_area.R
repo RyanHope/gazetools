@@ -1,3 +1,5 @@
+utils::globalVariables(c("y"))
+
 #' Convex Hull Area
 #' 
 #' Computes the area of minimal convex polygon that spans all fixations.

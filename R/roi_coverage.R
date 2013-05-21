@@ -1,4 +1,4 @@
-#require(Matrix)
+utils::globalVariables(c("xmin","xmax","ymin","ymax"))
 
 #' Class "roi_coverage"
 #'

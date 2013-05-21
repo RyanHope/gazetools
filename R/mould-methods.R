@@ -1,3 +1,5 @@
+utils::globalVariables(c("resp2","thresholds","resp1","gap"))
+
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 
 #' Plot mould
