@@ -47,9 +47,6 @@
       <dt>y</dt>
       <dd>an object of class <code>classify</code>
   (optional)</dd>
-      <dt>x</dt>
-      <dd>an object of class
-  <code>voronoi_skewness</code></dd>
     </dl>
     
     <div class="Description">
@@ -57,13 +54,28 @@
       
       <p>Plot the pva class</p>
   
-      <p>Plot the voronoi_skewness class</p>
-  
     </div>
-      </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+plot(d.pva)
+</div>
+<p><img src='pva-plot-2.png' alt='' width='400' height='400' /></p>
+<div class='input'>data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+d.c <- classify.VA(d.pva@v, d.pva@a)
+plot(d.pva, d.c)
+</div>
+<strong class='warning'>Warning message:
+Removed 1 rows containing missing values (geom_segment).</strong>
+<strong class='warning'>Warning message:
+Removed 1 rows containing missing values (geom_segment).</strong>
+<p><img src='pva-plot-6.png' alt='' width='400' height='400' /></p></pre>
+  </div>
   <div class="span4">
     <!-- <ul>
-      <li>plot,pva,missing-method</li><li>plot,voronoi_skewness,missing-method</li><li>plot.pva</li><li>plot.voronoi_skewness</li>
+      <li>plot,pva,classify-method</li><li>plot,pva,missing-method</li><li>plot.pva</li>
     </ul>
     <ul>
       

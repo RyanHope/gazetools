@@ -67,7 +67,21 @@
   iteratively determined velocity threshold.</p>
   
     </div>
-      </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+d.c <- classify.VI(d.pva@v)
+str(d.c)
+</div>
+<div class='output'>Formal class 'classify' [package "gazetools"] with 5 slots
+  ..@ .Data       : chr [1:3437] "FIXATION" "FIXATION" "FIXATION" "FIXATION" ...
+  ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
+  ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
+  ..@ algorithm   : chr "velocity-iterative"
+  ..@ thresholds  : num 251
+</div></pre>
+  </div>
   <div class="span4">
     <!-- <ul>
       <li>classify.VI</li>

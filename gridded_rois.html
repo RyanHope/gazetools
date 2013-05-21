@@ -71,7 +71,20 @@
       <p>Creates a grid of ROIs over a given 2-D region</p>
   
     </div>
-      </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>rois <- gridded_rois(315,1365,0,1050,nrow=11,ncol=11)
+str(rois)
+</div>
+<div class='output'>Formal class 'gridded_rois' [package "gazetools"] with 6 slots
+  ..@ x     : num [1:12] 315 410 506 601 697 ...
+  ..@ y     : num [1:12] 0 95.5 190.9 286.4 381.8 ...
+  ..@ deltax: num 95.5
+  ..@ deltay: num 95.5
+  ..@ nrow  : num 11
+  ..@ ncol  : num 11
+</div></pre>
+  </div>
   <div class="span4">
     <!-- <ul>
       <li>gridded_rois</li>

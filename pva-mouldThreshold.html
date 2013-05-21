@@ -63,10 +63,36 @@
   gaze data.</p>
   
     </div>
-      </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+d.mtv <- mouldThreshold(d.pva,"velocity")
+d.mta <- mouldThreshold(d.pva,"acceleration")
+str(d.mtv)
+</div>
+<div class='output'>Formal class 'mould' [package "gazetools"] with 6 slots
+  ..@ .Data     : num 42.9
+  ..@ thresholds: num [1:500] 0.482 3.13 5.779 8.428 11.076 ...
+  ..@ resp1     : int [1:500] 310 307 301 271 230 204 180 143 114 90 ...
+  ..@ resp2     : num [1:500] 311 309 307 306 304 ...
+  ..@ gap       : num [1:500] 0.7 19.1 37.4 55.8 74.1 ...
+  ..@ type      : chr "velocity"
+</div>
+<div class='input'>str(d.mta)
+</div>
+<div class='output'>Formal class 'mould' [package "gazetools"] with 6 slots
+  ..@ .Data     : num 23231
+  ..@ thresholds: num [1:500] 124 568 1012 1457 1901 ...
+  ..@ resp1     : int [1:500] 662 645 567 463 357 275 209 173 144 121 ...
+  ..@ resp2     : num [1:500] 663 661 660 659 658 ...
+  ..@ gap       : num [1:500] 569 569 569 569 569 ...
+  ..@ type      : chr "acceleration"
+</div></pre>
+  </div>
   <div class="span4">
     <!-- <ul>
-      <li>mouldThreshold</li><li>mouldThreshold,pva,character-method</li>
+      <li>mouldThreshold</li><li>mouldThreshold,pva-method</li>
     </ul>
     <ul>
       

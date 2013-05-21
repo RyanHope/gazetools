@@ -59,7 +59,21 @@
   fixations</p>
   
     </div>
-      </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>rois <- gridded_rois(315,1365,0,1050,nrow=11,ncol=11)
+data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+d.c <- classify.V(d.pva@v)
+d.f <- getFixations(d.c, d.pva)
+d.coverage <- roi_coverage(rois, d.f)
+str(d.coverage)
+</div>
+<div class='output'>Formal class 'roi_coverage' [package "gazetools"] with 2 slots
+  ..@ .Data   : num 0.157
+  ..@ coverage: logi [1:11, 1:11] FALSE FALSE TRUE TRUE FALSE FALSE ...
+</div></pre>
+  </div>
   <div class="span4">
     <!-- <ul>
       <li>roi_coverage</li>
