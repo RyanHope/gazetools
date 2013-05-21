@@ -13,6 +13,8 @@
 #' @example example/classify.VA.R
 #' @example example/classify.V?-out.R
 #' 
+#' @family classify
+#' 
 classify.VA <- function(v, a, vt=30, at=8000)
 {
   m <- length(v)

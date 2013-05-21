@@ -13,6 +13,8 @@
 #' @example example/classify.VI.R
 #' @example example/classify.V?-out.R
 #' 
+#' @family classify
+#' 
 classify.VI <- function(v, vt=100, sigma=6)
 {
   cont = T

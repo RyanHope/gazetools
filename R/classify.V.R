@@ -11,6 +11,8 @@
 #' @example example/pva.R
 #' @example example/classify.V.R
 #' @example example/classify.V?-out.R
+#' 
+#' @family classify
 #'  
 classify.V <- function(v, vt = 75)
 {

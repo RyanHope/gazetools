@@ -21,26 +21,3 @@ absolutely latest version:
 ## update.packages()
 library(devtools); install_github('gazetools', 'ryanhope')
 ```
-## Visual Angle Functions
-
-* subtendedAngle
-* angle2pixels
-
-## Threshold Algorithms
-
-* mouldThreshold
-
-## Classification Algorithms
-
-* classify.V
-* classify.VA
-* classify.VI
-
-## Position Measures
-
-* chull_area
-* voronoi_skewness
-* extent
-* bcea
-* nni
-* roi_coverage
