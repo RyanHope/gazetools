@@ -48,46 +48,43 @@ gridded_rois <- function(xmin, xmax, ymin, ymax, ncol, nrow) {
   new("gridded_rois",x=x,y=y,deltax=deltax,deltay=deltay,ncol=ncol,nrow=nrow)
 }
 
-#' Gridded ROIs Geom for ggplot2
+#' Grid Geom for ggplot2
 #' 
-#' @param rois an object of class \code{\linkS4class{gridded_rois}}
+#' @param xintercept a vector of x intercepts
+#' @param yintercept a vector of y intercepts
 #' @param ... extra arguments passed on to geom_segment
 #'
 #' @import ggplot2
 #' @export
-geom_gridded_rois <- function(rois, ...) {
-  d <- data.frame()
-  minx <- min(rois@x)
-  maxx <- max(rois@x)
-  miny <- min(rois@y)
-  maxy <- max(rois@y)
-  for (x in rois@x)
-    d <- rbind(d, data.frame(x=x,xend=x,y=miny,yend=maxy))
-  for (y in rois@y)
-    d <- rbind(d, data.frame(x=minx,xend=maxx,y=y,yend=y))
-  geom_segment(aes(x=x,y=y,xend=xend,yend=yend),data=d,...)
+geom_grid <- function(xintercept, yintercept, ...) {
+  list(geom_hline(yintercept=yintercept, ...), geom_vline(xintercept=xintercept, ...))
 }
 
-#' Gridded ROIs Geom for ggplot2 (x-axis)
+#' Grid Scales for ggplot2
 #' 
-#' Discrete ROI scale for x axis (letters)
+#' Discrete grid scales
 #' 
-#' @param rois an object of class \code{\linkS4class{gridded_rois}}
+#' @param xintercept a vector of x intercepts
+#' @param yintercept a vector of y intercepts
+#' @param outer boolean, if TRUE xintercept and yintercept are assumed to contain
+#' intercepts for the plot limits
 #'
 #' @import ggplot2
 #' @export
-scale_x_gridded_rois <- function(rois) {
-  scale_x_continuous(breaks=head(rois@x,-1)+rois@deltax/2,labels=letters[1:rois@ncol])
-}
-
-#' Gridded ROIs Geom for ggplot2 (y-axis)
-#' 
-#' Discrete ROI scale for y axis (numbers)
-#' 
-#' @param rois an object of class \code{\linkS4class{gridded_rois}}
-#'
-#' @import ggplot2
-#' @export
-scale_y_gridded_rois <- function(rois) {
-  scale_y_continuous(breaks=head(rois@y,-1)+rois@deltay/2,labels=1:rois@nrow)
+scale_grid <- function(xintercept, yintercept, outer=T) {
+  xoffset <- diff(xintercept)[1]/2
+  yoffset <- diff(yintercept)[1]/2
+  if (outer) {
+    xbreaks <- head(xintercept,-1) + xoffset
+    ybreaks <- head(yintercept,-1) + yoffset
+    ncol <- length(xintercept) - 1
+    nrow <- length(yintercept) - 1
+  } else {
+    xbreaks <- xintercept - xoffset
+    ybreaks <- yintercept - xoffset
+    ncol <- length(xintercept) + 1
+    nrow <- length(yintercept) + 1
+  }
+  list(scale_x_continuous(breaks=xbreaks,labels=letters[1:ncol]),
+    scale_y_continuous(breaks=ybreaks,labels=1:nrow))
 }
