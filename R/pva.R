@@ -4,7 +4,6 @@
 #'
 #'@section Slots: 
 #'  \describe{
-#'    \item{\code{time}:}{vector of class \code{"numeric"}, containing the time corresponding to raw gaze samples}
 #'    \item{\code{ez}:}{vector of class \code{"numeric"}, containing the perpendicular distance from the viewer to the screen (mm)}
 #'    \item{\code{ex}:}{vector of class \code{"numeric"}, containing the horizontal offset of the viewer from screen center (mm)}
 #'    \item{\code{ey}:}{vector of class \code{"numeric"}, containing the vertical offset of the viewer from screen center (mm)}
@@ -27,7 +26,7 @@
 #' @rdname pva-class
 #' @exportClass pva
 setClass("pva", 
-         representation(time = "numeric", ez = "numeric",
+         representation(ez = "numeric",
                         ex = "numeric", ey = "numeric",
                         x = "numeric", y = "numeric",
                         sx = "numeric", sy = "numeric",
@@ -59,10 +58,14 @@ setClass("pva",
 #' 
 #' @example example/pva.R
 #'  
-pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
+pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
                     ex = 0, ey = 0, order = 2, window = 11)
 {
-  if (length(time) < window) return(NULL)
+  N <- nrow(data.frame(x=x,y=y))
+  if (N < window) {
+    warning("Length of data is less then window length")
+    return(NULL)
+  }
   
   ts <- 1 / samplerate
   
@@ -83,7 +86,7 @@ pva <- function(x, y, time, samplerate, rx, ry, sw, sh, ez,
   ay <- sgolayfilt(ya, n = window, p = order, m = 2, ts = ts)
   a <- sqrt(ax**2 + ay**2)
   
-  new("pva", time = time, ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa, 
+  new("pva", time = 0:(N-1), ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa, 
       sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window), rx = rx, ry = ry,
       samplerate = samplerate)
 }
