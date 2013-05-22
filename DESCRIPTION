@@ -1,8 +1,8 @@
 Package: gazetools
 Type: Package
 Title: Gaze Tools
-Version: 3.0
-Date: 2013-05-21
+Version: 3.1
+Date: 2013-05-22
 Author: Ryan M. Hope <rmh3093@gmail.com>
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 URL: http://ryanhope.github.io/gazetools
