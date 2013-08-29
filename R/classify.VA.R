@@ -4,6 +4,7 @@
 #' 
 #' @template v
 #' @template a
+#' @template blinks
 #' 
 #' @return an object of class \code{\linkS4class{classify}}
 #'
@@ -15,7 +16,7 @@
 #' 
 #' @family classify
 #' 
-classify.VA <- function(v, a, vt=30, at=8000)
+classify.VA <- function(v, a, vt = 30, at = 8000, blinks = NULL)
 {
   m <- length(v)
   class <- rep("FIXATION", m)
@@ -37,8 +38,12 @@ classify.VA <- function(v, a, vt=30, at=8000)
     if (sac)
       class[r] <- "SACCADE"
   }
+  fixation_ids <- event_ids(class, "FIXATION")
+  saccade_ids <- event_ids(class, "SACCADE")
+  if (!is.null(blinks))
+    class[blinks] <- "BLINK"
   new("classify", class,
-      fixation_ids = event_ids(class, "FIXATION"),
-      saccade_ids = event_ids(class, "SACCADE"),
+      fixation_ids = fixation_ids,
+      saccade_ids = saccade_ids,
       algorithm = "velocity-acceleration", thresholds = c(vt, at))
 }

@@ -68,6 +68,7 @@ geom_grid <- function(xintercept, yintercept, ...) {
 #' @param yintercept a vector of y intercepts
 #' @param outer boolean, if TRUE xintercept and yintercept are assumed to contain
 #' intercepts for the plot limits
+#' @params reverse.y a boolean, if TRUE reverse y scale
 #'
 #' @import ggplot2
 #' @export
@@ -86,5 +87,5 @@ scale_grid <- function(xintercept, yintercept, outer=T) {
     nrow <- length(yintercept) + 1
   }
   list(scale_x_continuous(breaks=xbreaks,labels=letters[1:ncol]),
-    scale_y_continuous(breaks=ybreaks,labels=1:nrow))
+       scale_y_continuous(breaks=ybreaks,labels=1:nrow))
 }

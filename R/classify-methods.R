@@ -35,7 +35,7 @@ setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' 
 setMethod("plot", signature(x = "classify", y = "pva"), function(x, y, ...) classify.plot(x, y, ...))
 
-classify.plot <- function(x, y, reverse_y = TRUE)
+classify.plot <- function(x, y, reverse_y = FALSE)
 {
   classify_obj <- x
   pva_obj <- y

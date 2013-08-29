@@ -3,6 +3,7 @@
 #' Classifies gaze data into saccades and fixations using a velocity threshold.
 #' 
 #' @template v
+#' @template blinks
 #' 
 #' @return an object of class \code{\linkS4class{classify}}
 #'
@@ -14,7 +15,7 @@
 #' 
 #' @family classify
 #'  
-classify.V <- function(v, vt = 75)
+classify.V <- function(v, vt = 75, blinks = NULL)
 {
   m <- length(v)
   class <- rep("FIXATION", m)
@@ -28,8 +29,12 @@ classify.V <- function(v, vt = 75)
       r <- c(r, max(r) + 1)
     class[r] <- "SACCADE"
   }
+  fixation_ids <- event_ids(class, "FIXATION")
+  saccade_ids <- event_ids(class, "SACCADE")
+  if (!is.null(blinks))
+    class[blinks] <- "BLINK"
   new("classify", class,
-      fixation_ids = event_ids(class, "FIXATION"),
-      saccade_ids = event_ids(class, "SACCADE"),
+      fixation_ids = fixation_ids,
+      saccade_ids = saccade_ids,
       algorithm = "velocity", thresholds = c(vt))
 }

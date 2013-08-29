@@ -38,7 +38,7 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y) pva.plot(x
 #' @param y an object of class \code{\linkS4class{classify}} (optional)
 #' 
 #' @docType methods
-#' @import reshape
+#' @importFrom reshape melt
 #' @import ggplot2
 #' @rdname pva-plot
 #' @name plot.pva
@@ -61,6 +61,7 @@ pva.plot <- function(x, y, ...)
   d <- subset(d, variable=="sx" | variable=="sy" | variable=="v" | variable=="a")
   d$variable <- factor(d$variable,labels=c("Gaze X", "Gaze Y", "Velocity", "Acceleration"))
   if (!is.null(y) & class(y)=="classify") {
+    d$class <- factor(d$class, levels=c("FIXATION","SACCADE","BLINK"))
     thresholds <- data.frame(variable=levels(d$variable))
     if (length(y@thresholds) > 1) 
       thresholds$intercept <- c(NA,NA,y@thresholds)
@@ -68,7 +69,7 @@ pva.plot <- function(x, y, ...)
       thresholds$intercept <- c(NA,NA,y@thresholds,NA)
     p <- ggplot(d) + geom_point(aes(x=time, y=value, color=class)) + 
       geom_hline(data=thresholds,aes(yintercept=intercept)) +
-      scale_color_manual(values=c("black", "red"))
+      scale_color_manual(values=c("black", "red", "blue"))
   } else
     p <- ggplot(d) + geom_point(aes(x=time, y=value))
   p + facet_grid(variable~., scales="free_y") + ylab("") + xlab("Time (s)") +

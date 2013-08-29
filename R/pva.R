@@ -4,6 +4,7 @@
 #'
 #'@section Slots: 
 #'  \describe{
+#'    \item{\code{time}:}{vector of class \code{"numeric"}, containing the time corresponding to raw gaze samples}
 #'    \item{\code{ez}:}{vector of class \code{"numeric"}, containing the perpendicular distance from the viewer to the screen (mm)}
 #'    \item{\code{ex}:}{vector of class \code{"numeric"}, containing the horizontal offset of the viewer from screen center (mm)}
 #'    \item{\code{ey}:}{vector of class \code{"numeric"}, containing the vertical offset of the viewer from screen center (mm)}
@@ -15,6 +16,7 @@
 #'    \item{\code{ya}:}{vector of class \code{"numeric"}, containing the y coordinate of a point in visual angle relative to the center of screen (degrees)}
 #'    \item{\code{v}:}{vector of class \code{"numeric"}, containing the instantaneous velocity (degrees/s)}
 #'    \item{\code{a}:}{vector of class \code{"numeric"}, containing the instantaneous acceleration (degrees/s^2)}
+#'    \item{\code{blinks}:}{vector of class \code{"logical"}, TRUE if samples belong to a blink}
 #'    \item{\code{rx}:}{the x resolution of the monitor (pixels)}
 #'    \item{\code{ry}:}{the y resolution of the monitor (pixels)}
 #'    \item{\code{samplerate}:}{the samplerate of the eyetracker}
@@ -26,13 +28,14 @@
 #' @rdname pva-class
 #' @exportClass pva
 setClass("pva", 
-         representation(ez = "numeric",
+         representation(time = "numeric", ez = "numeric",
                         ex = "numeric", ey = "numeric",
                         x = "numeric", y = "numeric",
                         sx = "numeric", sy = "numeric",
                         xa = "numeric", ya = "numeric",
                         v = "numeric", a = "numeric",
                         rx = "numeric", ry = "numeric",
+                        blinks = "logical",
                         samplerate = "numeric",
                         sgolayfilt = "numeric"))
 
@@ -42,10 +45,10 @@ setClass("pva",
 #' and acceleration profiles using a Savitzky-Golay filter.
 #' 
 #' @template 1p
-#' @param time the time corresponding to raw gaze samples
 #' @param samplerate the samplerate of the eyetracker
 #' @template eye
 #' @template sg
+#' @param pupil a vector of class \code{numeric}; the vertical diameter of the pupil
 #'
 #' @return an object of class \code{\linkS4class{pva}}
 #'
@@ -59,12 +62,22 @@ setClass("pva",
 #' @example example/pva.R
 #'  
 pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
-                    ex = 0, ey = 0, order = 2, window = 11)
+                    ex = 0, ey = 0, order = 2, window = 11,
+                pupil = NULL)
 {
   N <- nrow(data.frame(x=x,y=y))
   if (N < window) {
     warning("Length of data is less then window length")
     return(NULL)
+  }
+  
+  blinks <- rep(F,N)
+  if (!is.null(pupil)) {
+    blinks <- detect_blinks(pupil, samplerate)
+    x[blinks] <- NA
+    y[blinks] <- NA
+    x <- na.approx(x)
+    y <- na.approx(y)
   }
   
   ts <- 1 / samplerate
@@ -88,5 +101,5 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
   
   new("pva", time = 0:(N-1), ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa, 
       sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window), rx = rx, ry = ry,
-      samplerate = samplerate)
+      samplerate = samplerate, blinks = blinks)
 }

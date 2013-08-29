@@ -21,9 +21,7 @@ utils::globalVariables(c("long","lat","group"))
 #' @example example/voronoi_polygons-out.R
 #' 
 voronoi_polygons <- function(x, rw) {
-  if (.hasSlot(x, 'coords')) {
-    crds <- x@coords  
-  } else crds <- x
+  crds <- x
   z <- deldir(crds[,1], crds[,2], rw=rw, suppressMsge=T)
   w <- tile.list(z)
   polys <- vector(mode='list', length=length(w))
@@ -33,9 +31,10 @@ voronoi_polygons <- function(x, rw) {
     polys[[i]] <- Polygons(list(Polygon(pcrds)), ID=as.character(i))
   }
   SP <- SpatialPolygons(polys)
-  d <- data.frame(x=crds[,1],
-                  y=crds[,2],
-                  row.names=sapply(SP@polygons, function(x) slot(x, 'ID')))
+  r <- as.numeric(sapply(SP@polygons, function(x) slot(x, 'ID')))
+  d <- data.frame(x=crds[r,1],
+                  y=crds[r,2],
+                  row.names=r)
   SpatialPolygonsDataFrame(SP, data=d)
 }
 

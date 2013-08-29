@@ -1,13 +1,11 @@
-\name{classify.V}
-\alias{classify.V}
-\title{Gaze Data Classification (velocity)}
+\name{classify.MM}
+\alias{classify.MM}
+\title{Gaze Data Classification (mixture model)}
 \usage{
-  classify.V(v, vt = 75, blinks = NULL)
+  classify.MM(v, blinks = NULL)
 }
 \arguments{
   \item{v}{a vector of instantaneous velocity values}
-
-  \item{vt}{a velocity threshold}
 
   \item{blinks}{vector of class \code{"logical"}, TRUE if
   samples belong to a blink}
@@ -16,19 +14,19 @@
   an object of class \code{\linkS4class{classify}}
 }
 \description{
-  Classifies gaze data into saccades and fixations using a
-  velocity threshold.
+  Uses a mixture model to classify gaze data into saccades
+  and fixations.
 }
 \examples{
 data(smi)
 d.pva <- with(smi, pva(smi_sxl, smi_syl, 
                        500, 1680, 1050, 473.76, 296.1, 
                        smi_ezl, smi_exl, smi_eyl))
-d.c <- classify.V(d.pva@v)
+d.c <- classify.MM(d.pva@v)
 str(d.c)
 }
 \seealso{
-  Other classify: \code{\link{classify.MM}},
+  Other classify: \code{\link{classify.V}},
   \code{\link{classify.VA}}, \code{\link{classify.VI}}
 }
 

@@ -17,6 +17,8 @@ Depends:
     Matrix,
     methods,
 Imports:
+    png,
+    depmixS4,
     rgeos,
     maptools,
     deldir,
@@ -37,11 +39,13 @@ Collate:
     'local_maxima.R'
     'find_peak_ranges.R'
     'find_peaks.R'
+    'detect_blinks.R'
     'pva.R'
     'classify.R'
     'classify.V.R'
     'classify.VA.R'
     'classify.VI.R'
+    'classify.MM.R'
     'mould.R'
     'mouldThreshold.R'
     'voronoi.R'
@@ -55,3 +59,7 @@ Collate:
     'pva-methods.R'
     'classify-methods.R'
     'mould-methods.R'
+    'getScanpath.R'
+    'ROI.R'
+    'circleFun.R'
+    'geom_png.R'

@@ -25,7 +25,7 @@ list(
       "Classification Algorithms",
       "These functions are used to classify rag gaze data into events 
       such as saccades and fixations.",
-      c("classify.V", "classify.VI", "classify.VA")
+      c("classify.V", "classify.VI", "classify.VA", "classify.MM")
     ),
     sd_section(
       "Position Measures",

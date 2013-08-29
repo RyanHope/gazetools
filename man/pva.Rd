@@ -2,8 +2,8 @@
 \alias{pva}
 \title{Position, Velocity, Acceleration}
 \usage{
-  pva(x, y, time, samplerate, rx, ry, sw, sh, ez, ex = 0,
-    ey = 0, order = 2, window = 11)
+  pva(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0,
+    order = 2, window = 11, pupil = NULL)
 }
 \arguments{
   \item{x}{the x coordinate of a point on a screen
@@ -11,8 +11,6 @@
 
   \item{y}{the y coordinate of a point on a screen
   (pixels)}
-
-  \item{time}{the time corresponding to raw gaze samples}
 
   \item{samplerate}{the samplerate of the eyetracker}
 
@@ -37,6 +35,9 @@
 
   \item{window}{the Savitzky-Golay filter window length
   (must be odd)}
+
+  \item{pupil}{a vector of class \code{numeric}; the
+  vertical diameter of the pupil}
 }
 \value{
   an object of class \code{\linkS4class{pva}}
@@ -48,7 +49,7 @@
 }
 \examples{
 data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 
+d.pva <- with(smi, pva(smi_sxl, smi_syl, 
                        500, 1680, 1050, 473.76, 296.1, 
                        smi_ezl, smi_exl, smi_eyl))
 }

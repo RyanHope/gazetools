@@ -35,11 +35,13 @@
   \code{"numeric"}, containing the instantaneous velocity
   (degrees/s)} \item{\code{a}:}{vector of class
   \code{"numeric"}, containing the instantaneous
-  acceleration (degrees/s^2)} \item{\code{rx}:}{the x
-  resolution of the monitor (pixels)} \item{\code{ry}:}{the
-  y resolution of the monitor (pixels)}
-  \item{\code{samplerate}:}{the samplerate of the
-  eyetracker} \item{\code{sgolayfilt}:}{parameters for the
+  acceleration (degrees/s^2)} \item{\code{blinks}:}{vector
+  of class \code{"logical"}, TRUE if samples belong to a
+  blink} \item{\code{rx}:}{the x resolution of the monitor
+  (pixels)} \item{\code{ry}:}{the y resolution of the
+  monitor (pixels)} \item{\code{samplerate}:}{the
+  samplerate of the eyetracker}
+  \item{\code{sgolayfilt}:}{parameters for the
   avitzky-Golay smoothing filter} }
 }
 
