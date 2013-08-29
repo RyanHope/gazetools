@@ -9,7 +9,6 @@ utils::globalVariables(c("y"))
 #' 
 #' @return a list with two values, the horizontal (x) and vertical (y) range of points
 #'
-#' @import ggplot2
 #' @export
 #' 
 #' @example example/pva.R
@@ -29,7 +28,6 @@ extent <- function(x) {
 #' @param x coordinate vectors of points. This can be specified as a 2-column matrix x, 
 #' a list x with two components
 #'
-#' @import ggplot2
 #' @export
 bbox <- function(x) {
   data.frame(x=c(min(x[,1]),min(x[,1]),max(x[,1]),max(x[,1]),min(x[,1])),
@@ -42,7 +40,7 @@ bbox <- function(x) {
 #' a list x with two components
 #' @param ... extra arguments passed on to geom_path
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 geom_path aes
 #' @export
 geom_bbox <- function(x, ...) {
   geom_path(aes(x,y), bbox(x), ...)

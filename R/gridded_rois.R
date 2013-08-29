@@ -16,6 +16,7 @@
 #' @name gridded_rois-class
 #' @rdname gridded_rois-class
 #' @exportClass gridded_rois
+#' @importFrom methods setClass
 setClass("gridded_rois", 
          representation(x = "numeric", y = "numeric",
                         deltax = "numeric", deltay = "numeric",
@@ -54,7 +55,7 @@ gridded_rois <- function(xmin, xmax, ymin, ymax, ncol, nrow) {
 #' @param yintercept a vector of y intercepts
 #' @param ... extra arguments passed on to geom_segment
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 geom_hline geom_vline
 #' @export
 geom_grid <- function(xintercept, yintercept, ...) {
   list(geom_hline(yintercept=yintercept, ...), geom_vline(xintercept=xintercept, ...))
@@ -66,11 +67,9 @@ geom_grid <- function(xintercept, yintercept, ...) {
 #' 
 #' @param xintercept a vector of x intercepts
 #' @param yintercept a vector of y intercepts
-#' @param outer boolean, if TRUE xintercept and yintercept are assumed to contain
-#' intercepts for the plot limits
-#' @params reverse.y a boolean, if TRUE reverse y scale
+#' @param outer boolean, if TRUE xintercept and yintercept are assumed to contain intercepts for the plot limits
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 scale_x_continuous scale_y_continuous
 #' @export
 scale_grid <- function(xintercept, yintercept, outer=T) {
   xoffset <- diff(xintercept)[1]/2

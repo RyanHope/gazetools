@@ -11,11 +11,13 @@
 #' 
 #' @example example/pva.R
 #' @example example/classify.MM.R
-#' @example example/classify.V?-out.R
+#' @example example/classify.X-out.R
 #' 
-#' @import depmixS4
+#' @importFrom depmixS4 mix fit
 #' 
 #' @family classify
+#' 
+#' @references Ingmar Visser, Maarten Speekenbrink (2010). depmixS4: An R Package for Hidden Markov Models. Journal of Statistical Software, 36(7), 1-21.
 #'  
 classify.MM <- function(v, blinks = NULL)
 {

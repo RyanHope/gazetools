@@ -1,3 +1,4 @@
+\encoding{latin1}
 \name{classify.VA}
 \alias{classify.VA}
 \title{Gaze Data Classification (velocity-acceleration)}
@@ -30,6 +31,12 @@ d.pva <- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl))
 d.c <- classify.VA(d.pva@v, d.pva@a)
 str(d.c)
+}
+\references{
+  Nyström, M., & Holmqvist, K. (2010). An adaptive
+  algorithm for fixation, saccade, and glissade detection
+  in eyetracking data. Behavior Research Methods, 42(1),
+  188-204.
 }
 \seealso{
   Other classify: \code{\link{classify.MM}},

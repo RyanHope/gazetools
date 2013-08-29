@@ -8,6 +8,7 @@
 #' 
 #' @rdname ggplot
 #' 
+#' @importFrom ggplot2 annotation_raster
 #' @importFrom png readPNG
 #' 
 #' @export

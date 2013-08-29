@@ -10,24 +10,22 @@ BugReports: https://github.com/RyanHope/gazetools/issues
 Description: A collection of tools for processing and classifying eye gaze data.
 License: GPL-3
 LazyData: true
-Enhances: sp,
-    ggplot2
 Depends:
-    R (>= 2.14),
-    Matrix,
-    methods,
+    R (>= 2.14)
+Suggests:
+    rgeos
 Imports:
+    methods,
+    Matrix,
     png,
     depmixS4,
-    rgeos,
-    maptools,
     deldir,
     sp,
     modeest,
     signal,
     zoo,
     Rmisc,
-    reshape,
+    reshape2,
     plyr,
     spatstat,
     ggplot2

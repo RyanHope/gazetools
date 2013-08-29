@@ -15,6 +15,7 @@
 #' @name classify-class
 #' @rdname classify-class
 #' @exportClass classify
+#' @importFrom methods setClass
 setClass("classify", 
          representation(fixation_ids = "numeric", saccade_ids = "numeric",
                         algorithm="character", thresholds="numeric"),

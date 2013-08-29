@@ -27,6 +27,7 @@
 #' @name pva-class
 #' @rdname pva-class
 #' @exportClass pva
+#' @importFrom methods setClass
 setClass("pva", 
          representation(time = "numeric", ez = "numeric",
                         ex = "numeric", ey = "numeric",
@@ -52,8 +53,8 @@ setClass("pva",
 #'
 #' @return an object of class \code{\linkS4class{pva}}
 #'
-#' @import signal
-#' @import zoo
+#' @importFrom signal sgolayfilt
+#' @importFrom zoo na.approx
 #' 
 #' @rdname pva
 #' 

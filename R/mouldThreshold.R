@@ -1,3 +1,4 @@
+#' @importFrom methods setGeneric
 setGeneric("mouldThreshold", function(dpva, ...) standardGeneric("mouldThreshold"))
 
 #' Mould Threshold
@@ -14,6 +15,7 @@ setGeneric("mouldThreshold", function(dpva, ...) standardGeneric("mouldThreshold
 #' @rdname pva-mouldThreshold
 #' @aliases mouldThreshold,pva-method
 #' @export
+#' @importFrom methods setMethod
 #' 
 #' @example example/pva.R
 #' @example example/mouldThreshold.R

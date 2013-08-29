@@ -7,8 +7,8 @@ utils::globalVariables(c("long","lat","group"))
 #' @param x a matrix of x,y cooridinates
 #' @param rw the coordinates of the corners of the rectangular window enclosing the voronoi cells, in the order (xmin, xmax, ymin, ymax).
 #'
-#' @import sp
-#' @import deldir
+#' @importFrom sp Polygons SpatialPolygons SpatialPolygonsDataFrame
+#' @importFrom deldir deldir tile.list
 #'
 #' @return an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}
 #'
@@ -48,7 +48,8 @@ voronoi_polygons <- function(x, rw) {
 #'    \item{\code{polygons}:}{an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}}
 #'  }
 #'
-#' @import sp
+#' @importClassesFrom sp CRS Spatial SpatialPolygons SpatialPolygonsDataFrame
+#' @importFrom methods setClass
 #'
 #' @docType class
 #' @name voronoi_skewness-class
@@ -65,7 +66,9 @@ setClass("voronoi_skewness",
 #' @param x an object of class \code{\linkS4class{voronoi_skewness}}
 #' 
 #' @docType methods
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot geom_path coord_equal geom_point theme element_blank aes
+#' @importFrom plyr ddply .
+#' @importFrom methods setMethod
 #' @rdname voronoi_skewness-plot
 #' @name plot.voronoi_skewness
 #' @export
@@ -101,7 +104,7 @@ setMethod("plot", signature(x = "voronoi_skewness", y = "missing"),
 #'
 #' @return an object of class \code{\linkS4class{voronoi_skewness}}
 #' 
-#' @import modeest
+#' @importFrom modeest skewness
 #' 
 #' @example example/pva.R
 #' @example example/classify.V.R
@@ -121,7 +124,7 @@ voronoi_skewness <- function(d, rw) {
 #' @param d an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}
 #' @param ... extra arguments passed on to geom_path
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 geom_path fortify aes
 #' @export
 geom_voronoi <- function(d, ...) {
   suppressMessages(geom_path(aes(long,lat,group=group), fortify(d), ...))

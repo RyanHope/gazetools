@@ -6,7 +6,7 @@
 #' @param rois an object of class \code{\linkS4class{Polygons}}
 #' @param nearest if TRUE fixations not on an ROI will be moved to the nearest ROI
 #'
-#' @import sp
+#' @importFrom sp point.in.polygon
 #'
 #' @return a vector of ROI ids
 #'

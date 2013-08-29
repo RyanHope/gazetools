@@ -25,6 +25,11 @@ d.pva <- with(smi, pva(smi_sxl, smi_syl,
 d.c <- classify.MM(d.pva@v)
 str(d.c)
 }
+\references{
+  Ingmar Visser, Maarten Speekenbrink (2010). depmixS4: An
+  R Package for Hidden Markov Models. Journal of
+  Statistical Software, 36(7), 1-21.
+}
 \seealso{
   Other classify: \code{\link{classify.V}},
   \code{\link{classify.VA}}, \code{\link{classify.VI}}

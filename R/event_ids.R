@@ -5,7 +5,7 @@
 #' @param x a vector of data
 #' @param event the event to id
 #'
-#' @import Rmisc
+#' @importFrom Rmisc rsi
 #'
 #' @export
 #' 

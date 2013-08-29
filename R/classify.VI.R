@@ -12,7 +12,7 @@
 #' 
 #' @example example/pva.R
 #' @example example/classify.VI.R
-#' @example example/classify.V?-out.R
+#' @example example/classify.X-out.R
 #' 
 #' @family classify
 #' 

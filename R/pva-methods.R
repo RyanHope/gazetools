@@ -6,6 +6,7 @@ utils::globalVariables(c("variable","value","intercept"))
 #' @aliases as.data.frame,pva,missing,missing-method
 #' @name as.data.frame.pva
 #' @export
+#' @importFrom methods setMethod
 setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional = "missing"),
           function(x) {
             data.frame(time = x@time, ez = x@ez, ex = x@ex, ey = x@ey, x = x@x, y = x@y,
@@ -14,6 +15,7 @@ setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional 
           }
 )
 
+#' @importFrom methods setGeneric
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 
 #' Plot pva
@@ -23,8 +25,9 @@ setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' @param x an object of class \code{\linkS4class{pva}}
 #' 
 #' @docType methods
-#' @import reshape
-#' @import ggplot2
+#' @importFrom reshape2 melt
+#' @importFrom ggplot2 ggplot geom_point aes geom_hline scale_color_manual facet_grid theme ylab xlab
+#' @importFrom methods setMethod
 #' @rdname pva-plot
 #' @name plot.pva
 #' @export
@@ -38,8 +41,9 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y) pva.plot(x
 #' @param y an object of class \code{\linkS4class{classify}} (optional)
 #' 
 #' @docType methods
-#' @importFrom reshape melt
-#' @import ggplot2
+#' @importFrom reshape2 melt
+#' @importFrom ggplot2 ggplot geom_point aes geom_hline scale_color_manual facet_grid theme ylab xlab
+#' @importFrom methods setMethod
 #' @rdname pva-plot
 #' @name plot.pva
 #' @export

@@ -4,7 +4,7 @@
 #' 
 #' @name gazetools
 #' @docType package
-#' @import methods rgeos maptools deldir sp modeest signal zoo Rmisc reshape plyr spatstat ggplot2
+#' @author Ryan M. Hope \email{rmh3093@@gmail.com}
 NULL
 
 #' Gaze data from a SMI RED 500 eyetracker at 500 Hz.

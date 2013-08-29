@@ -7,4 +7,7 @@
   A collection of tools for processing and classifying eye
   gaze data.
 }
+\author{
+  Ryan M. Hope \email{rmh3093@gmail.com}
+}
 

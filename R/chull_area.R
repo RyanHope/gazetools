@@ -9,7 +9,7 @@ utils::globalVariables(c("y"))
 #' 
 #' @return an area (pixels^2)
 #'
-#' @import sp
+#' @importFrom sp Polygon
 #' @export
 #' 
 #' @example example/pva.R
@@ -30,7 +30,7 @@ chull_area <- function(x) {
 #' a list x with two components
 #' @param ... extra arguments passed on to geom_path
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 geom_path aes
 #' @export
 geom_chull <- function(x, ...) {
   hpts <- chull(x)

@@ -16,6 +16,7 @@
 #' @name mould-class
 #' @rdname mould-class
 #' @exportClass mould
+#' @importFrom methods setClass
 setClass("mould", 
          representation(thresholds = "numeric",
                         resp1 = "numeric",

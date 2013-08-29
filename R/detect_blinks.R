@@ -9,8 +9,7 @@
 #'
 #' @return a vector of class \code{logical}; indicates samples that belong to a blink
 #'
-#' @import signal
-#' @import zoo
+#' @importFrom signal sgolayfilt
 #' 
 #' @rdname detect_blinks
 #' 

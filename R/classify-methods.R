@@ -6,12 +6,14 @@ utils::globalVariables(c("fixation_ids","dur"))
 #' @aliases as.data.frame,classify,missing,missing-method
 #' @name classify.as.data.frame
 #' @export
+#' @importFrom methods setMethod
 setMethod("as.data.frame", signature(x = "classify", row.names = "missing", optional = "missing"),
           function(x) {
             data.frame(class = x@.Data, fixation_ids = x@fixation_ids, saccade_ids = x@saccade_ids)
           }
 )
 
+#' @importFrom methods setGeneric
 setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 
 #' Plot classify
@@ -22,8 +24,9 @@ setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' @param y an object of class \code{\linkS4class{pva}}
 #' 
 #' @docType methods
-#' @import plyr
-#' @import ggplot2
+#' @importFrom plyr ddply .
+#' @importFrom ggplot2 ggplot geom_path geom_point coord_equal aes labs theme element_blank scale_size_continuous scale_y_reverse scale_y_continuous
+#' @importFrom methods setMethod
 #' @rdname classify-plot
 #' @name plot.classify
 #' @export
@@ -62,22 +65,25 @@ classify.plot <- function(x, y, reverse_y = FALSE)
   p
 }
 
-setGeneric("getFixations", function(class, dpva, ...) standardGeneric("getFixations"))
-
 #' Get Fixations
 #' 
 #' Extracts the coordinates of fixations and their durations from \code{\linkS4class{classify}} 
 #' and \code{\linkS4class{pva}} objects
 #'
-#' @import plyr
+#' @importFrom plyr ddply .
 #' @rdname classify-getFixations
 #' @aliases getFixations,classify,pva-method
 #' @export
+#' @genericMethods
+#' @importFrom methods setGeneric
 #' 
 #' @example example/pva.R
 #' @example example/classify.V.R
 #' @example example/getFixations.R
 #' 
+setGeneric("getFixations", function(class, dpva, ...) standardGeneric("getFixations"))
+
+#' @importFrom methods setMethod
 setMethod("getFixations", signature(class = "classify", dpva = "pva"), 
           function(class, dpva, drop=T) {
             f <- subset(ddply(cbind(as.data.frame(dpva), as.data.frame(class)), .(fixation_ids),

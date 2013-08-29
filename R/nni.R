@@ -9,7 +9,7 @@
 #' is random. Values lower than 1 suggest grouping, whereas values higher than 1 suggest 
 #' regularity (i.e. the point pattern is dispersed in a non-random way). 
 #'
-#' @import spatstat
+#' @importFrom spatstat nndist
 #' @export
 #' 
 #' @example example/pva.R

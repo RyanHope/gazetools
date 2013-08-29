@@ -16,6 +16,7 @@ utils::globalVariables(c("xmin","xmax","ymin","ymax"))
 #' @name roi_coverage-class
 #' @rdname roi_coverage-class
 #' @exportClass roi_coverage
+#' @importFrom methods setClass
 setClass("roi_coverage", 
          representation(coverage = "matrix"),
          contains = "numeric")
@@ -54,7 +55,7 @@ roi_coverage <- function(rois, fixations) {
 #' @param cv an object of class \code{\linkS4class{roi_coverage}}
 #' @param ... extra arguments passed on to geom_rect
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 geom_rect aes
 #' @export
 geom_roi_coverage <- function(rois, cv, ...) {
   d <- data.frame()

@@ -12,9 +12,12 @@
 #' 
 #' @example example/pva.R
 #' @example example/classify.VA.R
-#' @example example/classify.V?-out.R
+#' @example example/classify.X-out.R
 #' 
 #' @family classify
+#' 
+#' @encoding latin1
+#' @references Nyström, M., & Holmqvist, K. (2010). An adaptive algorithm for fixation, saccade, and glissade detection in eyetracking data. Behavior Research Methods, 42(1), 188-204.
 #' 
 classify.VA <- function(v, a, vt = 30, at = 8000, blinks = NULL)
 {

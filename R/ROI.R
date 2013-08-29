@@ -16,6 +16,7 @@
 #' @name ROI-class
 #' @rdname ROI-class
 #' @exportClass ROI
+#' @importFrom methods setClass
 setClass("ROI", representation(ID="character"), contains="Polygon")
 
 #' Region of Interest (ROI)
@@ -27,7 +28,7 @@ setClass("ROI", representation(ID="character"), contains="Polygon")
 #'
 #' @return an object of class \code{\linkS4class{ROI}}
 #'
-#' @import sp
+#' @importFrom sp Polygon
 #' 
 #' @rdname ROI
 #' 
@@ -45,6 +46,7 @@ ROI <- function (coords, ID) {
 #' @name ROIs-class
 #' @rdname ROIs-class
 #' @exportClass ROIs
+#' @importFrom methods setClass
 setClass("ROIs", contains="list", validity=function(object) {
   !any(sapply(object, function(x) !is(x, "ROI")))
 })
