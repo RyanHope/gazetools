@@ -48,7 +48,7 @@ voronoi_polygons <- function(x, rw) {
 #'    \item{\code{polygons}:}{an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}}
 #'  }
 #'
-#' @importClassesFrom sp CRS Spatial SpatialPolygons SpatialPolygonsDataFrame
+#' @importClassesFrom sp Line CRS Polygon Polygons SpatialPolygons SpatialPolygonsDataFrame
 #' @importFrom methods setClass
 #'
 #' @docType class
