@@ -2,11 +2,6 @@ gazetools 3.1
 =============
   
 * pva no longer requires a time parameter
-
-* all classification algorithms now take a parameter called blinks
-  which is a vector indicating which samples belong to a blink
-
+* all classification algorithms now take a parameter called blinks which is a vector indicating which samples belong to a blink
 * added a new classification algorithm that uses a mixture model
-
-* added a new function that returns a scanpath given a set of fixations
-  and list of ROIs
+* added a new function that returns a scanpath given a set of fixations and list of ROIs
