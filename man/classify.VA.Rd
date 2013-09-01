@@ -1,4 +1,3 @@
-\encoding{latin1}
 \name{classify.VA}
 \alias{classify.VA}
 \title{Gaze Data Classification (velocity-acceleration)}
