@@ -40,7 +40,7 @@ list(
     sd_section(
       "Geoms",
       "Geoms for ggplot2",
-      c("geom_bbox","geom_chull","geom_roi_coverage","geom_voronoi","geom_grid")
+      c("geom_bbox","geom_chull","geom_roi_coverage","geom_voronoi","geom_grid","geom_png")
     ),
     sd_section(
       "Scales",
