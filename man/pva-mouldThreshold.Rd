@@ -26,4 +26,9 @@ d.mta <- mouldThreshold(d.pva,"acceleration")
 str(d.mtv)
 str(d.mta)
 }
+\references{
+  Mould, M. S., Foster, D. H., Amano, K., & Oakley, J. P.
+  (2012). A simple nonparametric method for classifying eye
+  fixations. Vision research, 57, 18–25.
+}
 

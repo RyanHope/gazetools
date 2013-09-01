@@ -17,6 +17,8 @@ setGeneric("mouldThreshold", function(dpva, ...) standardGeneric("mouldThreshold
 #' @export
 #' @importFrom methods setMethod
 #' 
+#' @references Mould, M. S., Foster, D. H., Amano, K., & Oakley, J. P. (2012). A simple nonparametric method for classifying eye fixations. Vision research, 57, 18–25.
+#' 
 #' @example example/pva.R
 #' @example example/mouldThreshold.R
 #' @example example/mouldThreshold-out.R
