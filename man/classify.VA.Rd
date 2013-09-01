@@ -33,7 +33,7 @@ d.c <- classify.VA(d.pva@v, d.pva@a)
 str(d.c)
 }
 \references{
-  Nyström, M., & Holmqvist, K. (2010). An adaptive
+  NystrÃ¶m, M., & Holmqvist, K. (2010). An adaptive
   algorithm for fixation, saccade, and glissade detection
   in eyetracking data. Behavior Research Methods, 42(1),
   188-204.
