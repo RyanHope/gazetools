@@ -57,11 +57,39 @@ list(
     )
   ),
   icons = list(
+    extent = sd_icon({
+      gTree(children = gList(
+        segmentsGrob(c(0.2,.5), c(0.5,.2), c(0.8,.5), c(0.5,.8)),
+        segmentsGrob(c(0.4,.4), c(0.2,.8), c(0.6,.6), c(0.2,.8)),
+        segmentsGrob(c(.2,.8),c(.4,.4),c(.2,.8),c(.6,.6))
+      ))
+    }),
+    chull_area = sd_icon({
+      d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
+      hpts <- chull(d)
+      hpts <- c(hpts, hpts[1])
+      d <- d[hpts, ]
+      polygonGrob(d$x,d$y,gp=gpar(fill="gray20"))
+    }),
+    plot.voronoi_skewness = sd_icon({
+      d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
+      dd <- fortify(voronoi_polygons(d,c(0,1,0,1)))
+      gTree(children = gList(
+        polygonGrob(dd$long,dd$lat,id=factor(dd$group)),
+        pointsGrob(x=d$x,y=d$y,pch=19,gp=gpar(cex=.25),default.units="npc")
+      ))
+    }),
+    geom_chull = sd_icon({
+      d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
+      hpts <- chull(d)
+      hpts <- c(hpts, hpts[1])
+      d <- d[hpts, ]
+      polygonGrob(d$x,d$y)
+    }),
     geom_voronoi = sd_icon({
-      xpos <- c(1,1,2,3,3,3,4,4,5,5,5,5,6,7,7,7,8,8,9)/10
-      ypos <- c(1,2,1,1,2,3,1,2,1,2,3,4,1,1,2,3,1,2,1)/10
-      pointsGrob(x = xpos, y = ypos, pch = 19, size = unit(.1, "npc"),
-                 gp = gpar(col = "black", cex = 0.5), default.units = "npc")
+      d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
+      dd <- fortify(voronoi_polygons(d,c(0,1,0,1)))
+      polygonGrob(dd$long,dd$lat,id=factor(dd$group))
     })
   )
 )
