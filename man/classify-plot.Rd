@@ -10,14 +10,16 @@
   \item{y}{an object of class \code{\linkS4class{pva}}}
 }
 \description{
-  Plot the classify class
+  Creates a scatter plot of the scanpath between each
+  fixation. Fixation durations are indicated by the size of
+  the fixation point.
 }
 \examples{
 data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl, 
-                       500, 1680, 1050, 473.76, 296.1, 
-                       smi_ezl, smi_exl, smi_eyl))
-d.c <- classify.VA(d.pva@v, d.pva@a)
+d.pva <- with(smi, pva(smi_sxl, smi_syl,
+                       500, 1680, 1050, 473.76, 296.1,
+                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
+d.c <- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
 plot(d.c, d.pva)
 }
 

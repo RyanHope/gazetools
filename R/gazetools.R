@@ -9,28 +9,61 @@ NULL
 
 #' Gaze data from a SMI RED 500 eyetracker at 500 Hz.
 #' 
-#' \itemize{
-#'   \item sample time
-#'   \item sample type
-#'   \item horizontal gaze location of left eye
-#'   \item horizontal gaze location of right eye
-#'   \item vertical gaze location of left eye
-#'   \item vertical gaze location of right eye
-#'   \item width of left pupil
-#'   \item width of right pupil
-#'   \item height of left pupil
-#'   \item height of right pupil
-#'   \item horizontal offset of the left eye relative to the center of the screen
-#'   \item horizontal offset of the right eye relative to the center of the screen
-#'   \item vertical offset of the left eye relative to the center of the screen
-#'   \item vertical offset of the right eye relative to the center of the screen
-#'   \item distance of the left eye to the center of the screen
-#'   \item distance of the right eye to the center of the screen
-#' }
+#' Gaze data of a participant performing a visual search task.
 #' 
+#' \itemize{
+#'  \item{Samplerate was 500hz.}
+#'  \item{Screen resolution was 1680 x 1050 (px).}
+#'  \item{Screen size was 473.76 x 296.1 (mm).}
+#' }
+#'
 #' @docType data
 #' @keywords datasets
 #' @name smi
 #' @usage data(smi)
-#' @format A data frame with 3437 rows and 15 variables
+#' 
+#' @format
+#' \describe{
+#'   \item{smi_time}{sample time}
+#'   \item{smi_type}{sample type}
+#'   \item{smi_sxl}{horizontal gaze location of left eye}
+#'   \item{smi_sxr}{horizontal gaze location of right eye}
+#'   \item{smi_syl}{vertical gaze location of left eye}
+#'   \item{smi_syr}{vertical gaze location of right eye}
+#'   \item{smi_dxl}{width of left pupil}
+#'   \item{smi_dxr}{width of right pupil}
+#'   \item{smi_dyl}{height of left pupil}
+#'   \item{smi_dyr}{height of right pupil}
+#'   \item{smi_exl}{horizontal offset of the left eye relative to the center of the screen}
+#'   \item{smi_exr}{horizontal offset of the right eye relative to the center of the screen}
+#'   \item{smi_eyl}{vertical offset of the left eye relative to the center of the screen}
+#'   \item{smi_eyr}{vertical offset of the right eye relative to the center of the screen}
+#'   \item{smi_ezl}{distance of the left eye to the center of the screen}
+#'   \item{smi_ezr}{distance of the right eye to the center of the screen}
+#' }
+#' 
+NULL
+
+#' Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.
+#' 
+#' Gaze data of a participant performing a reading task.
+#' 
+#' \itemize{
+#'  \item{Samplerate was 1250hz.}
+#'  \item{Screen resolution was 1024 x 768 (px).}
+#'  \item{Screen size was 0.38 x 0.30 (m).}
+#'  \item{Viewing distance was 0.67 (m).}
+#' }
+#' 
+#' @docType data
+#' @keywords datasets
+#' @name highspeed
+#' @usage data(highspeed)
+#' 
+#' @format
+#' \describe{
+#'   \item{x}{horizontal gaze location}
+#'   \item{y}{vertical gaze location}
+#' }
+#' 
 NULL

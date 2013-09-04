@@ -10,7 +10,7 @@
   \item{event}{the event to id}
 }
 \description{
-  Assigns unique IDs to runs of a target event in a vector
+  Assigns unique IDs to runs of a target events in a vector
   of data
 }
 \examples{

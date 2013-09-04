@@ -11,37 +11,15 @@ utils::globalVariables(c("y"))
 #'
 #' @export
 #' 
-#' @example example/pva.R
-#' @example example/classify.V.R
-#' @example example/getFixations.R
-#' @example example/extent.R
-#' @example example/extent-out.R
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' extent(d.f[,c("x","y")])
 #' 
 extent <- function(x) {
   list(x=max(x[,1])-min(x[,1]),y=max(x[,2])-min(x[,2]))
-}
-
-#' Bounding box of fixations
-#'
-#' Returns the coordinates of the bounding box around fixations
-#'   
-#' @param x coordinate vectors of points. This can be specified as a 2-column matrix x, 
-#' a list x with two components
-#'
-#' @export
-bbox <- function(x) {
-  data.frame(x=c(min(x[,1]),min(x[,1]),max(x[,1]),max(x[,1]),min(x[,1])),
-             y=c(min(x[,2]),max(x[,2]),max(x[,2]),min(x[,2]),min(x[,2])))
-}
-
-#' Bounding Box Geom for ggplot2
-#' 
-#' @param x coordinate vectors of points. This can be specified as a 2-column matrix x, 
-#' a list x with two components
-#' @param ... extra arguments passed on to geom_path
-#'
-#' @importFrom ggplot2 geom_path aes
-#' @export
-geom_bbox <- function(x, ...) {
-  geom_path(aes(x,y), bbox(x), ...)
 }

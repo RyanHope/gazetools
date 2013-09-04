@@ -16,6 +16,7 @@ Depends:
 Suggests:
     rgeos
 Imports:
+    proto,
     Matrix,
     png,
     depmixS4,
@@ -61,3 +62,4 @@ Collate:
     'ROI.R'
     'circleFun.R'
     'geom_png.R'
+    'boundingbox.R'

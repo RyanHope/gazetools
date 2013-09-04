@@ -1,6 +1,6 @@
 #' Event IDs
 #'
-#' Assigns unique IDs to runs of a target event in a vector of data
+#' Assigns unique IDs to runs of a target events in a vector of data
 #' 
 #' @param x a vector of data
 #' @param event the event to id

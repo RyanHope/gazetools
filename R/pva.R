@@ -61,6 +61,7 @@ setClass("pva",
 #' @export
 #' 
 #' @example example/pva.R
+#' @example example/pva-out.R
 #'  
 pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
                     ex = 0, ey = 0, order = 2, window = 11,

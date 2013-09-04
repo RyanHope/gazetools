@@ -2,6 +2,8 @@ utils::globalVariables(c("fixation_ids","dur"))
 
 #' Coerce object of class \code{classify} to a Data Frame
 #' 
+#' @param x an object of class \code{\linkS4class{classify}}
+#' 
 #' @rdname classify-as.data.frame
 #' @aliases as.data.frame,classify,missing,missing-method
 #' @name classify.as.data.frame
@@ -13,12 +15,12 @@ setMethod("as.data.frame", signature(x = "classify", row.names = "missing", opti
           }
 )
 
-#' @importFrom methods setGeneric
-setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+# @importFrom methods setGeneric
+#setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 
 #' Plot classify
 #' 
-#' Plot the classify class
+#' Creates a scatter plot of the scanpath between each fixation. Fixation durations are indicated by the size of the fixation point.
 #' 
 #' @param x an object of class \code{\linkS4class{classify}}
 #' @param y an object of class \code{\linkS4class{pva}}
@@ -32,9 +34,13 @@ setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' @export
 #' @aliases plot,classify,pva-method
 #' 
-#' @example example/pva.R
-#' @example example/classify.VA.R
-#' @example example/classify-plot.R
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
+#' d.c <- classify.VA(d.pva@@v, d.pva@@a, blinks=d.pva@@blinks)
+#' plot(d.c, d.pva)
 #' 
 setMethod("plot", signature(x = "classify", y = "pva"), function(x, y, ...) classify.plot(x, y, ...))
 
@@ -69,18 +75,25 @@ classify.plot <- function(x, y, reverse_y = FALSE)
 #' 
 #' Extracts the coordinates of fixations and their durations from \code{\linkS4class{classify}} 
 #' and \code{\linkS4class{pva}} objects
+#' 
+#' @param class an object of class \code{\linkS4class{classify}}
+#' @param dpva an object of class \code{\linkS4class{pva}}
 #'
 #' @importFrom plyr ddply .
 #' @rdname classify-getFixations
 #' @aliases getFixations,classify,pva-method
 #' @export
-#' @genericMethods
 #' @importFrom methods setGeneric
 #' 
-#' @example example/pva.R
-#' @example example/classify.V.R
-#' @example example/getFixations.R
-#' 
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' d.f
+#'  
 setGeneric("getFixations", function(class, dpva, ...) standardGeneric("getFixations"))
 
 #' @importFrom methods setMethod

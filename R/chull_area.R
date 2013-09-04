@@ -12,11 +12,15 @@ utils::globalVariables(c("y"))
 #' @importFrom sp Polygon
 #' @export
 #' 
-#' @example example/pva.R
-#' @example example/classify.V.R
-#' @example example/getFixations.R
-#' @example example/chull_area.R
-#' @example example/chull_area-out.R
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' d.cha <- chull_area(d.f[,c("x","y")])
+#' d.cha
 #' 
 chull_area <- function(x) {
   hpts <- chull(x)

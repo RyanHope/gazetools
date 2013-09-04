@@ -14,11 +14,15 @@ utils::globalVariables(c("long","lat","group"))
 #'
 #' @export
 #' 
-#' @example example/pva.R
-#' @example example/classify.V.R
-#' @example example/getFixations.R
-#' @example example/voronoi_polygons.R
-#' @example example/voronoi_polygons-out.R
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' d.vp <- voronoi_polygons(d.f[,c("x","y")], c(315,1365,0,1050))
+#' str(d.vp)
 #' 
 voronoi_polygons <- function(x, rw) {
   crds <- x
@@ -44,8 +48,8 @@ voronoi_polygons <- function(x, rw) {
 #'
 #'@section Slots: 
 #'  \describe{
-#'    \item{\code{.Data}:}{the skewness of the area of the voronoi cells}
-#'    \item{\code{polygons}:}{an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}}
+#'    \item{\code{.Data}}{the skewness of the area of the voronoi cells}
+#'    \item{\code{polygons}}{an object of class \code{\linkS4class{SpatialPolygonsDataFrame}}}
 #'  }
 #'
 #' @importClassesFrom sp Line CRS Polygon Polygons SpatialPolygons SpatialPolygonsDataFrame
@@ -61,7 +65,7 @@ setClass("voronoi_skewness",
 
 #' Plot voronoi_skewness
 #' 
-#' Plot the voronoi_skewness class
+#' Creates a scatter plot of fixations with a Voronoi tessellation overlay
 #' 
 #' @param x an object of class \code{\linkS4class{voronoi_skewness}}
 #' 
@@ -74,26 +78,32 @@ setClass("voronoi_skewness",
 #' @export
 #' @aliases plot,voronoi_skewness,missing-method
 #' 
-#' @example example/pva.R
-#' @example example/classify.V.R
-#' @example example/getFixations.R
-#' @example example/voronoi_skewness.R
-#' @example example/voronoi_skewness-plot.R
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' d.vs <- voronoi_skewness(d.f[,c("x","y")], c(315,1365,0,1050))
+#' plot(d.vs)
 #' 
-setMethod("plot", signature(x = "voronoi_skewness", y = "missing"), 
-          function(x, y, ...) {
-            d.df <- suppressMessages(fortify(x@polygons))
-            ggplot(d.df, aes(long,lat,group=group)) +
-              geom_path() +
-              coord_equal(ratio=1, xlim=c(315,1365), ylim=c(0,1050)) +
-              geom_point(aes(x=x,y=y),data=ddply(d.df, .(group), 
-                                                 function(d) data.frame(x=mean(d$x),
-                                                                        y=mean(d$y))),
-                         size=3) +
-              theme(panel.background = element_blank(),
-                    axis.title.x = element_blank(),
-                    axis.title.y = element_blank())
-            })
+setMethod("plot", signature(x = "voronoi_skewness", y = "missing"), function(x, y, ...) voronoi_skewness.plot(x, y, ...))
+
+voronoi_skewness.plot <- function(x, y, ...) {
+  d.df <- suppressMessages(fortify(x@polygons))
+  ggplot(d.df, aes(long,lat,group=group)) +
+    geom_path(na.rm=T) +
+    coord_equal(ratio=1, xlim=c(315,1365), ylim=c(0,1050)) +
+    geom_point(aes(x=x,y=y),data=ddply(d.df, .(group), 
+                                       function(d) data.frame(x=mean(d$long),
+                                                              y=mean(d$lat))),
+               size=3) +
+    theme(panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank())
+}
 
 #' Voronoi Skewness
 #'

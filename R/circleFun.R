@@ -11,6 +11,10 @@
 #'
 #' @export
 #' 
+#' @examples
+#' c <- circleFun(center = c(5, 5), diameter = 2)
+#' plot(c, asp=1)
+#' 
 circleFun <- function(center = c(0,0), diameter = 1, npoints = 50, round = FALSE) {
   r <- diameter / 2
   tt <- seq(0, 2 * pi, length.out = npoints)

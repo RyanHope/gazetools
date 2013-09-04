@@ -22,4 +22,8 @@
 \description{
   Create a circle from comprised of limited set of points.
 }
+\examples{
+c <- circleFun(center = c(5, 5), diameter = 2)
+plot(c, asp=1)
+}
 

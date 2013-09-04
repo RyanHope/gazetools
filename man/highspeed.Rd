@@ -1,0 +1,18 @@
+\docType{data}
+\name{highspeed}
+\alias{highspeed}
+\title{Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.}
+\format{\describe{
+  \item{x}{horizontal gaze location}
+  \item{y}{vertical gaze location}
+}}
+\description{
+  Gaze data of a participant performing a reading task.
+}
+\details{
+  \itemize{ \item{Samplerate was 1250hz.} \item{Screen
+  resolution was 1024 x 768 (px).} \item{Screen size was
+  0.38 x 0.30 (m).} \item{Viewing distance was 0.67 (m).} }
+}
+\keyword{datasets}
+
