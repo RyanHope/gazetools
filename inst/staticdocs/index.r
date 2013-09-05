@@ -1,3 +1,6 @@
+require(grid)
+require(ggplot2)
+
 list(
   index = list(
     sd_section(
@@ -57,6 +60,21 @@ list(
     )
   ),
   icons = list(
+    smi = sd_icon({
+      textGrob("500\nHz",gp=gpar(fontface="bold"))
+    }),
+    highspeed = sd_icon({
+      textGrob("1250\nHz",gp=gpar(fontface="bold"))
+    }),
+    bcea = sd_icon({
+      d <- data.frame(x=c(0.30,0.17,0.25,0.53,0.28,0.82,0.51,0.48,0.56,0.77),
+                      y=c(0.48,0.41,0.40,0.29,0.27,0.79,0.65,0.43,0.94,0.43))
+      b <- bceFun(d,.75)
+      gTree(children = gList(
+        polygonGrob(b$x,b$y,gp=gpar(fill="gray",alpha=.5)),
+        pointsGrob(x=d$x,y=d$y,pch=19,gp=gpar(cex=.25),default.units="npc")
+      ))
+    }),
     extent = sd_icon({
       gTree(children = gList(
         segmentsGrob(c(0.2,.5), c(0.5,.2), c(0.8,.5), c(0.5,.8)),
@@ -65,11 +83,15 @@ list(
       ))
     }),
     chull_area = sd_icon({
-      d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
+      d <- data.frame(x=c(0.30,0.17,0.25,0.53,0.28,0.82,0.51,0.48,0.56,0.77),
+                      y=c(0.48,0.41,0.40,0.29,0.27,0.79,0.65,0.43,0.94,0.43))
       hpts <- chull(d)
       hpts <- c(hpts, hpts[1])
-      d <- d[hpts, ]
-      polygonGrob(d$x,d$y,gp=gpar(fill="gray20"))
+      b <- d[hpts, ]
+      gTree(children = gList(
+        polygonGrob(b$x,b$y,gp=gpar(fill="gray",alpha=.5)),
+        pointsGrob(x=d$x,y=d$y,pch=19,gp=gpar(cex=.25),default.units="npc")
+      ))
     }),
     plot.voronoi_skewness = sd_icon({
       d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
@@ -80,11 +102,15 @@ list(
       ))
     }),
     geom_chull = sd_icon({
-      d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
+      d <- data.frame(x=c(0.30,0.17,0.25,0.53,0.28,0.82,0.51,0.48,0.56,0.77),
+                      y=c(0.48,0.41,0.40,0.29,0.27,0.79,0.65,0.43,0.94,0.43))
       hpts <- chull(d)
       hpts <- c(hpts, hpts[1])
-      d <- d[hpts, ]
-      polygonGrob(d$x,d$y)
+      b <- d[hpts, ]
+      gTree(children = gList(
+        polygonGrob(b$x,b$y),
+        pointsGrob(x=d$x,y=d$y,pch=19,gp=gpar(cex=.25),default.units="npc")
+      ))
     }),
     geom_voronoi = sd_icon({
       d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84),y=c(0.57,0.86,0.24,0.10,0.37))
