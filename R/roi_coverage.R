@@ -67,3 +67,8 @@ geom_roi_coverage <- function(rois, cv, ...) {
                              ymax=rois@y[covered[i,"row"]+1]))
   geom_rect(aes(xmax=xmax,xmin=xmin,ymax=ymax,ymin=ymin,x=NULL,y=NULL),data=d,...)
 }
+
+coverage <- function(fixations, rois) {
+  scanpath <- getScanpath(fixations, rois=rois)
+  length(unique(na.exclude(scanpath)))/length(rois)
+}
