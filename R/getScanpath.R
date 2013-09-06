@@ -1,4 +1,23 @@
-#' Get Scanpath
+#' Class "Scanpath"
+#'
+#' Holds ROIs and a vector of ROI IDs in the order they were fixated.
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{.Data}}{a vector of class \code{"character"}; fixated ROI IDs}
+#'    \item{\code{ROIs}}{an object of class \code{"ROIs"}; the set of ROIs}
+#'  }
+#'
+#' @importFrom methods setClass
+#' 
+#' @docType class
+#' @name Scanpath-class
+#' @rdname Scanpath-class
+#' @export
+#' 
+setClass("Scanpath", representation(ROIs="ROIs"), contains="character")
+
+#' Scanpath
 #'
 #' Determines the scanpath given a set of fixations and a list of polygon ROIs
 #' 
@@ -8,11 +27,11 @@
 #'
 #' @importFrom sp point.in.polygon
 #'
-#' @return a vector of ROI ids
+#' @return an object of class \code{\linkS4class{Scanpath}}
 #'
 #' @export
 #' 
-getScanpath <- function(x, y = NULL, rois, nearest = FALSE) {
+Scanpath <- function(x, y = NULL, rois, nearest = FALSE) {
   if (!is(rois, "ROIs"))
     stop("rois is not of class ROIs")
   xy <- xy.coords(x, y)
@@ -36,5 +55,75 @@ getScanpath <- function(x, y = NULL, rois, nearest = FALSE) {
         scanpath[f] <- rois[[i]]@ID
     }
   }
-  scanpath
+  new("Scanpath",scanpath,ROIs=rois)
+}
+
+#' Class "Coverage"
+#'
+#' Holds a Scanpath and the proportion of ROIs fixated
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{.Data}}{an object of class \code{"numeric"}; the proportion of ROIs fixated}
+#'    \item{\code{Scanpath}}{an object of class \code{"Scanpath"}; the scanpath}
+#'  }
+#'
+#' @importFrom methods setClass
+#' 
+#' @docType class
+#' @name Coverage-class
+#' @rdname Coverage-class
+#' @export
+#' 
+setClass("Coverage", representation(Scanpath="Scanpath"), contains="numeric")
+
+#' Coverage
+#'
+#' Determines the proportion of fixated ROIs given a scanpath
+#' 
+#' @param scanpath an object of class \core{linkS4class{Scanpath}}
+#'
+#' @return an object of class \code{\linkS4class{Coverage}}
+#'
+#' @export
+#'
+Coverage <- function(scanpath) {
+  new("Coverage",length(scanpath@.Data)/length(scanpath@ROIs), Scanpath=scanpath)
+}
+
+#' Fortify Scanpath
+#'
+#' Method to convert a Scanpath object into a data frame useful for plotting.
+#' 
+#' @param scanpath a Scanpath object
+#'
+#' @return a data frame
+#' 
+#' @export
+#'  
+fortify.Scanpath <- function(scanpath) {
+  idx <- lapply(scanpath@.Data, function(x,y) which(x==y), lapply(scanpath@ROIs,slot,"ID"))
+  df <- data.frame(id=scanpath@.Data,x=NA,y=NA)
+  for (i in which(idx>0)) {
+    df[i,"x"] = scanpath@ROIs[[idx[[i]]]]@center[1]
+    df[i,"y"] = scanpath@ROIs[[idx[[i]]]]@center[2]
+  }
+  df
+}
+
+#' Fortify Coverage
+#'
+#' Method to convert a Coverage object into a data frame useful for plotting.
+#' 
+#' @param coverage a Coverage object
+#'
+#' @return a data frame
+#' 
+#' @export
+#' 
+fortify.Coverage <- function(coverage) {
+  df <- ldply(model@Scanpath@ROIs, function(model) cbind(model@ID,as.data.frame(model@coords)))
+  colnames(df) <- c("id","x","y")
+  df$covered <- df$id %in% model@Scanpath@.Data
+  df
 }

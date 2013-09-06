@@ -1,5 +1,5 @@
-require(proto)
-
+#' @import proto
+#' @import ggplot2
 StatEllipse <- proto(ggplot2:::Stat, {
   
   objname <- "ellipse"
@@ -17,6 +17,11 @@ StatEllipse <- proto(ggplot2:::Stat, {
   
 })
 
+#' Ellipse statistic for ggplot2
+#' 
+#' @inheritParams stat_identity
+#' 
+#' @export
 stat_ellipse <- function(mapping=NULL, data=NULL, geom="path", position="identity", ...) {
   StatEllipse$new(mapping=mapping, data=data, geom=geom, position=position, ...)
 }

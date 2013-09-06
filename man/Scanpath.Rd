@@ -1,8 +1,8 @@
-\name{getScanpath}
-\alias{getScanpath}
-\title{Get Scanpath}
+\name{Scanpath}
+\alias{Scanpath}
+\title{Scanpath}
 \usage{
-  getScanpath(x, y = NULL, rois, nearest = FALSE)
+  Scanpath(x, y = NULL, rois, nearest = FALSE)
 }
 \arguments{
   \item{x,y}{the x and y coordinates of a set of points.
@@ -15,7 +15,7 @@
   moved to the nearest ROI}
 }
 \value{
-  a vector of ROI ids
+  an object of class \code{\linkS4class{Scanpath}}
 }
 \description{
   Determines the scanpath given a set of fixations and a

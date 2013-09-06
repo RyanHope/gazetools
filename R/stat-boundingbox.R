@@ -1,5 +1,5 @@
-require(proto)
-
+#' @import proto
+#' @import ggplot2
 StatBoundingbox <- proto(ggplot2:::Stat, {
   
   objname <- "boundingbox"
@@ -17,6 +17,11 @@ StatBoundingbox <- proto(ggplot2:::Stat, {
   
 })
 
+#' Bounding box statistic for ggplot2
+#' 
+#' @inheritParams stat_identity
+#' 
+#' @export
 stat_boundingbox <- function(mapping=NULL, data=NULL, geom="path", position="identity", ...) {
   StatBoundingbox$new(mapping=mapping, data=data, geom=geom, position=position, ...)
 }
