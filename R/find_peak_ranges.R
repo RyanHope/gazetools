@@ -1,4 +1,4 @@
-#' Find Peak Ranges
+#' Find Peak Ranges Above Threshold
 #'
 #' Given a vector of data, find ranges of data that exceede a set threshold
 #' 

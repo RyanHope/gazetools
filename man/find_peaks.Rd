@@ -1,6 +1,6 @@
 \name{find_peaks}
 \alias{find_peaks}
-\title{Find Peak Ranges}
+\title{Find Peak Ranges Above Threshold}
 \usage{
   find_peaks(x, threshold)
 }
