@@ -67,3 +67,32 @@ NULL
 #' }
 #' 
 NULL
+
+#' Gaze data from a LC Technologies binocular eyetracker at 120 Hz.
+#' 
+#' Gaze data of a participant performing a visual search task.
+#' 
+#' \itemize{
+#'  \item{Samplerate was 120hz (alternating 60hz per eye).}
+#'  \item{Screen resolution was 1280 x 1024 (px).}
+#'  \item{Screen size was 33.97 x 27.31 (cm).}
+#'  \item{Viewing distance was 58.74 (cm).}
+#'  \item{Vertical viewing offset was 4.55 (cm).}
+#' }
+#' 
+#' @docType data
+#' @keywords datasets
+#' @name lc120
+#' @usage data(lc120)
+#' 
+#' @format
+#' \describe{
+#'   \item{status}{signal status}
+#'   \item{y}{pupil size}
+#'   \item{x}{horizontal gaze location}
+#'   \item{y}{vertical gaze location}
+#'   \item{field}{field/camera number}
+#'   \item{timestamp}{time stamp}
+#' }
+#' 
+NULL
