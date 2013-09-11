@@ -8,7 +8,8 @@
 #'
 #' @export
 #' 
-#' @example example/distance2point.R
+#' @examples
+#' distance2point(840, 525, 1680, 1050, 473.76, 296.1, 750)
 #' 
 distance2point <- function(x, y, rx, ry, sw, sh, ez, ex = 0, ey = 0)
 {

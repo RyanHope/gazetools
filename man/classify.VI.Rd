@@ -39,7 +39,8 @@ d.c <- classify.VI(d.pva@v, blinks=d.pva@blinks)
 str(d.c)
 }
 \seealso{
-  Other classify: \code{\link{classify.MM}},
-  \code{\link{classify.V}}, \code{\link{classify.VA}}
+  Other classify: \code{\link{as}}, \code{\link{as}},
+  \code{\link{classify.MM}}, \code{\link{classify.V}},
+  \code{\link{classify.VA}}
 }
 

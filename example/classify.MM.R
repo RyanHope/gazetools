@@ -1,1 +1,0 @@
-d.c <- classify.MM(d.pva@v)

@@ -1,4 +1,4 @@
-#' importFrom ggplot2 theme element_blank
+#' @import ggplot2
 theme_empty <- function() 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
         panel.background = element_blank(), axis.title.x = element_text(colour = NA), 

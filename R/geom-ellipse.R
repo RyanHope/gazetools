@@ -1,4 +1,4 @@
-#' @import proto
+#' @importFrom proto proto
 #' @import ggplot2
 GeomEllipse <- proto(ggplot2:::GeomPath, {
   objname <- "ellipse"

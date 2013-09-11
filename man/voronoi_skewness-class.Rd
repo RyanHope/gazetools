@@ -8,6 +8,6 @@
 \section{Slots}{
   \describe{ \item{\code{.Data}}{the skewness of the area
   of the voronoi cells} \item{\code{polygons}}{an object of
-  class \code{\linkS4class{SpatialPolygonsDataFrame}}} }
+  class \code{\linkS4class{ROIs}}} }
 }
 

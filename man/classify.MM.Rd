@@ -39,7 +39,8 @@ str(d.c)
   Statistical Software, 36(7), 1-21.
 }
 \seealso{
-  Other classify: \code{\link{classify.V}},
-  \code{\link{classify.VA}}, \code{\link{classify.VI}}
+  Other classify: \code{\link{as}}, \code{\link{as}},
+  \code{\link{classify.V}}, \code{\link{classify.VA}},
+  \code{\link{classify.VI}}
 }
 

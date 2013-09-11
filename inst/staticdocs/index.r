@@ -1,4 +1,5 @@
 require(grid)
+require(spatstat)
 require(ggplot2)
 
 list(
@@ -210,7 +211,7 @@ list(
     }),
     geom_knn = sd_icon({
       d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84,.4,.2),y=c(0.57,0.86,0.24,0.10,0.37,.5,.2))
-      d <- cbind(d,d[nnwhich(d),])
+      d <- cbind(d,d[nnwhich.default(d),])
       colnames(d) <- c(x="x",y="y",xend="xend",yend="yend")
       gTree(children = gList(
         segmentsGrob(d$x,d$y,d$xend,d$yend),
@@ -219,7 +220,7 @@ list(
     }),
     nni = sd_icon({
       d <- data.frame(x=c(0.24,0.46,0.81,0.06,0.84,.4,.2),y=c(0.57,0.86,0.24,0.10,0.37,.5,.2))
-      d <- cbind(d,d[nnwhich(d),])
+      d <- cbind(d,d[nnwhich.default(d),])
       colnames(d) <- c(x="x",y="y",xend="xend",yend="yend")
       gTree(children = gList(
         segmentsGrob(d$x,d$y,d$xend,d$yend),

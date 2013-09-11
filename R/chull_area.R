@@ -34,7 +34,7 @@ chull_area <- function(x) {
 #' a list x with two components
 #' @param ... extra arguments passed on to geom_path
 #'
-#' @importFrom ggplot2 geom_path aes
+#' @import ggplot2
 #' @export
 geom_chull <- function(x, ...) {
   hpts <- chull(x)

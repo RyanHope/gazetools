@@ -1,1 +1,0 @@
-plot(d.c, d.pva)

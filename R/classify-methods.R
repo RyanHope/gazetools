@@ -1,22 +1,16 @@
 utils::globalVariables(c("fixation_ids","dur"))
 
-#' Coerce object of class \code{classify} to a Data Frame
-#' 
-#' @param x an object of class \code{\linkS4class{classify}}
-#' 
-#' @rdname classify-as.data.frame
-#' @aliases as.data.frame,classify,missing,missing-method
-#' @name classify.as.data.frame
-#' @export
-#' @importFrom methods setMethod
-setMethod("as.data.frame", signature(x = "classify", row.names = "missing", optional = "missing"),
-          function(x) {
-            data.frame(class = x@.Data, fixation_ids = x@fixation_ids, saccade_ids = x@saccade_ids)
-          }
-)
+as.data.frame.classify <- function(x, row.names=NULL, optional=FALSE, ...) {
+  data.frame(class = x@.Data, fixation_ids = x@fixation_ids, saccade_ids = x@saccade_ids)
+}
 
-# @importFrom methods setGeneric
-#setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+#' as("classify", "data.frame")
+#'
+#' @name as
+#' @family classify
+#'
+setAs("classify","data.frame", function(from) as.data.frame.classify(from))
+
 
 #' Plot classify
 #' 
@@ -27,9 +21,9 @@ setMethod("as.data.frame", signature(x = "classify", row.names = "missing", opti
 #' 
 #' @docType methods
 #' @importFrom plyr ddply .
-#' @importFrom ggplot2 ggplot geom_path geom_point coord_equal aes labs theme element_blank scale_size_continuous scale_y_reverse scale_y_continuous
+#' @import ggplot2
 #' @importFrom methods setMethod
-#' @rdname classify-plot
+#' @rdname classify-methods
 #' @name plot.classify
 #' @export
 #' @aliases plot,classify,pva-method
@@ -70,45 +64,4 @@ classify.plot <- function(x, y, reverse_y = FALSE)
   
   p
 }
-
-#' Get Fixations
-#' 
-#' Extracts the coordinates of fixations and their durations from \code{\linkS4class{classify}} 
-#' and \code{\linkS4class{pva}} objects
-#' 
-#' @param class an object of class \code{\linkS4class{classify}}
-#' @param dpva an object of class \code{\linkS4class{pva}}
-#'
-#' @importFrom plyr ddply .
-#' @rdname classify-getFixations
-#' @aliases getFixations,classify,pva-method
-#' @export
-#' @importFrom methods setGeneric
-#' 
-#' @examples
-#' data(smi)
-#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
-#'                        500, 1680, 1050, 473.76, 296.1, 
-#'                        smi_ezl, smi_exl, smi_eyl))
-#' d.c <- classify.V(d.pva@@v)
-#' d.f <- getFixations(d.c, d.pva)
-#' d.f
-#'  
-setGeneric("getFixations", function(class, dpva, ...) standardGeneric("getFixations"))
-
-#' @importFrom methods setMethod
-setMethod("getFixations", signature(class = "classify", dpva = "pva"), 
-          function(class, dpva, drop=T) {
-            f <- subset(ddply(cbind(as.data.frame(dpva), as.data.frame(class)), .(fixation_ids),
-                              function(d,t) data.frame(x=mean(d$x),
-                                                       y=mean(d$y),
-                                                       duration=nrow(d)*t),
-                              t=1/dpva@samplerate), fixation_ids!=0)
-            rownames(f) <- f$fixation_ids
-            d <- f[,c("x","y","duration")]
-            if (drop) {
-              d <- subset(d, x!=0 & y!=0)
-              rownames(d) <- NULL
-            }
-            d
-          })
+          

@@ -9,7 +9,10 @@
 #'
 #' @export
 #' 
-#' @example example/event_ids.R
+#' @examples
+#' event_ids(c(TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,
+#'             TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,
+#'             FALSE,TRUE,TRUE), TRUE)
 #' 
 event_ids <- function(x, event) {
   if (is.character(x)) {

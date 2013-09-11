@@ -6,9 +6,7 @@
 #' @param xlim a vector of length 2 that contains the min and max horizontal bounds of the image
 #' @param ylim a vector of length 2 that contains the min and max vertical bounds of the image
 #' 
-#' @rdname ggplot
-#' 
-#' @importFrom ggplot2 annotation_raster
+#' @import ggplot2
 #' @importFrom png readPNG
 #' 
 #' @export

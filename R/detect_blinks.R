@@ -15,7 +15,10 @@
 #' 
 #' @export
 #' 
-#' @example example/detect_blinks.R
+#' @examples
+#' data(smi)
+#' d.b <- with(smi, detect_blinks(smi_dyl, 500))
+#' str(d.b)
 #' 
 detect_blinks.PV <- function(pupil, samplerate, wl = 51, pvt = 1000) {
   ts <- 1 / samplerate

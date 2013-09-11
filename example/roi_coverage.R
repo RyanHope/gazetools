@@ -1,1 +1,0 @@
-d.coverage <- roi_coverage(rois, d.f)

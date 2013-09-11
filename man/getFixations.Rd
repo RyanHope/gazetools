@@ -1,7 +1,9 @@
 \name{getFixations}
 \alias{getFixations}
-\alias{getFixations,classify,pva-method}
 \title{Get Fixations}
+\usage{
+  getFixations(class, dpva, drop = T)
+}
 \arguments{
   \item{class}{an object of class
   \code{\linkS4class{classify}}}

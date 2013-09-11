@@ -1,4 +1,4 @@
-#' @import proto
+#' @importFrom proto proto
 #' @import ggplot2
 GeomBoundingbox <- proto(ggplot2:::GeomRect, {
   objname <- "boundingbox"

@@ -12,58 +12,59 @@ License: GPL-3
 LazyData: true
 Depends:
     R (>= 2.14),
-    methods
-Suggests:
-    rgeos
+    methods,
+    sp,
+    proto
 Imports:
-    proto,
+    rgeos,
+    ggplot2,
+    plyr,
+    reshape2,
+    ggplot2,
     Matrix,
     png,
     depmixS4,
     deldir,
-    sp,
     modeest,
     signal,
     zoo,
     Rmisc,
-    reshape2,
-    plyr,
-    spatstat,
-    ggplot2
+    spatstat
 Collate:
-    'event_ids.R'
-    'distance2point.R'
-    'subtendedAngle.R'
+    'aaa-classes.R'
     'angle2pixels.R'
-    'local_maxima.R'
-    'find_peak_ranges.R'
-    'find_peaks.R'
-    'detect_blinks.R'
-    'pva.R'
-    'classify.R'
+    'bceFun.R'
+    'bcea.R'
+    'chull_area.R'
+    'circleFun.R'
+    'classify-methods.R'
+    'classify.MM.R'
     'classify.V.R'
     'classify.VA.R'
     'classify.VI.R'
-    'classify.MM.R'
-    'mould.R'
-    'mouldThreshold.R'
-    'voronoi.R'
-    'chull_area.R'
-    'nni.R'
-    'bcea.R'
-    'gridded_rois.R'
-    'gazetools.R'
+    'detect_blinks.R'
+    'distance2point.R'
+    'event_ids.R'
     'extent.R'
-    'pva-methods.R'
-    'classify-methods.R'
-    'mould-methods.R'
-    'getScanpath.R'
-    'ROI.R'
-    'circleFun.R'
-    'theme_empty.R'
-    'bceFun.R'
+    'find_peak_ranges.R'
+    'find_peaks.R'
+    'gazetools.R'
     'geom-boundingbox.R'
     'geom-ellipse.R'
+    'geom-png.R'
+    'getCoverage.R'
+    'getFixations.R'
+    'getScanpath.R'
+    'gridded_rois.R'
+    'local_maxima.R'
+    'mould-methods.R'
+    'mouldThreshold.R'
+    'nni.R'
+    'pva-methods.R'
+    'pva.R'
+    'roi.R'
     'stat-boundingbox.R'
     'stat-ellipse.R'
-    'geom-png.R'
+    'subtendedAngle.R'
+    'theme_empty.R'
+    'voronoi.R'

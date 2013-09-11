@@ -47,7 +47,8 @@ str(d.c)
   188-204.
 }
 \seealso{
-  Other classify: \code{\link{classify.MM}},
-  \code{\link{classify.V}}, \code{\link{classify.VI}}
+  Other classify: \code{\link{as}}, \code{\link{as}},
+  \code{\link{classify.MM}}, \code{\link{classify.V}},
+  \code{\link{classify.VI}}
 }
 

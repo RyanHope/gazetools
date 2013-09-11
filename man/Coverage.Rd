@@ -1,12 +1,12 @@
-\name{Coverage}
-\alias{Coverage}
+\name{coverage}
+\alias{coverage}
 \title{Coverage}
 \usage{
-  Coverage(scanpath)
+  coverage(sp)
 }
 \arguments{
-  \item{scanpath}{an object of class
-  \core{linkS4class{Scanpath}}}
+  \item{sp}{an object of class
+  \code{linkS4class{Scanpath}}}
 }
 \value{
   an object of class \code{\linkS4class{Coverage}}

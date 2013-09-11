@@ -10,7 +10,8 @@
 #'
 #' @export
 #' 
-#' @example example/angle2pixels.R
+#' @examples
+#' angle2pixels(1, 1680, 1050, 473.76, 296.1, 750)
 #'
 angle2pixels <- function(alpha, rx, ry, sw, sh, ez,
                          ex = 0, ey = 0, x = rx / 2, y = ry / 2)

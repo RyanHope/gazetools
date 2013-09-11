@@ -6,7 +6,8 @@
 #'
 #' @export
 #' 
-#' @example example/find_peak_ranges.R
+#' @examples
+#' find_peak_ranges(c(1,2,3,4,5,4,3,2,1,1,1,2,3,4,3,2,1),3)
 #' 
 find_peak_ranges <- function(x, threshold)
 {

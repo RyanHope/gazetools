@@ -1,1 +1,0 @@
-d.bcea <- bcea(d.f[,c("x","y")])

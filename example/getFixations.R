@@ -1,1 +1,0 @@
-d.f <- getFixations(d.c, d.pva)

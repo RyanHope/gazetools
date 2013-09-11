@@ -1,1 +1,0 @@
-d.c <- classify.VA(d.pva@v, d.pva@a)

@@ -1,8 +1,5 @@
 utils::globalVariables(c("resp2","thresholds","resp1","gap"))
 
-#' @importFrom methods setGeneric
-setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-
 #' Plot mould
 #' 
 #' Plot the mould class
@@ -10,7 +7,7 @@ setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' @param x an object of class \code{"mould"}
 #' 
 #' @docType methods
-#' @importFrom ggplot2 ggplot aes geom_area ylab xlab geom_line geom_text coord_cartesian
+#' @import ggplot2
 #' @importFrom methods setMethod
 #' @rdname mould-plot
 #' @name plot.mould

@@ -1,1 +1,0 @@
-d.vp <- voronoi_polygons(d.f[,c("x","y")], c(315,1365,0,1050))

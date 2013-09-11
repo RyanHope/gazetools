@@ -1,26 +1,17 @@
 utils::globalVariables(c("variable","value","intercept","xend"))
 
-#' Coerce object of class \code{\linkS4class{pva}} to a Data Frame
-#' 
-#' @rdname pva-as.data.frame
-#' @aliases as.data.frame,pva,missing,missing-method
-#' @name pva.as.data.frame
-#' @export
-#' @importFrom methods setMethod
-#' 
-#' @example example/pva.R
-#' @example example/pva.as.data.frame-out.R
-#' 
-setMethod("as.data.frame", signature(x = "pva", row.names = "missing", optional = "missing"),
-          function(x) {
-            data.frame(time = x@time, ez = x@ez, ex = x@ex, ey = x@ey, x = x@x, y = x@y,
-                       sx = x@sx, sy = x@sy, xa = x@xa, ya = x@ya, v = x@v, a = x@a, 
-                       rx = x@rx, ry = x@ry, samplerate = x@samplerate)
-          }
-)
+as.data.frame.pva <- function(x, row.names=NULL, optional=FALSE, ...) {
+  data.frame(time = x@time, ez = x@ez, ex = x@ex, ey = x@ey, x = x@x, y = x@y,
+             sx = x@sx, sy = x@sy, xa = x@xa, ya = x@ya, v = x@v, a = x@a, 
+             rx = x@rx, ry = x@ry, samplerate = x@samplerate)
+}
 
-#' @importFrom methods setGeneric
-setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+#' as("pva", "data.frame")
+#'
+#' @name as
+#' @family classify
+#'
+setAs("pva","data.frame", function(from) as.data.frame.pva(from))
 
 #' Plot pva
 #' 
@@ -30,7 +21,7 @@ setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' 
 #' @docType methods
 #' @importFrom reshape2 melt
-#' @importFrom ggplot2 ggplot geom_point aes geom_hline scale_color_manual facet_grid theme ylab xlab
+#' @import ggplot2
 #' @importFrom methods setMethod
 #' @rdname pva-plot
 #' @name plot.pva
@@ -51,7 +42,7 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y) pva.plot(x
 #' 
 #' @docType methods
 #' @importFrom reshape2 melt
-#' @importFrom ggplot2 ggplot geom_point aes geom_segment scale_color_manual facet_grid theme ylab xlab coord_cartesian
+#' @import ggplot2
 #' @importFrom methods setMethod
 #' @rdname pva-plot
 #' @name plot.pva

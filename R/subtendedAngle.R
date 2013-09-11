@@ -10,7 +10,8 @@
 #'
 #' @export
 #' 
-#' @example example/subtendedAngle.R
+#' @examples
+#' subtendedAngle(835, 525, 845, 525, 1680, 1050, 473.76, 296.1, 750)
 #' 
 subtendedAngle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex=0, ey=0)
 {

@@ -12,17 +12,22 @@
 #' @importFrom spatstat nndist.default
 #' @export
 #' 
-#' @example example/pva.R
-#' @example example/classify.V.R
-#' @example example/getFixations.R
-#' @example example/nni.R
-#' @example example/nni-out.R
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' d.nni <- nni(d.f[,c("x","y")])
+#' str(d.nni)
 #' 
 nni <- function(x) {
   mean(nndist.default(x))/(.5*sqrt(chull_area(x)/nrow(x)))
 }
 
-#' @import proto
+#' @importFrom proto proto
+#' @importFrom spatstat nnwhich.default
 #' @import ggplot2
 StatKnn <- proto(ggplot2:::Stat, {
   
@@ -36,7 +41,7 @@ StatKnn <- proto(ggplot2:::Stat, {
   }
   
   calculate <- function(., data, scales, k=1, ...){
-    data <- cbind(data[,c("x","y")], data[nnwhich(data, k=k),c("x","y")])
+    data <- cbind(data[,c("x","y")], data[nnwhich.default(data, k=k),c("x","y")])
     colnames(data) <- c("x","y","xend","yend")
     data
   }
@@ -45,14 +50,24 @@ StatKnn <- proto(ggplot2:::Stat, {
 
 #' K-nearest neighbor statistic for ggplot2
 #' 
-#' @inheritParams stat_identity
+#' @param mapping The aesthetic mapping, usually constructed with
+#'    \code{\link{aes}} or \code{\link{aes_string}}. Only needs to be set
+#'    at the layer level if you are overriding the plot defaults.
+#' @param data A layer specific dataset - only needed if you want to override
+#'    the plot defaults.
+#' @param geom The geometric object to use display the data 
+#' @param position The position adjustment to use for overlappling points
+#'    on this layer
+#' @param ... other arguments passed on to \code{\link{layer}}. This can 
+#'   include aesthetics whose values you want to set, not map. See
+#'   \code{\link{layer}} for more details.
 #' 
 #' @export
 stat_knn <- function(mapping=NULL, data=NULL, geom="segment", position="identity", k=1, ...) {
   StatKnn$new(mapping=mapping, data=data, geom=geom, position=position, k=k, ...)
 }
 
-#' @import proto
+#' @importFrom proto proto
 #' @import ggplot2
 GeomKnn <- proto(ggplot2:::GeomSegment, {
   objname <- "boundingbox"

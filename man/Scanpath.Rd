@@ -1,8 +1,8 @@
-\name{Scanpath}
-\alias{Scanpath}
+\name{scanpath}
+\alias{scanpath}
 \title{Scanpath}
 \usage{
-  Scanpath(x, y = NULL, rois, nearest = FALSE)
+  scanpath(x, y = NULL, rois, nearest = FALSE)
 }
 \arguments{
   \item{x,y}{the x and y coordinates of a set of points.

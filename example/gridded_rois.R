@@ -1,1 +1,0 @@
-rois <- gridded_rois(315,1365,0,1050,nrow=11,ncol=11)
