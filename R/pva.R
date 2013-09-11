@@ -65,7 +65,7 @@ setClass("pva",
 #'  
 pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
                     ex = 0, ey = 0, order = 2, window = 11,
-                pupil = NULL)
+                pupil = NULL, blinkFUN = "detect_blinks.PV", ...)
 {
   N <- nrow(data.frame(x=x,y=y))
   if (N < window) {
@@ -75,7 +75,7 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
   
   blinks <- rep(F,N)
   if (!is.null(pupil)) {
-    blinks <- detect_blinks(pupil, samplerate)
+    blinks <- do.call(blinkFUN, c(list(pupil, samplerate), list(...)))
     x[blinks] <- NA
     y[blinks] <- NA
     x <- na.approx(x)
