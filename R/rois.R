@@ -13,7 +13,7 @@
 #' @export
 #' 
 ROI <- function (coords, ID) {
-  new("ROI", Polygon(coords), ID=ID, center=c(mean(coords$x),mean(coords$y)))
+  new("ROI", Polygon(coords), ID=ID, center=c(mean(coords[,1]),mean(coords[,2])))
 }
 
 #' Regions of Interest (ROIs)
