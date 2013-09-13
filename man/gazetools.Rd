@@ -1,13 +1,12 @@
+% Built by roxygen3 0.1
 \docType{package}
 \name{gazetools}
 \alias{gazetools}
 \alias{gazetools-package}
 \title{gazetools}
 \description{
-  A collection of tools for processing and classifying eye
-  gaze data.
+A collection of tools for processing and classifying eye gaze data.
 }
 \author{
-  Ryan M. Hope \email{rmh3093@gmail.com}
+Ryan M. Hope \email{rmh3093@gmail.com}
 }
-

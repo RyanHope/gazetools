@@ -6,8 +6,9 @@
 #' @param sigma the number of standard deviations between fixation and saccade velocities
 #' @template blinks
 #' 
-#' @return an object of class \code{\linkS4class{classify}}
+#' @return an object of class \code{\link[=classify-class]{classify}}
 #'
+#' @autoImports
 #' @export
 #' 
 #' @family classify
@@ -39,6 +40,6 @@ classify.VI <- function(v, vt = 100, sigma = 6, blinks = NULL)
     vt <- vtn
   }
   class <- classify.V(v, round(vt, 2), blinks)
-  slot(class, "algorithm") <- "velocity-iterative"
+  class@algorithm <- "velocity-iterative"
   class
 }

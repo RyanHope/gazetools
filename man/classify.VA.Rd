@@ -1,3 +1,4 @@
+% Built by roxygen3 0.1
 \encoding{latin1}
 \name{classify.VA}
 \alias{classify.VA}
@@ -14,41 +15,35 @@
 
   \item{at}{an acceleration threshold}
 
-  \item{blinks}{vector of class \code{"logical"}, TRUE if
-  samples belong to a blink}
+  \item{blinks}{vector of class \code{"logical"}, TRUE if samples belong to a blink}
 }
+
 \value{
-  an object of class \code{\linkS4class{classify}}
+an object of class \code{\link[=classify-class]{classify}}
 }
 \description{
-  Classifies gaze data into saccades and fixations using
-  both velocity and acceleration thresholds.
+Classifies gaze data into saccades and fixations using both velocity and acceleration thresholds.
 }
 \examples{
 # Classification ignorning blinks
 data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl,
-                       500, 1680, 1050, 473.76, 296.1,
+d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+                       500, 1680, 1050, 473.76, 296.1, 
                        smi_ezl, smi_exl, smi_eyl))
 d.c <- classify.VA(d.pva@v, d.pva@a)
 str(d.c)
 
 # Classification accounting for blinks
-d.pva <- with(smi, pva(smi_sxl, smi_syl,
-                       500, 1680, 1050, 473.76, 296.1,
+d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+                       500, 1680, 1050, 473.76, 296.1, 
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c <- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
 str(d.c)
 }
+
 \references{
-  Nyström, M., & Holmqvist, K. (2010). An adaptive
-  algorithm for fixation, saccade, and glissade detection
-  in eyetracking data. Behavior Research Methods, 42(1),
-  188-204.
+Nyström, M., & Holmqvist, K. (2010). An adaptive algorithm for fixation, saccade, and glissade detection in eyetracking data. Behavior Research Methods, 42(1), 188-204.
 }
 \seealso{
-  Other classify: \code{\link{as}}, \code{\link{as}},
-  \code{\link{classify.MM}}, \code{\link{classify.V}},
-  \code{\link{classify.VI}}
+Other classify: \code{\link{classify.MM}}, \code{\link{classify.V}}, \code{\link{classify.VI}}
 }
-

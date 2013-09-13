@@ -1,3 +1,4 @@
+% Built by roxygen3 0.1
 \name{event_ids}
 \alias{event_ids}
 \title{Event IDs}
@@ -9,9 +10,9 @@
 
   \item{event}{the event to id}
 }
+
 \description{
-  Assigns unique IDs to runs of a target events in a vector
-  of data
+Assigns unique IDs to runs of a target events in a vector of data
 }
 \examples{
 event_ids(c(TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,

@@ -5,8 +5,9 @@
 #' @template v
 #' @template blinks
 #' 
-#' @return an object of class \code{\linkS4class{classify}}
+#' @return an object of class \code{\link[=classify-class]{classify}}
 #'
+#' @autoImports
 #' @export
 #' 
 #' @family classify

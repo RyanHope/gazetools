@@ -1,8 +1,9 @@
 citHeader("To cite gazetools in publications, please use:")
 
-citEntry(entry = "online",
+citEntry(entry = "misc",
   author = "Ryan M. Hope",
   title = "gazetools",
   year = "2013",
   url = "http://ryanhope.github.io/gazetools",
+  textVersion = "Hope, R.M. gazetools. http://ryanhope.github.io/gazetools, 2013."
 )
