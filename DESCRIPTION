@@ -1,8 +1,8 @@
 Package: gazetools
 Type: Package
 Title: Gaze Tools
-Version: 3.1
-Date: 2013-05-22
+Version: 3.1.201311141559
+Date: 2013-11-14
 Author: Ryan M. Hope <rmh3093@gmail.com>
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 URL: http://ryanhope.github.io/gazetools
@@ -12,7 +12,8 @@ License: GPL-3
 LazyData: true
 Depends:
     R (>= 2.14),
-    methods
+    methods,
+    stats
 Imports:
     reshape2,
     ggplot2,
@@ -20,21 +21,3 @@ Imports:
     signal,
     zoo,
     Rmisc
-Collate:
-    'event_ids.R'
-    'find_peak_ranges.R'
-    'find_peaks.R'
-    'distance_2_point.R'
-    'subtended_angle.R'
-    'detect_blinks.PV.R'
-    'detect_blinks.SW.R'
-    'pva-class.R'
-    'pva-methods.R'
-    'pva.R'
-    'classify-class.R'
-    'classify.MM.R'
-    'classify.V.R'
-    'classify.VA.R'
-    'classify.VI.R'
-    'pva-classify-plot.R'
-    'gazetools.R'
