@@ -17,11 +17,4 @@ A class to hold gaze data classifications
  }
 }
 
-\section{Generics with methods for classify}{
-\itemize{
-  \item \code{\link{plot}}
-}
-
-}
-
 \keyword{classes}

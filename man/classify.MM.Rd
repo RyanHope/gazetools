@@ -38,5 +38,5 @@ str(d.c)
 Ingmar Visser, Maarten Speekenbrink (2010). depmixS4: An R Package for Hidden Markov Models. Journal of Statistical Software, 36(7), 1-21.
 }
 \seealso{
-Other classify: \code{\link{classify.V}}, \code{\link{classify.VA}}, \code{\link{classify.VI}}
+Other classify: \code{\link{as}}, \code{\link{classify.V}}, \code{\link{classify.VA}}, \code{\link{classify.VI}}
 }

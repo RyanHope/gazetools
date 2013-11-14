@@ -45,5 +45,5 @@ str(d.c)
 Nyström, M., & Holmqvist, K. (2010). An adaptive algorithm for fixation, saccade, and glissade detection in eyetracking data. Behavior Research Methods, 42(1), 188-204.
 }
 \seealso{
-Other classify: \code{\link{classify.MM}}, \code{\link{classify.V}}, \code{\link{classify.VI}}
+Other classify: \code{\link{as}}, \code{\link{classify.MM}}, \code{\link{classify.V}}, \code{\link{classify.VI}}
 }

@@ -19,11 +19,7 @@
 classify.MM <- function(v, blinks = NULL)
 {
   d <- data.frame(v=v)
-  t <- tempfile()
-  sink(t)
   m <- fit(mix(v~1,nstates=2,data=d))
-  unlink(t)
-  sink()
   c1 <- m@response[[1]][[1]]@parameters$coefficient
   c2 <- m@response[[2]][[1]]@parameters$coefficient
   if (c1 < c2)

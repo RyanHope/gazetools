@@ -1,3 +1,4 @@
+#' @export
 as.data.frame.pva <- function(x, row.names=NULL, optional=FALSE, ...) {
   data.frame(time = x@time*(1/x@samplerate), x = x@sx, y = x@sy, v = x@v, a = x@a)
 }

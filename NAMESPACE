@@ -1,3 +1,5 @@
+S3method(as.data.frame,classify)
+S3method(as.data.frame,pva)
 export(classify.MM)
 export(classify.V)
 export(classify.VA)
