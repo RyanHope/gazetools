@@ -8,3 +8,4 @@ man-roxygen
 staticdocs
 example
 OLD
+^\.travis\.yml$
