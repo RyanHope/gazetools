@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>distance2point. gazetools 3.0</title>
+<title>highspeed. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 3.0</a>
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -35,61 +35,52 @@
         
       </header>
       
-      <h1>Distance to Point</h1>
+      <h1>Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre>distance2point(x, y, rx, ry, sw, sh, ez, ex = 0, ey = 0)</pre>
-    
-    <h2>Arguments</h2>
-    <dl>
-      <dt>x</dt>
-      <dd>the x coordinate of a point on a screen
-  (pixels)</dd>
-      <dt>y</dt>
-      <dd>the y coordinate of a point on a screen
-  (pixels)</dd>
-      <dt>rx</dt>
-      <dd>the x resolution of the monitor (pixels)</dd>
-      <dt>ry</dt>
-      <dd>the y resolution of the monitor (pixels)</dd>
-      <dt>sw</dt>
-      <dd>the physical screen width (mm)</dd>
-      <dt>sh</dt>
-      <dd>the physical screen height (mm)</dd>
-      <dt>ez</dt>
-      <dd>the perpendicular distance from the viewer to
-  the screen (mm)</dd>
-      <dt>ex</dt>
-      <dd>the horizontal offset of the viewer from screen
-  center (mm)</dd>
-      <dt>ey</dt>
-      <dd>the vertical offset of the viewer from screen
-  center (mm)</dd>
-    </dl>
-    
+    <pre><div>data(highspeed)</div></pre>
+        
+    <div class="Format">
+      <h2>Format</h2>
+      
+      <p><span class='describe'>
+  xhorizontal gaze location
+  yvertical gaze location
+</span></p>
+  
+    </div>
+
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Takes an x and y screen coordinate and returns the
-  physical distance from the observer to that point on the
-  screen.</p>
+      <p>Gaze data of a participant performing a reading task.</p>
   
     </div>
-    
-    <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>distance2point(840, 525, 1680, 1050, 473.76, 296.1, 750)
-</div>
-<div class='output'>[1] 750
-</div></pre>
-  </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><ul>
+<li>Samplerate was 1250hz. </li>
+<li>Screen
+resolution was 1024 x 768 (px). </li>
+<li>Screen size was 0.38
+x 0.30 (m). </li>
+<li>Viewing distance was 0.67 (m). </li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+      </div>
   <div class="span4">
     <!-- <ul>
-      <li>distance2point</li>
+      <li>highspeed</li>
     </ul>
     <ul>
-      
+      <li>datasets</li>
     </ul> -->
       
         

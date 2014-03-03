@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>plot.mould. gazetools 4.0.201403031540</title>
+<title>plot.classify. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,7 +35,7 @@
         
       </header>
       
-      <h1>Plot mould</h1>
+      <h1>Plot classify</h1>
 
 <div class="row">
   <div class="span8">
@@ -45,10 +45,10 @@
     <h2>Arguments</h2>
     <dl>
       <dt>x</dt>
-      <dd>an object of class <code>"mould"</code></dd>
+      <dd>an object of class
+  <code>classify</code></dd>
       <dt>y</dt>
-      <dd>the y coordinates of points in the plot,
-  <em>optional</em> if <code>x</code> is an appropriate structure.</dd>
+      <dd>an object of class <code>pva</code></dd>
       <dt>...</dt>
       <dd>Arguments to be passed to methods, such as
   <a href='http://www.inside-r.org/r-doc/graphics/par'>graphical parameters</a> (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).
@@ -91,7 +91,9 @@
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Plot the mould class</p>
+      <p>Creates a scatter plot of the scanpath between each
+fixation. Fixation durations are indicated by the size of
+the fixation point.</p>
   
     </div>
     
@@ -99,15 +101,15 @@
     <pre class="examples"><div class='input'>data(smi)
 d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
-                       smi_ezl, smi_exl, smi_eyl))
-d.mt &lt;- mouldThreshold(d.pva@v, d.pva@samplerate)
-plot(d.mt)
+                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
+d.c &lt;- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
+plot(d.c, d.pva)
 </div>
-<p><img src='mould-plot-2.png' alt='' width='400' height='400' /></p></pre>
+<p><img src='classify-methods-2.png' alt='' width='400' height='400' /></p></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>plot,mould,missing-method</li><li>plot.mould</li>
+      <li>plot,classify,pva-method</li><li>plot.classify</li>
     </ul>
     <ul>
       

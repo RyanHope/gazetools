@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>pva-class. gazetools 3.0</title>
+<title>pva-class. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 3.0</a>
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -43,8 +43,8 @@
     <div class="Description">
       <h2>Description</h2>
       
-      <p>A class to hold position, velocity and acceleration of
-  raw gaze data</p>
+      <p>A class to hold position, velocity and acceleration of raw
+gaze data</p>
   
     </div>
 
@@ -79,11 +79,13 @@
   <code>"numeric"</code>, containing the instantaneous velocity
   (degrees/s) <code>a</code>:vector of class
   <code>"numeric"</code>, containing the instantaneous
-  acceleration (degrees/s^2) <code>rx</code>:the x
-  resolution of the monitor (pixels) <code>ry</code>:the
-  y resolution of the monitor (pixels)
-  <code>samplerate</code>:the samplerate of the
-  eyetracker <code>sgolayfilt</code>:parameters for the
+  acceleration (degrees/s^2) <code>blinks</code>:vector
+  of class <code>"logical"</code>, TRUE if samples belong to a
+  blink <code>rx</code>:the x resolution of the monitor
+  (pixels) <code>ry</code>:the y resolution of the
+  monitor (pixels) <code>samplerate</code>:the
+  samplerate of the eyetracker
+  <code>sgolayfilt</code>:parameters for the
   avitzky-Golay smoothing filter </span></p>
   
     </div>

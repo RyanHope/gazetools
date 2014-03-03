@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>getFixations. gazetools 3.0</title>
+<title>as. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 3.0</a>
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -35,7 +35,7 @@
         
       </header>
       
-      <h1>Get Fixations</h1>
+      <h1>as("classify", "data.frame")</h1>
 
 <div class="row">
   <div class="span8">
@@ -43,27 +43,26 @@
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Extracts the coordinates of fixations and their durations
-  from <code>classify</code> and
-  <code>pva</code> objects</p>
+      <p>as("classify", "data.frame")</p>
+  
+      <p>Force a 'pva' Object to Belong to a Class</p>
   
     </div>
-    
-    <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl, smi_time, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
-d.c <- classify.V(d.pva@v)
-d.f <- getFixations(d.c, d.pva)
-</div></pre>
-  </div>
+      </div>
   <div class="span4">
     <!-- <ul>
-      <li>getFixations</li><li>getFixations,classify,pva-method</li>
+      <li>as</li>
     </ul>
     <ul>
       
     </ul> -->
       
+    <h2>See also</h2>
+    
+Other classify: <code><a href='classify.MM.html'>classify.MM</a></code>;
+<code><a href='classify.VA.html'>classify.VA</a></code>; <code><a href='classify.VI.html'>classify.VI</a></code>;
+<code><a href='classify.V.html'>classify.V</a></code>
+
         
   </div>
 </div>

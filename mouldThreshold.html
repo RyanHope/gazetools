@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>gridded_rois. gazetools 3.0</title>
+<title>mouldThreshold. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 3.0</a>
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -35,59 +35,64 @@
         
       </header>
       
-      <h1>Gridded ROIs</h1>
+      <h1>Mould Threshold</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre>gridded_rois(xmin, xmax, ymin, ymax, ncol, nrow)</pre>
+    <pre><div>mouldThreshold(v, samplerate)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
-      <dt>xmin</dt>
-      <dd>the lower limit of the x axis</dd>
-      <dt>xmax</dt>
-      <dd>the upper limit of the x axis</dd>
-      <dt>ymin</dt>
-      <dd>the lower limit of the y axis</dd>
-      <dt>ymax</dt>
-      <dd>the upper limit of the y axis</dd>
-      <dt>ncol</dt>
-      <dd>the number of columns in the grid</dd>
-      <dt>nrow</dt>
-      <dd>the number of rows in the grid</dd>
+      <dt>v</dt>
+      <dd>a vector of instantaneous velocity values</dd>
+      <dt>samplerate</dt>
+      <dd>eyetracker samplerate</dd>
     </dl>
     
     <div class="Value">
       <h2>Value</h2>
       
-      <p>an object of class <code>gridded_rois</code></p>
+      <p>an object of class <code>mould</code></p>
   
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Creates a grid of ROIs over a given 2-D region</p>
+      <p>Uses the Mould algorithm to determine the optimal velocity
+or acceleration threshold for classifying raw gaze data.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Mould, M. S., Foster, D. H., Amano, K., & Oakley, J. P.
+(2012). A simple nonparametric method for classifying eye
+fixations. Vision research, 57, 18-25.</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>rois <- gridded_rois(315,1365,0,1050,nrow=11,ncol=11)
-str(rois)
+    <pre class="examples"><div class='input'>data(smi)
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
+                       500, 1680, 1050, 473.76, 296.1,
+                      smi_ezl, smi_exl, smi_eyl))
+d.mt &lt;- mouldThreshold(d.pva@v, d.pva@samplerate)
+str(d.mt)
 </div>
-<div class='output'>Formal class 'gridded_rois' [package "gazetools"] with 6 slots
-  ..@ x     : num [1:12] 315 410 506 601 697 ...
-  ..@ y     : num [1:12] 0 95.5 190.9 286.4 381.8 ...
-  ..@ deltax: num 95.5
-  ..@ deltay: num 95.5
-  ..@ nrow  : num 11
-  ..@ ncol  : num 11
+<div class='output'>Formal class &#39;mould&#39; [package &quot;gazetools&quot;] with 5 slots
+  ..@ .Data     : num 42.9
+  ..@ thresholds: num [1:500] 0.482 3.13 5.779 8.428 11.076 ...
+  ..@ resp1     : int [1:500] 310 307 301 271 230 204 180 143 114 90 ...
+  ..@ resp2     : num [1:500] 311 309 307 306 304 ...
+  ..@ gap       : num [1:500] 0.7 19.1 37.4 55.8 74.1 ...
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>gridded_rois</li>
+      <li>mouldThreshold</li>
     </ul>
     <ul>
       

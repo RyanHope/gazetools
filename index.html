@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Index. gazetools 3.0</title>
+<title>Index. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="">
+<meta name="author" content="Ryan M. Hope &lt;rmh3093@gmail.com&gt;">
 
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 3.0</a>
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -62,208 +62,91 @@ library(devtools); install_github(&#39;gazetools&#39;, &#39;ryanhope&#39;)
 
     <h2>Help topics</h2>
 
-    <h3>Data</h3>
-    <p>Example data sets.</p>
-
+    <h3></h3>
+    
     
     <ul class="index">
         
       <li>
-        <code><a href="smi.html">smi</a></code><br />Gaze data from a SMI RED 500 eyetracker at 500 Hz.</li>
-    
-    </ul>
-    <h3>Utility</h3>
-    <p>These are handy utilty functions.</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="distance2point.html">distance2point</a></code><br />Distance to Point</li>
-            
-      <li>
-        <code><a href="subtendedAngle.html">subtendedAngle</a></code><br />Subtended Angle</li>
-            
-      <li>
-        <code><a href="angle2pixels.html">angle2pixels</a></code><br />Angle to Pixels</li>
-    
-    </ul>
-    <h3>Preprocessing</h3>
-    <p>These functions do necessary preprocessing operations.</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="pva.html">pva</a></code><br />Position, Velocity, Acceleration</li>
-    
-    </ul>
-    <h3>Threshold Algorithms</h3>
-    <p>These functions are used to determine the optimal thresholds for use 
-      in classification algorithms.</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="pva-mouldThreshold.html">mouldThreshold</a></code>(mouldThreshold,pva-method)<br />Mould Threshold</li>
-    
-    </ul>
-    <h3>Classification Algorithms</h3>
-    <p>These functions are used to classify rag gaze data into events 
-      such as saccades and fixations.</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="classify.V.html">classify.V</a></code><br />Gaze Data Classification (velocity)</li>
-            
-      <li>
-        <code><a href="classify.VI.html">classify.VI</a></code><br />Gaze Data Classification (velocity-iterative)</li>
-            
-      <li>
-        <code><a href="classify.VA.html">classify.VA</a></code><br />Gaze Data Classification (velocity-acceleration)</li>
-    
-    </ul>
-    <h3>Position Measures</h3>
-    <p>These functions measure various aspects of the position of fixations.</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="chull_area.html">chull_area</a></code><br />Convex Hull Area</li>
-            
-      <li>
-        <code><a href="voronoi_skewness.html">voronoi_skewness</a></code><br />Voronoi Skewness</li>
-            
-      <li>
-        <code><a href="extent.html">extent</a></code><br />Extent (range) of fixations</li>
-            
-      <li>
-        <code><a href="bcea.html">bcea</a></code><br />Bivariate contour ellipse area (BCEA)</li>
-            
-      <li>
-        <code><a href="nni.html">nni</a></code><br />Nearest Neighbor Index</li>
-            
-      <li>
-        <code><a href="roi_coverage.html">roi_coverage</a></code><br />ROI Coverage</li>
-    
-    </ul>
-    <h3>Plots</h3>
-    <p>Class plots using ggplot2</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="mould-plot.html">plot.mould</a></code>(plot,mould,missing-method)<br />Plot mould</li>
-            
-      <li>
-        <code><a href="pva-plot.html">plot.pva</a></code>(plot,pva,classify-method, plot,pva,missing-method)<br />Plot pva</li>
-            
-      <li>
-        <code><a href="classify-plot.html">plot.classify</a></code>(plot,classify,pva-method)<br />Plot classify</li>
-            
-      <li>
-        <code><a href="voronoi_skewness-plot.html">plot.voronoi_skewness</a></code>(plot,voronoi_skewness,missing-method)<br />Plot voronoi_skewness</li>
-    
-    </ul>
-    <h3>Geoms</h3>
-    <p>Geoms for ggplot2</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="geom_bbox.html">geom_bbox</a></code><br />Bounding Box Geom for ggplot2</li>
-            
-      <li>
-        <code><a href="geom_chull.html">geom_chull</a></code><br />Convex Hull Geom for ggplot2</li>
-            
-      <li>
-        <code><a href="geom_roi_coverage.html">geom_roi_coverage</a></code><br />ROI Coverage Geom for ggplot2</li>
-            
-      <li>
-        <code><a href="geom_voronoi.html">geom_voronoi</a></code><br />Voronoi Cell Geom for ggplot2</li>
-            
-      <li>
-        <code><a href="geom_grid.html">geom_grid</a></code><br />Grid Geom for ggplot2</li>
-    
-    </ul>
-    <h3>Scales</h3>
-    <p>Scales for ggplot2</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="scale_grid.html">scale_grid</a></code><br />Grid Scales for ggplot2</li>
-    
-    </ul>
-    <h3>Classes</h3>
-    <p>Gazetools classes</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="mould-class.html">mould-class</a></code><br />Class "mould"</li>
-            
-      <li>
-        <code><a href="pva-class.html">pva-class</a></code><br />Class "pva"</li>
+        <code><a href="as.html">as</a></code><br />as("classify", "data.frame")</li>
             
       <li>
         <code><a href="classify-class.html">classify-class</a></code><br />Class "classify"</li>
             
       <li>
-        <code><a href="gridded_rois-class.html">gridded_rois-class</a></code><br />Class "gridded_rois"</li>
+        <code><a href="classify.MM.html">classify.MM</a></code><br />Gaze Data Classification (mixture model)</li>
             
       <li>
-        <code><a href="roi_coverage-class.html">roi_coverage-class</a></code><br />Class "roi_coverage"</li>
+        <code><a href="classify.V.html">classify.V</a></code><br />Gaze Data Classification (velocity)</li>
             
       <li>
-        <code><a href="voronoi_skewness-class.html">voronoi_skewness-class</a></code><br />Class "voronoi_skewness"</li>
-    
-    </ul>
-    <h3>Other</h3>
-    
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="pva-as.data.frame.html">as.data.frame.pva</a></code>(as.data.frame,pva,missing,missing-method)<br />Coerce object of class </li>
+        <code><a href="classify.VA.html">classify.VA</a></code><br />Gaze Data Classification (velocity-acceleration)</li>
             
       <li>
-        <code><a href="bbox.html">bbox</a></code><br />Bounding box of fixations</li>
+        <code><a href="classify.VI.html">classify.VI</a></code><br />Gaze Data Classification (velocity-iterative)</li>
             
       <li>
-        <code><a href="classify-as.data.frame.html">classify.as.data.frame</a></code>(as.data.frame,classify,missing,missing-method)<br />Coerce object of class </li>
+        <code><a href="detect_blinks.PV.html">detect_blinks.PV</a></code><br />Detect Blinks (pupil velocity)</li>
+            
+      <li>
+        <code><a href="detect_blinks.SW.html">detect_blinks.SW</a></code><br />Detect Blinks (static window)</li>
+            
+      <li>
+        <code><a href="distance_2_point.html">distance_2_point</a></code><br />Distance to Point</li>
             
       <li>
         <code><a href="event_ids.html">event_ids</a></code><br />Event IDs</li>
             
       <li>
-        <code><a href="find_peak_ranges.html">find_peak_ranges</a></code><br />Find Peak Ranges</li>
+        <code><a href="find_peak_ranges.html">find_peak_ranges</a></code><br />Find Peak Ranges Above Threshold</li>
             
       <li>
-        <code><a href="find_peaks.html">find_peaks</a></code><br />Find Peak Ranges</li>
+        <code><a href="find_peaks.html">find_peaks</a></code><br />Find Peak Ranges Above Threshold</li>
             
       <li>
         <code><a href="gazetools.html">gazetools</a></code>(gazetools-package)<br />gazetools</li>
             
       <li>
-        <code><a href="classify-getFixations.html">getFixations</a></code>(getFixations,classify,pva-method)<br />Get Fixations</li>
+        <code><a href="getFixations.html">getFixations</a></code><br />Get Fixations</li>
             
       <li>
-        <code><a href="gridded_rois.html">gridded_rois</a></code><br />Gridded ROIs</li>
+        <code><a href="highspeed.html">highspeed</a></code><br />Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.</li>
+            
+      <li>
+        <code><a href="lc120.html">lc120</a></code><br />Gaze data from a LC Technologies binocular eyetracker at 120 Hz.</li>
             
       <li>
         <code><a href="local_maxima.html">local_maxima</a></code><br />Local Maxima</li>
             
       <li>
-        <code><a href="voronoi_polygons.html">voronoi_polygons</a></code><br />Voronoi Polygons</li>
+        <code><a href="mould-class.html">mould-class</a></code><br />Class "mould"</li>
+            
+      <li>
+        <code><a href="mouldThreshold.html">mouldThreshold</a></code><br />Mould Threshold</li>
+            
+      <li>
+        <code><a href="plot-pva-classify-method.html">plot,pva,classify-method</a></code><br />Plot a 'pva' Object with Classified Samples</li>
+            
+      <li>
+        <code><a href="plot-pva-missing-method.html">plot,pva,missing-method</a></code><br />Plot a 'pva' Object</li>
+            
+      <li>
+        <code><a href="classify-methods.html">plot.classify</a></code>(plot,classify,pva-method)<br />Plot classify</li>
+            
+      <li>
+        <code><a href="mould-plot.html">plot.mould</a></code>(plot,mould,missing-method)<br />Plot mould</li>
+            
+      <li>
+        <code><a href="pva.html">pva</a></code><br />Compute Velocity and Acceleration Profiles for Raw Gaze Data</li>
+            
+      <li>
+        <code><a href="pva-class.html">pva-class</a></code><br />Class "pva"</li>
+            
+      <li>
+        <code><a href="smi.html">smi</a></code><br />Gaze data from a SMI RED 500 eyetracker at 500 Hz.</li>
+            
+      <li>
+        <code><a href="subtended_angle.html">subtended_angle</a></code><br />Subtended Angle</li>
     
     </ul>
   </div>
@@ -272,16 +155,12 @@ library(devtools); install_github(&#39;gazetools&#39;, &#39;ryanhope&#39;)
         
     <h2>Dependencies</h2>
     <ul>
-      <li><strong>Depends</strong>: Matrix, methods</li>
-      <li><strong>Imports</strong>: rgeos, maptools, deldir, sp, modeest, signal, zoo, Rmisc, reshape, plyr, spatstat, ggplot2</li>
+      <li><strong>Depends</strong>: methods, stats</li>
+      <li><strong>Imports</strong>: reshape2, ggplot2, depmixS4, signal, zoo, plyr, Rmisc</li>
       <li><strong>Suggests</strong>: </li>
       <li><strong>Extends</strong>: </li>
     </ul>
      
-    <h2>Authors</h2>
-    <ul>
-    <li>Ryan M. Hope (rmh3093 at gmail.com)</li>
-    </ul>
     
   </div>
 </div>

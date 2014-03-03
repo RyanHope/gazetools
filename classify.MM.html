@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>classify.VI. gazetools 4.0.201403031540</title>
+<title>classify.MM. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,22 +35,17 @@
         
       </header>
       
-      <h1>Gaze Data Classification (velocity-iterative)</h1>
+      <h1>Gaze Data Classification (mixture model)</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>classify.VI(v, vt&nbsp;=&nbsp;100, sigma&nbsp;=&nbsp;6, blinks&nbsp;=&nbsp;NULL)</div></pre>
+    <pre><div>classify.MM(v, blinks&nbsp;=&nbsp;NULL)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
       <dt>v</dt>
       <dd>a vector of instantaneous velocity values</dd>
-      <dt>vt</dt>
-      <dd>a velocity threshold</dd>
-      <dt>sigma</dt>
-      <dd>the number of standard deviations between
-  fixation and saccade velocities</dd>
       <dt>blinks</dt>
       <dd>vector of class <code>"logical"</code>, TRUE if
   samples belong to a blink</dd>
@@ -66,46 +61,67 @@
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Classifies gaze data into saccades and fixations using an
-iteratively determined velocity threshold.</p>
+      <p>Uses a mixture model to classify gaze data into saccades
+and fixations.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Ingmar Visser, Maarten Speekenbrink (2010). depmixS4: An R
+Package for Hidden Markov Models. Journal of Statistical
+Software, 36(7), 1-21.</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'># Classification ignorning blinks
 data(smi)
-d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
-                       500, 1680, 1050, 473.76, 296.1,
-                       smi_ezl, smi_exl, smi_eyl))
-d.c &lt;- classify.VI(d.pva@v)
-str(d.c)
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl, 
+                      500, 1680, 1050, 473.76, 296.1, 
+                      smi_ezl, smi_exl, smi_eyl))
+d.c &lt;- classify.MM(d.pva@v)
+</div>
+<div class='output'>iteration 0 logLik: -18692.45 
+iteration 5 logLik: -14699.43 
+iteration 10 logLik: -14699.2 
+converged at iteration 10 with logLik: -14699.2 
+</div>
+<div class='input'>str(d.c)
 </div>
 <div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 5 slots
   ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
-  ..@ algorithm   : chr &quot;velocity-iterative&quot;
-  ..@ thresholds  : num 251
+  ..@ algorithm   : chr &quot;mixture-model&quot;
+  ..@ thresholds  : num 37
 </div>
-<div class='input'>
+<div class='input'> 
 # Classification accounting for blinks
-d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
-                       500, 1680, 1050, 473.76, 296.1,
-                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
-d.c &lt;- classify.VI(d.pva@v, blinks=d.pva@blinks)
-str(d.c)
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl, 
+                      500, 1680, 1050, 473.76, 296.1, 
+                      smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
+d.c &lt;- classify.MM(d.pva@v, blinks=d.pva@blinks)
+</div>
+<div class='output'>iteration 0 logLik: -18313.15 
+iteration 5 logLik: -14135.84 
+iteration 10 logLik: -14135.71 
+converged at iteration 10 with logLik: -14135.71 
+</div>
+<div class='input'>str(d.c)
 </div>
 <div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 5 slots
   ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
-  ..@ algorithm   : chr &quot;velocity-iterative&quot;
-  ..@ thresholds  : num 110
+  ..@ algorithm   : chr &quot;mixture-model&quot;
+  ..@ thresholds  : num 35.4
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>classify.VI</li>
+      <li>classify.MM</li>
     </ul>
     <ul>
       
@@ -114,7 +130,7 @@ str(d.c)
     <h2>See also</h2>
     
 Other classify: <code><a href='as.html'>as</a></code>, <code><a href='as.html'>as</a></code>;
-<code><a href='classify.MM.html'>classify.MM</a></code>; <code><a href='classify.VA.html'>classify.VA</a></code>;
+<code><a href='classify.VA.html'>classify.VA</a></code>; <code><a href='classify.VI.html'>classify.VI</a></code>;
 <code><a href='classify.V.html'>classify.V</a></code>
 
         

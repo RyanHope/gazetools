@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>plot.mould. gazetools 4.0.201403031540</title>
+<title>plot,pva,missing-method. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,7 +35,7 @@
         
       </header>
       
-      <h1>Plot mould</h1>
+      <h1>Plot a 'pva' Object</h1>
 
 <div class="row">
   <div class="span8">
@@ -45,7 +45,8 @@
     <h2>Arguments</h2>
     <dl>
       <dt>x</dt>
-      <dd>an object of class <code>"mould"</code></dd>
+      <dd>an object of class
+  <code><a href='pva-class.html'>pva</a></code></dd>
       <dt>y</dt>
       <dd>the y coordinates of points in the plot,
   <em>optional</em> if <code>x</code> is an appropriate structure.</dd>
@@ -91,23 +92,23 @@
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Plot the mould class</p>
+      <p>Plot an object of class 'pva'</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'>data(smi)
+# Raw (unclassified) position, velocity and acceleration plot
 d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
-                       smi_ezl, smi_exl, smi_eyl))
-d.mt &lt;- mouldThreshold(d.pva@v, d.pva@samplerate)
-plot(d.mt)
+                      smi_ezl, smi_exl, smi_eyl))
+plot(d.pva)
 </div>
-<p><img src='mould-plot-2.png' alt='' width='400' height='400' /></p></pre>
+<p><img src='plot-pva-missing-method-2.png' alt='' width='400' height='400' /></p></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>plot,mould,missing-method</li><li>plot.mould</li>
+      <li>plot,pva,missing-method</li>
     </ul>
     <ul>
       

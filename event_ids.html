@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>event_ids. gazetools 3.0</title>
+<title>event_ids. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 3.0</a>
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -40,7 +40,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre>event_ids(x, event)</pre>
+    <pre><div>event_ids(x, event)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -53,13 +53,15 @@
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Assigns unique IDs to runs of a target event in a vector
-  of data</p>
+      <p>Assigns unique IDs to runs of a target events in a vector
+of data</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>event_ids(c(TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE),TRUE)
+    <pre class="examples"><div class='input'>event_ids(c(TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,
+            TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,
+            FALSE,TRUE,TRUE), TRUE)
 </div>
 <div class='output'> [1] 1 1 1 1 0 0 2 2 2 2 2 2 0 3 0 4 4
 </div></pre>

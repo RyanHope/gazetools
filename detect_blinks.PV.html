@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>geom_bbox. gazetools 3.0</title>
+<title>detect_blinks.PV. gazetools 4.0.201403031540</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 3.0</a>
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -35,33 +35,52 @@
         
       </header>
       
-      <h1>Bounding Box Geom for ggplot2</h1>
+      <h1>Detect Blinks (pupil velocity)</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre>geom_bbox(x, ...)</pre>
+    <pre><div>detect_blinks.PV(pupil, samplerate, wl&nbsp;=&nbsp;51, pvt&nbsp;=&nbsp;1000)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
-      <dt>x</dt>
-      <dd>coordinate vectors of points. This can be
-  specified as a 2-column matrix x, a list x with two
-  components</dd>
-      <dt>...</dt>
-      <dd>extra arguments passed on to geom_path</dd>
+      <dt>pupil</dt>
+      <dd>a vector of class <code>numeric</code>; the
+  vertical diameter of the pupil</dd>
+      <dt>samplerate</dt>
+      <dd>the samplerate of the eyetracker</dd>
+      <dt>wl</dt>
+      <dd>window length of smoothing filter</dd>
+      <dt>pvt</dt>
+      <dd>pupil diameter velocity threhold</dd>
     </dl>
     
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>a vector of class <code>logical</code>; indicates samples that
+belong to a blink</p>
+  
+    </div>
+
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Bounding Box Geom for ggplot2</p>
+      <p>Detects blinks based on pupil diameter velocity</p>
   
     </div>
-      </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(smi)
+d.b &lt;- with(smi, detect_blinks.PV(smi_dyl, 500))
+str(d.b)
+</div>
+<div class='output'> logi [1:3437] FALSE FALSE FALSE FALSE FALSE FALSE ...
+</div></pre>
+  </div>
   <div class="span4">
     <!-- <ul>
-      <li>geom_bbox</li>
+      <li>detect_blinks.PV</li>
     </ul>
     <ul>
       
