@@ -21,3 +21,11 @@ notifications:
   email:
     on_success: change
     on_failure: change
+
+before_deploy:
+  - ./travis-tool.sh install_github hadley/staticdocs
+  - R -e "staticdocs::build_site()"
+
+deploy:
+  host: github_pages
+  branch: gh-pages
