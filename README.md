@@ -1,23 +1,10 @@
 # gazetools
 
-The R package **gazetools** is a colletion of tools for processing and classifying eye gaze data.
+[![Build Status](https://travis-ci.org/RyanHope/gazetools.png?branch=master)](https://travis-ci.org/RyanHope/gazetools)
 
-## Installation
+gazetools is a colletion of functions for processing and classifying eye gaze data.
 
-You can install the stable version on [CRAN](http://cran.r-project.org/package=gazetools):
-  
-  ```r
-install.packages('gazetools', dependencies = TRUE)
-```
+To install:
 
-Or download the [zip ball](https://github.com/ryanhope/gazetools/zipball/master) or 
-[tar ball](https://github.com/ryanhope/gazetools/tarball/master), decompress and 
-run `R CMD INSTALL` on it, or use the **devtools** package to install the 
-absolutely latest version:
-  
-  ```r
-## you may also need to update your packages: 
-## options(repos = c(CRAN = 'http://cran.r-project.org'))
-## update.packages()
-library(devtools); install_github('gazetools', 'ryanhope')
-```
+* the latest released version: `install.packages("gazetools")`
+* the latest development version: `install_github("ryanhope/gazetools")`
