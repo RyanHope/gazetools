@@ -1,16 +1,16 @@
 \docType{methods}
-\name{plot.classify}
-\alias{plot,classify,pva-method}
-\alias{plot.classify}
-\title{Plot classify}
+\name{plot,pva,missing-method}
+\alias{plot,pva,missing-method}
+\title{Plot a 'pva' Object}
 \usage{
-\S4method{plot}{classify,pva}(x, y, ...)
+\S4method{plot}{pva,missing}(x, y, ...)
 }
 \arguments{
   \item{x}{an object of class
-  \code{\linkS4class{classify}}}
+  \code{\link[=pva-class]{pva}}}
 
-  \item{y}{an object of class \code{\linkS4class{pva}}}
+  \item{y}{the y coordinates of points in the plot,
+  \emph{optional} if \code{x} is an appropriate structure.}
 
   \item{...}{Arguments to be passed to methods, such as
   \link{graphical parameters} (see \code{\link{par}}).
@@ -39,16 +39,14 @@
   }
 }
 \description{
-Creates a scatter plot of the scanpath between each
-fixation. Fixation durations are indicated by the size of
-the fixation point.
+Plot an object of class 'pva'
 }
 \examples{
 data(smi)
+# Raw (unclassified) position, velocity and acceleration plot
 d.pva <- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
-                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
-d.c <- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
-plot(d.c, d.pva)
+                      smi_ezl, smi_exl, smi_eyl))
+plot(d.pva)
 }
 

@@ -11,7 +11,6 @@
 #'    \item{\code{thresholds}}{the threshold settings for the classification algorithm}
 #'  }
 #'
-#' @classMethods
 #' @export
 #' 
 setClass("classify", 

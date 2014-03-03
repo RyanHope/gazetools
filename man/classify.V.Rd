@@ -1,41 +1,43 @@
-% Built by roxygen3 0.1
 \name{classify.V}
 \alias{classify.V}
 \title{Gaze Data Classification (velocity)}
 \usage{
-  classify.V(v, vt = 75, blinks = NULL)
+classify.V(v, vt = 75, blinks = NULL)
 }
 \arguments{
   \item{v}{a vector of instantaneous velocity values}
 
   \item{vt}{a velocity threshold}
 
-  \item{blinks}{vector of class \code{"logical"}, TRUE if samples belong to a blink}
+  \item{blinks}{vector of class \code{"logical"}, TRUE if
+  samples belong to a blink}
 }
-
 \value{
 an object of class \code{\link[=classify-class]{classify}}
 }
 \description{
-Classifies gaze data into saccades and fixations using a velocity threshold.
+Classifies gaze data into saccades and fixations using a
+velocity threshold.
 }
 \examples{
 # Classification ignorning blinks
 data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl, 
-                       500, 1680, 1050, 473.76, 296.1, 
+d.pva <- with(smi, pva(smi_sxl, smi_syl,
+                       500, 1680, 1050, 473.76, 296.1,
                        smi_ezl, smi_exl, smi_eyl))
 d.c <- classify.V(d.pva@v)
 str(d.c)
 
 # Classification accounting for blinks
-d.pva <- with(smi, pva(smi_sxl, smi_syl, 
-                       500, 1680, 1050, 473.76, 296.1, 
+d.pva <- with(smi, pva(smi_sxl, smi_syl,
+                       500, 1680, 1050, 473.76, 296.1,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c <- classify.V(d.pva@v, blinks=d.pva@blinks)
 str(d.c)
 }
-
 \seealso{
-Other classify: \code{\link{as}}, \code{\link{classify.MM}}, \code{\link{classify.VA}}, \code{\link{classify.VI}}
+Other classify: \code{\link{as}}, \code{\link{as}};
+\code{\link{classify.MM}}; \code{\link{classify.VA}};
+\code{\link{classify.VI}}
 }
+

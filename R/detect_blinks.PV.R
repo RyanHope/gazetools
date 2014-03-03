@@ -9,7 +9,7 @@
 #'
 #' @return a vector of class \code{logical}; indicates samples that belong to a blink
 #'
-#' @autoImports
+#' @importFrom signal sgolayfilt
 #' @export
 #' 
 #' @examples

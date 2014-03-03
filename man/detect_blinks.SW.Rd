@@ -1,20 +1,21 @@
-% Built by roxygen3 0.1
 \name{detect_blinks.SW}
 \alias{detect_blinks.SW}
 \title{Detect Blinks (static window)}
 \usage{
-  detect_blinks.SW(pupil, samplerate, pad = 50)
+detect_blinks.SW(pupil, samplerate, pad = 50)
 }
 \arguments{
-  \item{pupil}{a vector of class \code{numeric}; the status/validity of the pupil}
+  \item{pupil}{a vector of class \code{numeric}; the
+  status/validity of the pupil}
 
   \item{samplerate}{the samplerate of the eyetracker}
 
-  \item{pad}{time in ms to pad each side of each no pupil segment}
+  \item{pad}{time in ms to pad each side of each no pupil
+  segment}
 }
-
 \value{
-a vector of class \code{logical}; indicates samples that belong to a blink
+a vector of class \code{logical}; indicates samples that
+belong to a blink
 }
 \description{
 Detects blinks based on pupil status/valicity

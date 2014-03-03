@@ -4,8 +4,6 @@
 #' 
 #' @param x an object of class \code{\link[=pva-class]{pva}}
 #' 
-#' @autoImports
-#' 
 #' @export
 #' 
 #' @examples
@@ -25,8 +23,6 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y, ...) pva.p
 #' @param x an object of class \code{\link[=pva-class]{pva}}
 #' @param y an object of class \code{\link[=classify-class]{classify}} (optional)
 #'
-#' @autoImports
-#' 
 #' @export
 #' 
 #' @examples
@@ -49,6 +45,7 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y, ...) pva.p
 setMethod("plot", signature(x = "pva", y = "classify"), function(x, y, ...) pva.plot(x, y, ...))
 
 #' @importFrom stats as.formula
+#' @importFrom reshape2 melt
 pva.plot <- function(x, y, ...)
 {
   d <- as.data.frame(x)

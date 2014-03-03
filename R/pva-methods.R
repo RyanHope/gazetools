@@ -5,7 +5,8 @@ as.data.frame.pva <- function(x, row.names=NULL, optional=FALSE, ...) {
 
 #' Force a 'pva' Object to Belong to a Class
 #'
-#' @autoImports
+#' @name as
+#' @family pva
 #' @export
 #
 setAs("pva","data.frame", function(from) as.data.frame.pva(from))

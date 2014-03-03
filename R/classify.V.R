@@ -7,7 +7,6 @@
 #' 
 #' @return an object of class \code{\link[=classify-class]{classify}}
 #'
-#' @autoImports
 #' @export
 #' 
 #' @family classify

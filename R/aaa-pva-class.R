@@ -23,7 +23,6 @@
 #'    \item{\code{sgolayfilt}:}{parameters for the avitzky-Golay smoothing filter}
 #'  }
 #'
-#' @classMethods
 #' @export
 #' 
 setClass("pva", 

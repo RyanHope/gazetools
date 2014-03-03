@@ -1,8 +1,8 @@
 Package: gazetools
 Type: Package
 Title: Gaze Tools
-Version: 3.1.201311141559
-Date: 2013-11-14
+Version: 4.0.201403031540
+Date: 2014-03-03
 Author: Ryan M. Hope <rmh3093@gmail.com>
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
 URL: http://ryanhope.github.io/gazetools
@@ -20,4 +20,5 @@ Imports:
     depmixS4,
     signal,
     zoo,
+    plyr,
     Rmisc

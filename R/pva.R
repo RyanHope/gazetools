@@ -9,10 +9,12 @@
 #' @template sg
 #' @param pupil a vector of class \code{numeric}; the vertical diameter of the pupil or a pupil status signal
 #' @param blinkFUN the name of the blink detection algorithm to use
+#' @param ... arguments to be passed to blinkFUN
 #'
 #' @return an object of class \code{\link[=pva-class]{pva}}
 #'
-#' @autoImports
+#' @importFrom zoo na.approx
+#' @importFrom signal sgolayfilt
 #' 
 #' @rdname pva
 #' 

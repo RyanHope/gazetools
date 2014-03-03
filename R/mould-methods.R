@@ -1,4 +1,4 @@
-utils::globalVariables(c("resp2","thresholds","resp1","gap"))
+utils::globalVariables(c("x","y","resp2","thresholds","resp1","gap"))
 
 #' Plot mould
 #' 
@@ -22,7 +22,7 @@ utils::globalVariables(c("resp2","thresholds","resp1","gap"))
 #' d.mt <- mouldThreshold(d.pva@@v, d.pva@@samplerate)
 #' plot(d.mt)
 #' 
-setMethod("plot", signature(x = "mould", y = "missing"), function(x, ...) mould.plot(x, ...))
+setMethod("plot", signature(x = "mould", y = "missing"), function(x, y, ...) mould.plot(x, ...))
 
 mould.plot <- function(x, ...) {
   optimal <- as.numeric(x)

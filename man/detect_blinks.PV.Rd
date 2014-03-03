@@ -1,12 +1,12 @@
-% Built by roxygen3 0.1
 \name{detect_blinks.PV}
 \alias{detect_blinks.PV}
 \title{Detect Blinks (pupil velocity)}
 \usage{
-  detect_blinks.PV(pupil, samplerate, wl = 51, pvt = 1000)
+detect_blinks.PV(pupil, samplerate, wl = 51, pvt = 1000)
 }
 \arguments{
-  \item{pupil}{a vector of class \code{numeric}; the vertical diameter of the pupil}
+  \item{pupil}{a vector of class \code{numeric}; the
+  vertical diameter of the pupil}
 
   \item{samplerate}{the samplerate of the eyetracker}
 
@@ -14,9 +14,9 @@
 
   \item{pvt}{pupil diameter velocity threhold}
 }
-
 \value{
-a vector of class \code{logical}; indicates samples that belong to a blink
+a vector of class \code{logical}; indicates samples that
+belong to a blink
 }
 \description{
 Detects blinks based on pupil diameter velocity

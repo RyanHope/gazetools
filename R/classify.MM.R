@@ -7,7 +7,7 @@
 #' 
 #' @return an object of class \code{\link[=classify-class]{classify}}
 #'
-#' @autoImports
+#' @importFrom depmixS4 mix fit
 #' @export
 #' 
 #' @family classify

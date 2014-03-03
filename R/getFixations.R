@@ -5,6 +5,7 @@
 #' 
 #' @param class an object of class \code{\linkS4class{classify}}
 #' @param dpva an object of class \code{\linkS4class{pva}}
+#' @param drop a boolean, if T (default) drop fixations at (0,0)
 #'
 #' @importFrom plyr ddply .
 #' @export
@@ -31,7 +32,7 @@ getFixations <- function(class, dpva, drop=T) {
   rownames(f) <- f$fixation_ids
   d <- f[,c("x","y","duration")]
   if (drop) {
-    d <- subset(d, x!=0 & y!=0)
+    d <- d[d$x!=0 & d$y!=0,]
     rownames(d) <- NULL
   }
   d
