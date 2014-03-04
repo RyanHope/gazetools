@@ -28,4 +28,5 @@ before_deploy:
   - R -e "require(staticdocs); build_package('.','inst/web')"
 
 after_success:
-- .utility/initiate-publish.sh
+    deploy:
+        - .utility/initiate-publish.sh
