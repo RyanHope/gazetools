@@ -25,5 +25,5 @@ env:
 
 after_success:
   - ./travis-tool.sh install_github ryanhope/staticdocs
-  - Rscript -e "staticdocs::build_site()"
+  - R -e "staticdocs::build_site()"
   - .utility/initiate-publish.sh
