@@ -1,9 +1,6 @@
-oi#!/bin/bash
+#!/bin/bash
 
 echo -e "Publishing staticdocs...\n"
-export
-
-ls -lah inst
 
 cp -r inst/web ${HOME}
 cd $HOME
@@ -16,6 +13,7 @@ git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/ryanhope/gaze
 cd gh-pages
 git rm -rf *
 cp -Rf $HOME/web/* .
+touch .nojekyll
 git add -A
 git commit -m "Lastest staticdoc on successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages"
 git push -fq origin gh-pages
