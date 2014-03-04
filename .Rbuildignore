@@ -8,4 +8,5 @@ man-roxygen
 staticdocs
 example
 OLD
+inst/web
 ^\.travis\.yml$

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/RyanHope/gazetools.png?branch=master)](https://travis-ci.org/RyanHope/gazetools)
 
-gazetools is a colletion of functions for processing and classifying eye gaze data.
+gazetools is a collection of functions for processing and classifying eye gaze data.
 
 To install:
 

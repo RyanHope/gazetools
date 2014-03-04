@@ -1,17 +1,13 @@
-# Sample .travis.yml for R projects.
-#
-# See README.md for instructions, or for more configuration options,
-# see the wiki:
-#   https://github.com/craigcitro/r-travis/wiki
-
 language: c
 
 before_install:
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
+
 install:
   - ./travis-tool.sh install_deps
+
 script: ./travis-tool.sh run_tests
 
 on_failure:
@@ -22,10 +18,11 @@ notifications:
     on_success: change
     on_failure: change
 
+secure: "Q4mMU7385U8+edjyB8GfksHi4WH4eWI4VE4yzgriXCSdDqyTyICiwzmgCCwE348vx2nVBdl3rRbH3LiIvJYMlh0FmMWIqaEy0f8+c+ZvQ1hb+ynBGKLgdxNW/MhEHX+Qb6LFyemDirDlS5pbrREOYsDPBGz8JvdC45BPzAIXFlA="
+
 before_deploy:
   - ./travis-tool.sh install_github hadley/staticdocs
   - R -e "staticdocs::build_site()"
 
-deploy:
-  host: github_pages
-  branch: gh-pages
+after_success:
+- .utility/initiate-publish.sh
