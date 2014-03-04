@@ -2,9 +2,13 @@
 
 echo -e "Publishing staticdocs...\n"
 
-ls
+echo -e "orig dir\n"
+ls -lah
 cd $HOME
-ls
+echo -e "home\n"
+ls -lah
+echo -e "\n\n"
+
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "travis-ci"
 git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/ryanhope/gazetools gh-pages# > /dev/null
