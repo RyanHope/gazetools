@@ -6,7 +6,7 @@
 A class to hold gaze data classifications
 }
 \section{Slots}{
-  \itemize{ \item{\code{.Data}}{vector of class
+  \describe{ \item{\code{.Data}}{vector of class
   \code{"character"}, containing the gaze sample
   classification} \item{\code{fixation_ids}}{vector of
   class \code{"numeric"}, containing unique fixation ids}
