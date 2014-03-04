@@ -23,10 +23,7 @@ env:
     global:
         secure: BmxOV0lt4pKQT4ucCPX7rAVq73qdLGGE2zZB/koQmbYUrs/+t5sa5pmsL8tZPo9j9nYSVr7PnUwrI4hbNmHaEUddbiLbz1a5YqSmGl7bUN8w2yfSl0kG21ItHE0fzT0IUWOKGDICzIXVQBYJHRfC7Mi4tFgbXRQpymP7/fikXsQ=
 
-before_deploy:
-  - ./travis-tool.sh install_github ryanhope/staticdocs
-  - R -e "require(staticdocs); build_package('.','inst/web')"
-
-
-deploy:
+after_success:
+    - ./travis-tool.sh install_github ryanhope/staticdocs
+    - R -e "require(staticdocs); build_package('.','inst/web')"
     - .utility/initiate-publish.sh
