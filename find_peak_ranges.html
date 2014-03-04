@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>find_peak_ranges. gazetools 4.0.201403031540</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Find Peak Ranges Above Threshold</h1>
+
+<div class="row">
+  <div class="span8">
+    
+Given a vector of data, find ranges of data that exceede a
+set threshold
+
+  
+    <h2>Usage</h2>
+    <pre>find_peak_ranges(x, threshold)</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>a vector of data</dd>
+      <dt>threshold</dt>
+      <dd>a threshold above which to look for
+  peaks</dd>
+    </dl>
+        
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>find_peak_ranges(c(1,2,3,4,5,4,3,2,1,1,1,2,3,4,3,2,1),3)
+</div>
+<div class='output'>  begin end
+1     3   7
+2    13  15
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>find_peak_ranges</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>getFixations. gazetools 4.0.201403031540</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">gazetools 4.0.201403031540</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get Fixations</h1>
+
+<div class="row">
+  <div class="span8">
+    
+Extracts the coordinates of fixations and their durations
+from <code>classify</code> and
+<code>pva</code> objects
+
+  
+    <h2>Usage</h2>
+    <pre>getFixations(class, dpva, drop = T)</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>class</dt>
+      <dd>an object of class
+  <code>classify</code></dd>
+      <dt>dpva</dt>
+      <dd>an object of class <code>pva</code></dd>
+      <dt>drop</dt>
+      <dd>a boolean, if T (default) drop fixations at
+  (0,0)</dd>
+    </dl>
+        
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl,
+                       500, 1680, 1050, 473.76, 296.1,
+                       smi_ezl, smi_exl, smi_eyl))
+d.c <- classify.V(d.pva@v)
+d.f <- getFixations(d.c, d.pva)
+d.f
+</div>
+<div class='output'>           x         y duration
+1   794.3270 534.02327    0.232
+2   833.4959 524.86461    0.192
+3   836.0602 535.40223    1.210
+4  1038.0535 551.54800    0.150
+5  1099.9658 702.44081    0.238
+6   562.7327 937.37820    0.226
+7   466.4392 872.10693    0.296
+8   673.7745 493.46812    0.316
+9   515.1466 923.52706    0.146
+10  501.8369 702.03713    0.112
+11  439.2722 390.92828    0.172
+12  506.4288 368.46732    0.046
+13  467.8158 489.01219    0.192
+14  478.3264 144.92797    0.142
+15  382.5075 203.72805    0.156
+16  380.6283 313.39613    0.164
+17  960.5296 433.91674    0.212
+18  854.6632 278.79623    0.312
+19  635.1348  89.01162    0.242
+20  880.0654 132.43331    0.166
+21 1237.1488  98.62761    0.148
+22 1268.5366 875.20617    0.976
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>getFixations</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
