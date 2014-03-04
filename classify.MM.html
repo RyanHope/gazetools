@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>classify.MM. gazetools 4.0.201403040130</title>
+<title>classify.MM. gazetools 4.0.201403040145</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201403040130</a>
+      <a class="brand" href="#">gazetools 4.0.201403040145</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -83,8 +83,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                       smi_ezl, smi_exl, smi_eyl))
 d.c &lt;- classify.MM(d.pva@v)
 </div>
-<div class='output'>iteration 0 logLik: -18967.67 
-iteration 5 logLik: -14699.5 
+<div class='output'>iteration 0 logLik: -18109.65 
+iteration 5 logLik: -14699.34 
 iteration 10 logLik: -14699.2 
 converged at iteration 10 with logLik: -14699.2 
 </div>
@@ -104,9 +104,10 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c &lt;- classify.MM(d.pva@v, blinks=d.pva@blinks)
 </div>
-<div class='output'>iteration 0 logLik: -17560.93 
-iteration 5 logLik: -14135.75 
-converged at iteration 9 with logLik: -14135.71 
+<div class='output'>iteration 0 logLik: -18214.55 
+iteration 5 logLik: -14135.8 
+iteration 10 logLik: -14135.71 
+converged at iteration 10 with logLik: -14135.71 
 </div>
 <div class='input'>str(d.c)
 </div>
