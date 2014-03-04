@@ -10,3 +10,4 @@ example
 OLD
 inst/web
 ^\.travis\.yml$
+.utility
