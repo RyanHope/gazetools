@@ -6,6 +6,7 @@ before_install:
   - ./travis-tool.sh bootstrap
 
 install:
+  - ./travis-tool.sh install_github ryanhope/staticdocs
   - ./travis-tool.sh r_binary_install colorspace RColorBrewer dichromat munsell labeling SparseM Formula sp mvtnorm TH.data sandwich truncnorm gamlss.data quadprog gtable scales proto quantreg Hmisc mapproj maps hexbin maptools multcomp Rsolnp gamlss gamlss.dist pracma coda chron DAAG fts its mondate strucchange timeDate timeSeries tis tseries xts latticeExtra reshape2 depmixS4 signal ggplot2 markdown highlight
   - ./travis-tool.sh install_deps
 
@@ -24,6 +25,5 @@ env:
         secure: BmxOV0lt4pKQT4ucCPX7rAVq73qdLGGE2zZB/koQmbYUrs/+t5sa5pmsL8tZPo9j9nYSVr7PnUwrI4hbNmHaEUddbiLbz1a5YqSmGl7bUN8w2yfSl0kG21ItHE0fzT0IUWOKGDICzIXVQBYJHRfC7Mi4tFgbXRQpymP7/fikXsQ=
 
 after_success:
-    - ./travis-tool.sh install_github ryanhope/staticdocs
-    - R -e "staticdocs::build_site()"
+    - Rscript -e "staticdocs::build_site()"
     - .utility/initiate-publish.sh
