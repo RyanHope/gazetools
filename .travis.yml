@@ -22,8 +22,8 @@ notifications:
 secure: "Q4mMU7385U8+edjyB8GfksHi4WH4eWI4VE4yzgriXCSdDqyTyICiwzmgCCwE348vx2nVBdl3rRbH3LiIvJYMlh0FmMWIqaEy0f8+c+ZvQ1hb+ynBGKLgdxNW/MhEHX+Qb6LFyemDirDlS5pbrREOYsDPBGz8JvdC45BPzAIXFlA="
 
 before_deploy:
-  - ./travis-tool.sh install_github hadley/staticdocs
-  - R -e "staticdocs::build_site()"
+  - ./travis-tool.sh install_github ryanhope/staticdocs
+  - R -e "require(staticdocs); build_package('.','inst/web')"
 
 after_success:
 - .utility/initiate-publish.sh
