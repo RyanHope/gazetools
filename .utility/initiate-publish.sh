@@ -4,6 +4,7 @@ if [ "$TRAVIS_REPO_SLUG" == "ryanhope/gazetools" ] && [ "$TRAVIS_PULL_REQUEST" =
 
   echo -e "Publishing staticdocs...\n"
 
+  ls
   cd $HOME
   ls
   git config --global user.email "travis@travis-ci.org"
