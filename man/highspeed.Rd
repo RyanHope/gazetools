@@ -2,9 +2,9 @@
 \name{highspeed}
 \alias{highspeed}
 \title{Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.}
-\format{\describe{
-  \item{x}{horizontal gaze location}
-  \item{y}{vertical gaze location}
+\format{\itemize{
+  \item{x:}{ horizontal gaze location}
+  \item{y:}{ vertical gaze location}
 }}
 \usage{
 data(highspeed)

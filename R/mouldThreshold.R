@@ -6,7 +6,7 @@
 #' @param v a vector of instantaneous velocity values
 #' @param samplerate eyetracker samplerate
 #' 
-#' @return an object of class \code{\linkS4class{mould}}
+#' @return an object of class \code{mould}
 #' 
 #' @export
 #' 

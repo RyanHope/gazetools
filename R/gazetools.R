@@ -24,23 +24,23 @@ NULL
 #' @usage data(smi)
 #' 
 #' @format
-#' \describe{
-#'   \item{smi_time}{sample time}
-#'   \item{smi_type}{sample type}
-#'   \item{smi_sxl}{horizontal gaze location of left eye}
-#'   \item{smi_sxr}{horizontal gaze location of right eye}
-#'   \item{smi_syl}{vertical gaze location of left eye}
-#'   \item{smi_syr}{vertical gaze location of right eye}
-#'   \item{smi_dxl}{width of left pupil}
-#'   \item{smi_dxr}{width of right pupil}
-#'   \item{smi_dyl}{height of left pupil}
-#'   \item{smi_dyr}{height of right pupil}
-#'   \item{smi_exl}{horizontal offset of the left eye relative to the center of the screen}
-#'   \item{smi_exr}{horizontal offset of the right eye relative to the center of the screen}
-#'   \item{smi_eyl}{vertical offset of the left eye relative to the center of the screen}
-#'   \item{smi_eyr}{vertical offset of the right eye relative to the center of the screen}
-#'   \item{smi_ezl}{distance of the left eye to the center of the screen}
-#'   \item{smi_ezr}{distance of the right eye to the center of the screen}
+#' \itemize{
+#'   \item{smi_time:}{ sample time}
+#'   \item{smi_type:}{ sample type}
+#'   \item{smi_sxl:}{ horizontal gaze location of left eye}
+#'   \item{smi_sxr:}{ horizontal gaze location of right eye}
+#'   \item{smi_syl:}{ vertical gaze location of left eye}
+#'   \item{smi_syr:}{ vertical gaze location of right eye}
+#'   \item{smi_dxl:}{ width of left pupil}
+#'   \item{smi_dxr:}{ width of right pupil}
+#'   \item{smi_dyl:}{ height of left pupil}
+#'   \item{smi_dyr:}{ height of right pupil}
+#'   \item{smi_exl:}{ horizontal offset of the left eye relative to the center of the screen}
+#'   \item{smi_exr:}{ horizontal offset of the right eye relative to the center of the screen}
+#'   \item{smi_eyl:}{ vertical offset of the left eye relative to the center of the screen}
+#'   \item{smi_eyr:}{ vertical offset of the right eye relative to the center of the screen}
+#'   \item{smi_ezl:}{ distance of the left eye to the center of the screen}
+#'   \item{smi_ezr:}{ distance of the right eye to the center of the screen}
 #' }
 #' 
 NULL
@@ -62,9 +62,9 @@ NULL
 #' @usage data(highspeed)
 #' 
 #' @format
-#' \describe{
-#'   \item{x}{horizontal gaze location}
-#'   \item{y}{vertical gaze location}
+#' \itemize{
+#'   \item{x:}{ horizontal gaze location}
+#'   \item{y:}{ vertical gaze location}
 #' }
 #' 
 NULL
@@ -87,13 +87,13 @@ NULL
 #' @usage data(lc120)
 #' 
 #' @format
-#' \describe{
-#'   \item{status}{signal status}
-#'   \item{y}{pupil size}
-#'   \item{x}{horizontal gaze location}
-#'   \item{y}{vertical gaze location}
-#'   \item{field}{field/camera number}
-#'   \item{timestamp}{time stamp}
+#' \itemize{
+#'   \item{status:}{ signal status}
+#'   \item{pupil:}{ pupil size}
+#'   \item{x:}{ horizontal gaze location}
+#'   \item{y:}{ vertical gaze location}
+#'   \item{field:}{ field/camera number}
+#'   \item{timestamp:}{ time stamp}
 #' }
 #' 
 NULL

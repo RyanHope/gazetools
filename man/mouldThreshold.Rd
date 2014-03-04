@@ -10,7 +10,7 @@ mouldThreshold(v, samplerate)
   \item{samplerate}{eyetracker samplerate}
 }
 \value{
-an object of class \code{\linkS4class{mould}}
+an object of class \code{mould}
 }
 \description{
 Uses the Mould algorithm to determine the optimal velocity

@@ -2,23 +2,23 @@
 \name{smi}
 \alias{smi}
 \title{Gaze data from a SMI RED 500 eyetracker at 500 Hz.}
-\format{\describe{
-  \item{smi_time}{sample time}
-  \item{smi_type}{sample type}
-  \item{smi_sxl}{horizontal gaze location of left eye}
-  \item{smi_sxr}{horizontal gaze location of right eye}
-  \item{smi_syl}{vertical gaze location of left eye}
-  \item{smi_syr}{vertical gaze location of right eye}
-  \item{smi_dxl}{width of left pupil}
-  \item{smi_dxr}{width of right pupil}
-  \item{smi_dyl}{height of left pupil}
-  \item{smi_dyr}{height of right pupil}
-  \item{smi_exl}{horizontal offset of the left eye relative to the center of the screen}
-  \item{smi_exr}{horizontal offset of the right eye relative to the center of the screen}
-  \item{smi_eyl}{vertical offset of the left eye relative to the center of the screen}
-  \item{smi_eyr}{vertical offset of the right eye relative to the center of the screen}
-  \item{smi_ezl}{distance of the left eye to the center of the screen}
-  \item{smi_ezr}{distance of the right eye to the center of the screen}
+\format{\itemize{
+  \item{smi_time:}{ sample time}
+  \item{smi_type:}{ sample type}
+  \item{smi_sxl:}{ horizontal gaze location of left eye}
+  \item{smi_sxr:}{ horizontal gaze location of right eye}
+  \item{smi_syl:}{ vertical gaze location of left eye}
+  \item{smi_syr:}{ vertical gaze location of right eye}
+  \item{smi_dxl:}{ width of left pupil}
+  \item{smi_dxr:}{ width of right pupil}
+  \item{smi_dyl:}{ height of left pupil}
+  \item{smi_dyr:}{ height of right pupil}
+  \item{smi_exl:}{ horizontal offset of the left eye relative to the center of the screen}
+  \item{smi_exr:}{ horizontal offset of the right eye relative to the center of the screen}
+  \item{smi_eyl:}{ vertical offset of the left eye relative to the center of the screen}
+  \item{smi_eyr:}{ vertical offset of the right eye relative to the center of the screen}
+  \item{smi_ezl:}{ distance of the left eye to the center of the screen}
+  \item{smi_ezr:}{ distance of the right eye to the center of the screen}
 }}
 \usage{
 data(smi)

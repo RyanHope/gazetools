@@ -17,8 +17,8 @@ setAs("classify","data.frame", function(from) as.data.frame.classify(from))
 #' 
 #' Creates a scatter plot of the scanpath between each fixation. Fixation durations are indicated by the size of the fixation point.
 #' 
-#' @param x an object of class \code{\linkS4class{classify}}
-#' @param y an object of class \code{\linkS4class{pva}}
+#' @param x an object of class \code{classify}
+#' @param y an object of class \code{pva}
 #' 
 #' @docType methods
 #' @importFrom plyr ddply .

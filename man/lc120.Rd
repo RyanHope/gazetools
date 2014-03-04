@@ -2,13 +2,13 @@
 \name{lc120}
 \alias{lc120}
 \title{Gaze data from a LC Technologies binocular eyetracker at 120 Hz.}
-\format{\describe{
-  \item{status}{signal status}
-  \item{y}{pupil size}
-  \item{x}{horizontal gaze location}
-  \item{y}{vertical gaze location}
-  \item{field}{field/camera number}
-  \item{timestamp}{time stamp}
+\format{\itemize{
+  \item{status:}{ signal status}
+  \item{pupil:}{ pupil size}
+  \item{x:}{ horizontal gaze location}
+  \item{y:}{ vertical gaze location}
+  \item{field:}{ field/camera number}
+  \item{timestamp:}{ time stamp}
 }}
 \usage{
 data(lc120)

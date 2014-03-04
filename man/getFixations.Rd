@@ -5,18 +5,16 @@
 getFixations(class, dpva, drop = T)
 }
 \arguments{
-  \item{class}{an object of class
-  \code{\linkS4class{classify}}}
+  \item{class}{an object of class \code{classify}}
 
-  \item{dpva}{an object of class \code{\linkS4class{pva}}}
+  \item{dpva}{an object of class \code{pva}}
 
   \item{drop}{a boolean, if T (default) drop fixations at
   (0,0)}
 }
 \description{
 Extracts the coordinates of fixations and their durations
-from \code{\linkS4class{classify}} and
-\code{\linkS4class{pva}} objects
+from \code{classify} and \code{pva} objects
 }
 \examples{
 data(smi)

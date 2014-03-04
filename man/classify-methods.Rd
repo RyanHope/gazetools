@@ -7,10 +7,9 @@
 \S4method{plot}{classify,pva}(x, y, ...)
 }
 \arguments{
-  \item{x}{an object of class
-  \code{\linkS4class{classify}}}
+  \item{x}{an object of class \code{classify}}
 
-  \item{y}{an object of class \code{\linkS4class{pva}}}
+  \item{y}{an object of class \code{pva}}
 
   \item{...}{Arguments to be passed to methods, such as
   \link{graphical parameters} (see \code{\link{par}}).

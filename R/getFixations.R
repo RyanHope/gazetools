@@ -1,10 +1,10 @@
 #' Get Fixations
 #' 
-#' Extracts the coordinates of fixations and their durations from \code{\linkS4class{classify}} 
-#' and \code{\linkS4class{pva}} objects
+#' Extracts the coordinates of fixations and their durations from \code{classify}
+#' and \code{pva} objects
 #' 
-#' @param class an object of class \code{\linkS4class{classify}}
-#' @param dpva an object of class \code{\linkS4class{pva}}
+#' @param class an object of class \code{classify}
+#' @param dpva an object of class \code{pva}
 #' @param drop a boolean, if T (default) drop fixations at (0,0)
 #'
 #' @importFrom plyr ddply .
