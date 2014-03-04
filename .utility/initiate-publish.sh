@@ -3,7 +3,7 @@
 echo -e "Publishing staticdocs...\n"
 export
 
-cp -r $HOME/inst/web .
+cp -r inst/web ${HOME}
 cd $HOME
 
 git config --global user.email "travis@travis-ci.org"
