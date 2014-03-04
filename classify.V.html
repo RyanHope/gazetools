@@ -39,13 +39,8 @@
 
 <div class="row">
   <div class="span8">
-    
-Classifies gaze data into saccades and fixations using a
-velocity threshold.
-
-  
     <h2>Usage</h2>
-    <pre>classify.V(v, vt = 75, blinks = NULL)</pre>
+    <pre><div>classify.V(v, vt&nbsp;=&nbsp;75, blinks&nbsp;=&nbsp;NULL)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -57,36 +52,51 @@ velocity threshold.
       <dd>vector of class <code>"logical"</code>, TRUE if
   samples belong to a blink</dd>
     </dl>
-        
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>an object of class <code><a href='classify-class.html'>classify</a></code></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Classifies gaze data into saccades and fixations using a
+velocity threshold.</p>
+  
+    </div>
+    
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'># Classification ignorning blinks
 data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl,
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
                        smi_ezl, smi_exl, smi_eyl))
-d.c <- classify.V(d.pva@v)
+d.c &lt;- classify.V(d.pva@v)
 str(d.c)
 </div>
-<div class='output'>Formal class 'classify' [package "gazetools"] with 5 slots
-  ..@ .Data       : chr [1:3437] "FIXATION" "FIXATION" "FIXATION" "FIXATION" ...
+<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 5 slots
+  ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
-  ..@ algorithm   : chr "velocity"
+  ..@ algorithm   : chr &quot;velocity&quot;
   ..@ thresholds  : num 75
 </div>
 <div class='input'>
 # Classification accounting for blinks
-d.pva <- with(smi, pva(smi_sxl, smi_syl,
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
-d.c <- classify.V(d.pva@v, blinks=d.pva@blinks)
+d.c &lt;- classify.V(d.pva@v, blinks=d.pva@blinks)
 str(d.c)
 </div>
-<div class='output'>Formal class 'classify' [package "gazetools"] with 5 slots
-  ..@ .Data       : chr [1:3437] "FIXATION" "FIXATION" "FIXATION" "FIXATION" ...
+<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 5 slots
+  ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
-  ..@ algorithm   : chr "velocity"
+  ..@ algorithm   : chr &quot;velocity&quot;
   ..@ thresholds  : num 75
 </div></pre>
   </div>

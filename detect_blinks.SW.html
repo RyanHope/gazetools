@@ -39,12 +39,8 @@
 
 <div class="row">
   <div class="span8">
-    
-Detects blinks based on pupil status/valicity
-
-  
     <h2>Usage</h2>
-    <pre>detect_blinks.SW(pupil, samplerate, pad = 50)</pre>
+    <pre><div>detect_blinks.SW(pupil, samplerate, pad&nbsp;=&nbsp;50)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -57,10 +53,25 @@ Detects blinks based on pupil status/valicity
       <dd>time in ms to pad each side of each no pupil
   segment</dd>
     </dl>
-        
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>a vector of class <code>logical</code>; indicates samples that
+belong to a blink</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Detects blinks based on pupil status/valicity</p>
+  
+    </div>
+    
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'>data(lc120)
-d.b <- with(lc120, detect_blinks.SW(status, 120))
+d.b &lt;- with(lc120, detect_blinks.SW(status, 120))
 str(d.b)
 </div>
 <div class='output'> logi [1:247145] FALSE FALSE FALSE FALSE FALSE FALSE ...

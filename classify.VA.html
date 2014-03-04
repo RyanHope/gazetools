@@ -39,13 +39,8 @@
 
 <div class="row">
   <div class="span8">
-    
-Classifies gaze data into saccades and fixations using both
-velocity and acceleration thresholds.
-
-  
     <h2>Usage</h2>
-    <pre>classify.VA(v, a, vt = 30, at = 8000, blinks = NULL)</pre>
+    <pre><div>classify.VA(v, a, vt&nbsp;=&nbsp;30, at&nbsp;=&nbsp;8000, blinks&nbsp;=&nbsp;NULL)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -62,10 +57,23 @@ velocity and acceleration thresholds.
   samples belong to a blink</dd>
     </dl>
     
+    <div class="Gaze Data Classification (velocity-acceleration)">
+      <h2>Gaze Data Classification (velocity-acceleration)</h2>
+      
+    </div>
+
     <div class="Value">
       <h2>Value</h2>
       
       <p>an object of class <code><a href='classify-class.html'>classify</a></code></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Classifies gaze data into saccades and fixations using both
+velocity and acceleration thresholds.</p>
   
     </div>
 
@@ -82,32 +90,32 @@ eyetracking data. Behavior Research Methods, 42(1),
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'># Classification ignorning blinks
 data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl,
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
                        smi_ezl, smi_exl, smi_eyl))
-d.c <- classify.VA(d.pva@v, d.pva@a)
+d.c &lt;- classify.VA(d.pva@v, d.pva@a)
 str(d.c)
 </div>
-<div class='output'>Formal class 'classify' [package "gazetools"] with 5 slots
-  ..@ .Data       : chr [1:3437] "FIXATION" "FIXATION" "FIXATION" "FIXATION" ...
+<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 5 slots
+  ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
-  ..@ algorithm   : chr "velocity-acceleration"
+  ..@ algorithm   : chr &quot;velocity-acceleration&quot;
   ..@ thresholds  : num [1:2] 30 8000
 </div>
 <div class='input'>
 # Classification accounting for blinks
-d.pva <- with(smi, pva(smi_sxl, smi_syl,
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
-d.c <- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
+d.c &lt;- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
 str(d.c)
 </div>
-<div class='output'>Formal class 'classify' [package "gazetools"] with 5 slots
-  ..@ .Data       : chr [1:3437] "FIXATION" "FIXATION" "FIXATION" "FIXATION" ...
+<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 5 slots
+  ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
-  ..@ algorithm   : chr "velocity-acceleration"
+  ..@ algorithm   : chr &quot;velocity-acceleration&quot;
   ..@ thresholds  : num [1:2] 30 8000
 </div></pre>
   </div>

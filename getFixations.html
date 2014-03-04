@@ -39,13 +39,8 @@
 
 <div class="row">
   <div class="span8">
-    
-Extracts the coordinates of fixations and their durations
-from <code>classify</code> and <code>pva</code> objects
-
-  
     <h2>Usage</h2>
-    <pre>getFixations(class, dpva, drop = T)</pre>
+    <pre><div>getFixations(class, dpva, drop&nbsp;=&nbsp;T)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -57,14 +52,22 @@ from <code>classify</code> and <code>pva</code> objects
       <dd>a boolean, if T (default) drop fixations at
   (0,0)</dd>
     </dl>
-        
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Extracts the coordinates of fixations and their durations
+from <code>classify</code> and <code>pva</code> objects</p>
+  
+    </div>
+    
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'>data(smi)
-d.pva <- with(smi, pva(smi_sxl, smi_syl,
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        500, 1680, 1050, 473.76, 296.1,
                        smi_ezl, smi_exl, smi_eyl))
-d.c <- classify.V(d.pva@v)
-d.f <- getFixations(d.c, d.pva)
+d.c &lt;- classify.V(d.pva@v)
+d.f &lt;- getFixations(d.c, d.pva)
 d.f
 </div>
 <div class='output'>           x         y duration
