@@ -1,10 +1,14 @@
-#!/bin/bash
+oi#!/bin/bash
 
 echo -e "Publishing staticdocs...\n"
 export
 
+ls -lah
+
 cp -r inst/web ${HOME}
 cd $HOME
+
+ls -lah
 
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "travis-ci"
