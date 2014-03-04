@@ -6,7 +6,7 @@ before_install:
   - ./travis-tool.sh bootstrap
 
 install:
-  - ./travis-tool.sh r_binary_install colorspace RColorBrewer dichromat munsell labeling SparseM Formula sp mvtnorm TH.data sandwich truncnorm gamlss.data quadprog gtable scales proto quantreg Hmisc mapproj maps hexbin maptools multcomp Rsolnp gamlss gamlss.dist pracma coda chron DAAG fts its mondate strucchange timeDate timeSeries tis tseries xts latticeExtra reshape2 depmixS4 signal ggplot2
+  - ./travis-tool.sh r_binary_install colorspace RColorBrewer dichromat munsell labeling SparseM Formula sp mvtnorm TH.data sandwich truncnorm gamlss.data quadprog gtable scales proto quantreg Hmisc mapproj maps hexbin maptools multcomp Rsolnp gamlss gamlss.dist pracma coda chron DAAG fts its mondate strucchange timeDate timeSeries tis tseries xts latticeExtra reshape2 depmixS4 signal ggplot2 markdown highlight
   - ./travis-tool.sh install_deps
 
 script: ./travis-tool.sh run_tests
