@@ -19,7 +19,7 @@ notifications:
     on_success: change
     on_failure: change
 
-secure: "Q4mMU7385U8+edjyB8GfksHi4WH4eWI4VE4yzgriXCSdDqyTyICiwzmgCCwE348vx2nVBdl3rRbH3LiIvJYMlh0FmMWIqaEy0f8+c+ZvQ1hb+ynBGKLgdxNW/MhEHX+Qb6LFyemDirDlS5pbrREOYsDPBGz8JvdC45BPzAIXFlA="
+secure: "8298011399a84e64573055749f12583a61bcb9ec"
 
 before_deploy:
   - ./travis-tool.sh install_github ryanhope/staticdocs
