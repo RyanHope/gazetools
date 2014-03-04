@@ -27,6 +27,6 @@ before_deploy:
   - ./travis-tool.sh install_github ryanhope/staticdocs
   - R -e "require(staticdocs); build_package('.','inst/web')"
 
-after_success:
-    deploy:
-        - .utility/initiate-publish.sh
+
+deploy:
+    - .utility/initiate-publish.sh
