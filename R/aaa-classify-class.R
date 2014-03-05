@@ -3,6 +3,7 @@
 #' A class to hold gaze data classifications
 #'
 #' @slot .Data vector of class \code{"character"}, containing the gaze sample classification
+#' @slot fixation_ids vector of class \code{"numeric"}, containing unique fixation ids
 #' @slot saccade_ids vector of class \code{"numeric"}, containing unique saccade ids
 #' @slot algorithm the algorithm used to classify the gaze data
 #' @slot thresholds the threshold settings for the classification algorithm
