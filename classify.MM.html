@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>classify.MM. gazetools 4.0.201403040150</title>
+<title>classify.MM. gazetools 4.0.201403051408</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201403040150</a>
+      <a class="brand" href="#">gazetools 4.0.201403051408</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -51,6 +51,11 @@
   samples belong to a blink</dd>
     </dl>
     
+    <div class="Gaze Data Classification (mixture model)">
+      <h2>Gaze Data Classification (mixture model)</h2>
+      
+    </div>
+
     <div class="Value">
       <h2>Value</h2>
       
@@ -61,17 +66,14 @@
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Uses a mixture model to classify gaze data into saccades
-and fixations.</p>
+      <p>Uses a mixture model to classify gaze data into saccades and fixations.</p>
   
     </div>
 
     <div class="References">
       <h2>References</h2>
       
-      <p>Ingmar Visser, Maarten Speekenbrink (2010). depmixS4: An R
-Package for Hidden Markov Models. Journal of Statistical
-Software, 36(7), 1-21.</p>
+      <p>Ingmar Visser, Maarten Speekenbrink (2010). depmixS4: An R Package for Hidden Markov Models. Journal of Statistical Software, 36(7), 1-21.</p>
   
     </div>
     
@@ -83,8 +85,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                       smi_ezl, smi_exl, smi_eyl))
 d.c &lt;- classify.MM(d.pva@v)
 </div>
-<div class='output'>iteration 0 logLik: -19130.45 
-iteration 5 logLik: -14699.57 
+<div class='output'>iteration 0 logLik: -18857.44 
+iteration 5 logLik: -14699.47 
 iteration 10 logLik: -14699.2 
 converged at iteration 10 with logLik: -14699.2 
 </div>
@@ -104,8 +106,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c &lt;- classify.MM(d.pva@v, blinks=d.pva@blinks)
 </div>
-<div class='output'>iteration 0 logLik: -18065.21 
-iteration 5 logLik: -14135.77 
+<div class='output'>iteration 0 logLik: -17642.35 
+iteration 5 logLik: -14135.75 
 iteration 10 logLik: -14135.71 
 converged at iteration 10 with logLik: -14135.71 
 </div>
@@ -130,8 +132,8 @@ converged at iteration 10 with logLik: -14135.71
     <h2>See also</h2>
     
 Other classify: <code><a href='as.html'>as</a></code>, <code><a href='as.html'>as</a></code>;
-<code><a href='classify.VA.html'>classify.VA</a></code>; <code><a href='classify.VI.html'>classify.VI</a></code>;
-<code><a href='classify.V.html'>classify.V</a></code>
+  <code><a href='classify.VA.html'>classify.VA</a></code>; <code><a href='classify.VI.html'>classify.VI</a></code>;
+  <code><a href='classify.V.html'>classify.V</a></code>
 
         
   </div>
