@@ -2,22 +2,16 @@
 #'
 #' A class to hold mould threshold information
 #'
-#'@section Slots: 
-#'  \describe{
-#'    \item{\code{.Data}}{a threshold value}
-#'    \item{\code{thresholds}}{vector of class \code{"numeric"}}
-#'    \item{\code{resp1}}{vector of class \code{"numeric"}}
-#'    \item{\code{resp2}}{vector of class \code{"numeric"}}
-#'    \item{\code{gap}}{vector of class \code{"numeric"}}
-#'  }
+#' @slot .Data a threshold value
+#' @slot thresholds vector of class \code{"numeric"}
+#' @slot resp1 vector of class \code{"numeric"}
+#' @slot resp2 vector of class \code{"numeric"}
+#' @slot gap vector of class \code{"numeric"}
 #'
 #' @importFrom methods setClass
 #' 
-#' @docType class
-#' @name mould-class
-#' @rdname mould-class
-#' 
 #' @export
+#' @docType class
 #' 
 setClass("mould", 
          representation(thresholds = "numeric",
