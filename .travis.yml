@@ -25,7 +25,7 @@ env:
     secure: BmxOV0lt4pKQT4ucCPX7rAVq73qdLGGE2zZB/koQmbYUrs/+t5sa5pmsL8tZPo9j9nYSVr7PnUwrI4hbNmHaEUddbiLbz1a5YqSmGl7bUN8w2yfSl0kG21ItHE0fzT0IUWOKGDICzIXVQBYJHRfC7Mi4tFgbXRQpymP7/fikXsQ=
 
 after_success:
-  - ./travis-tool.sh install_github yihui/roxygen2
+  - ./travis-tool.sh r_binary_install roxygen2
   - ./travis-tool.sh install_github hadley/staticdocs
   - R -e "staticdocs::build_site()"
   - staticdocs-gh_pages.sh
