@@ -8,6 +8,7 @@ man-roxygen
 staticdocs
 example
 OLD
+NEW
 inst/web
 ^\.travis\.yml$
 .utility
