@@ -17,6 +17,8 @@
 #' @slot blinks vector of class \code{"logical"}, TRUE if samples belong to a blink
 #' @slot rx the x resolution of the monitor (pixels)
 #' @slot ry the y resolution of the monitor (pixels)
+#' @slot sw the physical screen width (mm)
+#' @slot sh the physical screen height (mm)
 #' @slot samplerate the samplerate of the eyetracker
 #' @slot sgolayfilt parameters for the avitzky-Golay smoothing filter
 #'
@@ -33,6 +35,7 @@ setClass("pva",
                         xa = "numeric", ya = "numeric",
                         v = "numeric", a = "numeric",
                         rx = "numeric", ry = "numeric",
+                        sw = "numeric", sh = "numeric",
                         blinks = "logical",
                         samplerate = "numeric",
                         sgolayfilt = "numeric"))
