@@ -5,7 +5,7 @@
 #' 
 #' @param v a vector of instantaneous velocity values
 #' @param samplerate eyetracker samplerate
-#' @params blinks a vector indicating whether each sample belongs to a blink, if non-null blinks will not be included in analysis
+#' @param blinks a vector indicating whether each sample belongs to a blink, if non-null blinks will not be included in analysis
 #' 
 #' @return an object of class \code{mould}
 #' 
