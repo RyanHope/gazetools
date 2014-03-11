@@ -28,8 +28,11 @@ classify.MM <- function(v, blinks = NULL)
     class <- ifelse(m@posterior$state==2,"FIXATION","SACCADE")
   fixation_ids <- event_ids(class, "FIXATION")
   saccade_ids <- event_ids(class, "SACCADE")
-  if (!is.null(blinks))
+  if (!is.null(blinks)) {
     class[blinks] <- "BLINK"
+    fixation_ids[blinks] <- 0
+    saccade_ids[blinks] <- 0
+  }
   new("classify", class,
       fixation_ids = fixation_ids,
       saccade_ids = saccade_ids,

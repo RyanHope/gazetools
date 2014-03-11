@@ -43,8 +43,11 @@ classify.V <- function(v, vt = 75, blinks = NULL)
   }
   fixation_ids <- event_ids(class, "FIXATION")
   saccade_ids <- event_ids(class, "SACCADE")
-  if (!is.null(blinks))
+  if (!is.null(blinks)) {
     class[blinks] <- "BLINK"
+    fixation_ids[blinks] <- 0
+    saccade_ids[blinks] <- 0
+  }
   new("classify", class,
       fixation_ids = fixation_ids,
       saccade_ids = saccade_ids,
