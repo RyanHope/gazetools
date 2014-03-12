@@ -68,7 +68,7 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
   x <- na.approx(x, na.rm=FALSE)
   y <- na.approx(y, na.rm=FALSE)
 
-  new("pva", time = 0:(length(v)-1), ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa,
+  new("pva", time = 0:(length(v)-1) * ts, ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa,
       sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window), rx = rx, ry = ry, sw = sw, sh = sh,
       samplerate = samplerate, blinks = blinks)
 }
