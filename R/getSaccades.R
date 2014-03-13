@@ -18,7 +18,7 @@
 #' d.f <- getSaccades(d.c, d.pva)
 #' d.f
 #'  
-getSaccades <- function(class, dpva, drop=T) {
+getSaccades <- function(class, dpva) {
   if (!is(class, "classify"))
     stop("class is not of class classify")
   if (!is(dpva, "pva"))
