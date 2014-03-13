@@ -32,7 +32,6 @@ classify.V <- function(v, vt = 75, blinks = NULL)
   m <- length(v)
   class <- rep("FIXATION", m)
   vranges <- find_peak_ranges(v, vt)
-  vpeaks <- find_peaks(v, vt)
   for (i in 1:nrow(vranges)) {
     r <- vranges[i,1]:vranges[i,2]
     if (min(r) != 1)
@@ -51,5 +50,6 @@ classify.V <- function(v, vt = 75, blinks = NULL)
   new("classify", class,
       fixation_ids = fixation_ids,
       saccade_ids = saccade_ids,
-      algorithm = "velocity", thresholds = c(vt))
+      glissade_ids = rep(0, m),
+      algorithm = "velocity", thresholds = list(vt=vt))
 }

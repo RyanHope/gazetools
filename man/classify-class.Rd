@@ -14,6 +14,8 @@ A class to hold gaze data classifications
 
 \item{\code{saccade_ids}}{vector of class \code{"numeric"}, containing unique saccade ids}
 
+\item{\code{glissade_ids}}{vector of class \code{"numeric"}, containing unique glissade ids}
+
 \item{\code{algorithm}}{the algorithm used to classify the gaze data}
 
 \item{\code{thresholds}}{the threshold settings for the classification algorithm}

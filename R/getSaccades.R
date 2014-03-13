@@ -1,3 +1,5 @@
+utils::globalVariables(c("saccade_ids"))
+
 #' Get Saccades
 #' 
 #' Extracts the start point, end point, distance and duration of saccades from \code{classify}

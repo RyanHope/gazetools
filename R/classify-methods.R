@@ -2,7 +2,7 @@ utils::globalVariables(c("fixation_ids","dur"))
 
 #' @export
 as.data.frame.classify <- function(x, row.names=NULL, optional=FALSE, ...) {
-  data.frame(class = x@.Data, fixation_ids = x@fixation_ids, saccade_ids = x@saccade_ids)
+  data.frame(class = x@.Data, fixation_ids = x@fixation_ids, saccade_ids = x@saccade_ids, glissade_ids = x@glissade_ids)
 }
 
 #' as("classify", "data.frame")

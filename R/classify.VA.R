@@ -63,5 +63,6 @@ classify.VA <- function(v, a, vt = 30, at = 8000, blinks = NULL)
   new("classify", class,
       fixation_ids = fixation_ids,
       saccade_ids = saccade_ids,
-      algorithm = "velocity-acceleration", thresholds = c(vt, at))
+      glissade_ids = rep(0, m),
+      algorithm = "velocity-acceleration", thresholds = list(vt=vt, at=at))
 }
