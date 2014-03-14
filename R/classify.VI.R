@@ -18,6 +18,9 @@
 #' 
 #' @family classify
 #' 
+#' @encoding latin1
+#' @references Nyström, M., & Holmqvist, K. (2010). An adaptive algorithm for fixation, saccade, and glissade detection in eyetracking data. Behavior Research Methods, 42(1), 188-204.
+#'
 #' @examples
 #' # Classification ignorning blinks
 #' data(smi)
@@ -63,62 +66,74 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
   m <- nrow(v)
   class <- rep("FIXATION", m)
   vranges <- find_peak_ranges(v$v, vt)
-  for (i in 1:nrow(vranges)) {
-    rmin <- vranges[i,1]
-    while (v[rmin,"v"]>st && (rmin-1)>1 && length(v[rmin-1,"v"])==1)
-      rmin <- rmin-1
-    while ((rmin-1)>1 && length(v[rmin-1,"v"])==1 && v[rmin-1,"v"]<v[rmin,"v"])
-      rmin <- rmin-1
+  if (!is.null(vranges) && nrow(vranges)>0) {
+    for (i in 1:nrow(vranges)) {
+      rmin <- vranges[i,1]
+      while (v[rmin,"v"]>st && (rmin-1)>1 && length(v[rmin-1,"v"])==1)
+        rmin <- rmin-1
+      while ((rmin-1)>1 && length(v[rmin-1,"v"])==1 && v[rmin-1,"v"]<v[rmin,"v"])
+        rmin <- rmin-1
 
-    # calculate saccade offset threshold
-    if (rmin-offset < 1) next
-    vtmp <- v[(rmin-offset):rmin,]
-    z <- NULL
-    while (T) {
-      f <- subset(vtmp, blinks==FALSE & v<nt)
-      if (nrow(f)==0) break
-      z <- mean(f$v)
-      ntn <- z + (sigma/2) * sd(f$v)
-      if (is.na(ntn) || abs(ntn-nt)<1)
-        break
-      nt <- ntn
-    }
-
-    st_off <- a*st + b*nt
-    rmax <- vranges[i,2]
-    while (v[rmax,"v"]>st_off && (rmax+1)<m && length(v[rmax+1,"v"])==1) {
-      rmax <- rmax+1
-    }
-    while ((rmax+1)<m && length(v[rmax+1,"v"])==1 && v[rmax+1,"v"]<v[rmax,"v"])
-      rmax <- rmax+1
-
-    if (rmax-rmin<min.sac) next
-    if (!is.null(z) && z>vt) next
-    class[rmin:rmax] <- "SACCADE"
-
-    # detect fast-glissades
-    fast <- FALSE
-    g <- find_peaks(v[(rmax+1):(rmax+offset-1),"v"],vt)
-    if (!is.null(g)) {
-      o <- which(na.omit(v[(rmax+g[1]-1):(rmax+offset),"v"])<vt)
-      if (length(o)>0) {
-        fast <- TRUE
-        goff <- (rmax+o[1]-1)
-        while ((goff+1)<m && length(v[goff+1,"v"])==1 && v[goff+1,"v"]<v[goff,"v"])
-          goff <- goff+1
-        class[(rmax+1):goff] <- "GLISSADE"
+      # calculate saccade offset threshold
+      if (rmin-offset < 1) next
+      vtmp <- v[(rmin-offset):rmin,]
+      z <- NULL
+      while (T) {
+        f <- subset(vtmp, blinks==FALSE & v<nt)
+        if (nrow(f)==0) break
+        z <- mean(f$v)
+        ntn <- z + (sigma/2) * sd(f$v)
+        if (is.na(ntn) || abs(ntn-nt)<1)
+          break
+        nt <- ntn
       }
-    }
-    if (!fast) {
-      # detect slow-glissades
-      g <- find_peaks(v[(rmax+1):(rmax+offset-1),"v"],st)
-      if (!is.null(g)) {
-        o <- which(na.omit(v[(rmax+g[1]-1):(rmax+offset),"v"])<st)
-        if (length(o)>0) {
-          goff <- (rmax+o[1]-1)
-          while ((goff+1)<m && length(v[goff+1,"v"])==1 && v[goff+1,"v"]<v[goff,"v"])
-            goff <- goff+1
-          class[(rmax+1):goff] <- "GLISSADE"
+
+      st_off <- a*st + b*nt
+      rmax <- vranges[i,2]
+      while (v[rmax,"v"]>st_off && (rmax+1)<m && length(v[rmax+1,"v"])==1) {
+        rmax <- rmax+1
+      }
+      while ((rmax+1)<m && length(v[rmax+1,"v"])==1 && v[rmax+1,"v"]<v[rmax,"v"])
+        rmax <- rmax+1
+
+      if (rmax-rmin<min.sac) next
+      if (!is.null(z) && z>vt) next
+      class[rmin:rmax] <- "SACCADE"
+
+      # detect fast-glissades
+      fast <- FALSE
+      peak <- FALSE
+      for (i in 0:(offset-1)) {
+        if (!peak && !is.na(v[(rmax+i),"v"]) && v[(rmax+i),"v"]>vt) {
+          peak <- TRUE
+          next
+        } else {
+          vn <- v[(rmax+i),"v"]
+          if (peak && !is.na(vn) && vn<=vt) {
+            fast <- TRUE
+            while ((rmax+i+1)<m && length(v[rmax+i+1,"v"])==1 && v[rmax+i+1,"v"]<v[rmax+i,"v"])
+              i <- i + 1
+            class[rmax:(rmax+(i-1))] <- "GLISSADE"
+            break
+          }
+        }
+      }
+      if (!fast) {
+        peak <- FALSE
+        # detect slow-glissades
+        for (i in 0:(offset-1)) {
+          if (!peak && !is.na(v[(rmax+i),"v"]) && v[(rmax+i),"v"]>st) {
+            peak <- TRUE
+            next
+          } else {
+            vn <- v[(rmax+i),"v"]
+            if (peak && !is.na(vn) && vn<=st) {
+              while ((rmax+i+1)<m && length(v[rmax+i+1,"v"])==1 && v[rmax+i+1,"v"]<v[rmax+i,"v"])
+                i <- i + 1
+              class[rmax:(rmax+(i-1))] <- "GLISSADE"
+              break
+            }
+          }
         }
       }
     }
