@@ -1,3 +1,4 @@
+\encoding{latin1}
 \name{classify.VI}
 \alias{classify.VI}
 \title{Gaze Data Classification (velocity-iterative)}
@@ -52,6 +53,9 @@ d.pva <- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c <- classify.VI(d.pva@v, blinks=d.pva@blinks)
 str(d.c)
+}
+\references{
+Nyström, M., & Holmqvist, K. (2010). An adaptive algorithm for fixation, saccade, and glissade detection in eyetracking data. Behavior Research Methods, 42(1), 188-204.
 }
 \seealso{
 Other classify: \code{\link{as}}, \code{\link{as}};
