@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export
-ls
 if [ "$TRAVIS_REPO_SLUG" == "${GH_REF}" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
   echo -e "Publishing staticdocs...\n"
