@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>pva. gazetools 4.0.201403051408</title>
+<title>pva. gazetools 4.0.201403191244</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201403051408</a>
+      <a class="brand" href="#">gazetools 4.0.201403191244</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -40,7 +40,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>pva(x, y, samplerate, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;0, ey&nbsp;=&nbsp;0, order&nbsp;=&nbsp;2, window&nbsp;=&nbsp;11, pupil&nbsp;=&nbsp;NULL, blinkFUN&nbsp;=&nbsp;"detect_blinks.PV", ...)</div></pre>
+    <pre><div>pva(x, y, samplerate, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;0, ey&nbsp;=&nbsp;0, order&nbsp;=&nbsp;2, window&nbsp;=&nbsp;11, vt&nbsp;=&nbsp;1000, at&nbsp;=&nbsp;1e+05, pupil&nbsp;=&nbsp;NULL, blinkFUN&nbsp;=&nbsp;"detect_blinks.SW", ...)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -74,6 +74,10 @@
       <dt>window</dt>
       <dd>the Savitzky-Golay filter window length
   (must be odd)</dd>
+      <dt>vt</dt>
+      <dd>max velocity threshold</dd>
+      <dt>at</dt>
+      <dd>max acceleration threshold</dd>
       <dt>pupil</dt>
       <dd>a vector of class <code>numeric</code>; the
   vertical diameter of the pupil or a pupil status signal</dd>
@@ -84,11 +88,6 @@
       <dd>arguments to be passed to blinkFUN</dd>
     </dl>
     
-    <div class="Compute Velocity and Acceleration Profiles for Raw Gaze Data">
-      <h2>Compute Velocity and Acceleration Profiles for Raw Gaze Data</h2>
-      
-    </div>
-
     <div class="Value">
       <h2>Value</h2>
       
@@ -111,21 +110,23 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl))
 str(d.pva)
 </div>
-<div class='output'>Formal class &#39;pva&#39; [package &quot;gazetools&quot;] with 17 slots
-  ..@ time      : int [1:3437] 0 1 2 3 4 5 6 7 8 9 ...
+<div class='output'>Formal class &#39;pva&#39; [package &quot;gazetools&quot;] with 19 slots
+  ..@ time      : num [1:3437] 0 0.002 0.004 0.006 0.008 0.01 0.012 0.014 0.016 0.018 ...
   ..@ ez        : num [1:3437] 712 712 712 712 712 ...
   ..@ ex        : num [1:3437] 42.7 42.7 42.6 42.6 42.6 ...
-  ..@ ey        : num [1:3437] 40.5 40.5 40.5 40.5 40.5 ...
-  ..@ x         : int [1:3437] 814 807 811 820 817 817 817 820 822 822 ...
-  ..@ y         : int [1:3437] 528 527 527 526 524 525 524 525 525 526 ...
+  ..@ ey        : num [1:3437] 712 712 712 712 712 ...
+  ..@ x         : num [1:3437] 814 807 811 820 817 817 817 820 822 822 ...
+  ..@ y         : num [1:3437] 528 527 527 526 524 525 524 525 525 526 ...
   ..@ sx        : num [1:3437] 810 812 814 815 816 ...
   ..@ sy        : num [1:3437] 528 527 526 526 525 ...
-  ..@ xa        : num [1:3437] 0.587 0.746 0.655 0.452 0.52 ...
-  ..@ ya        : num [1:3437] 0.0678 0.0452 0.0452 0.0226 0.0226 ...
-  ..@ v         : num [1:3437] 21.7 20 18.2 16.5 14.9 ...
-  ..@ a         : num [1:3437] 952 952 952 952 952 ...
+  ..@ xa        : num [1:3437] 0.417 0.529 0.465 0.321 0.369 ...
+  ..@ ya        : num [1:3437] 0.0341 0.0227 0.0227 0.0114 0.0113 ...
+  ..@ v         : num [1:3437] 14.7 13.6 12.5 11.5 10.4 ...
+  ..@ a         : num [1:3437] 582 582 582 582 582 ...
   ..@ rx        : num 1680
   ..@ ry        : num 1050
+  ..@ sw        : num 474
+  ..@ sh        : num 296
   ..@ blinks    : logi [1:3437] FALSE FALSE FALSE FALSE FALSE FALSE ...
   ..@ samplerate: num 500
   ..@ sgolayfilt: num [1:2] 2 11

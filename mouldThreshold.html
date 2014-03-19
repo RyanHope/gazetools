@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>mouldThreshold. gazetools 4.0.201403051408</title>
+<title>mouldThreshold. gazetools 4.0.201403191244</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201403051408</a>
+      <a class="brand" href="#">gazetools 4.0.201403191244</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -40,7 +40,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>mouldThreshold(v, samplerate)</div></pre>
+    <pre><div>mouldThreshold(v, samplerate, blinks&nbsp;=&nbsp;NULL)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -48,13 +48,12 @@
       <dd>a vector of instantaneous velocity values</dd>
       <dt>samplerate</dt>
       <dd>eyetracker samplerate</dd>
+      <dt>blinks</dt>
+      <dd>a vector indicating whether each sample
+  belongs to a blink, if non-null blinks will not be
+  included in analysis</dd>
     </dl>
     
-    <div class="Mould Threshold">
-      <h2>Mould Threshold</h2>
-      
-    </div>
-
     <div class="Value">
       <h2>Value</h2>
       
@@ -86,11 +85,11 @@ d.mt &lt;- mouldThreshold(d.pva@v, d.pva@samplerate)
 str(d.mt)
 </div>
 <div class='output'>Formal class &#39;mould&#39; [package &quot;gazetools&quot;] with 5 slots
-  ..@ .Data     : num 42.9
-  ..@ thresholds: num [1:500] 0.482 3.13 5.779 8.428 11.076 ...
-  ..@ resp1     : int [1:500] 310 307 301 271 230 204 180 143 114 90 ...
-  ..@ resp2     : num [1:500] 311 309 307 306 304 ...
-  ..@ gap       : num [1:500] 0.7 19.1 37.4 55.8 74.1 ...
+  ..@ .Data     : num 28.6
+  ..@ thresholds: num [1:500] 0.21 1.99 3.76 5.54 7.32 ...
+  ..@ resp1     : int [1:500] 324 319 308 275 239 208 171 128 104 83 ...
+  ..@ resp2     : num [1:500] 325 324 323 321 320 ...
+  ..@ gap       : num [1:500] 0.863 20.958 41.053 61.148 81.243 ...
 </div></pre>
   </div>
   <div class="span4">
