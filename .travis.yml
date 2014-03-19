@@ -28,4 +28,4 @@ after_success:
   - ./travis-tool.sh r_binary_install roxygen2
   - ./travis-tool.sh install_github hadley/staticdocs
   - R -e "staticdocs::build_site()"
-  - staticdocs-gh_pages.sh
+  - ./staticdocs-gh_pages.sh
