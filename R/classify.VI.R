@@ -143,7 +143,33 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
   saccade_ids <- event_ids(class, "SACCADE")
   glissade_ids <- event_ids(class, "GLISSADE")
   if (!is.null(blinks)) {
-    class[blinks] <- "BLINK"
+    blink_ids <- event_ids(blinks, T)
+    for (i in unique(blink_ids[which(blink_ids>0)])) {
+      r <- which(blink_ids==i)
+      class[r] <- "BLINK"
+      pre_class <- ""
+      if (r[1]-1>0)
+        pre_class <- class[r[1]-1]
+      post_class <- ""
+      if (r[1]+1<=length(class))
+        post_class <- class[r[1]+1]
+      if (pre_class == "FIXATION") {
+        pfix <- fixation_ids[which(fixation_ids==fixation_ids[r[1]-1])]
+        if (length(pfix)<offset)
+          class[pfix] <- "ARTIFACT"
+        if (post_class == "FIXATION") {
+          class[r] <- "BLINK_F"
+        } else if (post_class == "SACCADE" || post_class == "GLISSADE") {
+          class[r] <- "BLINK_T"
+        }
+      } else if (pre_class == "SACCADE" || pre_class == "GLISSADE") {
+        if (post_class == "FIXATION") {
+          class[r] <- "BLINK_T"
+        } else if (post_class == "SACCADE" || post_class == "GLISSADE") {
+          class[r] <- "BLINK_S"
+        }
+      }
+    }
     fixation_ids[blinks] <- 0
     saccade_ids[blinks] <- 0
     glissade_ids[blinks] <- 0
@@ -153,5 +179,6 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
       fixation_ids = fixation_ids,
       saccade_ids = saccade_ids,
       glissade_ids = glissade_ids,
+      blink_ids = blink_ids,
       algorithm = "velocity-iterative", thresholds = list(vt=vt,st=st,nt=nt))
 }
