@@ -27,10 +27,11 @@ getFixations <- function(class, dpva, drop=T) {
   f <- subset(ddply(cbind(as.data.frame(dpva), as.data.frame(class)), .(fixation_ids),
                     function(d,t) data.frame(x=mean(d$x),
                                              y=mean(d$y),
-                                             duration=nrow(d)*t),
+                                             duration=nrow(d)*t,
+                                             quality=mean(d$quality)),
                     t=1/dpva@samplerate), fixation_ids!=0)
   rownames(f) <- f$fixation_ids
-  d <- f[,c("x","y","duration")]
+  d <- f[,c("x","y","duration","quality")]
   if (drop) {
     d <- d[d$x!=0 & d$y!=0,]
     rownames(d) <- NULL

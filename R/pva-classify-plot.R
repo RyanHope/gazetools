@@ -60,10 +60,12 @@ pva.plot <- function(x, y, ...)
   d$variable <- factor(d$variable,labels=c("Gaze X", "Gaze Y", "Velocity", "Acceleration"))
   if (!is.null(y) & class(y)=="classify") {
     d$class <- factor(d$class, levels=c("FIXATION","SACCADE","GLISSADE","BLINK"))
+    d$quality <- rep(y@quality,4)
     d <- ddply(d, .(variable), function(x) {
       ylim <- range(subset(x, class!="BLINK")$value)
       subset(x, value>=ylim[1] & value<=ylim[2])
     })
+    print(table(d$quality))
     thresholds <- data.frame(variable=c("Gaze X", "Gaze Y"))
     thresholds$intercept <- NA
     for (threshold in names(y@thresholds)) {
@@ -77,9 +79,9 @@ pva.plot <- function(x, y, ...)
     }
     thresholds$x <- xlims[1]
     thresholds$xend <- xlims[2]
-    p <- ggplot(d) + geom_point(aes_string(x="time", y="value", color="class")) + 
+    p <- ggplot(d) + geom_point(aes_string(x="time", y="value", color="class", alpha="quality")) + 
       geom_segment(data=thresholds,aes_string(y="intercept",yend="intercept",x="x",xend="xend"), na.rm=T) +
-      scale_color_manual(values=c("black", "red", "green", "blue"))
+      scale_color_manual(values=c("black", "red", "green", "blue")) + scale_alpha_identity()
   } else
     p <- ggplot(d) + geom_point(aes_string(x="time", y="value"))
   p + facet_grid(as.formula("variable~."), scales="free_y") + ylab("") + xlab("Time (s)") +
