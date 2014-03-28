@@ -1,0 +1,25 @@
+\name{getGlissades}
+\alias{getGlissades}
+\title{Get Glissades}
+\usage{
+getGlissades(class, dpva)
+}
+\arguments{
+  \item{class}{an object of class \code{classify}}
+
+  \item{dpva}{an object of class \code{pva}}
+}
+\description{
+Extracts the start point, end point, distance and duration of glissades from \code{classify}
+and \code{pva} objects
+}
+\examples{
+data(smi)
+d.pva <- with(smi, pva(smi_sxl, smi_syl,
+                       500, 1680, 1050, 473.76, 296.1,
+                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dyl))
+d.c <- classify.VI(d.pva@v, sigma=4, blinks=d.pva@blinks)
+d.f <- getGlissades(d.c, d.pva)
+d.f
+}
+

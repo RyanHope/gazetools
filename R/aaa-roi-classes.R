@@ -1,7 +1,3 @@
-
-
-
-
 #' Class "ROI"
 #'
 #' An extension of the class \code{"Polygon"} that additionally contains a text ID

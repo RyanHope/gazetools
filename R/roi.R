@@ -12,7 +12,7 @@
 #' @rdname ROI
 #' @export
 #' 
-ROI <- function (coords, ID) {
+ROI <- function (coords, ID, force_ring=TRUE) {
   new("ROI", Polygon(coords), ID=ID, center=c(mean(coords[,1]),mean(coords[,2])))
 }
 
@@ -33,6 +33,8 @@ ROIs <- function(rois) {
   names(rois) <- NULL
   new("ROIs", rois)
 }
+
+names.ROIs <- function(x) unlist(lapply(x@ROIs, function(x) x@ID))
 
 #' Fortify ROIs
 #'

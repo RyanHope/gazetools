@@ -22,7 +22,12 @@
 #' 
 #' @export
 #' 
-#' @example examples/pva.R
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' str(d.pva)
 #'  
 pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
                 ex = 0, ey = 0, order = 2, window = 11,
@@ -30,9 +35,12 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
 {
   x <- na.approx(x, na.rm=FALSE)
   y <- na.approx(y, na.rm=FALSE)
-  ez <- na.approx(ez, na.rm=FALSE)
-  ex <- na.approx(ex, na.rm=FALSE)
-  ey <- na.approx(ez, na.rm=FALSE)
+  if (length(ez)>1)
+    ez <- na.approx(ez, na.rm=FALSE)
+  if (length(ex)>1)
+    ex <- na.approx(ex, na.rm=FALSE)
+  if (length(ey)>1)
+    ey <- na.approx(ez, na.rm=FALSE)
   
   ts <- 1 / samplerate
   

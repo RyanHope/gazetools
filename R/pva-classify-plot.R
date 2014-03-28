@@ -50,7 +50,7 @@ setMethod("plot", signature(x = "pva", y = "classify"), function(x, y, ...) pva.
 #' @importFrom reshape2 melt
 pva.plot <- function(x, y, ...)
 {
-  d <- as.data.frame(x)
+  d <- subset(as.data.frame(x),select=c("time","sx","sy","v","a"))
   xlims <- c(min(d$time),max(d$time))
   if (!is.null(y) & class(y)=="classify") {
     d$class <- factor(y)

@@ -24,16 +24,17 @@ getFixations <- function(class, dpva, drop=T) {
     stop("class is not of class classify")
   if (!is(dpva, "pva"))
     stop("dpva is not of class pva")
-  f <- subset(ddply(cbind(as.data.frame(dpva), as.data.frame(class)), .(fixation_ids),
-                    function(d,t) data.frame(x=mean(d$x),
-                                             y=mean(d$y),
-                                             duration=nrow(d)*t),
+  d1 <- as.data.frame(dpva)
+  d2 <- as.data.frame(class)
+  f <- subset(ddply(cbind(d1,d2), .(fixation_ids),
+                    function(d,t) data.frame(fixation.x=mean(d$x),
+                                             fixation.y=mean(d$y),
+                                             fixation.duration=nrow(d)*t,
+                                             fixation.velocity=mean(d$v)),
                     t=1/dpva@samplerate), fixation_ids!=0)
-  rownames(f) <- f$fixation_ids
-  d <- f[,c("x","y","duration")]
-  if (drop) {
-    d <- d[d$x!=0 & d$y!=0,]
-    rownames(d) <- NULL
-  }
-  d
+  if (drop)
+    f <- f[f$fixation.x!=0 & f$fixation.y!=0,]
+  rownames(f) <- NULL
+  colnames(f)[1] <- "fixation.ids"
+  f
 }
