@@ -15,10 +15,6 @@
 #' @docType class
 #' 
 setClass("classify", 
-         representation(fixation_ids = "numeric",
-                        saccade_ids = "numeric",
-                        glissade_ids = "numeric",
-                        blink_ids = "numeric",
-                        algorithm="character",
-                        thresholds="list"),
+         representation(fixation_ids = "numeric", saccade_ids = "numeric", glissade_ids = "numeric",
+                        algorithm="character", thresholds="list"),
          contains="character")
