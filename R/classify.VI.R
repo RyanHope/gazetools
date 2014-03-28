@@ -139,6 +139,7 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
     }
   }
 
+  quality <- rep(1,m)
   fixation_ids <- event_ids(class, "FIXATION")
   saccade_ids <- event_ids(class, "SACCADE")
   glissade_ids <- event_ids(class, "GLISSADE")
@@ -148,10 +149,29 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
     saccade_ids[blinks] <- 0
     glissade_ids[blinks] <- 0
   }
+  blink_ids <- event_ids(class, "BLINK")
+  ids <- unique_ids(class)
+  fixation_ids[which(fixation_ids!=0)] <- ids[which(fixation_ids!=0)]
+  saccade_ids[which(saccade_ids!=0)] <- ids[which(saccade_ids!=0)]
+  glissade_ids[which(glissade_ids!=0)] <- ids[which(glissade_ids!=0)]
+  blink_ids[which(blink_ids!=0)] <- ids[which(blink_ids!=0)]
+  
+  for (i in unique(blink_ids)) {
+    if (i>0) {
+      quality[which(ids==i)] = 0
+      if ((i-1) %in% ids)
+        quality[which(ids==(i-1))] = .25
+      if ((i+1) %in% ids)
+        quality[which(ids==(i+1))] = .25
+    }
+  }
 
   new("classify", class,
+      event_ids = ids,
       fixation_ids = fixation_ids,
       saccade_ids = saccade_ids,
       glissade_ids = glissade_ids,
+      blink_ids = blink_ids,
+      quality = quality,
       algorithm = "velocity-iterative", thresholds = list(vt=vt,st=st,nt=nt))
 }
