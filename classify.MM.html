@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>classify.MM. gazetools 4.0.201403191244</title>
+<title>classify.MM. gazetools 4.0.201404090055</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201403191244</a>
+      <a class="brand" href="#">gazetools 4.0.201404090055</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -80,18 +80,21 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl))
 d.c &lt;- classify.MM(d.pva@v)
 </div>
-<div class='output'>iteration 0 logLik: -17205.78 
-iteration 5 logLik: -13093.31 
+<div class='output'>iteration 0 logLik: -17107.83 
+iteration 5 logLik: -13093.25 
 iteration 10 logLik: -13092.69 
 converged at iteration 11 with logLik: -13092.69 
 </div>
 <div class='input'>str(d.c)
 </div>
-<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 6 slots
+<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 9 slots
   ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
+  ..@ event_ids   : num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
   ..@ glissade_ids: num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
+  ..@ blink_ids   : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
+  ..@ quality     : num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ algorithm   : chr &quot;mixture-model&quot;
   ..@ thresholds  :List of 1
   .. ..$ vt: num 22.9
@@ -103,18 +106,21 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c &lt;- classify.MM(d.pva@v, blinks=d.pva@blinks)
 </div>
-<div class='output'>iteration 0 logLik: -17069.99 
-iteration 5 logLik: -13093.24 
+<div class='output'>iteration 0 logLik: -17474.66 
+iteration 5 logLik: -13093.47 
 iteration 10 logLik: -13092.69 
 converged at iteration 11 with logLik: -13092.69 
 </div>
 <div class='input'>str(d.c)
 </div>
-<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 6 slots
+<div class='output'>Formal class &#39;classify&#39; [package &quot;gazetools&quot;] with 9 slots
   ..@ .Data       : chr [1:3437] &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; &quot;FIXATION&quot; ...
+  ..@ event_ids   : num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ fixation_ids: num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ saccade_ids : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
   ..@ glissade_ids: num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
+  ..@ blink_ids   : num [1:3437] 0 0 0 0 0 0 0 0 0 0 ...
+  ..@ quality     : num [1:3437] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ algorithm   : chr &quot;mixture-model&quot;
   ..@ thresholds  :List of 1
   .. ..$ vt: num 22.9

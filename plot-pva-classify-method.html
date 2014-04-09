@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>plot,pva,classify-method. gazetools 4.0.201403191244</title>
+<title>plot,pva,classify-method. gazetools 4.0.201404090055</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201403191244</a>
+      <a class="brand" href="#">gazetools 4.0.201404090055</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -111,7 +111,9 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl))
 d.c &lt;- classify.VA(d.pva@v, d.pva@a)
 plot(d.pva, d.c)
-
+</div>
+<p><img src='plot-pva-classify-method-2.png' alt='' width='400' height='400' /></p>
+<div class='input'>
 # Classified position, velocity and acceleration plot
 # with blinks removed
 d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
@@ -119,7 +121,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dyl))
 d.c &lt;- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
 plot(d.pva, d.c)
-</div></pre>
+</div>
+<p><img src='plot-pva-classify-method-4.png' alt='' width='400' height='400' /></p></pre>
   </div>
   <div class="span4">
     <!-- <ul>

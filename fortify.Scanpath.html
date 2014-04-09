@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>detect_blinks.SW. gazetools 4.0.201404090055</title>
+<title>fortify.Scanpath. gazetools 4.0.201404090055</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,50 +35,36 @@
         
       </header>
       
-      <h1>Detect Blinks (static window)</h1>
+      <h1>Fortify Scanpath</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>detect_blinks.SW(pupil, samplerate, pad&nbsp;=&nbsp;50)</div></pre>
+    <pre><div>fortify.Scanpath(scanpath)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
-      <dt>pupil</dt>
-      <dd>a vector of class <code>numeric</code>; the
-  status/validity of the pupil</dd>
-      <dt>samplerate</dt>
-      <dd>the samplerate of the eyetracker</dd>
-      <dt>pad</dt>
-      <dd>time in ms to pad each side of each no pupil
-  segment</dd>
+      <dt>scanpath</dt>
+      <dd>a Scanpath object</dd>
     </dl>
     
     <div class="Value">
       <h2>Value</h2>
       
-      <p>a vector of class <code>logical</code>; indicates samples that belong to a blink</p>
+      <p>a data frame</p>
   
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Detects blinks based on pupil status/valicity</p>
+      <p>Method to convert a Scanpath object into a data frame useful for plotting.</p>
   
     </div>
-    
-    <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>data(lc120)
-d.b &lt;- with(lc120, detect_blinks.SW(status, 120))
-str(d.b)
-</div>
-<div class='output'> logi [1:247145] FALSE FALSE FALSE FALSE FALSE FALSE ...
-</div></pre>
-  </div>
+      </div>
   <div class="span4">
     <!-- <ul>
-      <li>detect_blinks.SW</li>
+      <li>fortify.Scanpath</li>
     </ul>
     <ul>
       
