@@ -8,7 +8,6 @@
 #' @param ylim a vector of length 2 that contains the min and max vertical bounds of the image
 #' 
 #' @importFrom ggplot2 ggplot annotation_raster coord_fixed aes
-#' @importFrom png readPNG
 #' 
 #' @export
 #' 
