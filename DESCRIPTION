@@ -22,6 +22,5 @@ Imports:
     signal,
     zoo,
     plyr,
-    Rmisc,
-    png
+    Rmisc
 Roxygen: list(wrap = FALSE)
