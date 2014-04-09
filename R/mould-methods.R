@@ -7,7 +7,7 @@ utils::globalVariables(c("x","y","resp2","thresholds","resp1","gap"))
 #' @param x an object of class \code{"mould"}
 #' 
 #' @docType methods
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot aes geom_area xlab ylab geom_line geom_vline geom_text coord_cartesian
 #' @importFrom methods setMethod
 #' @rdname mould-plot
 #' @name plot.mould

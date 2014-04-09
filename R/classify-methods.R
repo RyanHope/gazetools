@@ -28,7 +28,7 @@ setAs("classify","data.frame", function(from) as.data.frame.classify(from))
 #' 
 #' @docType methods
 #' @importFrom plyr ddply .
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot geom_path geom_point aes coord_equal labs theme element_blank scale_size_continuous scale_x_continuous scale_y_reverse scale_y_continuous
 #' @importFrom methods setMethod
 #' @rdname classify-methods
 #' @name plot.classify

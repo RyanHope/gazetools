@@ -97,3 +97,13 @@ NULL
 #' }
 #' 
 NULL
+
+#' Gazetools logo
+#' 
+#' The gazetools logo
+#' 
+#' @docType data
+#' @name logo
+#' @usage data(logo)
+#' 
+NULL

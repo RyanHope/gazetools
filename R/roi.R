@@ -34,6 +34,8 @@ ROIs <- function(rois) {
   new("ROIs", rois)
 }
 
+names.ROIs <- function(x) unlist(lapply(x@ROIs, function(x) x@ID))
+
 #' Fortify ROIs
 #'
 #' Method to convert a ROIs object into a data frame useful for plotting.

@@ -11,7 +11,9 @@ sd_section(
   "Utility",
   "These are handy utilty functions.",
   c(
+    "rplot",
     "event_ids",
+    "unique_ids",
     "find_peak_ranges",
     "find_peaks",
     "distance_2_point",

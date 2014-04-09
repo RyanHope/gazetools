@@ -48,9 +48,10 @@ setMethod("plot", signature(x = "pva", y = "classify"), function(x, y, ...) pva.
 
 #' @importFrom stats as.formula
 #' @importFrom reshape2 melt
+#' @importFrom ggplot2 ggplot aes_string geom_point geom_segment scale_color_manual scale_alpha_identity facet_grid theme xlab ylab coord_cartesian
 pva.plot <- function(x, y, ...)
 {
-  d <- as.data.frame(x)
+  d <- subset(as.data.frame(x),select=c("time","sx","sy","v","a"))
   xlims <- c(min(d$time),max(d$time))
   if (!is.null(y) & class(y)=="classify") {
     d$class <- factor(y)
@@ -65,7 +66,6 @@ pva.plot <- function(x, y, ...)
       ylim <- range(subset(x, class!="BLINK")$value)
       subset(x, value>=ylim[1] & value<=ylim[2])
     })
-    print(table(d$quality))
     thresholds <- data.frame(variable=c("Gaze X", "Gaze Y"))
     thresholds$intercept <- NA
     for (threshold in names(y@thresholds)) {
