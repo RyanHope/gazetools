@@ -8,4 +8,5 @@ data(logo)
 \description{
 The gazetools logo
 }
+\keyword{datasets}
 

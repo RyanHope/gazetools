@@ -103,6 +103,7 @@ NULL
 #' The gazetools logo
 #' 
 #' @docType data
+#' @keywords datasets
 #' @name logo
 #' @usage data(logo)
 #' 
