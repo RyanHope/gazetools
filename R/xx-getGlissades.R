@@ -27,17 +27,18 @@ getGlissades <- function(class, dpva) {
     stop("dpva is not of class pva")
   d1 <- as.data.frame(dpva)
   d2 <- as.data.frame(class)
-  f <- subset(ddply(cbind(d1,d2), .(glissade_ids),
-                    function(d,t,a) {
-                      n <- nrow(d)
-                      data.frame(glissade.duration=n*t,
-                                 glissade.x1=d[1,"sx"],
-                                 glissade.y1=d[1,"sy"],
-                                 glissade.x2=d[n,"sx"],
-                                 glissade.y2=d[n,"sy"],
-                                 glissade.amplitude=subtended_angle(d[1,"sx"],d[1,"sy"],d[n,"sx"],d[n,"sy"],a$rx,a$ry,a$sw,a$sh,d[1,"ez"],d[n,"ex"],d[n,"ey"])
-                      )
-                    }, t=1/dpva@samplerate,a=attributes(d1)[tail(names(attributes(d1)),6)]), glissade_ids!=0)
+  f <- ddply(cbind(d1,d2), .(glissade_ids),
+             function(d,t,a) {
+               n <- nrow(d)
+               data.frame(glissade.duration=n*t,
+                          glissade.x1=d[1,"sx"],
+                          glissade.y1=d[1,"sy"],
+                          glissade.x2=d[n,"sx"],
+                          glissade.y2=d[n,"sy"],
+                          glissade.amplitude=subtended_angle(d[1,"sx"],d[1,"sy"],d[n,"sx"],d[n,"sy"],a$rx,a$ry,a$sw,a$sh,d[1,"ez"],d[n,"ex"],d[n,"ey"])
+                          )
+               }, t=1/dpva@samplerate,a=attributes(d1)[tail(names(attributes(d1)),6)])
+  f <- f[f$glissade_ids != 0, ]
   rownames(f) <- NULL
   colnames(f)[1] <- "glissade.ids"
   f

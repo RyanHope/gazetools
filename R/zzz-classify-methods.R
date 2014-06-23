@@ -52,7 +52,7 @@ classify.plot <- function(x, y, reverse_y = FALSE)
   
   tmp <- cbind(as.data.frame(pva_obj), as.data.frame(classify_obj))
   
-  tmp2 <- ddply(subset(tmp, fixation_ids!=0), .(fixation_ids), function(x) {
+  tmp2 <- ddply(tmp[tmp$fixation_ids != 0, ], .(fixation_ids), function(x) {
     data.frame(x=mean(x$x),y=mean(x$y),dur=nrow(x) * (1/pva_obj@samplerate) * 1000)
   })
   

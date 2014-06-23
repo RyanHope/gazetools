@@ -30,7 +30,7 @@ mould.plot <- function(x, ...) {
                    resp2 = slot(x, "resp2"),
                    gap = slot(x, "gap"),
                    thresholds = slot(x, "thresholds"))
-  dd <- subset(dd, resp2>=0 & gap>=0)
+  dd <- dd[dd$resp2 >= 0 & dd$gap>=0, ]
   ggplot(dd, aes(x = thresholds, y = resp1)) + geom_area(fill = "gray") +
     ylab("Frequency of local speed maxima exceeding threshold") +
     xlab("Speed threshold, deg/s") + 

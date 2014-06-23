@@ -51,7 +51,7 @@ setMethod("plot", signature(x = "pva", y = "classify"), function(x, y, ...) pva.
 #' @importFrom ggplot2 ggplot aes_string geom_point geom_segment scale_color_manual scale_alpha_identity facet_grid theme xlab ylab coord_cartesian
 pva.plot <- function(x, y, ...)
 {
-  d <- subset(as.data.frame(x),select=c("time","sx","sy","v","a"))
+  d <- as.data.frame(x)[,c("time","sx","sy","v","a")]
   xlims <- c(min(d$time),max(d$time))
   if (!is.null(y) & class(y)=="classify") {
     d$class <- factor(y)
@@ -63,8 +63,8 @@ pva.plot <- function(x, y, ...)
     d$class <- factor(d$class, levels=c("FIXATION","SACCADE","GLISSADE","BLINK"))
     d$quality <- rep(y@quality,4)
     d <- ddply(d, .(variable), function(x) {
-      ylim <- range(subset(x, class!="BLINK")$value)
-      subset(x, value>=ylim[1] & value<=ylim[2])
+      ylim <- range(x[x$class != "BLINK", ]$value)
+      x[x$value >= ylim[1] & x$value <= ylim[2], ]
     })
     thresholds <- data.frame(variable=c("Gaze X", "Gaze Y"))
     thresholds$intercept <- NA
