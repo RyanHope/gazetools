@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>plot,pva,classify-method. gazetools 4.0.201404090055</title>
+<title>plot,pva,classify-method. gazetools 4.0.201406230820</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201404090055</a>
+      <a class="brand" href="#">gazetools 4.0.201406230820</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -45,57 +45,58 @@
     <h2>Arguments</h2>
     <dl>
       <dt>x</dt>
-      <dd>an object of class
-  <code><a href='pva-class.html'>pva</a></code></dd>
+      <dd>an object of class <code><a href='pva-class.html'>pva</a></code></dd>
       <dt>y</dt>
-      <dd>an object of class
-  <code><a href='classify-class.html'>classify</a></code> (optional)</dd>
+      <dd>an object of class <code><a href='classify-class.html'>classify</a></code> (optional)</dd>
       <dt>...</dt>
       <dd>Arguments to be passed to methods, such as
-  <a href='http://www.inside-r.org/r-doc/graphics/par'>graphical parameters</a> (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).
-  Many methods will accept the following arguments:
-  <dl>
-<dt><code>type</code></dt><dd>what type of plot should be
-  drawn.  Possible types are <ul>
-<li> <code>"p"</code> for
-  <b>p</b>oints, </li>
-<li> <code>"l"</code> for <b>l</b>ines, </li>
-<li>
-  <code>"b"</code> for <b>b</b>oth, </li>
-<li> <code>"c"</code> for the
-  lines part alone of <code>"b"</code>, </li>
-<li> <code>"o"</code> for both
-  &#145;<b>o</b>verplotted&#146;, </li>
-<li> <code>"h"</code> for
-  &#145;<b>h</b>istogram&#146; like (or &#145;high-density&#146;)
-  vertical lines, </li>
+    <a href='http://www.inside-r.org/packages/cran/graphics/docs/par'>graphical parameters</a> (see <code><a href='http://www.inside-r.org/packages/cran/graphics/docs/par'>par</a></code>).
+    Many methods will accept the following arguments:
+    <dl>
+<dt><code>type</code></dt><dd>what type of plot should be drawn.  Possible types are
+      <ul>
+<li> <code>"p"</code> for <b>p</b>oints,
+        </li>
+<li> <code>"l"</code> for <b>l</b>ines,
+        </li>
+<li> <code>"b"</code> for <b>b</b>oth,
+        </li>
+<li> <code>"c"</code> for the lines part alone of <code>"b"</code>,
+        </li>
+<li> <code>"o"</code> for both &#145;<b>o</b>verplotted&#146;,
+        </li>
+<li> <code>"h"</code> for &#145;<b>h</b>istogram&#146; like (or
+        &#145;high-density&#146;) vertical lines,
+        </li>
 <li> <code>"s"</code> for stair <b>s</b>teps,
-  </li>
-<li> <code>"S"</code> for other <b>s</b>teps, see
-  &#145;Details&#146; below, </li>
+        </li>
+<li> <code>"S"</code> for other <b>s</b>teps, see &#145;Details&#146; below,
+        </li>
 <li> <code>"n"</code> for no plotting.
-  </li>
+      </li>
 </ul>
- All other <code>type</code>s give a warning or an error;
-  using, e.g., <code>type = "punkte"</code> being equivalent to
-  <code>type = "p"</code> for S compatibility.  Note that some
-  methods, e.g. <code><a href='http://www.inside-r.org/r-doc/graphics/plot.factor'>plot.factor</a></code>, do not accept
-  this.  </dd>
-<dt><code>main</code></dt><dd>an overall title for the
-  plot: see <code><a href='http://www.inside-r.org/r-doc/graphics/title'>title</a></code>.</dd>
-<dt><code>sub</code></dt><dd>a sub
-  title for the plot: see <code><a href='http://www.inside-r.org/r-doc/graphics/title'>title</a></code>.</dd>
-<dt><code>xlab</code></dt><dd>a title for the x axis: see
-  <code><a href='http://www.inside-r.org/r-doc/graphics/title'>title</a></code>.</dd>
-<dt><code>ylab</code></dt><dd>a title for the
-  y axis: see <code><a href='http://www.inside-r.org/r-doc/graphics/title'>title</a></code>.</dd>
-<dt><code>asp</code></dt><dd>the
-  <code class = 'eq'>y/x</code> aspect ratio, see <code><a href='http://www.inside-r.org/r-doc/graphics/plot.window'>plot.window</a></code>.</dd>
+
+      All other <code>type</code>s give a warning or an error; using, e.g.,
+      <code>type = "punkte"</code> being equivalent to <code>type = "p"</code> for S
+      compatibility.  Note that some methods,
+      e.g. <code><a href='http://www.inside-r.org/packages/cran/graphics/docs/plot.factor'>plot.factor</a></code>, do not accept this.
+    </dd>
+<dt><code>main</code></dt><dd>an overall title for the plot: see <code><a href='http://www.inside-r.org/packages/cran/graphics/docs/title'>title</a></code>.</dd>
+<dt><code>sub</code></dt><dd>a sub title for the plot: see <code><a href='http://www.inside-r.org/packages/cran/graphics/docs/title'>title</a></code>.</dd>
+<dt><code>xlab</code></dt><dd>a title for the x axis: see <code><a href='http://www.inside-r.org/packages/cran/graphics/docs/title'>title</a></code>.</dd>
+<dt><code>ylab</code></dt><dd>a title for the y axis: see <code><a href='http://www.inside-r.org/packages/cran/graphics/docs/title'>title</a></code>.</dd>
+<dt><code>asp</code></dt><dd>the <code class = 'eq'>y/x</code> aspect ratio,
+      see <code><a href='http://www.inside-r.org/packages/cran/graphics/docs/plot.window'>plot.window</a></code>.</dd>
 </dl>
 
   </dd>
     </dl>
     
+    <div class="Plot a 'pva' Object with Classified Samples">
+      <h2>Plot a 'pva' Object with Classified Samples</h2>
+      
+    </div>
+
     <div class="Description">
       <h2>Description</h2>
       
@@ -111,9 +112,7 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl))
 d.c &lt;- classify.VA(d.pva@v, d.pva@a)
 plot(d.pva, d.c)
-</div>
-<p><img src='plot-pva-classify-method-2.png' alt='' width='400' height='400' /></p>
-<div class='input'>
+
 # Classified position, velocity and acceleration plot
 # with blinks removed
 d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
@@ -121,8 +120,7 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dyl))
 d.c &lt;- classify.VA(d.pva@v, d.pva@a, blinks=d.pva@blinks)
 plot(d.pva, d.c)
-</div>
-<p><img src='plot-pva-classify-method-4.png' alt='' width='400' height='400' /></p></pre>
+</div></pre>
   </div>
   <div class="span4">
     <!-- <ul>

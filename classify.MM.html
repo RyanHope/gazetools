@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>classify.MM. gazetools 4.0.201404090055</title>
+<title>classify.MM. gazetools 4.0.201406230820</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201404090055</a>
+      <a class="brand" href="#">gazetools 4.0.201406230820</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -47,10 +47,14 @@
       <dt>v</dt>
       <dd>a vector of instantaneous velocity values</dd>
       <dt>blinks</dt>
-      <dd>vector of class <code>"logical"</code>, TRUE if
-  samples belong to a blink</dd>
+      <dd>vector of class <code>"logical"</code>, TRUE if samples belong to a blink</dd>
     </dl>
     
+    <div class="Gaze Data Classification (mixture model)">
+      <h2>Gaze Data Classification (mixture model)</h2>
+      
+    </div>
+
     <div class="Value">
       <h2>Value</h2>
       
@@ -80,8 +84,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl))
 d.c &lt;- classify.MM(d.pva@v)
 </div>
-<div class='output'>iteration 0 logLik: -17107.83 
-iteration 5 logLik: -13093.25 
+<div class='output'>iteration 0 logLik: -16493.06 
+iteration 5 logLik: -13093.07 
 iteration 10 logLik: -13092.69 
 converged at iteration 11 with logLik: -13092.69 
 </div>
@@ -106,8 +110,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c &lt;- classify.MM(d.pva@v, blinks=d.pva@blinks)
 </div>
-<div class='output'>iteration 0 logLik: -17474.66 
-iteration 5 logLik: -13093.47 
+<div class='output'>iteration 0 logLik: -16755.58 
+iteration 5 logLik: -13093.13 
 iteration 10 logLik: -13092.69 
 converged at iteration 11 with logLik: -13092.69 
 </div>
