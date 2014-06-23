@@ -43,10 +43,12 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
 
   v <- data.frame(v=v)
   v$blinks <- blinks
+  
+  vv <- v[v$blinks == FALSE,]
 
   # Calculate velocity peak threshold
   while (T) {
-    f <- v[v$blinks == FALSE & v$v < vt,]
+    f <- vv[vv$v < vt,]
     vtn <- mean(f$v) + sigma * sd(f$v)
     if (abs(vtn-vt)<1)
       break
@@ -55,7 +57,7 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
 
   # Calclulate saccade onset threshold
   while (T) {
-    f <- v[v$blinks == FALSE & v$v < st, ]
+    f <- vv[vv$v < st, ]
     stn <- mean(f$v) + (sigma/2) * sd(f$v)
     if (abs(stn-st)<1)
       break
@@ -77,9 +79,10 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
       # calculate saccade offset threshold
       if (rmin-offset < 1) next
       vtmp <- v[(rmin-offset):rmin,]
+      vtmp <- vtmp[vtmp$blinks == FALSE, ]
       z <- NULL
       while (T) {
-        f <- vtmp[vtmp$blinks == FALSE & vtmp$v<nt, ]
+        f <- vtmp[vtmp$v<nt, ]
         if (nrow(f)==0) break
         z <- mean(f$v)
         ntn <- z + (sigma/2) * sd(f$v)
