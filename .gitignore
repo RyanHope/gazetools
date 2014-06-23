@@ -1,5 +1,7 @@
 .RData
 .Rhistory
 .Rproj.user
+.Rapp.history
+.DS_Store
 *.Rproj
 inst/web

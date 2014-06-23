@@ -9,19 +9,21 @@
 #' 
 #' @return an object of class \code{mould}
 #' 
-#' @export
-#' 
 #' @references Mould, M. S., Foster, D. H., Amano, K., & Oakley, J. P. (2012). A simple nonparametric method for classifying eye fixations. Vision research, 57, 18-25.
+#' 
+#' @rdname mould
+#' 
+#' @export
 #' 
 #' @examples
 #' data(smi)
 #' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
 #'                        500, 1680, 1050, 473.76, 296.1, 
 #'                       smi_ezl, smi_exl, smi_eyl))
-#' d.mt <- mouldThreshold(d.pva@@v, d.pva@@samplerate)
+#' d.mt <- mould(d.pva@@v, d.pva@@samplerate)
 #' str(d.mt)
 #'
-mouldThreshold <- function(v, samplerate, blinks=NULL) {
+mould <- function(v, samplerate, blinks=NULL) {
   if (!is.null(blinks) && length(v)==length(blinks))
     v <- v[!blinks]
   peaks <- v[local_maxima(v)]

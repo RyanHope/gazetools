@@ -19,7 +19,7 @@ utils::globalVariables(c("x","y","resp2","thresholds","resp1","gap"))
 #' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
 #'                        500, 1680, 1050, 473.76, 296.1, 
 #'                        smi_ezl, smi_exl, smi_eyl))
-#' d.mt <- mouldThreshold(d.pva@@v, d.pva@@samplerate)
+#' d.mt <- mould(d.pva@@v, d.pva@@samplerate)
 #' plot(d.mt)
 #' 
 setMethod("plot", signature(x = "mould", y = "missing"), function(x, y, ...) mould.plot(x, ...))

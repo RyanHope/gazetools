@@ -12,3 +12,6 @@ gazetools 4.0
 * fix import conflicts that resulted in previous version getting archived
 * documentation and example improvements
 * classify.VI now detects glissades, improved classification all around
+* 50% speedup in pva()
+* pva() now defaults to using na.spline over na.approx
+* The function mouldThreshold() has been renamed to simply mould()

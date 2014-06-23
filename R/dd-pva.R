@@ -11,12 +11,13 @@
 #' @param at max acceleration threshold
 #' @param pupil a vector of class \code{numeric}; the vertical diameter of the pupil or a pupil status signal
 #' @param blinkFUN the name of the blink detection algorithm to use
+#' @param approxFUN the name of the interpolation function to use
 #' @param ... arguments to be passed to blinkFUN
 #'
 #' @return an object of class \code{\link[=pva-class]{pva}}
 #'
-#' @importFrom zoo na.approx
-#' @importFrom signal sgolayfilt
+#' @importFrom zoo na.approx na.spline
+#' @importFrom signal sgolay filter
 #' 
 #' @rdname pva
 #' 
@@ -31,40 +32,45 @@
 #'  
 pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
                 ex = 0, ey = 0, order = 2, window = 11,
-                vt=1000, at=100000, pupil = NULL, blinkFUN = "detect_blinks.SW", ...)
+                vt=1000, at=100000, pupil = NULL, 
+                blinkFUN = "detect_blinks.SW", 
+                approxFUN = "na.spline", ...)
 {
-  x <- na.approx(x, na.rm=FALSE)
-  y <- na.approx(y, na.rm=FALSE)
+  x <- do.call(approxFUN, list(x, na.rm=FALSE))
+  y <- do.call(approxFUN, list(y, na.rm=FALSE))
   if (length(ez)>1)
-    ez <- na.approx(ez, na.rm=FALSE)
+    ez <- do.call(approxFUN, list(ez, na.rm=FALSE))
   if (length(ex)>1)
-    ex <- na.approx(ex, na.rm=FALSE)
+    ex <- do.call(approxFUN, list(ex, na.rm=FALSE))
   if (length(ey)>1)
-    ey <- na.approx(ez, na.rm=FALSE)
+    ey <- do.call(approxFUN, list(ez, na.rm=FALSE))
   
   ts <- 1 / samplerate
   
-  sx <- sgolayfilt(x, n = window, p = order, m = 0, ts = ts)
-  sy <- sgolayfilt(y, n = window, p = order, m = 0, ts = ts)
+  filter.smooth <- sgolay(p =  order, n = window, m = 0, ts = ts)
+  sx <- filter(filter.smooth, x)
+  sy <- filter(filter.smooth, y)
   
   cx <- rx / 2
   cy <- ry /2
   
-  xa <- na.approx(subtended_angle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey), na.rm=FALSE)
-  ya <- na.approx(subtended_angle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey), na.rm=FALSE)
-
-  vx <- sgolayfilt(xa, n = window, p = order, m = 1, ts = ts)
-  vy <- sgolayfilt(ya, n = window, p = order, m = 1, ts = ts)
+  xa <- do.call(approxFUN, list(subtended_angle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey), na.rm=FALSE))
+  ya <- do.call(approxFUN, list(subtended_angle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey), na.rm=FALSE))
+  
+  filter.velocity <- sgolay(p =  order, n = window, m = 1, ts = ts)
+  vx <- filter(filter.velocity, xa)
+  vy <- filter(filter.velocity, ya)
   v <- sqrt(vx**2 + vy**2)
   
-  ax <- sgolayfilt(xa, n = window, p = order, m = 2, ts = ts)
-  ay <- sgolayfilt(ya, n = window, p = order, m = 2, ts = ts)
+  filter.acceleration <- sgolay(p =  order, n = window, m = 2, ts = ts)
+  ax <- filter(filter.acceleration, xa)
+  ay <- filter(filter.acceleration, ya)
   a <- sqrt(ax**2 + ay**2)
-
+  
   N <- length(v)
-
+  
   blinks <- rep(FALSE, N)
-
+  
   if (is.null(pupil))
     pupil <- !((v>vt) + (a>at))
   else
@@ -73,9 +79,9 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
   blinks <- do.call(blinkFUN, c(list(na.approx(pupil, na.rm=FALSE), samplerate), list(...)))
   x[blinks] <- NA
   y[blinks] <- NA
-  x <- na.approx(x, na.rm=FALSE)
-  y <- na.approx(y, na.rm=FALSE)
-
+  x <- do.call(approxFUN, list(x, na.rm=FALSE))
+  y <- do.call(approxFUN, list(y, na.rm=FALSE))
+  
   new("pva", time = 0:(length(v)-1) * ts, ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa,
       sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window), rx = rx, ry = ry, sw = sw, sh = sh,
       samplerate = samplerate, blinks = blinks)
