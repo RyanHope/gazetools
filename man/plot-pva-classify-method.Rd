@@ -11,6 +11,8 @@
 
 \item{y}{an object of class \code{\link[=classify-class]{classify}} (optional)}
 
+\item{pages}{the number of pages to split the plot into}
+
 \item{...}{Arguments to be passed to methods, such as
     \link{graphical parameters} (see \code{\link{par}}).
     Many methods will accept the following arguments:

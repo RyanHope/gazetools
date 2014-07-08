@@ -9,6 +9,8 @@
 \arguments{
 \item{x}{an object of class \code{\link[=pva-class]{pva}}}
 
+\item{pages}{the number of pages to split the plot into}
+
 \item{y}{the y coordinates of points in the plot, \emph{optional}
     if \code{x} is an appropriate structure.}
 
