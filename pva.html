@@ -40,14 +40,16 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>pva(x, y, samplerate, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;0, ey&nbsp;=&nbsp;0, order&nbsp;=&nbsp;2, window&nbsp;=&nbsp;11, vt&nbsp;=&nbsp;1000, at&nbsp;=&nbsp;1e+05, pupil&nbsp;=&nbsp;NULL, blinkFUN&nbsp;=&nbsp;"detect_blinks.SW", approxFUN&nbsp;=&nbsp;"na.spline", ...)</div></pre>
+    <pre><div>pva(x, y, samplerate, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;0, ey&nbsp;=&nbsp;0, timestamp&nbsp;=&nbsp;-1, order&nbsp;=&nbsp;2, window&nbsp;=&nbsp;11, vt&nbsp;=&nbsp;1000, at&nbsp;=&nbsp;1e+05, pupil&nbsp;=&nbsp;NULL, blinkFUN&nbsp;=&nbsp;"detect_blinks.SW", approxFUN&nbsp;=&nbsp;"na.spline", ...)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
       <dt>x</dt>
-      <dd>the x coordinate of a point on a screen (pixels)</dd>
+      <dd>the x coordinate of a point on a screen
+  (pixels)</dd>
       <dt>y</dt>
-      <dd>the y coordinate of a point on a screen (pixels)</dd>
+      <dd>the y coordinate of a point on a screen
+  (pixels)</dd>
       <dt>samplerate</dt>
       <dd>the samplerate of the eyetracker</dd>
       <dt>rx</dt>
@@ -59,34 +61,36 @@
       <dt>sh</dt>
       <dd>the physical screen height (mm)</dd>
       <dt>ez</dt>
-      <dd>the perpendicular distance from the viewer to the screen (mm)</dd>
+      <dd>the perpendicular distance from the viewer to
+  the screen (mm)</dd>
       <dt>ex</dt>
-      <dd>the horizontal offset of the viewer from screen center (mm)</dd>
+      <dd>the horizontal offset of the viewer from screen
+  center (mm)</dd>
       <dt>ey</dt>
-      <dd>the vertical offset of the viewer from screen center (mm)</dd>
+      <dd>the vertical offset of the viewer from screen
+  center (mm)</dd>
       <dt>order</dt>
       <dd>the Savitzky-Golay filter order</dd>
       <dt>window</dt>
-      <dd>the Savitzky-Golay filter window length (must be odd)</dd>
+      <dd>the Savitzky-Golay filter window length
+  (must be odd)</dd>
       <dt>vt</dt>
       <dd>max velocity threshold</dd>
       <dt>at</dt>
       <dd>max acceleration threshold</dd>
       <dt>pupil</dt>
-      <dd>a vector of class <code>numeric</code>; the vertical diameter of the pupil or a pupil status signal</dd>
+      <dd>a vector of class <code>numeric</code>; the
+  vertical diameter of the pupil or a pupil status signal</dd>
       <dt>blinkFUN</dt>
-      <dd>the name of the blink detection algorithm to use</dd>
+      <dd>the name of the blink detection algorithm
+  to use</dd>
       <dt>approxFUN</dt>
-      <dd>the name of the interpolation function to use</dd>
+      <dd>the name of the interpolation function
+  to use</dd>
       <dt>...</dt>
       <dd>arguments to be passed to blinkFUN</dd>
     </dl>
     
-    <div class="Compute Velocity and Acceleration Profiles for Raw Gaze Data">
-      <h2>Compute Velocity and Acceleration Profiles for Raw Gaze Data</h2>
-      
-    </div>
-
     <div class="Value">
       <h2>Value</h2>
       
