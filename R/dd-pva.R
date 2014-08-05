@@ -31,7 +31,7 @@
 #' str(d.pva)
 #'  
 pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
-                ex = 0, ey = 0, order = 2, window = 11,
+                ex = 0, ey = 0, timestamp = -1, order = 2, window = 11,
                 vt=1000, at=100000, pupil = NULL, 
                 blinkFUN = "detect_blinks.SW", 
                 approxFUN = "na.spline", ...)
@@ -84,5 +84,5 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
   
   new("pva", time = 0:(length(v)-1) * ts, ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa,
       sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window), rx = rx, ry = ry, sw = sw, sh = sh,
-      samplerate = samplerate, blinks = blinks)
+      samplerate = samplerate, blinks = blinks, timestamp = timestamp)
 }

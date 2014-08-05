@@ -31,7 +31,11 @@ getSaccades <- function(class, dpva) {
   f <- ddply(cbind(d1,d2), .(saccade_ids),
              function(d,t,a) {
                n <- nrow(d)
-               data.frame(saccade.duration=n*t,
+               data.frame(time.begin=head(d$time,1),
+                          time.end=tail(d$time,1),
+                          timestamp.begin=head(d$timestamp,1),
+                          timestamp.end=tail(d$timestamp,1),
+                          saccade.duration=(n-1)*t,
                           saccade.x1=d[1,"sx"],
                           saccade.y1=d[1,"sy"],
                           saccade.x2=d[n,"sx"],
