@@ -3,7 +3,7 @@
 \alias{ROI}
 \title{Region of Interest (ROI)}
 \usage{
-ROI(coords, ID)
+ROI(coords, ID, layer = 0)
 }
 \arguments{
 \item{coords}{a data frame of xy coordinates}

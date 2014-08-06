@@ -12,8 +12,8 @@
 #' @rdname ROI
 #' @export
 #' 
-ROI <- function (coords, ID) {
-  new("ROI", Polygon(coords), ID=ID, center=c(mean(coords[,1]),mean(coords[,2])))
+ROI <- function (coords, ID, layer=0) {
+  new("ROI", Polygon(coords), ID=ID, center=c(mean(coords[,1]),mean(coords[,2])), layer=layer)
 }
 
 #' Regions of Interest (ROIs)
@@ -49,7 +49,7 @@ names.ROIs <- function(x) unlist(lapply(x@ROIs, function(x) x@ID))
 #' @export
 #'  
 fortify.ROIs <- function(rois) {
-  df <- ldply(rois, function(rois) cbind(rois@ID, data.frame(rois@coords)))
-  colnames(df) <- c("id","x","y")
+  df <- ldply(rois, function(rois) cbind(rois@ID, data.frame(rois@coords), rois@layer))
+  colnames(df) <- c("id","x","y","layer")
   df
 }

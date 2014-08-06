@@ -87,7 +87,65 @@ pva.plot <- function(x, y, pages=1, ...)
       xlims <- c(min(d[[i]]$time),max(d[[i]]$time))
       thresholds$x <- xlims[1]
       thresholds$xend <- xlims[2]
-      p[[i]] <- ggplot(d[[i]]) + geom_point(aes_string(x="time", y="value", color="class", alpha="quality")) + 
+      p[[i]] <- ggplot(d[[i]]) + geom_point(aes_string(x="time", y="value", color="class")) + 
+        geom_segment(data=thresholds,aes_string(y="intercept",yend="intercept",x="x",xend="xend"), na.rm=T) +
+        scale_color_manual(values=c("black", "red", "green", "blue")) + scale_alpha_identity() +
+        coord_cartesian(xlim=xlims)
+    }
+  } else {
+    if (pages > 1)
+      d <- split(d, cut(d$time, pages))
+    else
+      d <- list(d)
+    for (i in seq(length(d))) {
+      xlims <- c(min(d[[i]]$time),max(d[[i]]$time))
+      p[[i]] <- ggplot(d[[i]]) + geom_point(aes_string(x="time", y="value")) +
+        coord_cartesian(xlim=xlims)
+    }
+  }
+  for (i in seq(length(d)))
+    p[[i]] <- p[[i]] + facet_grid(as.formula("variable~."), scales="free_y") + ylab("") + xlab("Time (s)") +
+    theme(legend.position = "top")
+  p
+}
+
+plot_pva <- function(d, pages=1, ...)
+{
+  p <- list()
+  if ("class" %in% colnames(d)) {
+    d <- d[,c("time","sx","sy","v","a","class")]
+    d <- melt(d, id=c("time","class"))
+  } else {
+    d <- d[,c("time","sx","sy","v","a")]
+    d <- melt(d, id=c("time"))
+  }
+  d$variable <- factor(d$variable,labels=c("Gaze X", "Gaze Y", "Velocity", "Acceleration"))
+  if ("class" %in% colnames(d)) {
+    d$class <- factor(d$class, levels=c("FIXATION","SACCADE","GLISSADE","BLINK"))
+    d <- ddply(d, .(variable), function(x) {
+      ylim <- range(x[x$class != "BLINK", ]$value)
+      x[x$value >= ylim[1] & x$value <= ylim[2], ]
+    })
+    thresholds <- data.frame(variable=c("Gaze X", "Gaze Y"))
+    thresholds$intercept <- NA
+    for (threshold in names(y@thresholds)) {
+      var <- NULL
+      if (threshold == "vt" || threshold == "st" || threshold == "nt")
+        var <- "Velocity"
+      else if (threshold == "at")
+        var <- "Acceleration"
+      if (!is.null(var))
+        thresholds <- rbind(thresholds, data.frame(variable=var, intercept=y@thresholds[[threshold]]))
+    }
+    if (pages > 1)
+      d <- split(d, cut(d$time, pages))
+    else
+      d <- list(d)
+    for (i in seq(length(d))) {
+      xlims <- c(min(d[[i]]$time),max(d[[i]]$time))
+      thresholds$x <- xlims[1]
+      thresholds$xend <- xlims[2]
+      p[[i]] <- ggplot(d[[i]]) + geom_point(aes_string(x="time", y="value", color="class")) + 
         geom_segment(data=thresholds,aes_string(y="intercept",yend="intercept",x="x",xend="xend"), na.rm=T) +
         scale_color_manual(values=c("black", "red", "green", "blue")) + scale_alpha_identity() +
         coord_cartesian(xlim=xlims)

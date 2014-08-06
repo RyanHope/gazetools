@@ -11,6 +11,7 @@
 #'    \item{\code{hole}}{an object of class \code{"logical"}; does the polygon seem to be a hole}
 #'    \item{\code{ringDir}}{an object of class \code{"integer"}; the ring direction of the ring (polygon) coordinates, holes are expected to be anti-clockwise}
 #'    \item{\code{coords}}{an object of class \code{"matrix"}; coordinates of the polygon; first point should equal the last point}
+#'    \item{\code{layer}}{an object of class \code{"numeric"}; the layer (z-order / depth) of the ROI}
 #'  }
 #'
 #' @importFrom methods setClass
@@ -22,7 +23,7 @@
 #' 
 #' @export
 #' 
-setClass("ROI", representation(ID="character",center="numeric"), contains="Polygon")
+setClass("ROI", representation(ID="character",center="numeric",layer="numeric"), contains="Polygon")
 
 #' Class "ROIs"
 #'
