@@ -3,7 +3,7 @@
 \alias{rplot}
 \title{Raster Plot}
 \usage{
-rplot(raster, xlim = NULL, ylim = NULL)
+rplot(raster, xlim = NULL, ylim = NULL, rois = NULL, ...)
 }
 \arguments{
 \item{raster}{a rasterized image}
@@ -11,6 +11,10 @@ rplot(raster, xlim = NULL, ylim = NULL)
 \item{xlim}{a vector of length 2 that contains the min and max horizontal bounds of the image}
 
 \item{ylim}{a vector of length 2 that contains the min and max vertical bounds of the image}
+
+\item{rois}{an object of class \code{"ROIs"}, used to overlay ROI polygons}
+
+\item{...}{extra params passed to geom_path, only used when rois!=NULL}
 }
 \description{
 A wrapper around a few ggplot2 functions that creates a base plot layer out of a raster image.
