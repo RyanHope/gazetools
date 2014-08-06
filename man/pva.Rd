@@ -3,8 +3,8 @@
 \alias{pva}
 \title{Compute Velocity and Acceleration Profiles for Raw Gaze Data}
 \usage{
-pva(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0, order = 2,
-  window = 11, vt = 1000, at = 1e+05, pupil = NULL,
+pva(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0, timestamp = -1,
+  order = 2, window = 11, vt = 1000, at = 1e+05, pupil = NULL,
   blinkFUN = "detect_blinks.SW", approxFUN = "na.spline", ...)
 }
 \arguments{

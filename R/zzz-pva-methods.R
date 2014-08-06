@@ -1,6 +1,6 @@
 #' @export
 as.data.frame.pva <- function(x, row.names=NULL, optional=FALSE, ...) {
-  d <- data.frame(time = x@time, x = x@x, y = x@y, v = x@v, a = x@a,
+  d <- data.frame(timestamp = x@timestamp, time = x@time, x = x@x, y = x@y, v = x@v, a = x@a,
                   sx = x@sx, sy = x@sy, xa = x@xa, ya = x@ya,
                   ez = x@ez, ex = x@ex, ey = x@ey, blinks = x@blinks)
   attr(d, "samplerate") <- x@samplerate

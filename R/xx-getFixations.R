@@ -27,9 +27,13 @@ getFixations <- function(class, dpva, drop=T) {
   d1 <- as.data.frame(dpva)
   d2 <- as.data.frame(class)
   f <- ddply(cbind(d1,d2), .(fixation_ids),
-             function(d,t) data.frame(fixation.x=mean(d$x),
+             function(d,t) data.frame(time.begin=head(d$time,1),
+                                      time.end=tail(d$time,1),
+                                      timestamp.begin=head(d$timestamp,1),
+                                      timestamp.end=tail(d$timestamp,1),
+                                      fixation.x=mean(d$x),
                                       fixation.y=mean(d$y),
-                                      fixation.duration=nrow(d)*t,
+                                      fixation.duration=(nrow(d)-1)*t,
                                       fixation.velocity=mean(d$v),
                                       quality=mean(d$quality)),
              t=1/dpva@samplerate)

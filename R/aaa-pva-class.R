@@ -2,7 +2,8 @@
 #'
 #' A class to hold position, velocity and acceleration of raw gaze data
 #'
-#' @slot time vector of class \code{"numeric"}, containing the time corresponding to raw gaze samples
+#' @slot time vector of class \code{"numeric"}, containing the internal time corresponding to raw gaze samples
+#' @slot timestamp vector of class \code{"numeric"}, containing the external time corresponding to raw gaze samples
 #' @slot ez vector of class \code{"numeric"}, containing the perpendicular distance from the viewer to the screen (mm)
 #' @slot ex vector of class \code{"numeric"}, containing the horizontal offset of the viewer from screen center (mm)
 #' @slot ey vector of class \code{"numeric"}, containing the vertical offset of the viewer from screen center (mm)
@@ -28,10 +29,9 @@
 #' @docType class
 #' 
 setClass("pva", 
-         representation(time = "numeric", ez = "numeric",
-                        ex = "numeric", ey = "numeric",
-                        x = "numeric", y = "numeric",
-                        sx = "numeric", sy = "numeric",
+         representation(time = "numeric", timestamp = "numeric", 
+                        ez = "numeric", ex = "numeric", ey = "numeric",
+                        x = "numeric", y = "numeric", sx = "numeric", sy = "numeric",
                         xa = "numeric", ya = "numeric",
                         v = "numeric", a = "numeric",
                         rx = "numeric", ry = "numeric",

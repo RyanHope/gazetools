@@ -9,7 +9,9 @@ A class to hold position, velocity and acceleration of raw gaze data
 \section{Slots}{
 
 \describe{
-\item{\code{time}}{vector of class \code{"numeric"}, containing the time corresponding to raw gaze samples}
+\item{\code{time}}{vector of class \code{"numeric"}, containing the internal time corresponding to raw gaze samples}
+
+\item{\code{timestamp}}{vector of class \code{"numeric"}, containing the external time corresponding to raw gaze samples}
 
 \item{\code{ez}}{vector of class \code{"numeric"}, containing the perpendicular distance from the viewer to the screen (mm)}
 
