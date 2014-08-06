@@ -47,10 +47,14 @@
       <dt>v</dt>
       <dd>a vector of instantaneous velocity values</dd>
       <dt>blinks</dt>
-      <dd>vector of class <code>"logical"</code>, TRUE if
-  samples belong to a blink</dd>
+      <dd>vector of class <code>"logical"</code>, TRUE if samples belong to a blink</dd>
     </dl>
     
+    <div class="Gaze Data Classification (mixture model)">
+      <h2>Gaze Data Classification (mixture model)</h2>
+      
+    </div>
+
     <div class="Value">
       <h2>Value</h2>
       
@@ -80,8 +84,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl))
 d.c &lt;- classify.MM(d.pva@v)
 </div>
-<div class='output'>iteration 0 logLik: -17113.81 
-iteration 5 logLik: -13093.27 
+<div class='output'>iteration 0 logLik: -17291.73 
+iteration 5 logLik: -13093.35 
 iteration 10 logLik: -13092.69 
 converged at iteration 11 with logLik: -13092.69 
 </div>
@@ -106,8 +110,8 @@ d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
                        smi_ezl, smi_exl, smi_eyl, pupil=smi_dxl))
 d.c &lt;- classify.MM(d.pva@v, blinks=d.pva@blinks)
 </div>
-<div class='output'>iteration 0 logLik: -17562.67 
-iteration 5 logLik: -13093.55 
+<div class='output'>iteration 0 logLik: -16455.32 
+iteration 5 logLik: -13093.04 
 iteration 10 logLik: -13092.69 
 converged at iteration 11 with logLik: -13092.69 
 </div>
