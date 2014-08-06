@@ -40,7 +40,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>rplot(raster, xlim&nbsp;=&nbsp;NULL, ylim&nbsp;=&nbsp;NULL)</div></pre>
+    <pre><div>rplot(raster, xlim&nbsp;=&nbsp;NULL, ylim&nbsp;=&nbsp;NULL, rois&nbsp;=&nbsp;NULL, ...)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -50,6 +50,10 @@
       <dd>a vector of length 2 that contains the min and max horizontal bounds of the image</dd>
       <dt>ylim</dt>
       <dd>a vector of length 2 that contains the min and max vertical bounds of the image</dd>
+      <dt>rois</dt>
+      <dd>an object of class <code>"ROIs"</code>, used to overlay ROI polygons</dd>
+      <dt>...</dt>
+      <dd>extra params passed to geom_path, only used when rois!=NULL</dd>
     </dl>
     
     <div class="Raster Plot">
