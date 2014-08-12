@@ -9,6 +9,7 @@ staticdocs
 example
 OLD
 NEW
+STAGING
 inst/web
 ^\.travis\.yml$
 .utility

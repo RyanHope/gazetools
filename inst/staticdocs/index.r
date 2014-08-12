@@ -20,7 +20,6 @@ sd_section(
     "DynamicROI-class",
     "DynamicROIs-class",
     "VoronoiPolygons-class",
-    "Coverage-class",
     "Scanpath-class"
   )
 )
@@ -74,13 +73,18 @@ sd_section(
     "ROIs",
     #"DynamicROI",
     #"DynamicROIs",
-    "gridded_rois"
+    "gridded_rois",
+    "VoronoiPolygons"
   )
 )
 sd_section(
   "Event Analysis",
   "Functions to analyze gaze events.",
   c(
+    "bceFun",
+    "bcea",
+    "chull_area",
+    "nni",
     "getScanpath",
     "getTransitionMatrix"
   )
@@ -97,10 +101,14 @@ sd_section(
   )
 )
 sd_section(
-  "Misc ggplot",
-  "These are handy ggplot2 related functions.",
+  "Misc plotting",
+  "These are handy plotting functions, many specific to ggplot2.",
   c(
     "rplot",
-    "coord_monitor"
+    "coord_monitor",
+    "theme_empty",
+    "geom_chull"#,
+    #"stat_knn",
+    #"geom_knn"
   )
 )

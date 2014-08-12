@@ -1,19 +1,80 @@
-dirichlet_tessellation <- voronoi_tessellation <- function(x, y=NULL, xrange, yrange) {
-  xy <- xy.coords(x, y)
-  p <- ppp(xy$x, xy$y, xrange=xrange, yrange=yrange)
+#' Dirichlet Tessellation
+#' 
+#' Calculates the dirichlet tessellation of a set of points
+#' 
+#' @param x Vector of x coordinates of data points
+#' @param y Vector of y coordinates of data points
+#' @param xrange,yrange specify a window of observation with these dimensions
+#' 
+#' @importFrom spatstat ppp dirichlet
+#' 
+#' @export
+#' 
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' d.tess <- dirichlet_tessellation(d.f$fixation.x, d.f$fixation.y, c(315,1365), c(0,1050))
+#' str(d.tess)
+#' 
+dirichlet_tessellation <- voronoi_tessellation <- function(x, y, xrange, yrange) {
+  p <- ppp(x, y, xrange=xrange, yrange=yrange)
   dirichlet(p)
 }
 
-delaunay_tessellation <- function(x, y=NULL, xrange, yrange) {
-  xy <- xy.coords(x, y)
-  p <- ppp(xy$x, xy$y, xrange=xrange, yrange=yrange)
+#' Delaunay Tessellation
+#' 
+#' Calculates the delaunay tessellation of a set of points
+#' 
+#' @param x Vector of x coordinates of data points
+#' @param y Vector of y coordinates of data points
+#' @param xrange,yrange specify a window of observation with these dimensions
+#' 
+#' @importFrom spatstat ppp delaunay
+#' 
+#' @export
+#' 
+#' @examples
+#' data(smi)
+#' d.pva <- with(smi, pva(smi_sxl, smi_syl, 
+#'                        500, 1680, 1050, 473.76, 296.1, 
+#'                        smi_ezl, smi_exl, smi_eyl))
+#' d.c <- classify.V(d.pva@@v)
+#' d.f <- getFixations(d.c, d.pva)
+#' d.tess <- delaunay_tessellation(d.f$fixation.x, d.f$fixation.y, c(315,1365), c(0,1050))
+#' str(d.tess)
+#' 
+delaunay_tessellation <- function(x, y, xrange, yrange) {
+  p <- ppp(x, y, xrange=xrange, yrange=yrange)
   delaunay(p)
 }
 
-skewness.tess <- function(x, ...) {
-  as.numeric(skewness(unlist(tile.areas(x)), ...))
+#' Tessellation Skewness
+#' 
+#' Calculates the skewness of the tesselation tile areas
+#' 
+#' @param x an object of class \code{"tess"}
+#' 
+#' @return the skewness of the tesselation tile areas
+#'
+#' @importFrom spatstat tile.areas
+#' @importFrom modeest skewness
+#' 
+#' @export
+skewness.tess <- function(x) {
+  as.numeric(skewness(unlist(tile.areas(x))))
 }
 
+#' Fortify tess
+#' 
+#' Method to convert a tess object into a data frame useful for plotting.
+#' 
+#' @param tl a tess object
+#' 
+#' @export
 fortify.tess <- function(tl) {
   do.call("rbind",lapply(tl, function(x) {
     df <- data.frame(id=x$ptNum,
@@ -34,11 +95,10 @@ fortify.tess <- function(tl) {
 #' @param x a matrix of x,y cooridinates
 #' @param rw the coordinates of the corners of the rectangular window enclosing the voronoi cells, in the order (xmin, xmax, ymin, ymax).
 #'
-#' @import sp
 #' @importFrom deldir deldir tile.list
 #' @importFrom modeest skewness
 #'
-#' @return an object of class \code{\linkS4class{Voronoi}}
+#' @return an object of class \code{\linkS4class{VoronoiPolygons}}
 #'
 #' @export
 #' 
@@ -49,7 +109,7 @@ fortify.tess <- function(tl) {
 #'                        smi_ezl, smi_exl, smi_eyl))
 #' d.c <- classify.V(d.pva@@v)
 #' d.f <- getFixations(d.c, d.pva)
-#' d.vp <- VoronoiPolygons(d.f[,c("x","y")], c(315,1365,0,1050))
+#' d.vp <- VoronoiPolygons(d.f[,c("fixation.x","fixation.y")], c(315,1365,0,1050))
 #' str(d.vp)
 #' 
 VoronoiPolygons <- function(x, rw) {
@@ -71,7 +131,7 @@ VoronoiPolygons <- function(x, rw) {
 #' @param x an object of class \code{\linkS4class{VoronoiPolygons}}
 #' 
 #' @docType methods
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot geom_path aes coord_equal geom_point
 #' @importFrom plyr ddply .
 #' @importFrom methods setMethod
 #' @rdname VoronoiPolygons-plot
@@ -86,7 +146,7 @@ VoronoiPolygons <- function(x, rw) {
 #'                        smi_ezl, smi_exl, smi_eyl))
 #' d.c <- classify.V(d.pva@@v)
 #' d.f <- getFixations(d.c, d.pva)
-#' d.vp <- VoronoiPolygons(d.f[,c("x","y")], c(315,1365,0,1050))
+#' d.vp <- VoronoiPolygons(d.f[,c("fixation.x","fixation.y")], c(315,1365,0,1050))
 #' plot(d.vp)
 #' 
 setMethod("plot", signature(x = "VoronoiPolygons", y = "missing"), function(x, y, ...) VoronoiPolygons.plot(x, y, ...))

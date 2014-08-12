@@ -9,9 +9,9 @@ classify.VA(v, a, vt = 30, at = 8000, blinks = NULL)
 \arguments{
 \item{v}{a vector of instantaneous velocity values}
 
-\item{vt}{a velocity threshold}
-
 \item{a}{a vector of instantaneous acceleration values}
+
+\item{vt}{a velocity threshold}
 
 \item{at}{an acceleration threshold}
 

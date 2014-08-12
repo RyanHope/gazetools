@@ -129,23 +129,3 @@ setClass("VoronoiPolygons", representation(skewness = "numeric"), contains = "RO
 #' @export
 #' 
 setClass("Scanpath", representation(ROIs="ROIs"), contains="character")
-
-#' Class "Coverage"
-#'
-#' Holds a Scanpath and the proportion of ROIs fixated
-#'
-#'@section Slots: 
-#'  \describe{
-#'    \item{\code{.Data}}{an object of class \code{"numeric"}; the proportion of ROIs fixated}
-#'    \item{\code{Scanpath}}{an object of class \code{"Scanpath"}; the scanpath}
-#'  }
-#'
-#' @importFrom methods setClass
-#' 
-#' @docType class
-#' @name Coverage-class
-#' @rdname Coverage-class
-#' 
-#' @export
-#' 
-setClass("Coverage", representation(Scanpath="Scanpath"), contains="numeric")

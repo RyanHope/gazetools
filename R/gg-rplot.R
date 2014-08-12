@@ -31,16 +31,3 @@ rplot <- function(raster, xlim=NULL, ylim=NULL, rois=NULL, ...) {
     p <- p + geom_path(data=rois,aes(x=x,y=y,color=reorder(id,layer)), ...) + labs(color="ROIs")
   p
 }
-
-#' Monitor Coordinates
-#' 
-#' Sets the ggplot apect ration and limits to the bounds of a computer monitor.
-#' 
-#' @param res_width the x resolution of a monitor
-#' @param res_height the y resolution of a monitor
-#' 
-#' @importFrom ggplot2 coord_fixed
-#' 
-#' @export
-#' 
-coord_monitor <- function(res_width,res_height) coord_fixed(xlim=c(0,res_width),ylim=c(0,res_height))

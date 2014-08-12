@@ -1,13 +1,13 @@
-utils::globalVariables(c("y"))
-
-#' Extent (range) of fixations
-#'
-#' Calculates the distance between fixations in the horizontal and vertical meridians
-#'   
+#' Bivariate contour ellipse area (BCEA)
+#' 
+#' Calculates the area of an ellipse that encompasses a given proportion 
+#' of points in a data set.
+#' 
 #' @param x coordinate vectors of points. This can be specified as a 2-column matrix x, 
 #' a list x with two components
+#' @param k a proportion of points in a data set
 #' 
-#' @return a list with two values, the horizontal (x) and vertical (y) range of points
+#' @return an area (pixels^2)
 #'
 #' @export
 #' 
@@ -18,8 +18,9 @@ utils::globalVariables(c("y"))
 #'                        smi_ezl, smi_exl, smi_eyl))
 #' d.c <- classify.V(d.pva@@v)
 #' d.f <- getFixations(d.c, d.pva)
-#' extent(d.f[,c("x","y")])
+#' d.bcea <- bcea(d.f[,c("fixation.x","fixation.y")])
+#' str(d.bcea)
 #' 
-extent <- function(x) {
-  list(x=max(x[,1])-min(x[,1]),y=max(x[,2])-min(x[,2]))
+bcea <- function(x, k=.90) {
+  2 * k * pi * sd(x[,1]) * sd(x[,2]) * sqrt((1 - cor(x[,1],x[,2])^2))
 }

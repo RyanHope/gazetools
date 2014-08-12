@@ -1,7 +1,7 @@
 Package: gazetools
 Type: Package
 Title: Gaze Tools
-Version: 4.1.0
+Version: 4.1.1
 Date: 2014-08-12
 Author: Ryan M. Hope <rmh3093@gmail.com>
 Maintainer: Ryan M. Hope <rmh3093@gmail.com>
@@ -22,5 +22,9 @@ Imports:
     signal,
     zoo,
     plyr,
-    Rmisc
+    Rmisc,
+    MASS,
+    deldir,
+    modeest,
+    spatstat
 Roxygen: list(wrap = FALSE)

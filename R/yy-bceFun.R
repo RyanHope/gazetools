@@ -2,6 +2,10 @@
 #' 
 #' Creates a confidence ellipse around a set of points
 #' 
+#' @param data a data frame of x,y coordinates
+#' @param level the proportion of points to encompass with the ellipse
+#' @param segments the number of points to divide the ellipse into
+#' 
 #' @importFrom MASS cov.trob
 #' 
 #' @export

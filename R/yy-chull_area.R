@@ -19,7 +19,7 @@ utils::globalVariables(c("y"))
 #'                        smi_ezl, smi_exl, smi_eyl))
 #' d.c <- classify.V(d.pva@@v)
 #' d.f <- getFixations(d.c, d.pva)
-#' d.cha <- chull_area(d.f[,c("x","y")])
+#' d.cha <- chull_area(d.f[,c("fixation.x","fixation.y")])
 #' d.cha
 #' 
 chull_area <- function(x) {
@@ -34,7 +34,7 @@ chull_area <- function(x) {
 #' a list x with two components
 #' @param ... extra arguments passed on to geom_path
 #'
-#' @import ggplot2
+#' @importFrom ggplot2 geom_path
 #' @export
 geom_chull <- function(x, ...) {
   hpts <- chull(x)
