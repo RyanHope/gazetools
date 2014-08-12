@@ -4,16 +4,33 @@ sd_section(
   c(
     "lc120",
     "smi",
-    "highspeed"
+    "highspeed",
+    "logo"
     )
+)
+sd_section(
+  "Classes",
+  "Classes used in the gazetools package",
+  c(
+    "pva-class",
+    "classify-class",
+    "mould-class",
+    "ROI-class",
+    "ROIs-class",
+    "DynamicROI-class",
+    "DynamicROIs-class",
+    "VoronoiPolygons-class",
+    "Coverage-class",
+    "Scanpath-class"
+  )
 )
 sd_section(
   "Utility",
   "These are handy utilty functions.",
   c(
-    "rplot",
     "event_ids",
     "unique_ids",
+    "local_maxima",
     "find_peak_ranges",
     "find_peaks",
     "distance_2_point",
@@ -24,6 +41,7 @@ sd_section(
   "Preprocessing",
   "Preprocessing functions for use before classification.",
   c(
+    "mould",
     "detect_blinks.PV",
     "detect_blinks.SW",
     "pva"
@@ -40,19 +58,49 @@ sd_section(
     )
 )
 sd_section(
+  "Event Extraction",
+  "Functions to extract events from classied gaze data.",
+  c(
+    "getFixations",
+    "getSaccades",
+    "getGlissades" 
+  )
+)
+sd_section(
+  "Regions of Interest",
+  "Functions for defining regions of interest used in event analysis.",
+  c(
+    "ROI",
+    "ROIs",
+    #"DynamicROI",
+    #"DynamicROIs",
+    "gridded_rois"
+  )
+)
+sd_section(
+  "Event Analysis",
+  "Functions to analyze gaze events.",
+  c(
+    "getScanpath",
+    "getTransitionMatrix"
+  )
+)
+sd_section(
   "Class Plot Methods",
   "Functions for plotting classes used in the gazetools package.",
   c(
     "plot,pva,classify-method",
-    "plot,pva,missing-method"
+    "plot,pva,missing-method",
+    "plot.classify",
+    "plot.mould",
+    "plot.ROIs"
   )
 )
 sd_section(
-  "Classes",
-  "Classes used in the gazetools package",
+  "Misc ggplot",
+  "These are handy ggplot2 related functions.",
   c(
-    "pva-class",
-    "classify-class",
-    "mould-class"
+    "rplot",
+    "coord_monitor"
   )
 )
