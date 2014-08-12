@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>VoronoiPolygons. gazetools 4.1.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">gazetools 4.1.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>VoronoiPolygons</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>VoronoiPolygons(x, rw)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>a matrix of x,y cooridinates</dd>
+      <dt>rw</dt>
+      <dd>the coordinates of the corners of the rectangular window enclosing the voronoi cells, in the order (xmin, xmax, ymin, ymax).</dd>
+    </dl>
+    
+    <div class="VoronoiPolygons">
+      <h2>VoronoiPolygons</h2>
+      
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>an object of class <code>VoronoiPolygons</code></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Creates an object of class VoronoiPolygons</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(smi)
+d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
+                       500, 1680, 1050, 473.76, 296.1,
+                       smi_ezl, smi_exl, smi_eyl))
+d.c &lt;- classify.V(d.pva@v)
+d.f &lt;- getFixations(d.c, d.pva)
+d.vp &lt;- VoronoiPolygons(d.f[,c(&quot;fixation.x&quot;,&quot;fixation.y&quot;)], c(315,1365,0,1050))
+str(d.vp)
+</div>
+<div class='output'>Formal class &#39;VoronoiPolygons&#39; [package &quot;gazetools&quot;] with 2 slots
+  ..@ .Data   :List of 19
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;1&quot;
+  .. .. .. ..@ center : num [1:2] 802 601
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 800 569
+  .. .. .. ..@ area   : num 20965
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 793 763 778 834 851 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;2&quot;
+  .. .. .. ..@ center : num [1:2] 741 625
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 727 601
+  .. .. .. ..@ area   : num 28121
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 763 735 640 765 778 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;3&quot;
+  .. .. .. ..@ center : num [1:2] 865 693
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 883 628
+  .. .. .. ..@ area   : num 41193
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:5, 1:2] 835 793 851 1009 835 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;4&quot;
+  .. .. .. ..@ center : num [1:2] 1103 710
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 1100 705
+  .. .. .. ..@ area   : num 150824
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:7, 1:2] 927 835 1009 1292 1365 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;5&quot;
+  .. .. .. ..@ center : num [1:2] 756 898
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 710 932
+  .. .. .. ..@ area   : num 86628
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:10, 1:2] 927 928 503 572 580 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;6&quot;
+  .. .. .. ..@ center : num [1:2] 408 922
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 405 875
+  .. .. .. ..@ area   : num 42117
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 333 315 315 580 572 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;7&quot;
+  .. .. .. ..@ center : num [1:2] 644 505
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 654 473
+  .. .. .. ..@ area   : num 34913
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 640 567 572 679 765 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;8&quot;
+  .. .. .. ..@ center : num [1:2] 478 992
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 469 973
+  .. .. .. ..@ area   : num 19667
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:4, 1:2] 503 333 572 503 1050 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;9&quot;
+  .. .. .. ..@ center : num [1:2] 555 706
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 508 699
+  .. .. .. ..@ area   : num 65169
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:7, 1:2] 735 580 315 315 567 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;10&quot;
+  .. .. .. ..@ center : num [1:2] 411 394
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 390 389
+  .. .. .. ..@ area   : num 22318
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:5, 1:2] 488 315 315 449 488 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;11&quot;
+  .. .. .. ..@ center : num [1:2] 571 352
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 561 337
+  .. .. .. ..@ area   : num 33109
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:7, 1:2] 572 488 449 565 668 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;12&quot;
+  .. .. .. ..@ center : num [1:2] 471 526
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 442 527
+  .. .. .. ..@ area   : num 38557
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 567 315 315 488 572 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;13&quot;
+  .. .. .. ..@ center : num [1:2] 440 180
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 410 167
+  .. .. .. ..@ area   : num 57488
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 565 449 315 315 428 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;14&quot;
+  .. .. .. ..@ center : num [1:2] 1058 419
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 1054 414
+  .. .. .. ..@ area   : num 77941
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 1292 1009 851 834 1072 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;15&quot;
+  .. .. .. ..@ center : num [1:2] 827 316
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 840 286
+  .. .. .. ..@ area   : num 51129
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:9, 1:2] 834 778 765 679 668 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;16&quot;
+  .. .. .. ..@ center : num [1:2] 654 145
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 624 107
+  .. .. .. ..@ area   : num 61620
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:6, 1:2] 744 668 565 428 776 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;17&quot;
+  .. .. .. ..@ center : num [1:2] 941 132
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 915 110
+  .. .. .. ..@ area   : num 63227
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:5, 1:2] 1069 744 776 1047 1069 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;18&quot;
+  .. .. .. ..@ center : num [1:2] 1225 257
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 1228 183
+  .. .. .. ..@ area   : num 109233
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:7, 1:2] 1365 1292 1072 1069 1047 ...
+  .. ..$ :Formal class &#39;ROI&#39; [package &quot;gazetools&quot;] with 9 slots
+  .. .. .. ..@ ID     : chr &quot;19&quot;
+  .. .. .. ..@ center : num [1:2] 1190 960
+  .. .. .. ..@ layer  : num 0
+  .. .. .. ..@ parent : chr NA
+  .. .. .. ..@ labpt  : num [1:2] 1216 904
+  .. .. .. ..@ area   : num 98281
+  .. .. .. ..@ hole   : logi TRUE
+  .. .. .. ..@ ringDir: int -1
+  .. .. .. ..@ coords : num [1:5, 1:2] 1365 928 927 1365 1365 ...
+  ..@ skewness: num 1.04
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>VoronoiPolygons</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

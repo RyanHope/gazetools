@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Index. gazetools 4.1.0</title>
+<title>Index. gazetools 4.1.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Ryan M. Hope &lt;rmh3093@gmail.com&gt;">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.1.0</a>
+      <a class="brand" href="#">gazetools 4.1.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -100,9 +100,6 @@
             
       <li>
         <code><a href="VoronoiPolygons-class.html">VoronoiPolygons-class</a></code><br />Class "VoronoiPolygons"</li>
-            
-      <li>
-        <code><a href="Coverage-class.html">Coverage-class</a></code><br />Class "Coverage"</li>
             
       <li>
         <code><a href="Scanpath-class.html">Scanpath-class</a></code><br />Class "Scanpath"</li>
@@ -204,6 +201,9 @@
             
       <li>
         <code><a href="gridded_rois.html">gridded_rois</a></code><br />Gridded ROIs</li>
+            
+      <li>
+        <code><a href="VoronoiPolygons.html">VoronoiPolygons</a></code><br />VoronoiPolygons</li>
     
     </ul>
     <h3>Event Analysis</h3>
@@ -212,6 +212,18 @@
     
     <ul class="index">
         
+      <li>
+        <code><a href="bceFun.html">bceFun</a></code><br />Bivariate Contour Ellipse Function</li>
+            
+      <li>
+        <code><a href="bcea.html">bcea</a></code><br />Bivariate contour ellipse area (BCEA)</li>
+            
+      <li>
+        <code><a href="chull_area.html">chull_area</a></code><br />Convex Hull Area</li>
+            
+      <li>
+        <code><a href="nni.html">nni</a></code><br />Nearest Neighbor Index</li>
+            
       <li>
         <code><a href="getScanpath.html">getScanpath</a></code><br />Get Scanpath</li>
             
@@ -241,8 +253,8 @@
         <code><a href="ROIs-methods.html">plot.ROIs</a></code>(plot,ROIs,missing-method)<br />Plot ROIs</li>
     
     </ul>
-    <h3>Misc ggplot</h3>
-    <p>These are handy ggplot2 related functions.</p>
+    <h3>Misc plotting</h3>
+    <p>These are handy plotting functions, many specific to ggplot2.</p>
 
     
     <ul class="index">
@@ -252,6 +264,12 @@
             
       <li>
         <code><a href="coord_monitor.html">coord_monitor</a></code><br />Monitor Coordinates</li>
+            
+      <li>
+        <code><a href="theme_empty.html">theme_empty</a></code><br />Empty Theme</li>
+            
+      <li>
+        <code><a href="geom_chull.html">geom_chull</a></code><br />Convex Hull Geom for ggplot2</li>
     
     </ul>
     <h3>Other</h3>
@@ -260,7 +278,22 @@
     <ul class="index">
         
       <li>
+        <code><a href="angle_2_pixels.html">angle_2_pixels</a></code><br />Angle to Pixels</li>
+            
+      <li>
         <code><a href="as.html">as</a></code><br />as("classify", "data.frame")</li>
+            
+      <li>
+        <code><a href="circleFun.html">circleFun</a></code><br />Circle Function</li>
+            
+      <li>
+        <code><a href="delaunay_tessellation.html">delaunay_tessellation</a></code><br />Delaunay Tessellation</li>
+            
+      <li>
+        <code><a href="dirichlet_tessellation.html">dirichlet_tessellation</a></code><br />Dirichlet Tessellation</li>
+            
+      <li>
+        <code><a href="extent.html">extent</a></code><br />Extent (range) of fixations</li>
             
       <li>
         <code><a href="fortify.ROIs.html">fortify.ROIs</a></code><br />Fortify ROIs</li>
@@ -269,7 +302,16 @@
         <code><a href="fortify.Scanpath.html">fortify.Scanpath</a></code><br />Fortify Scanpath</li>
             
       <li>
+        <code><a href="fortify.tess.html">fortify.tess</a></code><br />Fortify tess</li>
+            
+      <li>
         <code><a href="gazetools.html">gazetools</a></code>(gazetools-package)<br />gazetools</li>
+            
+      <li>
+        <code><a href="VoronoiPolygons-plot.html">plot.VoronoiPolygons</a></code>(plot,VoronoiPolygons,missing-method)<br />Plot VoronoiPolygons</li>
+            
+      <li>
+        <code><a href="skewness.tess.html">skewness.tess</a></code><br />Tessellation Skewness</li>
     
     </ul>
   </div>
@@ -279,7 +321,7 @@
     <h2>Dependencies</h2>
     <ul>
       <li><strong>Depends</strong>: methods, stats, sp</li>
-      <li><strong>Imports</strong>: reshape2, ggplot2, depmixS4, signal, zoo, plyr, Rmisc</li>
+      <li><strong>Imports</strong>: reshape2, ggplot2, depmixS4, signal, zoo, plyr, Rmisc, MASS, deldir, modeest, spatstat</li>
       <li><strong>Suggests</strong>: </li>
       <li><strong>Extends</strong>: </li>
     </ul>

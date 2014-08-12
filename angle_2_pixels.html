@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>getGlissades. gazetools 4.1.1</title>
+<title>angle_2_pixels. gazetools 4.1.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,62 +35,65 @@
         
       </header>
       
-      <h1>Get Glissades</h1>
+      <h1>Angle to Pixels</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>getGlissades(class, dpva)</div></pre>
+    <pre><div>angle_2_pixels(alpha, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;0, ey&nbsp;=&nbsp;0, x&nbsp;=&nbsp;rx/2, y&nbsp;=&nbsp;ry/2)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
-      <dt>class</dt>
-      <dd>an object of class <code>classify</code></dd>
-      <dt>dpva</dt>
-      <dd>an object of class <code>pva</code></dd>
+      <dt>alpha</dt>
+      <dd>the target visual angle</dd>
+      <dt>rx</dt>
+      <dd>the x resolution of the monitor (pixels)</dd>
+      <dt>ry</dt>
+      <dd>the y resolution of the monitor (pixels)</dd>
+      <dt>sw</dt>
+      <dd>the physical screen width (mm)</dd>
+      <dt>sh</dt>
+      <dd>the physical screen height (mm)</dd>
+      <dt>ez</dt>
+      <dd>the perpendicular distance from the viewer to the screen (mm)</dd>
+      <dt>ex</dt>
+      <dd>the horizontal offset of the viewer from screen center (mm)</dd>
+      <dt>ey</dt>
+      <dd>the vertical offset of the viewer from screen center (mm)</dd>
+      <dt>x</dt>
+      <dd>the x coordinate of a point on a screen (pixels)</dd>
+      <dt>y</dt>
+      <dd>the y coordinate of a point on a screen (pixels)</dd>
     </dl>
     
-    <div class="Get Glissades">
-      <h2>Get Glissades</h2>
+    <div class="Angle to Pixels">
+      <h2>Angle to Pixels</h2>
       
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>number of pixels</p>
+  
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Extracts the start point, end point, distance and duration of glissades from <code>classify</code>
-and <code>pva</code> objects</p>
+      <p>Calculated the distance (in pixels) at given a visual angle and distance.</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>data(smi)
-d.pva &lt;- with(smi, pva(smi_sxl, smi_syl,
-                       500, 1680, 1050, 473.76, 296.1,
-                       smi_ezl, smi_exl, smi_eyl, pupil=smi_dyl))
-d.c &lt;- classify.VI(d.pva@v, sigma=4, blinks=d.pva@blinks)
-d.f &lt;- getGlissades(d.c, d.pva)
-d.f
+    <pre class="examples"><div class='input'>angle_2_pixels(1, 1680, 1050, 473.76, 296.1, 750)
 </div>
-<div class='output'>  glissade.ids glissade.duration glissade.x1 glissade.y1 glissade.x2
-1            5             0.016    814.7879    555.0839    833.2354
-2           10             0.050   1084.5734    706.9044   1112.6107
-3           25             0.020    505.3730    374.4079    514.9650
-4           37             0.020    894.3217    237.2284    879.0163
-5           46             0.032    858.8438    130.6876    894.5105
-6           51             0.044   1266.9091    869.4709   1286.4079
-  glissade.y2 glissade.amplitude
-1    557.9091          0.3031338
-2    695.7343          0.4660851
-3    370.8228          0.1569173
-4    224.2564          0.2721164
-5    140.8485          0.5443218
-6    845.0956          0.4217997
+<div class='output'>[1] 46.42305
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>getGlissades</li>
+      <li>angle_2_pixels</li>
     </ul>
     <ul>
       
