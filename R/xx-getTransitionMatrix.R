@@ -29,7 +29,11 @@ getTransitionMatrix <- function(scanpath, expected=F, chisquare=F,prob=F,digits=
     tmp2 <- tmp
     N <- sum(tmp2)
     rs <- rowSums(tmp2)
-    cs <- colSums(tmp2)
+    if (is.numeric(expected) && length(expected)==ncol(tmp))
+      cs <- expected * N
+    else
+      cs <- colSums(tmp2)
+    names(cs) <- colnames(tmp2)
     for (.r in rownames(tmp2)) {
       for (.c in colnames(tmp2)) {
         tmp2[.r,.c] <- round((rs[.r]*cs[.c])/N)
