@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>ROI. gazetools 4.0.201407071716</title>
+<title>ROI. gazetools 4.1.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201407071716</a>
+      <a class="brand" href="#">gazetools 4.1.0</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -40,7 +40,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>ROI(coords, ID, layer&nbsp;=&nbsp;0)</div></pre>
+    <pre><div>ROI(coords, ID, layer&nbsp;=&nbsp;0, parent&nbsp;=&nbsp;NA_character_)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -48,6 +48,10 @@
       <dd>a data frame of xy coordinates</dd>
       <dt>ID</dt>
       <dd>a text based identifier for the new ROI</dd>
+      <dt>layer</dt>
+      <dd>the layer to which the ROI belongs</dd>
+      <dt>parent</dt>
+      <dd>the id of the parent ROI</dd>
     </dl>
     
     <div class="Region of Interest (ROI)">

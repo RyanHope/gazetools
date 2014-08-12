@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>scanpath. gazetools 4.0.201407071716</title>
+<title>DynamicROI-class. gazetools 4.1.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 4.0.201407071716</a>
+      <a class="brand" href="#">gazetools 4.1.0</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -35,45 +35,43 @@
         
       </header>
       
-      <h1>Scanpath</h1>
+      <h1>Class "DynamicROI"</h1>
 
 <div class="row">
   <div class="span8">
-    <h2>Usage</h2>
-    <pre><div>scanpath(x, y&nbsp;=&nbsp;NULL, rois, nearest&nbsp;=&nbsp;FALSE)</div></pre>
-    
-    <h2>Arguments</h2>
-    <dl>
-      <dt>x,y</dt>
-      <dd>the x and y coordinates of a set of points. Alternatively, a single argument x can be provided</dd>
-      <dt>rois</dt>
-      <dd>an object of class <code>Polygons</code></dd>
-      <dt>nearest</dt>
-      <dd>if TRUE fixations not on an ROI will be moved to the nearest ROI</dd>
-    </dl>
-    
-    <div class="Scanpath">
-      <h2>Scanpath</h2>
+        
+    <div class="Class &quot;DynamicROI&quot;">
+      <h2>Class &quot;DynamicROI&quot;</h2>
       
-    </div>
-
-    <div class="Value">
-      <h2>Value</h2>
-      
-      <p>an object of class <code>Scanpath</code></p>
-  
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Determines the scanpath given a set of fixations and a list of polygon ROIs</p>
+      <p>Contains information about ROIs that change position or shape over time</p>
+  
+    </div>
+
+    <div class="Slots">
+      <h2>Slots</h2>
+      
+      <p></p>
+  
+      <p><dl>
+<dt><code>.Data</code></dt><dd>a list of polygon coordinates</dd>
+<dt><code>times</code></dt><dd>a data frame where each row contains the begin and end time for each ROI position from the main list</dd>
+<dt><code>ID</code></dt><dd>an object of class <code>"character"</code>; a text based ID</dd>
+<dt><code>layer</code></dt><dd>an object of class <code>"numeric"</code>; the layer (z-order / depth) of the ROI</dd>
+<dt><code>parent</code></dt><dd>an object of class <code>"character"</code>; the id of the parent ROI</dd>
+</dl></p>
+  
+      <p></p>
   
     </div>
       </div>
   <div class="span4">
     <!-- <ul>
-      <li>scanpath</li>
+      <li>DynamicROI-class</li>
     </ul>
     <ul>
       

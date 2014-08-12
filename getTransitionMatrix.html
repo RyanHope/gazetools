@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>highspeed. gazetools 4.1.0</title>
+<title>getTransitionMatrix. gazetools 4.1.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,59 +35,52 @@
         
       </header>
       
-      <h1>Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.</h1>
+      <h1>Get Transition Matrix</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>data(highspeed)</div></pre>
-        
-    <div class="Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.">
-      <h2>Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.</h2>
+    <pre><div>getTransitionMatrix(scanpath, expected&nbsp;=&nbsp;F, chisquare&nbsp;=&nbsp;F, prob&nbsp;=&nbsp;F, digits&nbsp;=&nbsp;3)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>scanpath</dt>
+      <dd>a vector a ROI ids (aka scanpath)</dd>
+      <dt>expected</dt>
+      <dd>if TRUE calculate the expected frequencies</dd>
+      <dt>chisquare</dt>
+      <dd>if TRUE calculate the chi-squared statistic</dd>
+      <dt>prob</dt>
+      <dd>if TRUE convert frequencies into probabilities</dd>
+      <dt>digits</dt>
+      <dd>the number of digits to round to</dd>
+    </dl>
+    
+    <div class="Get Transition Matrix">
+      <h2>Get Transition Matrix</h2>
       
     </div>
 
-    <div class="Format">
-      <h2>Format</h2>
+    <div class="Value">
+      <h2>Value</h2>
       
-      <p><dl>
-<dt>x</dt><dd>horizontal gaze location</dd>
-<dt>y</dt><dd>vertical gaze location</dd>
-</dl></p>
+      <p>an object of class <code>Scanpath</code></p>
   
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Gaze data of a participant performing a reading task.</p>
-  
-    </div>
-
-    <div class="Details">
-      <h2>Details</h2>
-      
-      <p><ul>
-<li> Samplerate was 1250hz.
- </li>
-<li> Screen resolution was 1024 x 768 (px).
- </li>
-<li> Screen size was 0.38 x 0.30 (m).
- </li>
-<li> Viewing distance was 0.67 (m).
-</li>
-</ul></p>
-  
-      <p></p>
+      <p>Calculates a transition matrix from a scanpath.</p>
   
     </div>
       </div>
   <div class="span4">
     <!-- <ul>
-      <li>highspeed</li>
+      <li>getTransitionMatrix</li>
     </ul>
     <ul>
-      <li>datasets</li>
+      
     </ul> -->
       
         

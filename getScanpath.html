@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>highspeed. gazetools 4.1.0</title>
+<title>getScanpath. gazetools 4.1.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,59 +35,52 @@
         
       </header>
       
-      <h1>Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.</h1>
+      <h1>Get Scanpath</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>data(highspeed)</div></pre>
-        
-    <div class="Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.">
-      <h2>Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.</h2>
+    <pre><div>getScanpath(x, y&nbsp;=&nbsp;NULL, begin&nbsp;=&nbsp;NULL, end&nbsp;=&nbsp;NULL, rois, nearest&nbsp;=&nbsp;FALSE, firstOnly&nbsp;=&nbsp;TRUE)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x,y</dt>
+      <dd>the x and y coordinates of a set of points. Alternatively, a single argument x can be provided</dd>
+      <dt>begin,end</dt>
+      <dd>the begin and end timestamp of each fixation, only used with DynamicROIs</dd>
+      <dt>rois</dt>
+      <dd>an object of class <code>ROIs</code> or <code>DynamicROIs</code></dd>
+      <dt>nearest</dt>
+      <dd>if TRUE fixations not on an ROI will be moved to the nearest ROI</dd>
+      <dt>firstOnly</dt>
+      <dd>if TRUE only DynamicROIs present at the start of a fixation are reported</dd>
+    </dl>
+    
+    <div class="Get Scanpath">
+      <h2>Get Scanpath</h2>
       
     </div>
 
-    <div class="Format">
-      <h2>Format</h2>
+    <div class="Value">
+      <h2>Value</h2>
       
-      <p><dl>
-<dt>x</dt><dd>horizontal gaze location</dd>
-<dt>y</dt><dd>vertical gaze location</dd>
-</dl></p>
+      <p>an object of class <code>Scanpath</code></p>
   
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Gaze data of a participant performing a reading task.</p>
-  
-    </div>
-
-    <div class="Details">
-      <h2>Details</h2>
-      
-      <p><ul>
-<li> Samplerate was 1250hz.
- </li>
-<li> Screen resolution was 1024 x 768 (px).
- </li>
-<li> Screen size was 0.38 x 0.30 (m).
- </li>
-<li> Viewing distance was 0.67 (m).
-</li>
-</ul></p>
-  
-      <p></p>
+      <p>Determines the scanpath given a set of fixations and a list of polygon ROIs</p>
   
     </div>
       </div>
   <div class="span4">
     <!-- <ul>
-      <li>highspeed</li>
+      <li>getScanpath</li>
     </ul>
     <ul>
-      <li>datasets</li>
+      
     </ul> -->
       
         
