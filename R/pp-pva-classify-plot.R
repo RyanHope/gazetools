@@ -17,7 +17,7 @@ utils::globalVariables(c("variable","value"))
 #'                       smi_ezl, smi_exl, smi_eyl))
 #' plot(d.pva)
 #' 
-setMethod("plot", signature(x = "pva", y = "missing"), function(x, y, ...) pva.plot(x, NULL, ...))
+setMethod("plot", signature(x = "pva", y = "missing"), function(x, y, pages=1, ...) pva.plot(x, NULL, pages=pages, ...))
 
 #' Plot a 'pva' Object with Classified Samples
 #' 
@@ -46,7 +46,7 @@ setMethod("plot", signature(x = "pva", y = "missing"), function(x, y, ...) pva.p
 #' d.c <- classify.VA(d.pva@@v, d.pva@@a, blinks=d.pva@@blinks)
 #' plot(d.pva, d.c)
 #' 
-setMethod("plot", signature(x = "pva", y = "classify"), function(x, y, ...) pva.plot(x, y, ...))
+setMethod("plot", signature(x = "pva", y = "classify"), function(x, y, pages=1, ...) pva.plot(x, y, pages=1, ...))
 
 #' @importFrom stats as.formula
 #' @importFrom reshape2 melt

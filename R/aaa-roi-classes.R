@@ -12,6 +12,7 @@
 #'    \item{\code{ringDir}}{an object of class \code{"integer"}; the ring direction of the ring (polygon) coordinates, holes are expected to be anti-clockwise}
 #'    \item{\code{coords}}{an object of class \code{"matrix"}; coordinates of the polygon; first point should equal the last point}
 #'    \item{\code{layer}}{an object of class \code{"numeric"}; the layer (z-order / depth) of the ROI}
+#'    \item{\code{parent}}{an object of class \code{"character"}; the id of the parent ROI}
 #'  }
 #'
 #' @importFrom methods setClass
@@ -23,7 +24,11 @@
 #' 
 #' @export
 #' 
-setClass("ROI", representation(ID="character",center="numeric",layer="numeric"), contains="Polygon")
+setClass("ROI", representation(ID="character",
+                               center="numeric",
+                               layer="numeric",
+                               parent="character"),
+         contains="Polygon")
 
 #' Class "ROIs"
 #'
@@ -41,6 +46,49 @@ setClass("ROIs", representation(), contains="list", validity=function(object) {
   !any(sapply(object, function(x) !is(x, "ROI")))
 })
 #setOldClass("ROIs")
+
+#' Class "DynamicROI"
+#'
+#' Contains information about ROIs that change position or shape over time
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{.Data}}{a list of polygon coordinates}
+#'    \item{\code{times}}{a data frame where each row contains the begin and end time for each ROI position from the main list}
+#'    \item{\code{ID}}{an object of class \code{"character"}; a text based ID}
+#'    \item{\code{layer}}{an object of class \code{"numeric"}; the layer (z-order / depth) of the ROI}
+#'    \item{\code{parent}}{an object of class \code{"character"}; the id of the parent ROI}
+#'  }
+#'
+#' @importFrom methods setClass
+#' 
+#' @docType class
+#' @name DynamicROI-class
+#' @rdname DynamicROI-class
+#' 
+#' @export
+#' 
+setClass("DynamicROI", representation(ID="character",
+                                      times="data.frame", 
+                                      layer="numeric", 
+                                      parent="character"), 
+         contains="list")
+
+#' Class "DynamicROIs"
+#'
+#' A list of DynamicROI objects
+#' 
+#' @importFrom methods setClass setOldClass
+#'
+#' @docType class
+#' @name DynamicROIs-class
+#' @rdname DynamicROIs-class
+#' 
+#' @export
+#' 
+setClass("DynamicROIs", representation(), contains="list", validity=function(object) {
+  !any(sapply(object, function(x) !is(x, "DynamicROI")))
+})
 
 #' Class "VoronoiPolygons"
 #'

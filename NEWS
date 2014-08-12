@@ -15,3 +15,10 @@ gazetools 4.0
 * performance increases in several functions
 * pva() now defaults to using na.spline over na.approx
 * The function mouldThreshold() has been renamed to simply mould()
+
+gazetools 4.1
+=============
+
+* added support for static and dynamic regions of interest (ROIs)
+* added function to calculate scanpaths from fixations and ROIs
+* added function to calculate transition matrices from scanpaths 

@@ -3,12 +3,16 @@
 \alias{ROI}
 \title{Region of Interest (ROI)}
 \usage{
-ROI(coords, ID, layer = 0)
+ROI(coords, ID, layer = 0, parent = NA_character_)
 }
 \arguments{
 \item{coords}{a data frame of xy coordinates}
 
 \item{ID}{a text based identifier for the new ROI}
+
+\item{layer}{the layer to which the ROI belongs}
+
+\item{parent}{the id of the parent ROI}
 }
 \value{
 an object of class \code{\linkS4class{ROI}}

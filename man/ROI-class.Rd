@@ -17,6 +17,7 @@ An extension of the class \code{"Polygon"} that additionally contains a text ID
    \item{\code{ringDir}}{an object of class \code{"integer"}; the ring direction of the ring (polygon) coordinates, holes are expected to be anti-clockwise}
    \item{\code{coords}}{an object of class \code{"matrix"}; coordinates of the polygon; first point should equal the last point}
    \item{\code{layer}}{an object of class \code{"numeric"}; the layer (z-order / depth) of the ROI}
+   \item{\code{parent}}{an object of class \code{"character"}; the id of the parent ROI}
  }
 }
 

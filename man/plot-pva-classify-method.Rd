@@ -4,7 +4,7 @@
 \alias{plot,pva,classify-method}
 \title{Plot a 'pva' Object with Classified Samples}
 \usage{
-\S4method{plot}{pva,classify}(x, y, ...)
+\S4method{plot}{pva,classify}(x, y, pages = 1, ...)
 }
 \arguments{
 \item{x}{an object of class \code{\link[=pva-class]{pva}}}

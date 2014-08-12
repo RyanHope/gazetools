@@ -3,7 +3,7 @@
 \alias{fortify.Scanpath}
 \title{Fortify Scanpath}
 \usage{
-fortify.Scanpath(scanpath)
+\method{fortify}{Scanpath}(scanpath)
 }
 \arguments{
 \item{scanpath}{a Scanpath object}

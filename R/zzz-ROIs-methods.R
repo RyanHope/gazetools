@@ -14,8 +14,7 @@
 #' 
 setMethod("plot", signature(x = "ROIs", y = "missing"), function(x, y, ...) rois.plot(x, NULL, ...))
 
-rois.plot <- function(x, y, reverse_y = FALSE)
+rois.plot <- function(x, y, reverse_y = FALSE, alpha=1)
 {
-  ggplot(x) + geom_polygon(aes(x=x,y=y,color=reorder(id,layer),fill=reorder(id,layer))) + labs(color="ROIs",fill="ROIs")
+  ggplot(x) + geom_polygon(aes(x=x,y=y,color=reorder(id,layer),fill=reorder(id,layer)),alpha=alpha) + labs(color="ROIs",fill="ROIs")
 }
-

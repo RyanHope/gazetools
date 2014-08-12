@@ -3,7 +3,7 @@
 \alias{fortify.ROIs}
 \title{Fortify ROIs}
 \usage{
-fortify.ROIs(rois)
+\method{fortify}{ROIs}(rois)
 }
 \arguments{
 \item{rois}{a ROIs object}

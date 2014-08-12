@@ -5,6 +5,7 @@
 #' 
 #' @template 1p
 #' @param samplerate the samplerate of the eyetracker
+#' @param timestamp vector of class \code{"numeric"}, containing the external time corresponding to raw gaze samples
 #' @template eye
 #' @template sg
 #' @param vt max velocity threshold

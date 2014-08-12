@@ -4,7 +4,7 @@
 \alias{plot,pva,missing-method}
 \title{Plot a 'pva' Object}
 \usage{
-\S4method{plot}{pva,missing}(x, y, ...)
+\S4method{plot}{pva,missing}(x, y, pages = 1, ...)
 }
 \arguments{
 \item{x}{an object of class \code{\link[=pva-class]{pva}}}
