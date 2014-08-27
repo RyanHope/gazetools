@@ -14,6 +14,8 @@ pva(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0, timestamp = -1,
 
 \item{samplerate}{the samplerate of the eyetracker}
 
+\item{timestamp}{vector of class \code{"numeric"}, containing the external time corresponding to raw gaze samples}
+
 \item{rx}{the x resolution of the monitor (pixels)}
 
 \item{ry}{the y resolution of the monitor (pixels)}
@@ -27,8 +29,6 @@ pva(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0, timestamp = -1,
 \item{ex}{the horizontal offset of the viewer from screen center (mm)}
 
 \item{ey}{the vertical offset of the viewer from screen center (mm)}
-
-\item{timestamp}{vector of class \code{"numeric"}, containing the external time corresponding to raw gaze samples}
 
 \item{order}{the Savitzky-Golay filter order}
 

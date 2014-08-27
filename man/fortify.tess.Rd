@@ -3,7 +3,7 @@
 \alias{fortify.tess}
 \title{Fortify tess}
 \usage{
-\method{fortify}{tess}(tl)
+fortify.tess(tl)
 }
 \arguments{
 \item{tl}{a tess object}
