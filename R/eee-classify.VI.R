@@ -169,12 +169,13 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
     }
   }
 
-  new("classify", class,
-      event_ids = ids,
-      fixation_ids = fixation_ids,
-      saccade_ids = saccade_ids,
-      glissade_ids = glissade_ids,
-      blink_ids = blink_ids,
-      quality = quality,
-      algorithm = "velocity-iterative", thresholds = list(vt=vt,st=st,nt=nt))
+  new("classify", data.table(class = class,
+                             event_ids = ids,
+                             fixation_ids = fixation_ids,
+                             saccade_ids = saccade_ids,
+                             glissade_ids = glissade_ids,
+                             blink_ids = blink_ids,
+                             quality = quality),
+      algorithm = "velocity-iterative",
+      thresholds = list(vt=vt,st=st,nt=nt))
 }

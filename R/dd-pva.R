@@ -83,7 +83,15 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
   x <- do.call(approxFUN, list(x, na.rm=FALSE))
   y <- do.call(approxFUN, list(y, na.rm=FALSE))
   
-  new("pva", time = 0:(length(v)-1) * ts, ez = ez, ex = ex, ey = ey, x = x, y = y, sx = sx, xa = xa,
-      sy = sy, ya = ya,  v = v, a = a, sgolayfilt = c(order, window), rx = rx, ry = ry, sw = sw, sh = sh,
-      samplerate = samplerate, blinks = blinks, timestamp = timestamp)
+  new("pva", data.table(time = 0:(length(v)-1) * ts,
+                        timestamp = timestamp,
+                        x = x, y = y, ez = ez, ex = ex, ey = ey, 
+                        sx = sx, sy = sy,
+                        xa = xa, ya = ya, 
+                        v = v, a = a,
+                        blinks = blinks),
+      sgolayfilt = c(order, window),
+      rx = rx, ry = ry,
+      sw = sw, sh = sh,
+      samplerate = samplerate)
 }

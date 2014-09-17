@@ -2,28 +2,17 @@
 #'
 #' A class to hold gaze data classifications
 #'
-#' @slot .Data vector of class \code{"character"}, containing the gaze sample classification
-#' @slot event_ids vector of class \code{"numeric"}, containing unique event ids
-#' @slot blink_ids vector of class \code{"numeric"}, containing unique blink ids
-#' @slot fixation_ids vector of class \code{"numeric"}, containing unique fixation ids
-#' @slot saccade_ids vector of class \code{"numeric"}, containing unique saccade ids
-#' @slot glissade_ids vector of class \code{"numeric"}, containing unique glissade ids
-#' @slot quality vector of class \code{"numeric"}, containing the quality of each sample
+#' @slot .Data object of class \code{"data.table"}, containing the gaze sample classification information
 #' @slot algorithm the algorithm used to classify the gaze data
 #' @slot thresholds the threshold settings for the classification algorithm
 #' 
 #' @importFrom methods setClass
+#' @importClassesFrom data.table data.table
 #'
 #' @export
 #' @docType class
 #' 
 setClass("classify", 
-         representation(event_ids = "numeric",
-                        fixation_ids = "numeric",
-                        saccade_ids = "numeric",
-                        glissade_ids = "numeric",
-                        blink_ids = "numeric",
-                        quality="numeric",
-                        algorithm="character",
+         representation(algorithm="character",
                         thresholds="list"),
-         contains="character")
+         contains="data.table")
