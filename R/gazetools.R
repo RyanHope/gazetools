@@ -6,6 +6,7 @@
 #' @docType package
 #' @author Ryan M. Hope \email{rmh3093@@gmail.com}
 #' @importFrom methods setClass setMethod as
+#' @useDynLib gazetools
 NULL
 
 #' Gaze data from a SMI RED 500 eyetracker at 500 Hz.
