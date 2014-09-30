@@ -143,16 +143,16 @@ classify.VI <- function(v, vt = 100, sigma = 6, samplerate = 500, min.fix = .040
   }
 
   quality <- rep(1,m)
-  fixation_ids <- event_ids(class, "FIXATION")
-  saccade_ids <- event_ids(class, "SACCADE")
-  glissade_ids <- event_ids(class, "GLISSADE")
+  fixation_ids <- uidvec(class=="FIXATION")
+  saccade_ids <- uidvec(class=="SACCADE")
+  glissade_ids <- uidvec(class=="GLISSADE")
   if (!is.null(blinks)) {
     class[blinks] <- "BLINK"
     fixation_ids[blinks] <- 0
     saccade_ids[blinks] <- 0
     glissade_ids[blinks] <- 0
   }
-  blink_ids <- event_ids(class, "BLINK")
+  blink_ids <- uidvec(class=="BLINK")
   ids <- unique_ids(class)
   fixation_ids[which(fixation_ids!=0)] <- ids[which(fixation_ids!=0)]
   saccade_ids[which(saccade_ids!=0)] <- ids[which(saccade_ids!=0)]

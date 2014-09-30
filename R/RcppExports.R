@@ -14,8 +14,12 @@
 #' @examples
 #' distance_2_point(840, 525, 1680, 1050, 473.76, 296.1, 750)
 #' 
-distance_2_point <- function(x, y, rx, ry, sw, sh, ez, ex = 0, ey = 0) {
-    .Call('gazetools_distance_2_point', PACKAGE = 'gazetools', x, y, rx, ry, sw, sh, ez, ex, ey)
+distance_2_point <- function(x, y, rx, ry, sw, sh, ez, ex=0, ey=0) {
+  N <-length(x)
+  if (length(ez)==1) ez <- rep(ez,N)
+  if (length(ex)==1) ex <- rep(ex,N)
+  if (length(ey)==1) ey <- rep(ey,N)
+  .Call('gazetools_distance_2_point', PACKAGE = 'gazetools', x, y, rx, ry, sw, sh, ez, ex, ey)
 }
 
 #' Subtended Angle
@@ -33,7 +37,15 @@ distance_2_point <- function(x, y, rx, ry, sw, sh, ez, ex = 0, ey = 0) {
 #' @examples
 #' subtended_angle(835, 525, 845, 525, 1680, 1050, 473.76, 296.1, 750)
 #'
-subtended_angle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex = 0, ey = 0) {
-    .Call('gazetools_subtended_angle', PACKAGE = 'gazetools', x1, y1, x2, y2, rx, ry, sw, sh, ez, ex, ey)
+subtended_angle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex=0, ey=0) {
+  N <-length(x1)
+  if (length(ez)==1) ez <- rep(ez,N)
+  if (length(ex)==1) ex <- rep(ex,N)
+  if (length(ey)==1) ey <- rep(ey,N)
+  .Call('gazetools_subtended_angle', PACKAGE = 'gazetools', x1, y1, x2, y2, rx, ry, sw, sh, ez, ex, ey)
+}
+
+uidvec <- function(x) {
+    .Call('gazetools_uidvec', PACKAGE = 'gazetools', x)
 }
 
