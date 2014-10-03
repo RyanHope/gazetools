@@ -1,6 +1,6 @@
 UNAME = $(shell uname)
 
-PKG_CPPFLAGS = -Iinclude $(shell Rscript -e 'Rcpp:::CxxFlags()') -Wall -g -pedantic
+PKG_CPPFLAGS = -Iinclude $(shell Rscript -e 'Rcpp:::CxxFlags()')
 
 ifeq ($(UNAME), Linux)
 PKG_LIBS = -lstdc++ -Wl,--gc-sections

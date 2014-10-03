@@ -1,1 +1,0 @@
-#' @param class an object of class \code{"classify"}

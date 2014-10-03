@@ -5,6 +5,24 @@
 
 using namespace Rcpp;
 
+// classify
+std::vector<int> classify(std::vector<double> x, std::vector<double> e, double vt = 100, double sigma = 6);
+RcppExport SEXP gazetools_classify(SEXP xSEXP, SEXP eSEXP, SEXP vtSEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< std::vector<double> >::type x(xSEXP );
+        Rcpp::traits::input_parameter< std::vector<double> >::type e(eSEXP );
+        Rcpp::traits::input_parameter< double >::type vt(vtSEXP );
+        Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
+        std::vector<int> __result = classify(x, e, vt, sigma);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // distance_2_point
 std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> y, double rx, double ry, double sw, double sh, std::vector<double> ez, std::vector<double> ex, std::vector<double> ey);
 RcppExport SEXP gazetools_distance_2_point(SEXP xSEXP, SEXP ySEXP, SEXP rxSEXP, SEXP rySEXP, SEXP swSEXP, SEXP shSEXP, SEXP ezSEXP, SEXP exSEXP, SEXP eySEXP) {
@@ -22,6 +40,39 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< std::vector<double> >::type ex(exSEXP );
         Rcpp::traits::input_parameter< std::vector<double> >::type ey(eySEXP );
         std::vector<double> __result = distance_2_point(x, y, rx, ry, sw, sh, ez, ex, ey);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// ruidvec
+std::vector<int> ruidvec(std::vector<std::string> x);
+RcppExport SEXP gazetools_ruidvec(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< std::vector<std::string> >::type x(xSEXP );
+        std::vector<int> __result = ruidvec(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// sigthresh
+double sigthresh(std::vector<double> x, std::vector<double> e, double threshold, double sigma);
+RcppExport SEXP gazetools_sigthresh(SEXP xSEXP, SEXP eSEXP, SEXP thresholdSEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< std::vector<double> >::type x(xSEXP );
+        Rcpp::traits::input_parameter< std::vector<double> >::type e(eSEXP );
+        Rcpp::traits::input_parameter< double >::type threshold(thresholdSEXP );
+        Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
+        double __result = sigthresh(x, e, threshold, sigma);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -54,14 +105,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // uidvec
-NumericVector uidvec(LogicalVector x);
+std::vector<int> uidvec(std::vector<bool> x);
 RcppExport SEXP gazetools_uidvec(SEXP xSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< LogicalVector >::type x(xSEXP );
-        NumericVector __result = uidvec(x);
+        Rcpp::traits::input_parameter< std::vector<bool> >::type x(xSEXP );
+        std::vector<int> __result = uidvec(x);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);

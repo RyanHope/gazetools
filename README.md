@@ -6,4 +6,4 @@ gazetools is a collection of functions for processing and classifying eye gaze d
 
 To install:
 
-* the latest development version: `install_github("ryanhope/gazetools")`
+* the latest development version: `devtools::install_github("ryanhope/gazetools")`

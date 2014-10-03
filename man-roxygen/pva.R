@@ -1,1 +1,0 @@
-#' @param dpva an object of class \code{"pva"}

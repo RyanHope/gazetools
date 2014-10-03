@@ -1,18 +1,18 @@
 #' gazetools
-#' 
-#' A collection of tools for processing and classifying eye gaze data.
-#' 
+#'
+#' A collection of tools for classifying and analyzing eye gaze data.
+#'
+#' @useDynLib gazetools
+#'
 #' @name gazetools
 #' @docType package
 #' @author Ryan M. Hope \email{rmh3093@@gmail.com}
-#' @importFrom methods setClass setMethod as
-#' @useDynLib gazetools
 NULL
 
 #' Gaze data from a SMI RED 500 eyetracker at 500 Hz.
-#' 
+#'
 #' Gaze data of a participant performing a visual search task.
-#' 
+#'
 #' \itemize{
 #'  \item Samplerate was 500hz.
 #'  \item Screen resolution was 1680 x 1050 (px).
@@ -23,7 +23,7 @@ NULL
 #' @keywords datasets
 #' @name smi
 #' @usage data(smi)
-#' 
+#'
 #' @format
 #' \describe{
 #'   \item{smi_time}{sample time}
@@ -43,37 +43,37 @@ NULL
 #'   \item{smi_ezl}{distance of the left eye to the center of the screen}
 #'   \item{smi_ezr}{distance of the right eye to the center of the screen}
 #' }
-#' 
+#'
 NULL
 
 #' Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.
-#' 
+#'
 #' Gaze data of a participant performing a reading task.
-#' 
+#'
 #' \itemize{
 #'  \item Samplerate was 1250hz.
 #'  \item Screen resolution was 1024 x 768 (px).
 #'  \item Screen size was 0.38 x 0.30 (m).
 #'  \item Viewing distance was 0.67 (m).
 #' }
-#' 
+#'
 #' @docType data
 #' @keywords datasets
 #' @name highspeed
 #' @usage data(highspeed)
-#' 
+#'
 #' @format
 #' \describe{
 #'   \item{x}{horizontal gaze location}
 #'   \item{y}{vertical gaze location}
 #' }
-#' 
+#'
 NULL
 
 #' Gaze data from a LC Technologies binocular eyetracker at 120 Hz.
-#' 
+#'
 #' Gaze data of a participant performing a visual search task.
-#' 
+#'
 #' \itemize{
 #'  \item Samplerate was 120hz (alternating 60hz per eye).
 #'  \item Screen resolution was 1280 x 1024 (px).
@@ -81,12 +81,12 @@ NULL
 #'  \item Viewing distance was 58.74 (cm).
 #'  \item Vertical viewing offset was 4.55 (cm).
 #' }
-#' 
+#'
 #' @docType data
 #' @keywords datasets
 #' @name lc120
 #' @usage data(lc120)
-#' 
+#'
 #' @format
 #' \describe{
 #'   \item{status}{signal status}
@@ -96,16 +96,5 @@ NULL
 #'   \item{field}{field/camera number}
 #'   \item{timestamp}{time stamp}
 #' }
-#' 
-NULL
-
-#' Gazetools logo
-#' 
-#' The gazetools logo
-#' 
-#' @docType data
-#' @keywords datasets
-#' @name logo
-#' @usage data(logo)
-#' 
+#'
 NULL

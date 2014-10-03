@@ -1,10 +1,10 @@
-#include <Rcpp.h>
-using namespace Rcpp;
+#include "gazetools.h"
 
+//' @export
 // [[Rcpp::export]]
-NumericVector uidvec(LogicalVector x) {
+std::vector<int> uidvec(std::vector<bool> x) {
   int n = x.size();
-  NumericVector out(n);
+  std::vector<int> out(n);
   bool last = 0;
   int id = 0;
   for(int i = 0; i < n; ++i) {
