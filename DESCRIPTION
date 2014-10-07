@@ -15,5 +15,6 @@ Depends:
     data.table
 Imports:
     signal,
-    zoo
+    zoo,
+    ggplot2
 Roxygen: list(wrap = FALSE)

@@ -24,6 +24,7 @@ The Gazetools reference class is the main entry point for gaze classification an
 }}
 \examples{
 data(smi)
-g <- with(smi, gazetools(smi_sxl, smi_syl, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+g <- with(smi, gazetools(smi_sxl, smi_syl, 500, 1680, 1050, 473.76, 296.1,
+                         smi_ezl, smi_exl, smi_eyl, blinks=(smi_dyl==0|smi_dyr==0)))
 }
 

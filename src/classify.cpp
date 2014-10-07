@@ -7,8 +7,12 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<double> e, doubl
   double st;
   int i, j, n;
 
-  vt = sigthresh(v, e, vt, sigma);
-  st = sigthresh(v, e, vt, sigma/2);
+  st = vt;
+
+  if (sigma>0) {
+    vt = sigthresh(v, e, vt, sigma);
+    st = sigthresh(v, e, vt, sigma/2);
+  }
 
   n = v.size();
   Rcpp::IntegerVector out(n);
@@ -20,15 +24,17 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<double> e, doubl
   }
   for(i = 1; i < n; ++i) {
     j = 1;
-    if (e[i]==true) {
+    if (e[i]==true) { // This sample is a blink
       out[i] = -1;
-    } else if ((i-j>=0) && out[i]==1 && out[i-j]==0) {
-      while ((i-j>=0) && v[i-j] < v[i-j+1]) {
+    } else if ((i-j>=0) && out[i]==1 && out[i-j]==0) { // Find saccade onset
+      while ((i-j>=0) && v[i-j] < v[i-j+1]) { // Saccade onset is first local minima under saccade onset threshold
         out[i-j] = 1;
         j += 1;
       }
-    } else if ((i+1<n) && out[i]==1 && out[i+j]==0) {
-      while ((i+j<n) && v[i+j] > st) {
+    } else if ((i+1<n) && out[i]==1 && out[i+j]==0) { // Find saccade offset
+      if (sigma==0) // If sigma is 0 we wont be looking for a glissade
+        st = v[i+j+1]; // so we use first local minima under saccade onset threshold
+      while ((i+j<n) && v[i+j] > st) { // otherwise we use the first local minima under the saccade offset threshold
         out[i+j] = 1;
         j += 1;
       }

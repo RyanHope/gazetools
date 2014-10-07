@@ -22,7 +22,8 @@ pad_blinks <- function(x, pad) {
 #'
 #' @examples
 #' data(smi)
-#' g <- with(smi, gazetools(smi_sxl, smi_syl, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
+#' g <- with(smi, gazetools(smi_sxl, smi_syl, 500, 1680, 1050, 473.76, 296.1,
+#'                          smi_ezl, smi_exl, smi_eyl, blinks=(smi_dyl==0|smi_dyr==0)))
 #'
 #' @exportClass gazetools
 #' @export gazetools
@@ -88,6 +89,7 @@ gazetools <- setRefClass("gazetools",
 )
 
 #' @importFrom ggplot2 ggplot aes geom_point geom_path facet_grid xlab ylab scale_size_continuous
+#' @export
 gazetools$methods(plot = function(filter, style="timeseries", background=NULL, rois=NULL) {
   if (style == "timeseries") {
     .call <- as.call(quote(.self$data[]))
@@ -130,5 +132,6 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, r
 
 #' @export
 gazetools$methods(classify = function(vt=100,sigma=3) {
-  invisible(.self$data[,class:=gazetools::classify(v,blinks,vt,sigma)])
+  .class <- gazetools::classify(v,blinks,vt,sigma)
+  invisible(.self$data[,class:=.class])
 })
