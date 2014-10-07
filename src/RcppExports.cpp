@@ -6,17 +6,17 @@
 using namespace Rcpp;
 
 // classify
-std::vector<int> classify(std::vector<double> x, std::vector<double> e, double vt = 100, double sigma = 6);
-RcppExport SEXP gazetools_classify(SEXP xSEXP, SEXP eSEXP, SEXP vtSEXP, SEXP sigmaSEXP) {
+Rcpp::CharacterVector classify(std::vector<double> v, std::vector<double> e, double vt = 100, double sigma = 6);
+RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP vtSEXP, SEXP sigmaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< std::vector<double> >::type x(xSEXP );
+        Rcpp::traits::input_parameter< std::vector<double> >::type v(vSEXP );
         Rcpp::traits::input_parameter< std::vector<double> >::type e(eSEXP );
         Rcpp::traits::input_parameter< double >::type vt(vtSEXP );
         Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        std::vector<int> __result = classify(x, e, vt, sigma);
+        Rcpp::CharacterVector __result = classify(v, e, vt, sigma);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);

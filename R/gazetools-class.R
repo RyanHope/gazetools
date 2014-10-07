@@ -22,9 +22,7 @@ pad_blinks <- function(x, pad) {
 #'
 #' @examples
 #' data(smi)
-#' g <- with(smi, gazetools(smi_sxl, smi_syl, 500,
-#'                          1680, 1050, 473.76, 296.1,
-#'                          smi_ezl, smi_exl, smi_eyl))
+#' g <- with(smi, gazetools(smi_sxl, smi_syl, 500, 1680, 1050, 473.76, 296.1, smi_ezl, smi_exl, smi_eyl))
 #'
 #' @exportClass gazetools
 #' @export gazetools
@@ -34,8 +32,8 @@ gazetools <- setRefClass("gazetools",
                                      rx="numeric", ry="numeric", sw="numeric", sh="numeric",
                                      window="numeric", timestamp="numeric"),
                          methods=list(initialize = function(x, y, samplerate, rx, ry, sw, sh, ez,
-                                                            ex = 0, ey = 0, timestamp = -1, order = 2, window = 11,
-                                                            vt=1000, at=100000, pupil = NULL, import=NULL) {
+                                                            ex = 0, ey = 0, timestamp = -1, order = 2, window = 19,
+                                                            vt=1000, at=100000, blinks = NULL, import=NULL) {
                            if (!is.null(import)) {
                              callSuper(import)
                            } else {
@@ -51,8 +49,8 @@ gazetools <- setRefClass("gazetools",
                              .self$data <- data.table(time = 0:(N-1) * ts, timestamp = timestamp,
                                                       x = x, y = y, ez = ez, ex = ex, ey = ey)
 
-                             if (!is.null(pupil)) {
-                               .self$data[,blinks:=pad_blinks(pupil, 25)]
+                             if (!is.null(blinks)) {
+                               .self$data[,blinks:=pad_blinks(blinks, 30)]
                                .self$data[blinks==TRUE,`:=`(x=NA,y=NA)]
                              } else {
                                .self$data[,blinks:=FALSE]
@@ -75,8 +73,8 @@ gazetools <- setRefClass("gazetools",
                              .self$data[v>vt | a>at, `:=`(x=NA,y=NA,v=NA,a=NA)]
 
                              filter.smooth <- sgolay(p =  order, n = window, m = 0, ts = ts)
-                             .self$data[,`:=`(x=na.spline(x, na.rm=FALSE),
-                                              y=na.spline(y, na.rm=FALSE),
+                             .self$data[,`:=`(x=filter(filter.smooth, (na.spline(x, na.rm=FALSE))),
+                                              y=filter(filter.smooth, (na.spline(y, na.rm=FALSE))),
                                               v=na.spline(v, na.rm=FALSE),
                                               a=na.spline(a, na.rm=FALSE))]
 
@@ -95,10 +93,11 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, r
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
     g <- eval(.call)
-    g[,class:=factor(class,levels=c("BLINK","FIXATION","SACCADE",labels=c("cyan","black","red")))]
+    g[,class:=factor(class,levels=c("BLINK","FIXATION","SACCADE"))]
     ggplot(g[,list(time,x,y,v,a,class)][,list(variable=names(.SD),value=unlist(.SD,use.names=FALSE)),by=list(time,class)][,`:=`(variable=factor(variable,levels=c("x","y","v","a"),labels=c("Gaze X (px)","Gaze Y (px)","Velocity (deg/s)","Acceleration (deg/2^2")))]) +
       geom_point(aes(x=time,y=value,color=class)) +
-      facet_grid(variable~.,scales="free_y")
+      facet_grid(variable~.,scales="free_y") +
+      scale_color_manual(values=c("cyan","black","red"),drop=TRUE,limits=c("BLINK","FIXATION","SACCADE"))
   } else if (style == "spatial-raw") {
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
@@ -127,4 +126,9 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, r
     }
     p + xlab("x (px)") + ylab("y (px)") + coord_monitor(.self$rx,.self$ry)
   }
+})
+
+#' @export
+gazetools$methods(classify = function(vt=100,sigma=3) {
+  invisible(.self$data[,class:=gazetools::classify(v,blinks,vt,sigma)])
 })

@@ -1,6 +1,6 @@
 #include <Rcpp.h>
 
-std::vector<int> classify(std::vector<double> x, std::vector<double> e, double vt, double sigma);
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<double> e, double vt, double sigma);
 
 double sigthresh(std::vector<double> x, std::vector<double> e, double threshold, double sigma);
 
