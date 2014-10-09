@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // classify
-Rcpp::CharacterVector classify(std::vector<double> v, std::vector<double> e, double vt = 100, double sigma = 6);
-RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP vtSEXP, SEXP sigmaSEXP) {
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<double> e, double vt, double sigma, int minsacdur);
+RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP vtSEXP, SEXP sigmaSEXP, SEXP minsacdurSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -16,7 +16,8 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< std::vector<double> >::type e(eSEXP );
         Rcpp::traits::input_parameter< double >::type vt(vtSEXP );
         Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        Rcpp::CharacterVector __result = classify(v, e, vt, sigma);
+        Rcpp::traits::input_parameter< int >::type minsacdur(minsacdurSEXP );
+        Rcpp::IntegerVector __result = classify(v, e, vt, sigma, minsacdur);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -24,7 +25,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // distance_2_point
-std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> y, double rx, double ry, double sw, double sh, std::vector<double> ez, std::vector<double> ex, std::vector<double> ey);
+std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> y, double rx, double ry, double sw, double sh, Rcpp::NumericVector ez, Rcpp::NumericVector ex = Rcpp::NumericVector::create(0.0), Rcpp::NumericVector ey = Rcpp::NumericVector::create(0.0));
 RcppExport SEXP gazetools_distance_2_point(SEXP xSEXP, SEXP ySEXP, SEXP rxSEXP, SEXP rySEXP, SEXP swSEXP, SEXP shSEXP, SEXP ezSEXP, SEXP exSEXP, SEXP eySEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
@@ -36,9 +37,9 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< double >::type ry(rySEXP );
         Rcpp::traits::input_parameter< double >::type sw(swSEXP );
         Rcpp::traits::input_parameter< double >::type sh(shSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type ez(ezSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type ex(exSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type ey(eySEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ez(ezSEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ex(exSEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ey(eySEXP );
         std::vector<double> __result = distance_2_point(x, y, rx, ry, sw, sh, ez, ex, ey);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
@@ -80,7 +81,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // subtended_angle
-std::vector<double> subtended_angle(std::vector<double> x1, std::vector<double> y1, std::vector<double> x2, std::vector<double> y2, double rx, double ry, double sw, double sh, std::vector<double> ez, std::vector<double> ex, std::vector<double> ey);
+std::vector<double> subtended_angle(std::vector<double> x1, std::vector<double> y1, std::vector<double> x2, std::vector<double> y2, double rx, double ry, double sw, double sh, Rcpp::NumericVector ez, Rcpp::NumericVector ex = Rcpp::NumericVector::create(0.0), Rcpp::NumericVector ey = Rcpp::NumericVector::create(0.0));
 RcppExport SEXP gazetools_subtended_angle(SEXP x1SEXP, SEXP y1SEXP, SEXP x2SEXP, SEXP y2SEXP, SEXP rxSEXP, SEXP rySEXP, SEXP swSEXP, SEXP shSEXP, SEXP ezSEXP, SEXP exSEXP, SEXP eySEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
@@ -94,9 +95,9 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< double >::type ry(rySEXP );
         Rcpp::traits::input_parameter< double >::type sw(swSEXP );
         Rcpp::traits::input_parameter< double >::type sh(shSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type ez(ezSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type ex(exSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type ey(eySEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ez(ezSEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ex(exSEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ey(eySEXP );
         std::vector<double> __result = subtended_angle(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex, ey);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }

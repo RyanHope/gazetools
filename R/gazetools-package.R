@@ -1,10 +1,10 @@
-#' gazetools
+#' Gazetools
 #'
-#' A collection of tools for classifying and analyzing eye gaze data.
+#' A collection of tools for classifying, analyzing and visualizing eye gaze data.
 #'
 #' @useDynLib gazetools
 #'
-#' @name gazetools
+#' @name gazetools-package
 #' @docType package
 #' @author Ryan M. Hope \email{rmh3093@@gmail.com}
 NULL

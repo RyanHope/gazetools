@@ -2,7 +2,6 @@
 
 export()
 export(classify)
-export(distance_2_point)
 export(gazetools)
 export(ruidvec)
 export(sigthresh)

@@ -22,9 +22,12 @@ pad_blinks <- function(x, pad) {
 #'
 #' @examples
 #' data(smi)
-#' g <- with(smi, gazetools(smi_sxl, smi_syl, 500, 1680, 1050, 473.76, 296.1,
-#'                          smi_ezl, smi_exl, smi_eyl, blinks=(smi_dyl==0|smi_dyr==0)))
+#' g <- with(smi, gazetools(smi_sxl,smi_syl, 500,
+#'                          1680, 1050, 473.76, 296.1,
+#'                          smi_ezl, smi_exl, smi_eyl,
+#'                          blinks=(smi_dyl==0|smi_dyr==0)))
 #'
+#' @name gazetools
 #' @exportClass gazetools
 #' @export gazetools
 #'
@@ -35,6 +38,7 @@ gazetools <- setRefClass("gazetools",
                          methods=list(initialize = function(x, y, samplerate, rx, ry, sw, sh, ez,
                                                             ex = 0, ey = 0, timestamp = -1, order = 2, window = 19,
                                                             vt=1000, at=100000, blinks = NULL, import=NULL) {
+                           "@parm x this is a param"
                            if (!is.null(import)) {
                              callSuper(import)
                            } else {
@@ -83,6 +87,7 @@ gazetools <- setRefClass("gazetools",
                              .self$ry <- ry
                              .self$sw <- sw
                              .self$sh <- sh
+                             .self$window <- window
                              .self$samplerate <- samplerate
                            }
                          })
@@ -132,6 +137,6 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, r
 
 #' @export
 gazetools$methods(classify = function(vt=100,sigma=3) {
-  .class <- gazetools::classify(v,blinks,vt,sigma)
+  .class <- gazetools::classify(v,blinks,vt,sigma,floor(.self$window/2)-1)
   invisible(.self$data[,class:=.class])
 })

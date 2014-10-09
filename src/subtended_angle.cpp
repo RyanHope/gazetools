@@ -25,11 +25,20 @@
 //' subtended_angle(835, 525, 845, 525, 1680, 1050, 473.76, 296.1, 750)
 //'
 // [[Rcpp::export]]
-std::vector<double> subtended_angle(std::vector<double> x1, std::vector<double> y1, std::vector<double> x2, std::vector<double> y2, double rx, double ry, double sw, double sh, std::vector<double> ez, std::vector<double> ex, std::vector<double> ey) {
+std::vector<double> subtended_angle(std::vector<double> x1, std::vector<double> y1, std::vector<double> x2, std::vector<double> y2, double rx, double ry, double sw, double sh, Rcpp::NumericVector ez, Rcpp::NumericVector ex = Rcpp::NumericVector::create(0.0), Rcpp::NumericVector ey = Rcpp::NumericVector::create(0.0)) {
   int n = x1.size();
+
+  std::vector<double> eyez = Rcpp::as< std::vector<double> >(ez);
+  std::vector<double> eyex = Rcpp::as< std::vector<double> >(ex);
+  std::vector<double> eyey = Rcpp::as< std::vector<double> >(ey);
+
+  if (eyez.size()==1) eyez.resize(n, eyez[0]);
+  if (eyex.size()==1) eyex.resize(n, eyex[0]);
+  if (eyey.size()==1) eyey.resize(n, eyey[0]);
+
   std::vector<double> out(n);
-  std::vector<double> d1 = distance_2_point(x1, y1, rx, ry, sw, sh, ez, ex, ey);
-  std::vector<double> d2 = distance_2_point(x2, y2, rx, ry, sw, sh, ez, ex, ey);
+  std::vector<double> d1 = distance_2_point(x1, y1, rx, ry, sw, sh, Rcpp::wrap(eyez), Rcpp::wrap(eyex), Rcpp::wrap(eyey));
+  std::vector<double> d2 = distance_2_point(x2, y2, rx, ry, sw, sh, Rcpp::wrap(eyez), Rcpp::wrap(eyex), Rcpp::wrap(eyey));
   double dX, dY, dS, w1, w2;
   for(int i = 0; i < n; ++i) {
     dX = sw * (x2[i] - x1[i]) / rx;

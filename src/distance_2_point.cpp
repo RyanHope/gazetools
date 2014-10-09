@@ -20,12 +20,22 @@
 //' @examples
 //' distance_2_point(840, 525, 1680, 1050, 473.76, 296.1, 750)
 //'
+// [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::export]]
-std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> y, double rx, double ry, double sw, double sh, std::vector<double> ez, std::vector<double> ex, std::vector<double> ey) {
-  int n = x.size();
-  std::vector<double> out(n);
+std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> y, double rx, double ry, double sw, double sh, Rcpp::NumericVector ez, Rcpp::NumericVector ex = Rcpp::NumericVector::create(0.0), Rcpp::NumericVector ey = Rcpp::NumericVector::create(0.0)) {
   double dx;
   double dy;
+  int n = x.size();
+  std::vector<double> out(n);
+
+  std::vector<double> eyez = Rcpp::as< std::vector<double> >(ez);
+  std::vector<double> eyex = Rcpp::as< std::vector<double> >(ex);
+  std::vector<double> eyey = Rcpp::as< std::vector<double> >(ey);
+
+  if (eyez.size()==1) eyez.resize(n, eyez[0]);
+  if (eyex.size()==1) eyex.resize(n, eyex[0]);
+  if (eyey.size()==1) eyey.resize(n, eyey[0]);
+
   for(int i = 0; i < n; ++i) {
     dx = x[i] / rx * sw - sw / 2 + ex[i];
     dy = y[i] / ry * sh - sh / 2 - ey[i];
