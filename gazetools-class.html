@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>gazetools. gazetools 2014.0.1</title>
+<title>gazetools-class. gazetools 2014.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 2014.0.1</a>
+      <a class="brand" href="#">gazetools 2014.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -79,9 +79,7 @@
       <p></p>
   
       <p><dl>
-<dt><code>initialize(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0,
-  timestamp = -1, order = 2, window = 19, vt = 1000, at = 1e+05,
-  blinks = NULL, import = NULL)</code></dt><dd>@parm x this is a param</dd>
+<dt><code>initialize(..., import = NULL)</code></dt><dd>Initialize object with raw gaze data. Takes same arguments as <code><a href='pva.html'>pva</a></code>.</dd>
 </dl></p>
   
     </div>
@@ -92,11 +90,14 @@ g &lt;- with(smi, gazetools(smi_sxl,smi_syl, 500,
                          1680, 1050, 473.76, 296.1,
                          smi_ezl, smi_exl, smi_eyl,
                          blinks=(smi_dyl==0|smi_dyr==0)))
+
+g &lt;- with(highspeed, gazetools(x,y,1250,1024,768,.38,.30,.67,
+                               blinks=(x==0|y==0)))
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>gazetools</li>
+      <li>gazetools</li><li>gazetools-class</li>
     </ul>
     <ul>
       

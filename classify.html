@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>classify. gazetools 2014.0.1</title>
+<title>classify. gazetools 2014.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -20,7 +20,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">gazetools 2014.0.1</a>
+      <a class="brand" href="#">gazetools 2014.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -35,44 +35,53 @@
         
       </header>
       
-      <h1>Classify Gaze</h1>
+      <h1>Classify Raw Gaze Data</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>classify(v, e, vt, sigma, minsacdur)</div></pre>
+    <pre><div>classify(v, e, samplerate, vt&nbsp;=&nbsp;100, sigma&nbsp;=&nbsp;4.5, minsac&nbsp;=&nbsp;0.02, glswin&nbsp;=&nbsp;0.04, alpha&nbsp;=&nbsp;0.7)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
       <dt>v</dt>
       <dd>a vector of the instantaneous velocities for a set raw gaze samples</dd>
       <dt>e</dt>
-      <dd>a vector indicating blinks or bad data in the velocity vector</dd>
+      <dd>a vector indicating blinks or otherwise bad data in the velocity vector</dd>
+      <dt>samplerate</dt>
+      <dd>the number of samples taken in one second of time</dd>
       <dt>vt</dt>
       <dd>saccade onset velocity threshold</dd>
       <dt>sigma</dt>
       <dd>when greater than 0, the saccade onset velocity threshold is iteratively adjusted such that
-the saccade onset threshold is sigma standard deviations higher than the mean of all velocity samples
-lower than the saccade onset threshold, when glissade detection is enabled sigma/2 is used as the
+the saccade onset threshold is <em>sigma</em> standard deviations higher than the mean of all velocity samples
+lower than the saccade onset threshold, when glissade detection is enabled <em>sigma</em>/2 is used as the
 saccade offset velocity threshold</dd>
-      <dt>minsacdur</dt>
-      <dd>the minimum saccade duration in terms of number of samples (to obtain divide desired duration by samplerate)</dd>
+      <dt>minsac</dt>
+      <dd>the minimum saccade duration in seconds</dd>
+      <dt>glswin</dt>
+      <dd>the duration (in seconds) of the window post-saccade to look for glissades in, setting to 0 disables glissade detection</dd>
+      <dt>alpha</dt>
+      <dd>the weight (from 0 to 1) of the saccade onset threshold component of the saccade offset threshold,
+       <em>1-alpha</em> is used as the weight for the noise threshold component the saccade offset threshold</dd>
     </dl>
     
-    <div class="Classify Gaze">
-      <h2>Classify Gaze</h2>
+    <div class="Classify Raw Gaze Data">
+      <h2>Classify Raw Gaze Data</h2>
       
     </div>
 
-    <div class="Classify Gaze">
-      <h2>Classify Gaze</h2>
+    <div class="Classify Raw Gaze Data">
+      <h2>Classify Raw Gaze Data</h2>
       
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Velocity based classification of raw gaze samples to discrete events such as saccades and fixations.</p>
+      <p>Velocity based classification of raw gaze samples to discrete events such as saccades and fixations.
+With this classifier, fixations are what ever samples are left after identifying all other events.
+In other words, there is no concept of minium fixation duration.</p>
   
     </div>
       </div>

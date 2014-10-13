@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>subtended_angle. gazetools 2014.0.2</title>
+<title>distance_2_point. gazetools 2014.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,23 +35,19 @@
         
       </header>
       
-      <h1>Subtended Angle</h1>
+      <h1>Distance to Point</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>subtended_angle(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;as.numeric(c(0)), ey&nbsp;=&nbsp;as.numeric(c(0)))</div></pre>
+    <pre><div>distance_2_point(x, y, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;as.numeric(c(0)), ey&nbsp;=&nbsp;as.numeric(c(0)))</div></pre>
     
     <h2>Arguments</h2>
     <dl>
-      <dt>x1</dt>
-      <dd>the horizontal coordinate of the first point on a screen (pixels)</dd>
-      <dt>y1</dt>
-      <dd>the vertical coordinate of the first point on a screen (pixels)</dd>
-      <dt>x2</dt>
-      <dd>the horizontal coordinate of the second point on a screen (pixels)</dd>
-      <dt>y2</dt>
-      <dd>the vertical coordinate of the second point on a screen (pixels)</dd>
+      <dt>x</dt>
+      <dd>the horizontal coordinate of a point on a screen (pixels)</dd>
+      <dt>y</dt>
+      <dd>the vertical coordinate of a point on a screen (pixels)</dd>
       <dt>rx</dt>
       <dd>the horizontal resolution of the screen (pixels)</dd>
       <dt>ry</dt>
@@ -68,40 +64,33 @@
       <dd>the vertical offset of the viewer from screen center (mm)</dd>
     </dl>
     
-    <div class="Subtended Angle">
-      <h2>Subtended Angle</h2>
+    <div class="Distance to Point">
+      <h2>Distance to Point</h2>
       
     </div>
 
-    <div class="Subtended Angle">
-      <h2>Subtended Angle</h2>
+    <div class="Distance to Point">
+      <h2>Distance to Point</h2>
       
-    </div>
-
-    <div class="Value">
-      <h2>Value</h2>
-      
-      <p>degrees of visual angle</p>
-  
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Takes two screen coordinates and returns the angle (in degrees)
-subtended by those two points.</p>
+      <p>Takes an x and y screen coordinate and returns the physical distance
+from the observer to that point on the screen.</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>subtended_angle(835, 525, 845, 525, 1680, 1050, 473.76, 296.1, 750)
+    <pre class="examples"><div class='input'>distance_2_point(840, 525, 1680, 1050, 473.76, 296.1, 750)
 </div>
-<div class='output'>[1] 0.2154319
+<div class='output'>[1] 750
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>subtended_angle</li>
+      <li>distance_2_point</li>
     </ul>
     <ul>
       
