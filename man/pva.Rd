@@ -49,12 +49,12 @@ and acceleration profiles using a Savitzky-Golay filter.
 }
 \examples{
 data(smi)
-g <- with(smi, pva(smi_sxl,smi_syl, 500,
+d <- with(smi, pva(smi_sxl,smi_syl, 500,
                    1680, 1050, 473.76, 296.1,
                    smi_ezl, smi_exl, smi_eyl,
                    blinks=(smi_dyl==0|smi_dyr==0)))
 
-g <- with(highspeed, pva(x,y,1250,1024,768,.38,.30,.67,
+d <- with(highspeed, pva(x,y,1250,1024,768,.38,.30,.67,
                          blinks=(x==0|y==0)))
 }
 

@@ -22,7 +22,8 @@
 #' g <- with(highspeed, gazetools(x,y,1250,1024,768,.38,.30,.67,
 #'                                blinks=(x==0|y==0)))
 #'
-#' @name gazetools
+#' @name gazetools-class
+#' @rdname gazetools-class
 #' @exportClass gazetools
 #' @export gazetools
 #'
