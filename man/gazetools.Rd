@@ -25,9 +25,7 @@ The Gazetools reference class is the main entry point for gaze classification an
 \section{Methods}{
 
 \describe{
-\item{\code{initialize(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0,
-  timestamp = -1, order = 2, window = 19, vt = 1000, at = 1e+05,
-  blinks = NULL, import = NULL)}}{@parm x this is a param}
+\item{\code{initialize(..., import = NULL)}}{Initialize object with raw gaze data. Takes same arguments as \code{\link{pva}}.}
 }}
 \examples{
 data(smi)
@@ -35,5 +33,8 @@ g <- with(smi, gazetools(smi_sxl,smi_syl, 500,
                          1680, 1050, 473.76, 296.1,
                          smi_ezl, smi_exl, smi_eyl,
                          blinks=(smi_dyl==0|smi_dyr==0)))
+
+g <- with(highspeed, gazetools(x,y,1250,1024,768,.38,.30,.67,
+                               blinks=(x==0|y==0)))
 }
 

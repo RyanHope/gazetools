@@ -2,25 +2,35 @@
 % Please edit documentation in R/RcppExports.R
 \name{classify}
 \alias{classify}
-\title{Classify Gaze}
+\title{Classify Raw Gaze Data}
 \usage{
-classify(v, e, vt, sigma, minsacdur)
+classify(v, e, samplerate, vt = 100, sigma = 4.5, minsac = 0.02,
+  glswin = 0.04, alpha = 0.7)
 }
 \arguments{
 \item{v}{a vector of the instantaneous velocities for a set raw gaze samples}
 
-\item{e}{a vector indicating blinks or bad data in the velocity vector}
+\item{e}{a vector indicating blinks or otherwise bad data in the velocity vector}
+
+\item{samplerate}{the number of samples taken in one second of time}
 
 \item{vt}{saccade onset velocity threshold}
 
 \item{sigma}{when greater than 0, the saccade onset velocity threshold is iteratively adjusted such that
-the saccade onset threshold is sigma standard deviations higher than the mean of all velocity samples
-lower than the saccade onset threshold, when glissade detection is enabled sigma/2 is used as the
+the saccade onset threshold is \emph{sigma} standard deviations higher than the mean of all velocity samples
+lower than the saccade onset threshold, when glissade detection is enabled \emph{sigma}/2 is used as the
 saccade offset velocity threshold}
 
-\item{minsacdur}{the minimum saccade duration in terms of number of samples (to obtain divide desired duration by samplerate)}
+\item{minsac}{the minimum saccade duration in seconds}
+
+\item{glswin}{the duration (in seconds) of the window post-saccade to look for glissades in, setting to 0 disables glissade detection}
+
+\item{alpha}{the weight (from 0 to 1) of the saccade onset threshold component of the saccade offset threshold,
+       \emph{1-alpha} is used as the weight for the noise threshold component the saccade offset threshold}
 }
 \description{
 Velocity based classification of raw gaze samples to discrete events such as saccades and fixations.
+With this classifier, fixations are what ever samples are left after identifying all other events.
+In other words, there is no concept of minium fixation duration.
 }
 

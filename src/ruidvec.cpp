@@ -1,6 +1,5 @@
 #include "gazetools.h"
 
-//' @export
 // [[Rcpp::export]]
 std::vector<int> ruidvec(std::vector<std::string> x) {
   int n = x.size();

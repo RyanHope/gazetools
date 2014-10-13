@@ -1,10 +1,3 @@
-pad_blinks <- function(x, pad) {
-  N <- length(x)
-  out <- rep(FALSE, N)
-  for (i in which(x)) out[pmax(i-pad,1):pmin(i+pad,N)] <- TRUE
-  out
-}
-
 #' Gazetools Reference Class
 #'
 #' The Gazetools reference class is the main entry point for gaze classification and analysis.
@@ -16,8 +9,7 @@ pad_blinks <- function(x, pad) {
 #' @field sw the physical screen width (mm)
 #' @field sh the physical screen height (mm)
 #'
-#' @importFrom zoo na.spline
-#' @importFrom signal filter sgolay
+#' @importFrom methods setRefClass
 #' @importClassesFrom data.table data.table
 #'
 #' @examples
@@ -27,6 +19,9 @@ pad_blinks <- function(x, pad) {
 #'                          smi_ezl, smi_exl, smi_eyl,
 #'                          blinks=(smi_dyl==0|smi_dyr==0)))
 #'
+#' g <- with(highspeed, gazetools(x,y,1250,1024,768,.38,.30,.67,
+#'                                blinks=(x==0|y==0)))
+#'
 #' @name gazetools
 #' @exportClass gazetools
 #' @export gazetools
@@ -34,77 +29,57 @@ pad_blinks <- function(x, pad) {
 gazetools <- setRefClass("gazetools",
                          fields=list(data="data.table", samplerate="numeric",
                                      rx="numeric", ry="numeric", sw="numeric", sh="numeric",
-                                     window="numeric", timestamp="numeric"),
-                         methods=list(initialize = function(x, y, samplerate, rx, ry, sw, sh, ez,
-                                                            ex = 0, ey = 0, timestamp = -1, order = 2, window = 19,
-                                                            vt=1000, at=100000, blinks = NULL, import=NULL) {
-                           "@parm x this is a param"
-                           if (!is.null(import)) {
+                                     window="numeric", timestamp="numeric",
+                                     classifier="list"),
+                         methods=list(initialize = function(..., import=NULL) {
+                           "Initialize object with raw gaze data. Takes same arguments as \\code{\\link{pva}}."
+                           if (class(import)=="gazetools") {
                              callSuper(import)
                            } else {
+                             if ("pva" %in% class(import))
+                               .self$data <- import
+                             else
+                              .self$data <- pva(...)
 
-                             ts <- 1 / samplerate
-                             filter.velocity <- sgolay(p =  order, n = window, m = 1, ts = ts)
-                             filter.acceleration <- sgolay(p =  order, n = window, m = 2, ts = ts)
+                             .self$samplerate <- attr(data,"samplerate")
+                             .self$window <- attr(data,"window")
+                             .self$rx <- attr(data,"rx")
+                             .self$ry <- attr(data,"ry")
+                             .self$sw <- attr(data,"sw")
+                             .self$sh <- attr(data,"sh")
 
-                             N <- length(x)
-                             cx <- rep(rx / 2, N)
-                             cy <- rep(ry /2, N)
-
-                             .self$data <- data.table(time = 0:(N-1) * ts, timestamp = timestamp,
-                                                      x = x, y = y, ez = ez, ex = ex, ey = ey)
-
-                             if (!is.null(blinks)) {
-                               .self$data[,blinks:=pad_blinks(blinks, 30)]
-                               .self$data[blinks==TRUE,`:=`(x=NA,y=NA)]
-                             } else {
-                               .self$data[,blinks:=FALSE]
-                             }
-                             .self$data[,`:=`(x=na.spline(x, na.rm=FALSE),
-                                              y=na.spline(y, na.rm=FALSE))]
-
-                             xa <- .self$data[,na.spline(subtended_angle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey), na.rm=FALSE)]
-                             ya <- .self$data[,na.spline(subtended_angle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey), na.rm=FALSE)]
-
-                             vx <- filter(filter.velocity, xa)
-                             vy <- filter(filter.velocity, ya)
-
-                             ax <- filter(filter.acceleration, xa)
-                             ay <- filter(filter.acceleration, ya)
-
-                             .self$data[,`:=`(v=sqrt(vx**2 + vy**2),
-                                              a=sqrt(ax**2 + ay**2))]
-
-                             .self$data[v>vt | a>at, `:=`(x=NA,y=NA,v=NA,a=NA)]
-
-                             filter.smooth <- sgolay(p =  order, n = window, m = 0, ts = ts)
-                             .self$data[,`:=`(x=filter(filter.smooth, (na.spline(x, na.rm=FALSE))),
-                                              y=filter(filter.smooth, (na.spline(y, na.rm=FALSE))),
-                                              v=na.spline(v, na.rm=FALSE),
-                                              a=na.spline(a, na.rm=FALSE))]
-
-                             .self$rx <- rx
-                             .self$ry <- ry
-                             .self$sw <- sw
-                             .self$sh <- sh
-                             .self$window <- window
-                             .self$samplerate <- samplerate
+                             setattr(.self$data,"samplerate",NULL)
+                             setattr(.self$data,"window",NULL)
+                             setattr(.self$data,"rx",NULL)
+                             setattr(.self$data,"ry",NULL)
+                             setattr(.self$data,"sw",NULL)
+                             setattr(.self$data,"sh",NULL)
                            }
                          })
 )
 
-#' @importFrom ggplot2 ggplot aes geom_point geom_path facet_grid xlab ylab scale_size_continuous
+#' @importFrom ggplot2 ggplot aes geom_point geom_path geom_segment facet_grid xlab ylab scale_size_continuous scale_color_manual scale_linetype_manual
 #' @export
 gazetools$methods(plot = function(filter, style="timeseries", background=NULL, rois=NULL) {
   if (style == "timeseries") {
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
-    g <- eval(.call)
-    g[,class:=factor(class,levels=c("BLINK","FIXATION","SACCADE"))]
-    ggplot(g[,list(time,x,y,v,a,class)][,list(variable=names(.SD),value=unlist(.SD,use.names=FALSE)),by=list(time,class)][,`:=`(variable=factor(variable,levels=c("x","y","v","a"),labels=c("Gaze X (px)","Gaze Y (px)","Velocity (deg/s)","Acceleration (deg/2^2")))]) +
+    .labs <- c("Gaze X (px)","Gaze Y (px)","Velocity (deg/s)")
+    .thresholds <- data.table(variable=c("Velocity (deg/s)",
+                                     "Velocity (deg/s)"),
+                              id=c("Saccade-peak",
+                                   "Saccade-onset"),
+                              y=c(.self$classifier$saccade_peak_threshold,
+                                  .self$classifier$saccade_onset_threshold),
+                              yend=c(.self$classifier$saccade_peak_threshold,
+                                     .self$classifier$saccade_onset_threshold))
+    .g <- eval(.call)[,list(time,x,y,v,class)][,list(variable=names(.SD),value=unlist(.SD,use.names=FALSE)),by=list(time,class)][,`:=`(variable=factor(variable,levels=c("x","y","v"),labels=.labs))]
+    ggplot(.g) +
       geom_point(aes(x=time,y=value,color=class)) +
+      geom_segment(data=.thresholds,aes(y=y,yend=y,x=-Inf,xend=Inf,group=id,linetype=id)) +
       facet_grid(variable~.,scales="free_y") +
-      scale_color_manual(values=c("cyan","black","red"),drop=TRUE,limits=c("BLINK","FIXATION","SACCADE"))
+      scale_linetype_manual("Threshold",values=c("dashed","dotted"),drop=TRUE,limits=c("Saccade-peak","Saccade-onset")) +
+      scale_color_manual("Classification",values=c("cyan","black","red","orange","yellow"),drop=TRUE,limits=c("Noise","Fixation","Saccade","Glissade-fast","Glissade-slow"))
   } else if (style == "spatial-raw") {
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
@@ -136,7 +111,10 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, r
 })
 
 #' @export
-gazetools$methods(classify = function(vt=100,sigma=3) {
-  .class <- gazetools::classify(v,blinks,vt,sigma,floor(.self$window/2)-1)
+gazetools$methods(classify = function(vt=100,sigma=4.5) {
+  minsac <- ((1/.self$samplerate)*ceiling(.self$window/2))
+  .class <- gazetools::classify(.self$data[,v],.self$data[,blinks],.self$samplerate,vt,sigma,minsac,minsac*2)
+  .self$classifier <- list(saccade_peak_threshold=attr(.class,"saccade-peak-threshold"),
+                           saccade_onset_threshold=attr(.class,"saccade-onset-threshold"))
   invisible(.self$data[,class:=.class])
 })

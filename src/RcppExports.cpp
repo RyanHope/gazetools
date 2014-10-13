@@ -6,18 +6,21 @@
 using namespace Rcpp;
 
 // classify
-Rcpp::IntegerVector classify(std::vector<double> v, std::vector<double> e, double vt, double sigma, int minsacdur);
-RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP vtSEXP, SEXP sigmaSEXP, SEXP minsacdurSEXP) {
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt = 100, double sigma = 4.5, double minsac = .02, double glswin = .04, double alpha = .7);
+RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP samplerateSEXP, SEXP vtSEXP, SEXP sigmaSEXP, SEXP minsacSEXP, SEXP glswinSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< std::vector<double> >::type v(vSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type e(eSEXP );
+        Rcpp::traits::input_parameter< std::vector<bool> >::type e(eSEXP );
+        Rcpp::traits::input_parameter< int >::type samplerate(samplerateSEXP );
         Rcpp::traits::input_parameter< double >::type vt(vtSEXP );
         Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        Rcpp::traits::input_parameter< int >::type minsacdur(minsacdurSEXP );
-        Rcpp::IntegerVector __result = classify(v, e, vt, sigma, minsacdur);
+        Rcpp::traits::input_parameter< double >::type minsac(minsacSEXP );
+        Rcpp::traits::input_parameter< double >::type glswin(glswinSEXP );
+        Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP );
+        Rcpp::IntegerVector __result = classify(v, e, samplerate, vt, sigma, minsac, glswin, alpha);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -63,14 +66,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // sigthresh
-double sigthresh(std::vector<double> x, std::vector<double> e, double threshold, double sigma);
+double sigthresh(std::vector<double> x, std::vector<bool> e, double threshold, double sigma);
 RcppExport SEXP gazetools_sigthresh(SEXP xSEXP, SEXP eSEXP, SEXP thresholdSEXP, SEXP sigmaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< std::vector<double> >::type x(xSEXP );
-        Rcpp::traits::input_parameter< std::vector<double> >::type e(eSEXP );
+        Rcpp::traits::input_parameter< std::vector<bool> >::type e(eSEXP );
         Rcpp::traits::input_parameter< double >::type threshold(thresholdSEXP );
         Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
         double __result = sigthresh(x, e, threshold, sigma);

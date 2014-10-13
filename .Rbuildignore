@@ -13,3 +13,5 @@ STAGING
 inst/web
 ^\.travis\.yml$
 .utility
+^.*\.pdf$
+Makefile

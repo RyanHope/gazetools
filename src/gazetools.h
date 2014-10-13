@@ -1,8 +1,16 @@
 #include <Rcpp.h>
 
-Rcpp::IntegerVector classify(std::vector<double> v, std::vector<double> e, double vt, double sigma);
+enum GazeClass {
+  NOISE,
+  FIXATION,
+  SACCADE,
+  GLISSADE_FAST,
+  GLISSADE_SLOW
+};
 
-double sigthresh(std::vector<double> x, std::vector<double> e, double threshold, double sigma);
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt, double sigma, double minsac, double glswin);
+
+double sigthresh(std::vector<double> x, std::vector<bool> e, double threshold, double sigma);
 
 std::vector<int> uidvec(std::vector<bool> x);
 std::vector<int> ruidvec(std::vector<std::string> x);

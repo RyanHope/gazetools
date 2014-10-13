@@ -20,7 +20,6 @@
 //' @examples
 //' distance_2_point(840, 525, 1680, 1050, 473.76, 296.1, 750)
 //'
-// [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::export]]
 std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> y, double rx, double ry, double sw, double sh, Rcpp::NumericVector ez, Rcpp::NumericVector ex = Rcpp::NumericVector::create(0.0), Rcpp::NumericVector ey = Rcpp::NumericVector::create(0.0)) {
   double dx;

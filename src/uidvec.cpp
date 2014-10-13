@@ -1,6 +1,5 @@
 #include "gazetools.h"
 
-//' @export
 // [[Rcpp::export]]
 std::vector<int> uidvec(std::vector<bool> x) {
   int n = x.size();

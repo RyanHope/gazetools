@@ -1,17 +1,7 @@
 #include "gazetools.h"
 
-//while (T) {
-//  f <- vv[vv$v < vt,]
-//  vtn <- mean(f$v) + sigma * sd(f$v)
-//  if (abs(vtn-vt)<1)
-//    break
-//  vt <- vtn
-//}
-
-
-//' @export
 // [[Rcpp::export]]
-double sigthresh(std::vector<double> x, std::vector<double> e, double threshold, double sigma) {
+double sigthresh(std::vector<double> x, std::vector<bool> e, double threshold, double sigma) {
   double temp_threshold, sum, mean, sd;
   int n, count;
   n = x.size();
