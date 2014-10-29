@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>distance_2_point. gazetools 2014.0.2</title>
+<title>sigthresh. gazetools 2014.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,62 +35,53 @@
         
       </header>
       
-      <h1>Distance to Point C++</h1>
+      <h1>Sigma Threshold C++</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>distance_2_point(x, y, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;as.numeric(c(0)), ey&nbsp;=&nbsp;as.numeric(c(0)))</div></pre>
+    <pre><div>sigthresh(x, e, threshold, sigma)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
       <dt>x</dt>
-      <dd>the horizontal coordinate of a point on a screen (pixels)</dd>
-      <dt>y</dt>
-      <dd>the vertical coordinate of a point on a screen (pixels)</dd>
-      <dt>rx</dt>
-      <dd>the horizontal resolution of the screen (pixels)</dd>
-      <dt>ry</dt>
-      <dd>the vertical resolution of the screen (pixels)</dd>
-      <dt>sw</dt>
-      <dd>the physical screen width (mm)</dd>
-      <dt>sh</dt>
-      <dd>the physical screen height (mm)</dd>
-      <dt>ez</dt>
-      <dd>the perpendicular distance from the viewer to the screen (mm)</dd>
-      <dt>ex</dt>
-      <dd>the horizontal offset of the viewer from screen center (mm)</dd>
-      <dt>ey</dt>
-      <dd>the vertical offset of the viewer from screen center (mm)</dd>
+      <dd>a vector of values that a sigma threshold needs to be determined for</dd>
+      <dt>e</dt>
+      <dd>a vector of class <code>"logical"</code> indicating samples that should be excluded from any calculations</dd>
+      <dt>threshold</dt>
+      <dd>the starting threshold for the iterative algorithm</dd>
+      <dt>sigma</dt>
+      <dd>the number of standard deviations of separation between the threshold and the mean of the values below the threhold</dd>
     </dl>
     
-    <div class="Distance to Point C++">
-      <h2>Distance to Point C++</h2>
+    <div class="Sigma Threshold C++">
+      <h2>Sigma Threshold C++</h2>
       
     </div>
 
-    <div class="Distance to Point C++">
-      <h2>Distance to Point C++</h2>
+    <div class="Sigma Threshold C++">
+      <h2>Sigma Threshold C++</h2>
       
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Takes an x and y screen coordinate and returns the physical distance
-from the observer to that point on the screen.</p>
+      <p>Iteratively converges on a threshold for which the mean of the values below the threshold
+is <em>sigma</em> standard deviations away from the threshold</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>distance_2_point(840, 525, 1680, 1050, 473.76, 296.1, 750)
+    <pre class="examples"><div class='input'>d &lt;- with(highspeed, pva(x,y,1250,1024,768,.38,.30,.67))
+sigthresh(d$v,d$blinks,80,5)
 </div>
-<div class='output'>[1] 750
+<div class='output'>[1] 177.9346
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>distance_2_point</li>
+      <li>sigthresh</li>
     </ul>
     <ul>
       

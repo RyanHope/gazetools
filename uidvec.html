@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>subtended_angle. gazetools 2014.0.2</title>
+<title>uidvec. gazetools 2014.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -35,73 +35,52 @@
         
       </header>
       
-      <h1>Subtended Angle C++</h1>
+      <h1>Logical-based (non-continuous) unique ID runs C++</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>subtended_angle(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex&nbsp;=&nbsp;as.numeric(c(0)), ey&nbsp;=&nbsp;as.numeric(c(0)))</div></pre>
+    <pre><div>uidvec(x)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
-      <dt>x1</dt>
-      <dd>the horizontal coordinate of the first point on a screen (pixels)</dd>
-      <dt>y1</dt>
-      <dd>the vertical coordinate of the first point on a screen (pixels)</dd>
-      <dt>x2</dt>
-      <dd>the horizontal coordinate of the second point on a screen (pixels)</dd>
-      <dt>y2</dt>
-      <dd>the vertical coordinate of the second point on a screen (pixels)</dd>
-      <dt>rx</dt>
-      <dd>the horizontal resolution of the screen (pixels)</dd>
-      <dt>ry</dt>
-      <dd>the vertical resolution of the screen (pixels)</dd>
-      <dt>sw</dt>
-      <dd>the physical screen width (mm)</dd>
-      <dt>sh</dt>
-      <dd>the physical screen height (mm)</dd>
-      <dt>ez</dt>
-      <dd>the perpendicular distance from the viewer to the screen (mm)</dd>
-      <dt>ex</dt>
-      <dd>the horizontal offset of the viewer from screen center (mm)</dd>
-      <dt>ey</dt>
-      <dd>the vertical offset of the viewer from screen center (mm)</dd>
+      <dt>x</dt>
+      <dd>a vector of class <code>"logical"</code></dd>
     </dl>
     
-    <div class="Subtended Angle C++">
-      <h2>Subtended Angle C++</h2>
+    <div class="Logical-based (non-continuous) unique ID runs C++">
+      <h2>Logical-based (non-continuous) unique ID runs C++</h2>
       
     </div>
 
-    <div class="Subtended Angle C++">
-      <h2>Subtended Angle C++</h2>
+    <div class="Logical-based (non-continuous) unique ID runs C++">
+      <h2>Logical-based (non-continuous) unique ID runs C++</h2>
       
     </div>
 
     <div class="Value">
       <h2>Value</h2>
       
-      <p>degrees of visual angle</p>
+      <p>a vector of <code>"numeric"</code></p>
   
     </div>
 
     <div class="Description">
       <h2>Description</h2>
       
-      <p>Takes two screen coordinates and returns the angle (in degrees)
-subtended by those two points.</p>
+      <p>For a vector of logicals, assigns each continuous run of TRUE values a unique ID.</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>subtended_angle(835, 525, 845, 525, 1680, 1050, 473.76, 296.1, 750)
+    <pre class="examples"><div class='input'>uidvec(c(FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE))
 </div>
-<div class='output'>[1] 0.2154319
+<div class='output'> [1] 0 0 1 1 1 0 2 0 3 3 0 4
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>subtended_angle</li>
+      <li>uidvec</li>
     </ul>
     <ul>
       
