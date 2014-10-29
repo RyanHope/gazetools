@@ -9,7 +9,7 @@
 //' @return a vector of \code{"numeric"}
 //'
 //' @examples
-//' uidvec(c(F,F,T,T,T,F,T,F,T,T,F,T))
+//' uidvec(c(FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE))
 //'
 //' @export
 // [[Rcpp::export]]
