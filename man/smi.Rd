@@ -35,5 +35,9 @@ Gaze data of a participant performing a visual search task.
  \item Screen size was 473.76 x 296.1 (mm).
 }
 }
+\examples{
+data(smi)
+smi
+}
 \keyword{datasets}
 

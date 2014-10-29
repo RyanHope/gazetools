@@ -5,7 +5,7 @@
 \title{Position, Velocity, Acceleration}
 \usage{
 pva(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0, timestamp = -1,
-  order = 2, window = 19, vt = 1000, at = 1e+05, blinks = NULL,
+  minsac = 0.01, vt = 1000, at = 1e+05, blinks = NULL,
   blinkpadding = 0.06)
 }
 \arguments{
@@ -31,9 +31,7 @@ pva(x, y, samplerate, rx, ry, sw, sh, ez, ex = 0, ey = 0, timestamp = -1,
 
 \item{timestamp}{vector of class \code{"numeric"} containing the external time corresponding to raw gaze samples}
 
-\item{order}{the Savitzky-Golay filter order}
-
-\item{window}{the Savitzky-Golay filter window length (must be odd)}
+\item{minsac}{the minimum saccade duration in seconds}
 
 \item{vt}{the max peak velocity allowed for good data}
 
@@ -52,9 +50,12 @@ data(smi)
 d <- with(smi, pva(smi_sxl,smi_syl, 500,
                    1680, 1050, 473.76, 296.1,
                    smi_ezl, smi_exl, smi_eyl,
-                   blinks=(smi_dyl==0|smi_dyr==0)))
+                   blinks=(smi_dyl==0|smi_dyr==0),
+                   timestamp=smi_time))
+d
 
 d <- with(highspeed, pva(x,y,1250,1024,768,.38,.30,.67,
                          blinks=(x==0|y==0)))
+d
 }
 

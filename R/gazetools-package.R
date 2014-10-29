@@ -44,6 +44,10 @@ NULL
 #'   \item{smi_ezr}{distance of the right eye to the center of the screen}
 #' }
 #'
+#' @examples
+#' data(smi)
+#' smi
+#'
 NULL
 
 #' Gaze data from a SMI iView X Hi-Speed 1250 eyetracker at 1250 Hz.
@@ -67,6 +71,10 @@ NULL
 #'   \item{x}{horizontal gaze location}
 #'   \item{y}{vertical gaze location}
 #' }
+#'
+#' @examples
+#' data(highspeed)
+#' highspeed
 #'
 NULL
 
@@ -96,5 +104,9 @@ NULL
 #'   \item{field}{field/camera number}
 #'   \item{timestamp}{time stamp}
 #' }
+#'
+#' @examples
+#' data(lc120)
+#' lc120
 #'
 NULL

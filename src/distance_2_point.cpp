@@ -1,6 +1,6 @@
 #include "gazetools.h"
 
-//' Distance to Point
+//' Distance to Point {C++}
 //'
 //' Takes an x and y screen coordinate and returns the physical distance
 //' from the observer to that point on the screen.

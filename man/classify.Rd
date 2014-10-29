@@ -2,9 +2,9 @@
 % Please edit documentation in R/RcppExports.R
 \name{classify}
 \alias{classify}
-\title{Classify Raw Gaze Data}
+\title{Classify Raw Gaze Data {C++}}
 \usage{
-classify(v, e, samplerate, vt = 100, sigma = 4.5, minsac = 0.02,
+classify(v, e, samplerate, vt = 100, sigma = 6, minsac = 0.01,
   glswin = 0.04, alpha = 0.7)
 }
 \arguments{

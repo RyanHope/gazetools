@@ -1,6 +1,7 @@
 #include <Rcpp.h>
 
 enum GazeClass {
+  NA,
   NOISE,
   FIXATION,
   SACCADE,

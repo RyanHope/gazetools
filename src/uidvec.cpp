@@ -1,5 +1,17 @@
 #include "gazetools.h"
 
+//' Logical-based (non-continuous) unique ID runs {C++}
+//'
+//' For a vector of logicals, assigns each continuous run of TRUE values a unique ID.
+//'
+//' @param x a vector of class \code{"logical"}
+//'
+//' @return a vector of \code{"numeric"}
+//'
+//' @examples
+//' uidvec(c(F,F,T,T,T,F,T,F,T,T,F,T))
+//'
+//' @export
 // [[Rcpp::export]]
 std::vector<int> uidvec(std::vector<bool> x) {
   int n = x.size();

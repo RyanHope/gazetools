@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{subtended_angle}
 \alias{subtended_angle}
-\title{Subtended Angle}
+\title{Subtended Angle {C++}}
 \usage{
 subtended_angle(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex = as.numeric(c(0)),
   ey = as.numeric(c(0)))

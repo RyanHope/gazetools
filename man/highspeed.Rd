@@ -22,5 +22,9 @@ Gaze data of a participant performing a reading task.
  \item Viewing distance was 0.67 (m).
 }
 }
+\examples{
+data(highspeed)
+highspeed
+}
 \keyword{datasets}
 

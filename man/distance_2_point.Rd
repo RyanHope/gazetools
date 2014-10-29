@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{distance_2_point}
 \alias{distance_2_point}
-\title{Distance to Point}
+\title{Distance to Point {C++}}
 \usage{
 distance_2_point(x, y, rx, ry, sw, sh, ez, ex = as.numeric(c(0)),
   ey = as.numeric(c(0)))

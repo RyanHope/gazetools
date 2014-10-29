@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // classify
-Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt = 100, double sigma = 4.5, double minsac = .02, double glswin = .04, double alpha = .7);
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt = 100, double sigma = 6, double minsac = .01, double glswin = .04, double alpha = .7);
 RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP samplerateSEXP, SEXP vtSEXP, SEXP sigmaSEXP, SEXP minsacSEXP, SEXP glswinSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;

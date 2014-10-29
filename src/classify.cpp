@@ -1,6 +1,6 @@
 #include "gazetools.h"
 
-//' Classify Raw Gaze Data
+//' Classify Raw Gaze Data {C++}
 //'
 //' Velocity based classification of raw gaze samples to discrete events such as saccades and fixations.
 //' With this classifier, fixations are what ever samples are left after identifying all other events.
@@ -21,7 +21,7 @@
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt=100, double sigma=4.5, double minsac=.02, double glswin=.04, double alpha=.7) {
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt=100, double sigma=6, double minsac=.01, double glswin=.04, double alpha=.7) {
 
   // ******************************************************************************
   // TODO:
@@ -51,16 +51,30 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
       out[i] = FIXATION;
   }
   for(i = 0; i < n;) {
-    j = 1;
-    if (e[i]==true) { // This sample is a blink
+    j = i;
+    if (e[i]==true) {
       out[i] = NOISE;
-    } else if ((i-j>=0) && out[i]==SACCADE && out[i-j]==FIXATION) { // Find saccade onset
-      while ((i-j>=0) && (v[i-j] > st || v[i-j] < v[i-j+1])) { // Saccade onset is first local minima under saccade onset threshold
-        out[i-j] = SACCADE;
-        ++j;
+      if ((i-1>=0) && out[i-1]!=NOISE) {
+        while ((j-1>=0) && (v[j] > st || v[j] > v[j-1])) {
+          out[j] = NOISE;
+          --j;
+        }
+        out[j] = NOISE;
+      } else if ((i+1<n) && out[i+1]!=NOISE) {
+        while ((j+1<n) && (v[j] > st || v[j] > v[j+1])) {
+          out[j] = NOISE;
+          ++j;
+        }
+        out[j] = NOISE;
       }
-      sb = i-j; // Save saccade begin index
-    } else if ((i+1<n) && out[i]==SACCADE && out[i+j]==FIXATION) { // Find saccade offset
+    } else if ((i-1>=0) && out[i]==SACCADE && out[i-1]!=SACCADE) { // Find saccade onset
+      while ((j-1>=0) && (v[j] > st || v[j] > v[j-1])) { // Saccade onset is first local minima under saccade onset threshold
+        out[j] = SACCADE;
+        --j;
+      }
+      out[j] = SACCADE;
+      sb = j; // Save saccade begin index
+    } else if ((i+1<n) && out[i]==SACCADE && out[i+1]!=SACCADE) { // Find saccade offset
       double tmpsum=0, tmpmean=0, tmpsd=0;
       for (int k=sb; k>=std::max(sb-gls,0); --k) {
         tmpsum += v[k];
@@ -72,49 +86,42 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
       }
       tmpsd = sqrt(tmpsum/(double)gls);
       double nt = alpha*st + beta*(tmpmean + (sigma/2 * tmpsd));
-      while ((i+j<n) && (v[i+j] > nt || v[i+j] < v[i+j-1]))  {// Saccade offset is first local minima under saccade offset threshold
-        out[i+j] = SACCADE;
+      while ((j+1<n) && (v[j] > nt || v[j] > v[j+1]))  {// Saccade offset is first local minima under saccade offset threshold
+        out[j] = SACCADE;
         ++j;
       }
-      se = i+j; // Save saccade end index
+      out[j] = SACCADE;
+      se = j; // Save saccade end index
       if ((se-sb+1) < minsac/ts) { // If the saccade is too short, wipe it out
         for (j=sb; j<=se; ++j)
           out[j] = FIXATION;
       }
       i = se; // Move index to end of saccade
-      if (out[i-1]==SACCADE && gls>0 && (i+1)<n) {// Now look for glissades
-        bool glissade = false;
-        int glissade_type = 0;
-        int gt = 0;
+      if (out[i]!=FIXATION && gls>0 && (i+1)<n) {// Now look for glissades
         int gmax = std::min(i+gls,n-1);
-        for (j=i;j<=gmax;++j) {
-          if (glissade_type==0) {
-            if (v[j]>nt) {
-              glissade_type=GLISSADE_SLOW;
-              if (v[j]>vt) {
-                glissade_type=GLISSADE_FAST;
-              }
-            }
-          } else {
-            if (glissade_type==GLISSADE_SLOW && v[j]<=nt) {
-              gt = j;
-              glissade = true;
-              break;
-            }
-            else if (glissade_type==GLISSADE_FAST && v[j]<=st) {
-              gt = j;
-              glissade = true;
-              break;
-            }
-          }
+        int slow = 0;
+        int fast = 0;
+        int glissade_type = 0;
+        for (j=i;j<=gmax;j++) {
+          if (v[j]>vt) ++fast;
+          if (v[j]>nt) ++slow;
         }
-        if (glissade) {
-          for (i=i;i<=gt;++i)
-            out[i]=glissade_type;
-          while (((i+1)<n) && v[i+1]<v[i]) {
-            out[i]=glissade_type;
-            ++i;
+        if (fast>0) {
+          glissade_type = GLISSADE_FAST;
+        } else if (slow>0) {
+          glissade_type = GLISSADE_SLOW;
+        }
+        if (glissade_type == GLISSADE_FAST || glissade_type == GLISSADE_SLOW) {
+          j=i;
+          while (j<=gmax && v[j]<=v[j+1]) {
+            out[j] = glissade_type;
+            ++j;
           }
+          while (j<n && (v[j]>nt || (v[j]>v[j+1]))) {
+            out[j] = glissade_type;
+            ++j;
+          }
+          i=j;
         }
       }
     }

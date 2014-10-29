@@ -8,10 +8,23 @@ sd_section(
   )
 )
 sd_section(
-  "Visual Angle",
-  "Functions related to the conversion pixels to degrees of visual angle and vise versa.",
+  "Entry points",
+  "These are the main function people will be using.",
   c(
+    "gazetools-class"
+  )
+)
+
+sd_section(
+  "Low-level utility functions",
+  "Helper function most people wont need to use directly.",
+  c(
+    "uidvec",
+    "ruidvec",
+    "sigthresh",
     "distance_2_point",
-    "subtended_angle"
+    "subtended_angle",
+    "pva",
+    "classify"
   )
 )

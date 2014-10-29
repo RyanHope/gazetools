@@ -33,9 +33,12 @@ data(smi)
 g <- with(smi, gazetools(smi_sxl,smi_syl, 500,
                          1680, 1050, 473.76, 296.1,
                          smi_ezl, smi_exl, smi_eyl,
-                         blinks=(smi_dyl==0|smi_dyr==0)))
+                         blinks=(smi_dyl==0|smi_dyr==0),
+                         timestamp=smi_time))
+g
 
 g <- with(highspeed, gazetools(x,y,1250,1024,768,.38,.30,.67,
                                blinks=(x==0|y==0)))
+g
 }
 

@@ -27,5 +27,9 @@ Gaze data of a participant performing a visual search task.
  \item Vertical viewing offset was 4.55 (cm).
 }
 }
+\examples{
+data(lc120)
+lc120
+}
 \keyword{datasets}
 

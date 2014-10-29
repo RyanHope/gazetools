@@ -1,6 +1,6 @@
 #include "gazetools.h"
 
-//' Subtended Angle
+//' Subtended Angle {C++}
 //'
 //' Takes two screen coordinates and returns the angle (in degrees)
 //' subtended by those two points.
