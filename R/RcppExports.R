@@ -122,7 +122,7 @@ subtended_angle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex = as.numeric(
 #' @return a vector of \code{"numeric"}
 #'
 #' @examples
-#' uidvec(c(F,F,T,T,T,F,T,F,T,T,F,T))
+#' uidvec(c(FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE))
 #'
 #' @export
 uidvec <- function(x) {
