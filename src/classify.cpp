@@ -14,6 +14,7 @@
 //'        the saccade onset threshold is \emph{sigma} standard deviations higher than the mean of all velocity samples
 //'        lower than the saccade onset threshold, when glissade detection is enabled \emph{sigma}/2 is used as the
 //'        saccade offset velocity threshold
+//' @param minblink the minimum duration in seconds required for noise to be considered a blink
 //' @param minsac the minimum saccade duration in seconds
 //' @param glswin the duration (in seconds) of the window post-saccade to look for glissades in, setting to 0 disables glissade detection
 //' @param alpha the weight (from 0 to 1) of the saccade onset threshold component of the saccade offset threshold,
@@ -21,7 +22,7 @@
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt=100, double sigma=6, double minsac=.01, double glswin=.04, double alpha=.7) {
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt=100, double sigma=6, double minblink=.08, double minsac=.02, double glswin=.04, double alpha=.7) {
 
   // ******************************************************************************
   // TODO:
@@ -36,6 +37,8 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
 
   int gls = 0;
   if (glswin>0) gls = std::ceil(glswin/ts);
+  int bln = 0;
+  if (minblink>0) bln = std::ceil(minblink/ts);
 
   if (sigma>0) {
     vt = sigthresh(v, e, vt, sigma); // Iteratively find saccade peak threshold
@@ -50,23 +53,31 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
     else
       out[i] = FIXATION;
   }
+  int bb=-1,be=-1;
   for(i = 0; i < n;) {
     j = i;
     if (e[i]==true) {
       out[i] = NOISE;
       if ((i-1>=0) && out[i-1]!=NOISE) {
-        while ((j-1>=0) && (v[j] > st || v[j] > v[j-1])) {
+        while ((j-1>=0) && (v[j] > st || v[j] >= v[j-1])) {
           out[j] = NOISE;
           --j;
         }
         out[j] = NOISE;
+        bb=j;
       } else if ((i+1<n) && out[i+1]!=NOISE) {
-        while ((j+1<n) && (v[j] > st || v[j] > v[j+1])) {
+        while ((j+1<n) && (v[j] > st || v[j] >= v[j+1])) {
           out[j] = NOISE;
           ++j;
         }
         out[j] = NOISE;
+        be=j;
+        if ((be-bb)>bln) {
+          for (j=bb;j<=be;++j)
+            out[j] = BLINK;
+        }
       }
+      i=j;
     } else if ((i-1>=0) && out[i]==SACCADE && out[i-1]!=SACCADE) { // Find saccade onset
       while ((j-1>=0) && (v[j] > st || v[j] > v[j-1])) { // Saccade onset is first local minima under saccade onset threshold
         out[j] = SACCADE;
@@ -86,7 +97,16 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
       }
       tmpsd = sqrt(tmpsum/(double)gls);
       double nt = alpha*st + beta*(tmpmean + (sigma/2 * tmpsd));
+      bool do_glissade = true;
       while ((j+1<n) && (v[j] > nt || v[j] > v[j+1]))  {// Saccade offset is first local minima under saccade offset threshold
+        if (e[j+1]) {// we hit a blink, rewind and break
+          while (j>0 && v[j]>v[j-1]) {
+            out[j] = FIXATION;
+            --j;
+          }
+          do_glissade = false;
+          break;
+        }
         out[j] = SACCADE;
         ++j;
       }
@@ -97,14 +117,14 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
           out[j] = FIXATION;
       }
       i = se; // Move index to end of saccade
-      if (out[i]!=FIXATION && gls>0 && (i+1)<n) {// Now look for glissades
+      if (do_glissade && out[i]!=FIXATION && gls>0 && (i+1)<n) {// Now look for glissades
         int gmax = std::min(i+gls,n-1);
         int slow = 0;
         int fast = 0;
         int glissade_type = 0;
-        for (j=i;j<=gmax;j++) {
-          if (v[j]>vt) ++fast;
-          if (v[j]>nt) ++slow;
+        for (j=(i+1);j<=gmax;j++) {
+          if (v[j-1]>vt && v[j]<=vt) ++fast;
+          if (v[j-1]>nt && v[j]<=nt) ++slow;
         }
         if (fast>0) {
           glissade_type = GLISSADE_FAST;
@@ -128,18 +148,20 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
     ++i;
   }
 
-  Rcpp::IntegerVector levels(5);
+  Rcpp::IntegerVector levels(6);
   levels[0] = NOISE;
-  levels[1] = FIXATION;
-  levels[2] = SACCADE;
-  levels[3] = GLISSADE_FAST;
-  levels[4] = GLISSADE_SLOW;
-  Rcpp::CharacterVector labels(5);
+  levels[1] = BLINK;
+  levels[2] = FIXATION;
+  levels[3] = SACCADE;
+  levels[4] = GLISSADE_FAST;
+  levels[5] = GLISSADE_SLOW;
+  Rcpp::CharacterVector labels(6);
   labels[0] = "Noise";
-  labels[1] = "Fixation";
-  labels[2] = "Saccade";
-  labels[3] = "Glissade-fast";
-  labels[4] = "Glissade-slow";
+  labels[1] = "Blink";
+  labels[2] = "Fixation";
+  labels[3] = "Saccade";
+  labels[4] = "Glissade-fast";
+  labels[5] = "Glissade-slow";
   Rcpp::IntegerVector c = match(out, levels);
   c.attr("levels") = labels;
   c.attr("class") = "factor";

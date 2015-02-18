@@ -20,7 +20,6 @@ utils::globalVariables(c("v","a"))
 #' @param vt the max peak velocity allowed for good data
 #' @param at the max peak acceleration allowed for good data
 #' @param blinks a vector of class \code{logical} indicating blinks or otherwise bad data in the velocity vector
-#' @param blinkpadding the amount of time before and after each indictated blink that should included as part of the blink (s)
 #'
 #' @importFrom zoo na.spline
 #' @importFrom signal filter sgolay
@@ -40,10 +39,8 @@ utils::globalVariables(c("v","a"))
 #'
 #' @export
 pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
-                ex = 0, ey = 0, timestamp = -1, minsac=.01,
-                vt=1000, at=100000, blinks = NULL, blinkpadding = .06) {
-  .x <- x
-  .y <- y
+                ex = 0, ey = 0, timestamp = -1, minsac=.02,
+                vt=1000, at=100000, blinks = NULL) {
   order <- 2
   ts <- 1 / samplerate
   window <- 2 * ceiling(minsac/ts) + 3
@@ -52,25 +49,24 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
   filter.velocity <- sgolay(p =  order, n = window, m = 1, ts = ts)
   filter.acceleration <- sgolay(p =  order, n = window, m = 2, ts = ts)
 
-  N <- length(x)
-  cx <- rep(0, N)#rep(rx / 2, N)
-  cy <- rep(0, N)#rep(ry /2, N)
+  .x <- x
+  .y <- y
 
-  data <- data.table(time = 0:(N-1) * ts, timestamp = timestamp,
-                     x = x, y = y, ez = ez, ex = ex, ey = ey)
+  N <- length(x)
+  cx <- rep(0, N)
+  cy <- rep(0, N)
+  
+  data <- data.table(time = 0:(N-1) * ts, timestamp = timestamp, x = x, y = y, ez = ez, ex = ex, ey = ey)
 
   if (!is.null(blinks)) {
-    if (blinkpadding>0)
-      data[,blinks:=pad_blinks(blinks, ceiling(blinkpadding/ts))]
-    else
-      data[,blinks:=blinks]
-    data[blinks==TRUE,`:=`(x=NA,y=NA)]
+    data[,blinks:=(abs(filter(filter.smooth,blinks))>0)]
+    data[blinks==TRUE,`:=`(x=0,y=0)]
   } else {
     data[,blinks:=FALSE]
   }
 
-  data[,`:=`(x=na.spline(x, na.rm=FALSE),
-             y=na.spline(y, na.rm=FALSE))]
+#   data[,`:=`(x=na.spline(x, na.rm=FALSE),
+#              y=na.spline(y, na.rm=FALSE))]
 
   xa <- data[,subtended_angle(x, cy, cx, cy, rx, ry, sw, sh, ez, ex, ey)]
   ya <- data[,subtended_angle(cx, y, cx, cy, rx, ry, sw, sh, ez, ex, ey)]
@@ -85,14 +81,15 @@ pva <- function(x, y, samplerate, rx, ry, sw, sh, ez,
              v=sqrt(vx**2 + vy**2),
              a=sqrt(ax**2 + ay**2))]
 
-  data[v>vt | a>at, `:=`(vx=NA,vy=NA,v=NA,a=NA)]
+  data[,noise:=FALSE]
+  data[v>vt | a>at, noise:=TRUE]
 
   data[,`:=`(x=.x,
              y=.y,
-             vx=na.spline(vx, na.rm=FALSE),
-             vy=na.spline(vy, na.rm=FALSE),
-             v=na.spline(v, na.rm=FALSE),
-             a=na.spline(a, na.rm=FALSE))]
+             sx=filter(filter.smooth,x),
+             sy=filter(filter.smooth,y)
+             )]
+
   setattr(data,"samplerate",samplerate)
   setattr(data,"window",window)
   setattr(data,"minsac",minsac)

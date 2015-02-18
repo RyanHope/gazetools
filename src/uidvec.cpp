@@ -13,11 +13,11 @@
 //'
 //' @export
 // [[Rcpp::export]]
-std::vector<int> uidvec(std::vector<bool> x) {
+std::vector<int> uidvec(std::vector<bool> x, int start=0) {
   int n = x.size();
   std::vector<int> out(n);
   bool last = 0;
-  int id = 0;
+  int id = start;
   for(int i = 0; i < n; ++i) {
     if (x[i]==last) {
       out[i] = (last==0) ? 0 : id;

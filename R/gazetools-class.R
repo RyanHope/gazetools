@@ -64,13 +64,13 @@ gazetools <- setRefClass("gazetools",
                          })
 )
 
-#' @importFrom ggplot2 ggplot aes geom_point geom_path geom_segment facet_wrap xlab ylab scale_size_continuous scale_color_manual scale_linetype_manual
+#' @importFrom ggplot2 ggplot aes geom_point geom_path geom_segment facet_wrap xlab ylab scale_size_continuous scale_size_manual scale_color_manual scale_linetype_manual
 #' @export
 gazetools$methods(plot = function(filter, style="timeseries", background=NULL) {
   if (style == "timeseries") {
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
-    .labs <- c("Gaze X (px)","X-Velocity (°/s)","Gaze Y (px)","Y-Velocity (°/s)","Total Velocity (°/s)")
+    .labs <- c("Gaze X (px)","Gaze Y (px)","Total Velocity (°/s)")
     .g <- eval(.call)
     cx <- .self$rx/2 + mean(.g$ex)
     cy <- .self$ry/2 + mean(.g$ey)
@@ -79,44 +79,27 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL) {
                               y=c(cx,
                                   cy,
                                   .self$classifier$saccade_peak_threshold,
-                                  .self$classifier$saccade_onset_threshold,
-                                  .self$classifier$saccade_peak_threshold,
-                                  .self$classifier$saccade_onset_threshold,
-                                  .self$classifier$saccade_peak_threshold,
                                   .self$classifier$saccade_onset_threshold),
                               yend=c(cx,
                                      cy,
                                      .self$classifier$saccade_peak_threshold,
-                                     .self$classifier$saccade_onset_threshold,
-                                     .self$classifier$saccade_peak_threshold,
-                                     .self$classifier$saccade_onset_threshold,
-                                     .self$classifier$saccade_peak_threshold,
                                      .self$classifier$saccade_onset_threshold),
                               variable=c("Gaze X (px)",
                                          "Gaze Y (px)",
-                                         "X-Velocity (°/s)",
-                                         "X-Velocity (°/s)",
-                                         "Y-Velocity (°/s)",
-                                         "Y-Velocity (°/s)",
                                          "Total Velocity (°/s)",
                                          "Total Velocity (°/s)"),
                               id=c("Center-X",
                                    "Center-Y",
                                    "Saccade-peak",
-                                   "Saccade-onset",
-                                   "Saccade-peak",
-                                   "Saccade-onset",
-                                   "Saccade-peak",
                                    "Saccade-onset"))
-    .g <- .g[,`:=`(vx=abs(vx),vy=abs(vy))][,list(time,x,vx,y,vy,v,class,class.x,class.y)][,list(variable=names(.SD),value=unlist(.SD,use.names=FALSE)),by=list(time,class,class.x,class.y)][,`:=`(variable=factor(variable,levels=c("x","vx","y","vy","v"),labels=.labs))]
-    .g[variable=="Gaze X (px)"|variable=="X-Velocity (°/s)",class:=class.x]
-    .g[variable=="Gaze Y (px)"|variable=="Y-Velocity (°/s)",class:=class.y]
+    .g <- .g[,list(time,sx,sy,v,class,quality)][,list(variable=names(.SD),value=unlist(.SD,use.names=FALSE)),by=list(time,class,quality)][,`:=`(variable=factor(variable,levels=c("sx","sy","v"),labels=.labs))]
     ggplot(.g) +
-      geom_point(aes(x=time,y=value,color=class)) +
+      geom_point(aes(x=time,y=value,color=class,size=factor(quality))) +
       facet_wrap(~variable,ncol=1,scales="free_y") +
       geom_segment(aes(y=y,yend=y,x=-Inf,xend=Inf,group=id,linetype=id),.thresholds) +
       scale_linetype_manual("Threshold",values=c("solid","solid","dashed","dotted"),drop=TRUE,limits=c("Center-X","Center-Y","Saccade-peak","Saccade-onset")) +
-      scale_color_manual("Classification",values=c("cyan","black","red","orange","yellow"),drop=TRUE,limits=c("Noise","Fixation","Saccade","Glissade-fast","Glissade-slow"))
+      scale_color_manual("Classification",values=c("cyan","magenta","black","red","orange","yellow"),drop=TRUE,limits=c("Noise","Blink","Fixation","Saccade","Glissade-fast","Glissade-slow")) +
+      scale_size_manual("Quality",values=c(.5,1,2),limits=c(0,0.5,1))
   } else if (style == "spatial-raw") {
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
@@ -148,17 +131,22 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL) {
 })
 
 #' @export
-gazetools$methods(classify = function(vt=100,sigma=6,glswin=.04,alpha=.7) {
-  .class <- gazetools::classify(.self$data[,v],.self$data[,blinks],.self$samplerate,vt,sigma,.self$minsac,glswin,alpha)
+gazetools$methods(classify = function(vt=100,sigma=4,minblink=.08,glswin=.04,alpha=.7,idbase=0) {
+  .class <- gazetools::classify(.self$data[,v],.self$data[,blinks],.self$samplerate,vt,sigma,minblink,.self$minsac,glswin,alpha)
   .self$classifier <- list(saccade_peak_threshold=attr(.class,"saccade-peak-threshold"),
                            saccade_onset_threshold=attr(.class,"saccade-onset-threshold"))
-  .self$data[,`:=`(class=.class,
-                   class.x=gazetools::classify(abs(.self$data[,vx]),.self$data[,blinks],.self$samplerate,vt,sigma,.self$minsac,glswin,alpha),
-                   class.y=gazetools::classify(abs(.self$data[,vy]),.self$data[,blinks],.self$samplerate,vt,sigma,.self$minsac,glswin,alpha))]
-  .self$data[,`:=`(fixation_ids=uidvec(class=="Fixation"),
-                   saccade_ids=uidvec(class=="Saccade"),
-                   glissade_slow_ids=uidvec(class=="Glissade-slow"),
-                   glissade_fast_ids=uidvec(class=="Glissade-fast"))]
+  .self$data[,`:=`(class=.class)]
+  .self$data[,`:=`(event_ids=ruidvec(as.character(class), idbase),
+                   fixation_ids=uidvec(class=="Fixation", idbase),
+                   saccade_ids=uidvec(class=="Saccade", idbase),
+                   glissade_slow_ids=uidvec(class=="Glissade-slow", idbase),
+                   glissade_fast_ids=uidvec(class=="Glissade-fast", idbase),
+                   blink_ids=uidvec(class=="Blink", idbase))]
+  .self$data[,quality:=1]
+  blink_event_ids <- .self$data[blink_ids!=0,unique(event_ids)]
+  .self$data[event_ids %in% (blink_event_ids-1),quality:=.5]
+  .self$data[event_ids %in% (blink_event_ids+1),quality:=.5]
+  .self$data[event_ids %in% (blink_event_ids),quality:=0]
   invisible(.class)
 })
 
@@ -177,8 +165,9 @@ gazetools$methods(fixations = function(filter, by=NULL) {
                                    fixation.velocity=mean(.SD[,v]),
                                    ex=round(mean(.SD[,ex])),
                                    ey=round(mean(.SD[,ey])),
-                                   ez=round(mean(.SD[,ez]))),
-              by=.by]
+                                   ez=round(mean(.SD[,ez])),
+                                   quality=mean(.SD[,quality])),
+              by=.by][,{options(gazetools.lastfixid = .SD[.N,fixation_ids]); .SD}]
 })
 
 #' @export
@@ -206,33 +195,35 @@ gazetools$methods(scanpath = function(filter, rois, threshold=2, by=NULL) {
 #' @export
 summary.gazetools <- function(g, by=NULL) {
   g[,rbindlist(list(
-    .SD[fixation_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=fixation_ids][,list(measure="Fixation dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
-    .SD[saccade_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=saccade_ids][,list(measure="Saccade dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
-    .SD[glissade_slow_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_slow_ids][,list(measure="Glissade-slow dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
-    .SD[glissade_fast_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_fast_ids][,list(measure="Glissade-fast dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
-    .SD[fixation_ids!=0,list(velocity=mean(v)),by=fixation_ids][,list(measure="Fixation vel. (°/s)",value=mean(velocity), sd=sd(velocity), N=.N)],
-    .SD[saccade_ids!=0,list(velocity=max(v)),by=saccade_ids][,list(measure="Saccade peak vel. (°/s)",value=mean(velocity), sd=sd(velocity), N=.N)],
-    .SD[saccade_ids!=0,list(acceleration=max(a)),by=saccade_ids][,list(measure="Saccade peak acc. (°/s²)",value=mean(acceleration), sd=sd(acceleration), N=.N)],
+    .SD[quality==1 & fixation_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=fixation_ids][,list(measure="Fixation dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
+    .SD[quality==1 & saccade_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=saccade_ids][,list(measure="Saccade dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
+    .SD[quality==1 & glissade_slow_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_slow_ids][,list(measure="Glissade-slow dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
+    .SD[quality==1 & glissade_fast_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_fast_ids][,list(measure="Glissade-fast dur. (ms)",value=mean(duration)*1000, sd=sd(duration)*1000, N=.N)],
+    .SD[quality==1 & fixation_ids!=0,list(velocity=mean(v)),by=fixation_ids][,list(measure="Fixation vel. (°/s)",value=mean(velocity), sd=sd(velocity), N=.N)],
+    .SD[quality==1 & saccade_ids!=0,list(velocity=max(v)),by=saccade_ids][,list(measure="Saccade peak vel. (°/s)",value=mean(velocity), sd=sd(velocity), N=.N)],
+    .SD[quality==1 & saccade_ids!=0,list(acceleration=max(a)),by=saccade_ids][,list(measure="Saccade peak acc. (°/s²)",value=mean(acceleration), sd=sd(acceleration), N=.N)],
     .SD[,list(measure="Max peak vel. (°/s)",value=max(v), sd=NA, N=1)],
     .SD[,list(measure="Max peak acc (°/s)",value=max(a), sd=NA, N=1)],
     .SD[,list(measure="% glissadic saccades",value=100*((max(glissade_slow_ids)+max(glissade_fast_ids))/max(saccade_ids)), sd=NA, N=1)],
-    .SD[,list(noise=.SD[(class=="Noise"),.N]/.N)][,list(measure="% sample noise",value=100*noise,sd=NA,N=1)]
+    .SD[,list(blinks=.SD[(class=="Blink"),.N]/.N)][,list(measure="% blinks",value=100*blinks,sd=NA,N=1)],
+    .SD[,list(noise=.SD[(class=="Noise"),.N]/.N)][,list(measure="% noise",value=100*noise,sd=NA,N=1)]
   )),by=by]
 }
 
 summary.gazetools2 <- function(g, by=NULL) {
   g[,rbindlist(list(
-    .SD[fixation_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=fixation_ids][,list(Measure="Fixation dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
-    .SD[saccade_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=saccade_ids][,list(Measure="Saccade dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
-    .SD[glissade_slow_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_slow_ids][,list(Measure="Glissade-slow dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
-    .SD[glissade_fast_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_fast_ids][,list(Measure="Glissade-fast dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
-    .SD[fixation_ids!=0,list(velocity=mean(v)),by=fixation_ids][,list(Measure="Fixation vel. (°/s)",Summary=sprintf("%.01f ± %.01f", mean(velocity), sd(velocity)))],
-    .SD[saccade_ids!=0,list(velocity=max(v)),by=saccade_ids][,list(Measure="Saccade peak vel. (°/s)",Summary=sprintf("%.01f ± %.01f", mean(velocity), sd(velocity)))],
-    .SD[saccade_ids!=0,list(acceleration=max(a)),by=saccade_ids][,list(Measure="Saccade peak acc. (°/s²)",Summary=sprintf("%.01f ± %.01f", mean(acceleration), sd(acceleration)))],
+    .SD[quality==1 & fixation_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=fixation_ids][,list(Measure="Fixation dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
+    .SD[quality==1 & saccade_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=saccade_ids][,list(Measure="Saccade dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
+    .SD[quality==1 & glissade_slow_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_slow_ids][,list(Measure="Glissade-slow dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
+    .SD[quality==1 & glissade_fast_ids!=0,list(duration=.SD[.N,time]-.SD[1,time]),by=glissade_fast_ids][,list(Measure="Glissade-fast dur. (ms)",Summary=sprintf("%.01f ± %.01f, (N = %d)", mean(duration)*1000, sd(duration)*1000, .N))],
+    .SD[quality==1 & fixation_ids!=0,list(velocity=mean(v)),by=fixation_ids][,list(Measure="Fixation vel. (°/s)",Summary=sprintf("%.01f ± %.01f", mean(velocity), sd(velocity)))],
+    .SD[quality==1 & saccade_ids!=0,list(velocity=max(v)),by=saccade_ids][,list(Measure="Saccade peak vel. (°/s)",Summary=sprintf("%.01f ± %.01f", mean(velocity), sd(velocity)))],
+    .SD[quality==1 & saccade_ids!=0,list(acceleration=max(a)),by=saccade_ids][,list(Measure="Saccade peak acc. (°/s²)",Summary=sprintf("%.01f ± %.01f", mean(acceleration), sd(acceleration)))],
     .SD[,list(Measure="Max peak vel. (°/s)",Summary=sprintf("%.01f", max(v)))],
     .SD[,list(Measure="Max peak acc (°/s)",Summary=sprintf("%.01f", max(a)))],
     .SD[,list(Measure="% glissadic saccades",Summary=sprintf("%.01f", 100*((max(glissade_slow_ids)+max(glissade_fast_ids))/max(saccade_ids))))],
-    .SD[,list(noise=.SD[(class=="Noise"),.N]/.N)][,list(Measure="% sample noise",Summary=sprintf("%.01f", 100*noise))]
+    .SD[,list(blinks=.SD[(class=="Blink"),.N]/.N)][,list(Measure="% blinks",Summary=sprintf("%.01f", 100*blinks))],
+    .SD[,list(noise=.SD[(class=="Noise"),.N]/.N)][,list(Measure="% noise",Summary=sprintf("%.01f", 100*noise))]
   )),by=by]
 }
 

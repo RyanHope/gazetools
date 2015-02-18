@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // classify
-Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt = 100, double sigma = 6, double minsac = .01, double glswin = .04, double alpha = .7);
-RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP samplerateSEXP, SEXP vtSEXP, SEXP sigmaSEXP, SEXP minsacSEXP, SEXP glswinSEXP, SEXP alphaSEXP) {
+Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int samplerate, double vt = 100, double sigma = 6, double minblink = .08, double minsac = .02, double glswin = .04, double alpha = .7);
+RcppExport SEXP gazetools_classify(SEXP vSEXP, SEXP eSEXP, SEXP samplerateSEXP, SEXP vtSEXP, SEXP sigmaSEXP, SEXP minblinkSEXP, SEXP minsacSEXP, SEXP glswinSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -17,10 +17,11 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< int >::type samplerate(samplerateSEXP );
         Rcpp::traits::input_parameter< double >::type vt(vtSEXP );
         Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
+        Rcpp::traits::input_parameter< double >::type minblink(minblinkSEXP );
         Rcpp::traits::input_parameter< double >::type minsac(minsacSEXP );
         Rcpp::traits::input_parameter< double >::type glswin(glswinSEXP );
         Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP );
-        Rcpp::IntegerVector __result = classify(v, e, samplerate, vt, sigma, minsac, glswin, alpha);
+        Rcpp::IntegerVector __result = classify(v, e, samplerate, vt, sigma, minblink, minsac, glswin, alpha);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -51,14 +52,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // ruidvec
-std::vector<int> ruidvec(std::vector<std::string> x);
-RcppExport SEXP gazetools_ruidvec(SEXP xSEXP) {
+std::vector<int> ruidvec(std::vector<std::string> x, int start = 0);
+RcppExport SEXP gazetools_ruidvec(SEXP xSEXP, SEXP startSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< std::vector<std::string> >::type x(xSEXP );
-        std::vector<int> __result = ruidvec(x);
+        Rcpp::traits::input_parameter< int >::type start(startSEXP );
+        std::vector<int> __result = ruidvec(x, start);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -109,14 +111,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // uidvec
-std::vector<int> uidvec(std::vector<bool> x);
-RcppExport SEXP gazetools_uidvec(SEXP xSEXP) {
+std::vector<int> uidvec(std::vector<bool> x, int start = 0);
+RcppExport SEXP gazetools_uidvec(SEXP xSEXP, SEXP startSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< std::vector<bool> >::type x(xSEXP );
-        std::vector<int> __result = uidvec(x);
+        Rcpp::traits::input_parameter< int >::type start(startSEXP );
+        std::vector<int> __result = uidvec(x, start);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);

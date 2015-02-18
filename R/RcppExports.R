@@ -15,14 +15,15 @@
 #'        the saccade onset threshold is \emph{sigma} standard deviations higher than the mean of all velocity samples
 #'        lower than the saccade onset threshold, when glissade detection is enabled \emph{sigma}/2 is used as the
 #'        saccade offset velocity threshold
+#' @param minblink the minimum duration in seconds required for noise to be considered a blink
 #' @param minsac the minimum saccade duration in seconds
 #' @param glswin the duration (in seconds) of the window post-saccade to look for glissades in, setting to 0 disables glissade detection
 #' @param alpha the weight (from 0 to 1) of the saccade onset threshold component of the saccade offset threshold,
 #'        \emph{1-alpha} is used as the weight for the noise threshold component the saccade offset threshold
 #'
 #' @export
-classify <- function(v, e, samplerate, vt = 100, sigma = 6, minsac = .01, glswin = .04, alpha = .7) {
-    .Call('gazetools_classify', PACKAGE = 'gazetools', v, e, samplerate, vt, sigma, minsac, glswin, alpha)
+classify <- function(v, e, samplerate, vt = 100, sigma = 6, minblink = .08, minsac = .02, glswin = .04, alpha = .7) {
+    .Call('gazetools_classify', PACKAGE = 'gazetools', v, e, samplerate, vt, sigma, minblink, minsac, glswin, alpha)
 }
 
 #' Distance to Point {C++}
@@ -61,8 +62,8 @@ distance_2_point <- function(x, y, rx, ry, sw, sh, ez, ex = as.numeric( c(0.0)),
 #' ruidvec(c("One","One","Two","Three","Three","Two","Three","Three","One"))
 #'
 #' @export
-ruidvec <- function(x) {
-    .Call('gazetools_ruidvec', PACKAGE = 'gazetools', x)
+ruidvec <- function(x, start = 0L) {
+    .Call('gazetools_ruidvec', PACKAGE = 'gazetools', x, start)
 }
 
 #' Sigma Threshold {C++}
@@ -125,7 +126,7 @@ subtended_angle <- function(x1, y1, x2, y2, rx, ry, sw, sh, ez, ex = as.numeric(
 #' uidvec(c(FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE))
 #'
 #' @export
-uidvec <- function(x) {
-    .Call('gazetools_uidvec', PACKAGE = 'gazetools', x)
+uidvec <- function(x, start = 0L) {
+    .Call('gazetools_uidvec', PACKAGE = 'gazetools', x, start)
 }
 
