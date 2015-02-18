@@ -40,7 +40,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>classify(v, e, samplerate, vt&nbsp;=&nbsp;100, sigma&nbsp;=&nbsp;6, minsac&nbsp;=&nbsp;0.01, glswin&nbsp;=&nbsp;0.04, alpha&nbsp;=&nbsp;0.7)</div></pre>
+    <pre><div>classify(v, e, samplerate, vt&nbsp;=&nbsp;100, sigma&nbsp;=&nbsp;6, minblink&nbsp;=&nbsp;0.08, minsac&nbsp;=&nbsp;0.02, glswin&nbsp;=&nbsp;0.04, alpha&nbsp;=&nbsp;0.7)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -57,6 +57,8 @@
 the saccade onset threshold is <em>sigma</em> standard deviations higher than the mean of all velocity samples
 lower than the saccade onset threshold, when glissade detection is enabled <em>sigma</em>/2 is used as the
 saccade offset velocity threshold</dd>
+      <dt>minblink</dt>
+      <dd>the minimum duration in seconds required for noise to be considered a blink</dd>
       <dt>minsac</dt>
       <dd>the minimum saccade duration in seconds</dd>
       <dt>glswin</dt>
@@ -66,19 +68,9 @@ saccade offset velocity threshold</dd>
        <em>1-alpha</em> is used as the weight for the noise threshold component the saccade offset threshold</dd>
     </dl>
     
-    <div class="Classify Raw Gaze Data C++">
-      <h2>Classify Raw Gaze Data C++</h2>
-      
-    </div>
-
-    <div class="Classify Raw Gaze Data C++">
-      <h2>Classify Raw Gaze Data C++</h2>
-      
-    </div>
-
     <div class="Description">
       <h2>Description</h2>
-      
+
       <p>Velocity based classification of raw gaze samples to discrete events such as saccades and fixations.
 With this classifier, fixations are what ever samples are left after identifying all other events.
 In other words, there is no concept of minium fixation duration.</p>
