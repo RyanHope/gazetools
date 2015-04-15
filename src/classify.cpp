@@ -79,7 +79,7 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
       }
       i=j;
     } else if ((i-1>=0) && out[i]==SACCADE && out[i-1]!=SACCADE) { // Find saccade onset
-      while ((j-1>=0) && (v[j] > st || v[j] > v[j-1])) { // Saccade onset is first local minima under saccade onset threshold
+      while ((j-1>=0) && (v[j] > v[j-1] && v[j]-v[j-1]>0)) { // Saccade onset is first local minima under saccade onset threshold
         out[j] = SACCADE;
         --j;
       }
@@ -98,7 +98,7 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
       tmpsd = sqrt(tmpsum/(double)gls);
       double nt = alpha*st + beta*(tmpmean + (sigma/2 * tmpsd));
       bool do_glissade = true;
-      while ((j+1<n) && (v[j] > nt || v[j] > v[j+1]))  {// Saccade offset is first local minima under saccade offset threshold
+      while ((j+1<n) && (v[j] > v[j+1] || v[j] > nt))  {// Saccade offset is first local minima under saccade offset threshold
         if (e[j+1]) {// we hit a blink, rewind and break
           while (j>0 && v[j]>v[j-1]) {
             out[j] = FIXATION;
@@ -117,6 +117,7 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
           out[j] = FIXATION;
       }
       i = se; // Move index to end of saccade
+      //do_glissade = false;
       if (do_glissade && out[i]!=FIXATION && gls>0 && (i+1)<n) {// Now look for glissades
         int gmax = std::min(i+gls,n-1);
         int slow = 0;
@@ -167,6 +168,11 @@ Rcpp::IntegerVector classify(std::vector<double> v, std::vector<bool> e, int sam
   c.attr("class") = "factor";
   c.attr("saccade-peak-threshold") = vt;
   c.attr("saccade-onset-threshold") = st;
+  c.attr("sigma") = sigma;
+  c.attr("minblink") = minblink;
+  c.attr("minsac") = minsac;
+  c.attr("glswin") = glswin;
+  c.attr("alpha") = alpha;
 
   return c;
 }

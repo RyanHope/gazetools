@@ -66,7 +66,7 @@ gazetools <- setRefClass("gazetools",
 
 #' @importFrom ggplot2 ggplot aes geom_point geom_path geom_segment facet_wrap xlab ylab scale_size_continuous scale_size_manual scale_color_manual scale_linetype_manual
 #' @export
-gazetools$methods(plot = function(filter, style="timeseries", background=NULL) {
+gazetools$methods(plot = function(filter, style="timeseries", background=NULL, show.thresholds=TRUE, all.classes=TRUE, show.quality.guide=TRUE) {
   if (style == "timeseries") {
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
@@ -92,14 +92,25 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL) {
                                    "Center-Y",
                                    "Saccade-peak",
                                    "Saccade-onset"))
+    .classes <- data.table(values=c("cyan","magenta","black","red","orange","yellow"),
+                           limits=c("Noise","Blink","Fixation","Saccade","Glissade-fast","Glissade-slow"))
+    if (!all.classes)
+      .classes <- .classes[limits %in% .g[,unique(class)]]
     .g <- .g[,list(time,sx,sy,v,class,quality)][,list(variable=names(.SD),value=unlist(.SD,use.names=FALSE)),by=list(time,class,quality)][,`:=`(variable=factor(variable,levels=c("sx","sy","v"),labels=.labs))]
-    ggplot(.g) +
+    p <- ggplot(.g) +
       geom_point(aes(x=time,y=value,color=class,size=factor(quality))) +
       facet_wrap(~variable,ncol=1,scales="free_y") +
+      scale_color_manual("Classification",values=.classes[,values],drop=TRUE,limits=.classes[,limits]) +
+      xlab("Time (s)") + ylab("Value")
+    if (!show.quality.guide)
+      p <- p + scale_size_manual("Quality",values=c(.5,1,2),limits=c(0,0.5,1),guide=FALSE)
+    else
+      p <- p + scale_size_manual("Quality",values=c(.5,1,2),limits=c(0,0.5,1))
+    if (show.thresholds)
+      p <- p + 
       geom_segment(aes(y=y,yend=y,x=-Inf,xend=Inf,group=id,linetype=id),.thresholds) +
-      scale_linetype_manual("Threshold",values=c("solid","solid","dashed","dotted"),drop=TRUE,limits=c("Center-X","Center-Y","Saccade-peak","Saccade-onset")) +
-      scale_color_manual("Classification",values=c("cyan","magenta","black","red","orange","yellow"),drop=TRUE,limits=c("Noise","Blink","Fixation","Saccade","Glissade-fast","Glissade-slow")) +
-      scale_size_manual("Quality",values=c(.5,1,2),limits=c(0,0.5,1))
+      scale_linetype_manual("Threshold",values=c("solid","solid","dashed","dotted"),drop=TRUE,limits=c("Center-X","Center-Y","Saccade-peak","Saccade-onset"))
+    p
   } else if (style == "spatial-raw") {
     .call <- as.call(quote(.self$data[]))
     .call[[3]] <- match.call()$filter
@@ -134,7 +145,12 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL) {
 gazetools$methods(classify = function(vt=100,sigma=4,minblink=.08,glswin=.04,alpha=.7,idbase=0) {
   .class <- gazetools::classify(.self$data[,v],.self$data[,blinks],.self$samplerate,vt,sigma,minblink,.self$minsac,glswin,alpha)
   .self$classifier <- list(saccade_peak_threshold=attr(.class,"saccade-peak-threshold"),
-                           saccade_onset_threshold=attr(.class,"saccade-onset-threshold"))
+                           saccade_onset_threshold=attr(.class,"saccade-onset-threshold"),
+                           sigma=attr(.class,"sigma"),
+                           minblink=attr(.class,"minblink"),
+                           minsac=attr(.class,"minsac"),
+                           glswin=attr(.class,"glswin"),
+                           alpha=attr(.class,"alpha"))
   .self$data[,`:=`(class=.class)]
   .self$data[,`:=`(event_ids=ruidvec(as.character(class), idbase),
                    fixation_ids=uidvec(class=="Fixation", idbase),
@@ -168,6 +184,32 @@ gazetools$methods(fixations = function(filter, by=NULL) {
                                    ez=round(mean(.SD[,ez])),
                                    quality=mean(.SD[,quality])),
               by=.by][,{options(gazetools.lastfixid = .SD[.N,fixation_ids]); .SD}]
+})
+
+#' @importFrom pastecs turnpoints
+#' @export
+gazetools$methods(saccades = function(filter, by=NULL) {
+  .call <- as.call(quote(.self$data[]))
+  .call[[3]] <- match.call()$filter
+  .by <- c(by,"saccade_ids")
+  eval(.call)[saccade_ids>0 & !(saccade_ids==1 & event_ids==1), list(event_ids=.SD[1,event_ids],
+                                                                     time.begin=.SD[1,time],
+                                                                     time.end=.SD[.N,time],
+                                                                     timestamp.begin=.SD[1,timestamp],
+                                                                     timestamp.end=.SD[.N,timestamp],
+                                                                     preceding.fixation.duration=.self$data[event_ids==.SD[1,event_ids-1],ifelse(.SD[1,class]=="Fixation", .SD[.N,time]-.SD[1,time], NA_real_)],
+                                                                     saccade.amplitude=subtended_angle(.SD[1,sx],.SD[1,sy],.SD[.N,sx],.SD[.N,sy],.self$rx,.self$ry,.self$sw,.self$sh,.SD[,mean(ez)],.SD[,mean(ex)],.SD[,mean(ey)]),
+                                                                     saccade.duration=.N/.self$samplerate,
+                                                                     saccade.peak_velocity=max(.SD[,v]),
+                                                                     saccade.mean_velocity=mean(.SD[,v]),
+                                                                     ex=round(mean(.SD[,ex])),
+                                                                     ey=round(mean(.SD[,ey])),
+                                                                     ez=round(mean(.SD[,ez])),
+                                                                     quality=mean(.SD[,quality]),
+                                                                     xcross=(.SD[1,sx]<.self$rx/2 && .self$rx/2<.SD[.N,sx]),
+                                                                     ycross=(.SD[1,sy]<.self$ry/2 && .self$ry/2<.SD[.N,sy]),
+                                                                     peaks=suppressWarnings(length(which(turnpoints(.SD[,v])$peaks)))),
+              by=.by][,{options(gazetools.saccadeid = .SD[.N,saccade_ids]); .SD}]
 })
 
 #' @export
