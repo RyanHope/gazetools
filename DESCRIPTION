@@ -17,5 +17,6 @@ Imports:
     methods,
     signal,
     zoo,
-    ggplot2
+    ggplot2,
+    pastecs
 Roxygen: list(wrap = FALSE)
