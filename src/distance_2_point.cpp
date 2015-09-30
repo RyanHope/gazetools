@@ -22,8 +22,6 @@
 //'
 // [[Rcpp::export]]
 std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> y, double rx, double ry, double sw, double sh, Rcpp::NumericVector ez, Rcpp::NumericVector ex = Rcpp::NumericVector::create(0.0), Rcpp::NumericVector ey = Rcpp::NumericVector::create(0.0)) {
-  double dx;
-  double dy;
   int n = x.size();
   std::vector<double> out(n);
 
@@ -36,9 +34,9 @@ std::vector<double> distance_2_point(std::vector<double> x, std::vector<double> 
   if (eyey.size()==1) eyey.resize(n, eyey[0]);
 
   for(int i = 0; i < n; ++i) {
-    dx = x[i] / rx * sw - sw / 2 + ex[i];
-    dy = y[i] / ry * sh - sh / 2 - ey[i];
-    out[i] = sqrt(ez[i]*ez[i] + dx*dx + dy*dy);
+    double dx = x[i] / rx * sw - sw / 2.0 + eyex[i];
+    double dy = y[i] / ry * sh - sh / 2.0 - eyey[i];
+    out[i] = sqrt(eyez[i]*eyez[i] + dx*dx + dy*dy);
   }
   return out;
 }
