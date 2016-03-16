@@ -107,7 +107,7 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, s
     else
       p <- p + scale_size_manual("Quality",values=c(.5,1,2),limits=c(0,0.5,1))
     if (show.thresholds)
-      p <- p + 
+      p <- p +
       geom_segment(aes(y=y,yend=y,x=-Inf,xend=Inf,group=id,linetype=id),.thresholds) +
       scale_linetype_manual("Threshold",values=c("solid","solid","dashed","dotted"),drop=TRUE,limits=c("Center-X","Center-Y","Saccade-peak","Saccade-onset"))
     p
@@ -171,7 +171,8 @@ gazetools$methods(fixations = function(filter, by=NULL) {
   .call <- as.call(quote(.self$data[]))
   .call[[3]] <- match.call()$filter
   .by <- c(by,"fixation_ids")
-  eval(.call)[fixation_ids>0, list(time.begin=.SD[1,time],
+  eval(.call)[fixation_ids>0, list(event_ids=.SD[1,event_ids],
+                                   time.begin=.SD[1,time],
                                    time.end=.SD[.N,time],
                                    timestamp.begin=.SD[1,timestamp],
                                    timestamp.end=.SD[.N,timestamp],
