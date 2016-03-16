@@ -74,23 +74,15 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, s
     .g <- eval(.call)
     cx <- .self$rx/2 + mean(.g$ex)
     cy <- .self$ry/2 + mean(.g$ey)
-    .thresholds <- data.table(x=rep(-Inf,4),
-                              xend=rep(Inf,4),
-                              y=c(cx,
-                                  cy,
-                                  .self$classifier$saccade_peak_threshold,
+    .thresholds <- data.table(x=rep(-Inf,2),
+                              xend=rep(Inf,2),
+                              y=c(.self$classifier$saccade_peak_threshold,
                                   .self$classifier$saccade_onset_threshold),
-                              yend=c(cx,
-                                     cy,
-                                     .self$classifier$saccade_peak_threshold,
+                              yend=c(.self$classifier$saccade_peak_threshold,
                                      .self$classifier$saccade_onset_threshold),
-                              variable=c("Gaze X (px)",
-                                         "Gaze Y (px)",
-                                         "Total Velocity (°/s)",
+                              variable=c("Total Velocity (°/s)",
                                          "Total Velocity (°/s)"),
-                              id=c("Center-X",
-                                   "Center-Y",
-                                   "Saccade-peak",
+                              id=c("Saccade-peak",
                                    "Saccade-onset"))
     .classes <- data.table(values=c("cyan","magenta","black","red","orange","yellow"),
                            limits=c("Noise","Blink","Fixation","Saccade","Glissade-fast","Glissade-slow"))
@@ -109,7 +101,7 @@ gazetools$methods(plot = function(filter, style="timeseries", background=NULL, s
     if (show.thresholds)
       p <- p +
       geom_segment(aes(y=y,yend=y,x=-Inf,xend=Inf,group=id,linetype=id),.thresholds) +
-      scale_linetype_manual("Threshold",values=c("solid","solid","dashed","dotted"),drop=TRUE,limits=c("Center-X","Center-Y","Saccade-peak","Saccade-onset"))
+      scale_linetype_manual("Threshold",values=c("dashed","dotted"),drop=TRUE,limits=c("Saccade-peak","Saccade-onset"))
     p
   } else if (style == "spatial-raw") {
     .call <- as.call(quote(.self$data[]))
