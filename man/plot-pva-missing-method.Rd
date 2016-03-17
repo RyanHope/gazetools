@@ -9,10 +9,10 @@
 \arguments{
 \item{x}{an object of class \code{\link[=pva-class]{pva}}}
 
-\item{pages}{the number of pages to split the plot into}
-
 \item{y}{the y coordinates of points in the plot, \emph{optional}
     if \code{x} is an appropriate structure.}
+
+\item{pages}{the number of pages to split the plot into}
 
 \item{...}{Arguments to be passed to methods, such as
     \link{graphical parameters} (see \code{\link{par}}).
